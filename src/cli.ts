@@ -2,6 +2,7 @@
 import { Command } from 'commander';
 import * as fs from 'fs';
 import { createMachine } from 'xstate';
+import { compile } from './compiler';
 
 const program = new Command();
 
@@ -65,10 +66,8 @@ export function processInput(input: string) {
   }
 
   try {
-    createMachine(parsedJson);
-    // Output standard confirmation instead of just dummy
-    // Future Phase: This is where we pass it to Phase 3 parser
-    console.log('dummy-mermaid-output');
+    const machine = createMachine(parsedJson);
+    console.log(compile(machine));
   } catch (err) {
     throw new Error(`Invalid XState configuration: ${err instanceof Error ? err.message : String(err)}`);
   }
