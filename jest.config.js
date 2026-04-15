@@ -5,10 +5,5 @@ module.exports = {
   testMatch: ['**/*.test.ts'],
   moduleFileExtensions: ['ts', 'js'],
   collectCoverage: true,
-  coverageDirectory: 'coverage',
-  transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: 'tsconfig.json'
-    }]
-  }
+  coverageDirectory: 'coverage'
 };
