@@ -22,7 +22,7 @@ export function compile(machine: AnyStateMachine): string {
 
           // Parse Guard
           if (t.guard) {
-            const guardName = typeof t.guard === 'string' ? t.guard : (t.guard as any).type;
+            const guardName = typeof t.guard === 'string' ? t.guard : (t.guard && typeof t.guard === 'object' && 'type' in t.guard ? String(t.guard.type) : undefined);
             if (guardName) {
               edgeLabel += ` [${guardName}]`;
             }
@@ -30,7 +30,7 @@ export function compile(machine: AnyStateMachine): string {
 
           // Parse Actions
           if (t.actions && t.actions.length > 0) {
-            const actionNames = t.actions.map(a => typeof a === 'string' ? a : (a as any).type).filter(Boolean);
+            const actionNames = t.actions.map(a => typeof a === 'string' ? a : (a && typeof a === 'object' && 'type' in a ? String(a.type) : undefined)).filter(Boolean);
             if (actionNames.length > 0) {
               edgeLabel += ` / ${actionNames.join(', ')}`;
             }
