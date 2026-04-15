@@ -18,14 +18,9 @@ A CLI tool that converts XState V5 state machine descriptions into Mermaid diagr
 
 ## Interview Questions & Notes
 
-**Q1: How will the CLI ingest the XState V5 machine definitions?**
-- **User Answer:** The definitions are split between `setup()` and `createMachine()`. Is there a serialized format that combines these two?
-- **Analysis:** XState V5 does not natively provide a standard JSON serialization format for code-generated machines unless they are specifically exported from the Stately visual editor. Since machines are defined via `setup({...}).createMachine({...})`, the implementations (actions, guards, delays) often contain compiled JavaScript functions, which do not serialize cleanly to JSON. 
-- **Potential Parsers**:
-  - **AST Parsing**: Utilizing `@xstate/machine-extractor` (the library Stately uses internally) to statically parse TS/JS files via the TypeScript compiler API.
-  - **Runtime Execution**: Importing the JS/TS file via Node/V8 and directly inspecting the instantiated machine's `.config` object.
-- **User Update:** For the Mermaid diagram, we likely only need the `createMachine()` definition, not the `setup()` config, as the graph paths and transitions are fully described within `createMachine()`.
-- **Conclusion:** This suggests AST Parsing (Option A) may be the most elegant solution. If we only care about the structural graph, statically extracting the `createMachine` argument via AST will give us everything we need for Mermaid, completely avoiding the complexities of executing arbitrary TypeScript files at runtime.
+**Q1: What is the format of the XState V5 machine definitions?**
+- **User Answer:** The machine definitions are JSON format, not TypeScript.
+- **Conclusion:** By operating directly on JSON representations of the machine, we strictly avoid the heavy overhead of TypeScript AST extraction tracking or tricky runtime execution. The CLI tool will simply expect JSON files (or raw JSON on standard input) that map to the XState configuration object, vastly simplifying the ingestion pipeline.
 
 **Q2/Q3: CLI Input and Output Semantics**
 - **CLI Input:** The CLI will accept a file path as an argument, or read the machine definition directly from `stdin`.
@@ -50,10 +45,11 @@ A CLI tool that converts XState V5 state machine descriptions into Mermaid diagr
   - Accepts a file path or reads from `stdin` correctly.
   - Outputs a basic dummy string to `stdout` to verify the Unix pipeline functionality.
 
-**Phase 2: Fundamental AST Extraction**
-- **Goal**: Integrate `@xstate/machine-extractor` to parse a TypeScript file.
+**Phase 2: JSON Definition Ingestion**
+- **Goal**: Implement robust JSON parsing for the underlying machine configuration objects.
 - **Acceptance Criteria**: 
-  - Given a simple flat state machine, the CLI accurately extracts the machine config (`createMachine` argument) from the AST without executing user code.
+  - Given a simple flat state machine defined as JSON, the CLI accurately parses the file into a structured configuration object.
+  - Successfully handles and validates JSON input from both file targets and `stdin`.
 
 **Phase 3: Basic Mermaid String Compilation**
 - **Goal**: Translate the extracted XState config into a Mermaid state diagram string.
@@ -65,7 +61,7 @@ A CLI tool that converts XState V5 state machine descriptions into Mermaid diagr
 - **Goal**: Establish a rigorous validation safety net utilizing LLMs as PR reviewers to guarantee semantic translation correctness without heavy CI infrastructure.
 - **Acceptance Criteria**:
   - **Universal Golden Snapshots (CI)**: Every single test case implemented MUST generate and commit a `.mermaid` "Golden Snapshot" artifact alongside the PR. In CI, strict text snapshot testing ensures deterministic regression prevention across the entire test suite. Additionally, all generated strings must pass through the `@mermaid-js` parser to assert syntactical validity.
-  - **Semantic LLM Proof (Agent Workflow)**: The AI Agent responsible for generating the PR must execute a semantic validation prompt (via subagent or `gemini` CLI). It will compare the XState source file with the generated Mermaid output and rigorously verify that all states, transitions, actions, and guards are correctly mapped.
+  - **Semantic LLM Proof (Agent Workflow)**: The AI Agent responsible for generating the PR must execute a semantic validation prompt (via subagent or `gemini` CLI). It will compare the XState JSON source file with the generated Mermaid output and rigorously verify that all states, transitions, actions, and guards are correctly mapped.
   - **PR Artifact**: The AI Agent MUST explicitly include the outputted semantic validation proof directly in the Pull Request description so the human reviewer can safely validate the conversion efficiency.
   - **Feedback Loop & Prompt Evolution**: If a human reviewer identifies a flaw in the generated diagram that the LLM proof missed, the human manually corrects the Golden Snapshot. Crucially, **the LLM semantic validation prompt itself must be updated** to explicitly instruct the LLM on how to catch that specific failure scenario in all future automated PR checks.
 
