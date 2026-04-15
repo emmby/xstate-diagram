@@ -1,13 +1,15 @@
 import { execSync } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 
 describe('Phase 2: JSON Definition Ingestion', () => {
   const cliPath = path.join(__dirname, 'cli.ts');
-  const tempDir = path.join(__dirname, '../_testtmp');
+  let tempDir: string;
 
   beforeAll(() => {
-    if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
+    const sysTemp = os.tmpdir();
+    tempDir = fs.mkdtempSync(path.join(sysTemp, 'xstate-diagram-'));
   });
   
   afterAll(() => {

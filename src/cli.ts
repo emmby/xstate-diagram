@@ -61,7 +61,7 @@ function processInput(input: string) {
   }
 
   try {
-    const machine = createMachine(parsedJson);
+    createMachine(parsedJson);
     // Output standard confirmation instead of just dummy
     // Future Phase: This is where we pass it to Phase 3 parser
     console.log('dummy-mermaid-output');
