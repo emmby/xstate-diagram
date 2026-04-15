@@ -37,8 +37,10 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     processInput(JSON.stringify(validConfig));
     expect(consoleOutput[0]).toMatchInlineSnapshot(`
 "stateDiagram-v2
-  [*] --> idle
-  idle --> run : GO
+  state "idle" as basic_idle
+  state "run" as basic_run
+  [*] --> basic_idle
+  basic_idle --> basic_run : GO
 "
 `);
   });
@@ -64,8 +66,10 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     processInput(JSON.stringify(complexTransitionConfig));
     expect(consoleOutput[0]).toMatchInlineSnapshot(`
 "stateDiagram-v2
-  [*] --> idle
-  idle --> run : GO [isReady] / logStart, metrics
+  state "idle" as advanced_idle
+  state "run" as advanced_run
+  [*] --> advanced_idle
+  advanced_idle --> advanced_run : GO [isReady] / logStart, metrics
 "
 `);
   });
@@ -86,8 +90,34 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     processInput(JSON.stringify(selfConfig));
     expect(consoleOutput[0]).toMatchInlineSnapshot(`
 "stateDiagram-v2
-  [*] --> active
-  active --> active : BEAT / logSelf
+  state "active" as ping_active
+  [*] --> ping_active
+  ping_active --> ping_active : BEAT / logSelf
+"
+`);
+  });
+
+  it('should implement safe aliases when parsing keys with spaces or special characters', () => {
+    const spaceConfig = {
+      id: 'MyApp',
+      initial: 'start state',
+      states: {
+        'start state': {
+          on: {
+            'NEXT STEP': 'end-state'
+          }
+        },
+        'end-state': {}
+      }
+    };
+    
+    processInput(JSON.stringify(spaceConfig));
+    expect(consoleOutput[0]).toMatchInlineSnapshot(`
+"stateDiagram-v2
+  state "start state" as MyApp_start_state
+  state "end-state" as MyApp_end_state
+  [*] --> MyApp_start_state
+  MyApp_start_state --> MyApp_end_state : NEXT STEP
 "
 `);
   });
