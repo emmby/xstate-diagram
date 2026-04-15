@@ -1,0 +1,26 @@
+{
+  "name": "xstate-diagram",
+  "version": "1.0.0",
+  "description": "Convert XState definitions to Mermaid diagrams.",
+  "main": "dist/cli.js",
+  "bin": {
+    "xstate-diagram": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/cli.ts",
+    "test": "node dist/cli.js --help"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}
