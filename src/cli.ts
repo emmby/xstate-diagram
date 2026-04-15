@@ -17,7 +17,7 @@ program
         const fileContent = fs.readFileSync(options.file, 'utf8');
         processInput(fileContent);
       } catch (err) {
-        console.error(`Error reading file ${options.file}:`, err);
+        console.error(`Error:`, err instanceof Error ? err.message : String(err));
         process.exit(1);
       }
     } else {
@@ -37,7 +37,12 @@ program
             console.error('Error: No data provided via stdin. Please use --file or pipe data.');
             program.help({ error: true });
           }
-          processInput(inputData);
+          try {
+            processInput(inputData);
+          } catch (err) {
+            console.error(`Error:`, err instanceof Error ? err.message : String(err));
+            process.exit(1);
+          }
         });
         
         process.stdin.on('error', (err) => {
@@ -51,13 +56,12 @@ program
     }
   });
 
-function processInput(input: string) {
+export function processInput(input: string) {
   let parsedJson;
   try {
     parsedJson = JSON.parse(input);
   } catch (err) {
-    console.error('Error: Input is not valid JSON:', err instanceof Error ? err.message : err);
-    process.exit(1);
+    throw new Error(`Input is not valid JSON: ${err instanceof Error ? err.message : String(err)}`);
   }
 
   try {
@@ -66,9 +70,10 @@ function processInput(input: string) {
     // Future Phase: This is where we pass it to Phase 3 parser
     console.log('dummy-mermaid-output');
   } catch (err) {
-    console.error('Error: Invalid XState configuration:', err instanceof Error ? err.message : err);
-    process.exit(1);
+    throw new Error(`Invalid XState configuration: ${err instanceof Error ? err.message : String(err)}`);
   }
 }
 
-program.parse(process.argv);
+if (require.main === module) {
+  program.parse(process.argv);
+}
