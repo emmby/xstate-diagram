@@ -7,7 +7,7 @@ const program = new Command();
 program
   .name('xstate-diagram')
   .description('Convert XState V5 machine definitions into Mermaid state diagrams')
-  .version('1.0.0')
+  .version('0.0.1')
   .option('-f, --file <path>', 'Path to the XState JSON configuration file')
   .action((options) => {
     // Determine if we are reading from file or stdin
@@ -34,8 +34,7 @@ program
         process.stdin.on('end', () => {
           if (!inputData.trim()) {
             console.error('Error: No data provided via stdin. Please use --file or pipe data.');
-            program.help();
-            process.exit(1);
+            program.help({ error: true });
           }
           processInput(inputData);
         });
@@ -46,8 +45,7 @@ program
         });
       } else {
         console.error('Error: No input provided. Please use --file or pipe data via stdin.');
-        program.help();
-        process.exit(1);
+        program.help({ error: true });
       }
     }
   });
@@ -59,7 +57,7 @@ function processInput(input: string) {
     // Future Phase: This is where we pass it to Phase 2 parser
     console.log('dummy-mermaid-output');
   } catch (err) {
-    console.error('Error: Input is not valid JSON.');
+    console.error('Error: Input is not valid JSON:', err instanceof Error ? err.message : err);
     process.exit(1);
   }
 }

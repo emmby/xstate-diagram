@@ -1,6 +1,6 @@
 {
   "name": "xstate-diagram",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Convert XState definitions to Mermaid diagrams.",
   "main": "dist/cli.js",
   "bin": {
@@ -14,6 +14,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
   "type": "commonjs",
   "dependencies": {
     "commander": "^14.0.3"
