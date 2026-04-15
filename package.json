@@ -4,7 +4,7 @@
   "description": "Convert XState definitions to Mermaid diagrams.",
   "main": "dist/cli.js",
   "bin": {
-    "xs2diagram": "./dist/cli.js"
+    "xstate-diagram": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
