@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import * as fs from 'fs';
+import { createMachine } from 'xstate';
 
 const program = new Command();
 
@@ -51,13 +52,21 @@ program
   });
 
 function processInput(input: string) {
-  // Try to parse just to validate Phase 1 expectations
+  let parsedJson;
   try {
-    JSON.parse(input);
-    // Future Phase: This is where we pass it to Phase 2 parser
-    console.log('dummy-mermaid-output');
+    parsedJson = JSON.parse(input);
   } catch (err) {
     console.error('Error: Input is not valid JSON:', err instanceof Error ? err.message : err);
+    process.exit(1);
+  }
+
+  try {
+    const machine = createMachine(parsedJson);
+    // Output standard confirmation instead of just dummy
+    // Future Phase: This is where we pass it to Phase 3 parser
+    console.log('dummy-mermaid-output');
+  } catch (err) {
+    console.error('Error: Invalid XState configuration:', err instanceof Error ? err.message : err);
     process.exit(1);
   }
 }
