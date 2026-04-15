@@ -44,18 +44,21 @@ A CLI tool that converts XState V5 state machine descriptions into Mermaid diagr
   - The CLI runs successfully via the command line.
   - Accepts a file path or reads from `stdin` correctly.
   - Outputs a basic dummy string to `stdout` to verify the Unix pipeline functionality.
+  - Basic functionality is validated by tests that pass and are wired into the GitHub Actions CI pipeline.
 
 **Phase 2: JSON Definition Ingestion**
 - **Goal**: Implement robust JSON parsing for the underlying machine configuration objects.
 - **Acceptance Criteria**: 
   - Given a simple flat state machine defined as JSON, the CLI accurately parses the file into a structured configuration object.
   - Successfully handles and validates JSON input from both file targets and `stdin`.
+  - JSON ingestion logic is thoroughly validated by passing unit tests wired into CI, including edge cases for malformed inputs.
 
 **Phase 3: Basic Mermaid String Compilation**
 - **Goal**: Translate the extracted XState config into a Mermaid state diagram string.
 - **Acceptance Criteria**: 
   - The CLI outputs a basic `stateDiagram-v2` string to `stdout` representing basic states and transitions.
   - Transition edges perfectly follow the stringent `EVENT [guard] / action` structure.
+  - Compiler accuracy is validated by passing snapshot tests wired into CI.
 
 **Phase 4: Agentic Validation Framework**
 - **Goal**: Establish a rigorous validation safety net utilizing LLMs as PR reviewers to guarantee semantic translation correctness without heavy CI infrastructure.
@@ -71,13 +74,14 @@ A CLI tool that converts XState V5 state machine descriptions into Mermaid diagr
   - Iteration 1: Implement hierarchical (nested) states.
   - Iteration 2: Implement parallel (orthogonal) regions.
   - Iteration 3: Expand support for delays, history nodes, null events/always transitions, etc.
-  - *(Each test case supported is gated by the Agentic Validation framework and landed via an individual PR)*
+  - *(Each feature iteration must validate its acceptance criteria using tests that pass and are wired into CI, and must be gated by the Agentic Validation framework prior to landing)*
 
 **Phase 6: Internal Image Rendering Engine**
 - **Goal**: Establish the headless browser rendering pipeline for direct image outputs.
 - **Acceptance Criteria**: 
   - Supplying `--format=svg` or `--format=png` to the CLI invokes a headless engine (Puppeteer/Playwright).
   - The CLI successfully renders the Mermaid structure and outputs a valid `.svg` or `.png` graphic.
+  - The headless image generation process is validated by automated tests wired into CI to prevent regression.
 
 ---
 
