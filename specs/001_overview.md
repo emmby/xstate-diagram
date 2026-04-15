@@ -64,9 +64,10 @@ A CLI tool that converts XState V5 state machine descriptions into Mermaid diagr
 **Phase 4: Agentic Validation Framework**
 - **Goal**: Establish a rigorous validation safety net utilizing LLMs as PR reviewers to guarantee semantic translation correctness without heavy CI infrastructure.
 - **Acceptance Criteria**:
-  - **Syntax Checking (CI)**: An automated text snapshot and syntax check via the official `@mermaid-js` parser runs locally/in CI to quickly catch regressions and syntactical bugs.
+  - **Universal Golden Snapshots (CI)**: Every single test case implemented MUST generate and commit a `.mermaid` "Golden Snapshot" artifact alongside the PR. In CI, strict text snapshot testing ensures deterministic regression prevention across the entire test suite. Additionally, all generated strings must pass through the `@mermaid-js` parser to assert syntactical validity.
   - **Semantic LLM Proof (Agent Workflow)**: The AI Agent responsible for generating the PR must execute a semantic validation prompt (via subagent or `gemini` CLI). It will compare the XState source file with the generated Mermaid output and rigorously verify that all states, transitions, actions, and guards are correctly mapped.
   - **PR Artifact**: The AI Agent MUST explicitly include the outputted semantic validation proof directly in the Pull Request description so the human reviewer can safely validate the conversion efficiency.
+  - **Feedback Loop & Prompt Evolution**: If a human reviewer identifies a flaw in the generated diagram that the LLM proof missed, the human manually corrects the Golden Snapshot. Crucially, **the LLM semantic validation prompt itself must be updated** to explicitly instruct the LLM on how to catch that specific failure scenario in all future automated PR checks.
 
 **Phase 5: Feature Scaling (The Test Suite Iteration)**
 - **Goal**: Iteratively grow support for advanced XState features utilizing the `xstate5` test suite, ordered from simplest to most complex, with every PR gated by the Validation Infrastructure.
