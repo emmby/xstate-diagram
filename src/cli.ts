@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import * as fs from 'fs';
+import { createMachine } from 'xstate';
 
 const program = new Command();
 
@@ -16,7 +17,7 @@ program
         const fileContent = fs.readFileSync(options.file, 'utf8');
         processInput(fileContent);
       } catch (err) {
-        console.error(`Error reading file ${options.file}:`, err);
+        console.error(`Error:`, err instanceof Error ? err.message : String(err));
         process.exit(1);
       }
     } else {
@@ -36,7 +37,12 @@ program
             console.error('Error: No data provided via stdin. Please use --file or pipe data.');
             program.help({ error: true });
           }
-          processInput(inputData);
+          try {
+            processInput(inputData);
+          } catch (err) {
+            console.error(`Error:`, err instanceof Error ? err.message : String(err));
+            process.exit(1);
+          }
         });
         
         process.stdin.on('error', (err) => {
@@ -50,16 +56,24 @@ program
     }
   });
 
-function processInput(input: string) {
-  // Try to parse just to validate Phase 1 expectations
+export function processInput(input: string) {
+  let parsedJson;
   try {
-    JSON.parse(input);
-    // Future Phase: This is where we pass it to Phase 2 parser
+    parsedJson = JSON.parse(input);
+  } catch (err) {
+    throw new Error(`Input is not valid JSON: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
+  try {
+    createMachine(parsedJson);
+    // Output standard confirmation instead of just dummy
+    // Future Phase: This is where we pass it to Phase 3 parser
     console.log('dummy-mermaid-output');
   } catch (err) {
-    console.error('Error: Input is not valid JSON:', err instanceof Error ? err.message : err);
-    process.exit(1);
+    throw new Error(`Invalid XState configuration: ${err instanceof Error ? err.message : String(err)}`);
   }
 }
 
-program.parse(process.argv);
+if (require.main === module) {
+  program.parse(process.argv);
+}
