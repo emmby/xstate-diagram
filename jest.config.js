@@ -4,6 +4,6 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/*.test.ts'],
   moduleFileExtensions: ['ts', 'js'],
-  collectCoverage: true,
+  collectCoverage: false,
   coverageDirectory: 'coverage'
 };
