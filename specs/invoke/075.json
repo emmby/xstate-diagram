@@ -1,0 +1,23 @@
+{
+  "initial": "active",
+  "context": {
+    "counter": 0
+  },
+  "states": {
+    "active": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      },
+      "always": [
+        {
+          "guard": "[Function/Identifier: ({ context }) => context.count...]",
+          "target": "inactive"
+        }
+      ]
+    },
+    "inactive": {
+      "entry": "[Call: assign]",
+      "always": "active"
+    }
+  }
+}

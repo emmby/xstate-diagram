@@ -1,0 +1,16 @@
+{
+  "initial": "a",
+  "invoke": {
+    "src": "[Call: fromCallback]"
+  },
+  "states": {
+    "a": {
+      "on": {
+        "FINISH": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  }
+}

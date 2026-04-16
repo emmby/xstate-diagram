@@ -1,0 +1,14 @@
+{
+  "id": "child",
+  "initial": "one",
+  "states": {
+    "one": {
+      "on": {
+        "NEXT": "two"
+      }
+    },
+    "two": {
+      "entry": "[Call: sendParent]"
+    }
+  }
+}

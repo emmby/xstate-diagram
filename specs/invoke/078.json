@@ -1,0 +1,17 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": {
+        "src": "someSrc",
+        "onDone": {
+          "guard": "[Function/Identifier: ({ event }) => {\n             ...]",
+          "target": "b"
+        }
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "invokePromise",
+  "initial": "pending",
+  "context": "[Function/Identifier: ({\n          input\n        }: ...]",
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "[Call: fromPromise]",
+        "input": "[Function/Identifier: ({ context }: any) => context...]",
+        "onDone": {
+          "target": "success",
+          "guard": "[Function/Identifier: ({ context, event }) => {\n    ...]"
+        },
+        "onError": "failure"
+      }
+    },
+    "success": {
+      "type": "final"
+    },
+    "failure": {
+      "type": "final"
+    }
+  }
+}

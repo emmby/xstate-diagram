@@ -1,0 +1,21 @@
+{
+  "id": "parent",
+  "context": {
+    "count": 0
+  },
+  "initial": "start",
+  "states": {
+    "start": {
+      "invoke": {
+        "src": "child",
+        "id": "someService"
+      },
+      "on": {
+        "STOP": "stop"
+      }
+    },
+    "stop": {
+      "type": "final"
+    }
+  }
+}

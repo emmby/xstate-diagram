@@ -1,0 +1,16 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      },
+      "on": {
+        "GO_AWAY_AND_REENTER": "b"
+      }
+    },
+    "b": {
+      "always": "a"
+    }
+  }
+}

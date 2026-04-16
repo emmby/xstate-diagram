@@ -1,0 +1,9 @@
+{
+  "id": "child",
+  "initial": "sending",
+  "states": {
+    "sending": {
+      "entry": "[Call: sendParent]"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "initial": "searching",
+  "context": {
+    "url": "example.com"
+  },
+  "states": {
+    "searching": {
+      "invoke": {
+        "src": "search",
+        "input": "[Function/Identifier: ({ context }) => ({ endpoint: ...]",
+        "onDone": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

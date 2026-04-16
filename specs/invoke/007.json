@@ -1,0 +1,20 @@
+{
+  "id": "machine-invoke",
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "[Call: createMachine]"
+      },
+      "on": {
+        "SUCCESS": {
+          "target": "success",
+          "guard": "[Function/Identifier: ({ event }) => {\n             ...]"
+        }
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "initial": "safe",
+  "states": {
+    "safe": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      }
+    },
+    "failed": {
+      "type": "final"
+    }
+  }
+}

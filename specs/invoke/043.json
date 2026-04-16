@@ -1,0 +1,16 @@
+{
+  "id": "interval",
+  "initial": "counting",
+  "states": {
+    "counting": {
+      "invoke": {
+        "id": "intervalService",
+        "src": "[Call: fromCallback]"
+      },
+      "on": {
+        "NEXT": "idle"
+      }
+    },
+    "idle": {}
+  }
+}

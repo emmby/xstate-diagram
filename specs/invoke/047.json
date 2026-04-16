@@ -1,0 +1,43 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "FETCH": "fetch"
+      }
+    },
+    "fetch": {
+      "type": "parallel",
+      "states": {
+        "first": {
+          "initial": "waiting",
+          "states": {
+            "waiting": {
+              "invoke": {
+                "src": "[Call: fromCallback]",
+                "onError": {
+                  "target": "failed"
+                }
+              }
+            },
+            "failed": {}
+          }
+        },
+        "second": {
+          "initial": "waiting",
+          "states": {
+            "waiting": {
+              "invoke": {
+                "src": "[Call: fromCallback]",
+                "onError": {
+                  "target": "failed"
+                }
+              }
+            },
+            "failed": {}
+          }
+        }
+      }
+    }
+  }
+}

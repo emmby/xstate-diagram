@@ -1,0 +1,19 @@
+{
+  "id": "parent",
+  "initial": "one",
+  "states": {
+    "one": {
+      "invoke": {
+        "id": "foo-child",
+        "src": "[Function/Identifier: subMachine...]"
+      },
+      "entry": "[Call: sendTo]",
+      "on": {
+        "NEXT": "two"
+      }
+    },
+    "two": {
+      "type": "final"
+    }
+  }
+}

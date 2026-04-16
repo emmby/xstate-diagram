@@ -1,0 +1,28 @@
+{
+  "id": "fetcher",
+  "initial": "idle",
+  "context": {
+    "selectedUserId": "42",
+    "user": "[Function/Identifier: undefined...]"
+  },
+  "states": {
+    "idle": {
+      "on": {
+        "GO_TO_WAITING": "waiting"
+      }
+    },
+    "waiting": {
+      "invoke": {
+        "src": "[Function/Identifier: childMachine...]",
+        "input": "[Function/Identifier: ({ context }: any) => ({\n     ...]",
+        "onDone": {
+          "target": "received",
+          "guard": "[Function/Identifier: ({ event }) => {\n             ...]"
+        }
+      }
+    },
+    "received": {
+      "type": "final"
+    }
+  }
+}

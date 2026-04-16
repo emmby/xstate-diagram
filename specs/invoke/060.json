@@ -1,0 +1,11 @@
+{
+  "invoke": {
+    "src": "[Call: fromEventObservable]",
+    "input": 42
+  },
+  "on": {
+    "obs.event": {
+      "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+    }
+  }
+}

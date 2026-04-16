@@ -1,0 +1,24 @@
+{
+  "id": "fetch",
+  "context": "[Function/Identifier: ({ input }) => ({\n        user...]",
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "entry": "[Call: raise]",
+      "on": {
+        "RESOLVE": {
+          "target": "success",
+          "guard": "[Function/Identifier: ({ context }) => {\n           ...]"
+        }
+      }
+    },
+    "success": {
+      "type": "final",
+      "entry": "[Call: assign]"
+    },
+    "failure": {
+      "entry": "[Call: sendParent]"
+    }
+  },
+  "output": "[Function/Identifier: ({ context }) => ({ user: cont...]"
+}

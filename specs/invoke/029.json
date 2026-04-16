@@ -1,0 +1,24 @@
+{
+  "id": "promise",
+  "initial": "parent",
+  "states": {
+    "parent": {
+      "initial": "pending",
+      "states": {
+        "pending": {
+          "invoke": {
+            "src": "[Call: fromPromise]",
+            "onDone": "success"
+          }
+        },
+        "success": {
+          "type": "final"
+        }
+      },
+      "onDone": "success"
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

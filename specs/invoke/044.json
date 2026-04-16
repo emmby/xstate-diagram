@@ -1,0 +1,19 @@
+{
+  "id": "ping-pong",
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "id": "child",
+        "src": "[Call: fromCallback]"
+      },
+      "entry": "[Call: sendTo]",
+      "on": {
+        "PONG": "done"
+      }
+    },
+    "done": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "context": {
+    "result1": null,
+    "result2": null
+  },
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "type": "parallel",
+      "states": {
+        "state1": {
+          "initial": "active",
+          "states": {
+            "active": {
+              "invoke": {
+                "src": "getRandomNumber",
+                "onDone": {
+                  "target": "success",
+                  "actions": "[Call: assign]"
+                }
+              }
+            },
+            "success": {
+              "type": "final"
+            }
+          }
+        },
+        "state2": {
+          "initial": "active",
+          "states": {
+            "active": {
+              "invoke": {
+                "src": "getRandomNumber",
+                "onDone": {
+                  "target": "success",
+                  "actions": "[Call: assign]"
+                }
+              }
+            },
+            "success": {
+              "type": "final"
+            }
+          }
+        }
+      },
+      "onDone": "done"
+    },
+    "done": {
+      "type": "final"
+    }
+  }
+}

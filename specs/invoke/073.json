@@ -1,0 +1,23 @@
+{
+  "initial": "withNonLeafInvoke",
+  "states": {
+    "withNonLeafInvoke": {
+      "invoke": {
+        "id": "doNotInvoke",
+        "src": "[Call: fromCallback]"
+      },
+      "initial": "first",
+      "states": {
+        "first": {
+          "always": "second"
+        },
+        "second": {
+          "always": "#inactive"
+        }
+      }
+    },
+    "inactive": {
+      "id": "inactive"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "parent",
+  "initial": "begin",
+  "states": {
+    "begin": {
+      "invoke": {
+        "src": "[Function/Identifier: anotherChildMachine...]",
+        "id": "invoked.child",
+        "onDone": "completed"
+      },
+      "on": {
+        "STOPCHILD": {
+          "actions": "[Call: sendTo]"
+        }
+      }
+    },
+    "completed": {
+      "type": "final"
+    }
+  }
+}

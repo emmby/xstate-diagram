@@ -1,0 +1,26 @@
+{
+  "id": "parent",
+  "initial": "a",
+  "states": {
+    "a": {
+      "initial": "b",
+      "states": {
+        "b": {
+          "invoke": {
+            "src": "[Call: createMachine]"
+          }
+        }
+      }
+    },
+    "success": {
+      "id": "success",
+      "type": "final"
+    }
+  },
+  "on": {
+    "SUCCESS": {
+      "target": ".success",
+      "guard": "[Function/Identifier: ({ event }) => {\n            r...]"
+    }
+  }
+}
