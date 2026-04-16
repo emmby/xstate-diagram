@@ -1,0 +1,13 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "entry": "[Function/Identifier: () => {\n            throw new ...]"
+    }
+  }
+}

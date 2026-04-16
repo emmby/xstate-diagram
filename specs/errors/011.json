@@ -1,0 +1,14 @@
+{
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "[Call: fromCallback]",
+        "onError": "failed"
+      }
+    },
+    "failed": {
+      "type": "final"
+    }
+  }
+}
