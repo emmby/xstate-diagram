@@ -1,0 +1,22 @@
+{
+  "initial": "initial",
+  "context": "[Function/Identifier: ({ input }: { input: { duratio...]",
+  "types": {},
+  "states": {
+    "initial": {
+      "always": [
+        {
+          "target": "finished",
+          "guard": "[Function/Identifier: ({ context }) => context.durat...]"
+        },
+        {
+          "target": "active"
+        }
+      ]
+    },
+    "active": {},
+    "finished": {
+      "type": "final"
+    }
+  }
+}

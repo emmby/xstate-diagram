@@ -1,0 +1,24 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "FOO": "b"
+      }
+    },
+    "b": {
+      "entry": "[Call: raise]",
+      "always": "c",
+      "on": {
+        "BAR": "d"
+      }
+    },
+    "c": {
+      "on": {
+        "BAR": "e"
+      }
+    },
+    "d": {},
+    "e": {}
+  }
+}

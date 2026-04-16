@@ -1,0 +1,13 @@
+{
+  "always": {
+    "actions": "[Function/Identifier: () => spy(counter)...]"
+  },
+  "on": {
+    "EV": {
+      "actions": "[Call: raise]"
+    },
+    "RAISED": {
+      "actions": "[Function/Identifier: () => {\n            ++counter;...]"
+    }
+  }
+}

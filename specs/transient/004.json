@@ -1,0 +1,26 @@
+{
+  "context": {
+    "data": true
+  },
+  "initial": "G",
+  "states": {
+    "G": {
+      "on": {
+        "UPDATE_BUTTON_CLICKED": "E"
+      }
+    },
+    "E": {
+      "always": [
+        {
+          "target": "D",
+          "guard": "[Function/Identifier: ({ context: { data } }) => !da...]"
+        },
+        {
+          "target": "F"
+        }
+      ]
+    },
+    "D": {},
+    "F": {}
+  }
+}

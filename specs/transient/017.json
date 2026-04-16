@@ -1,0 +1,20 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": "b"
+      }
+    },
+    "b": {
+      "always": {
+        "target": "c",
+        "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+      },
+      "exit": "[Function/Identifier: ({ event }) => {\n            e...]"
+    },
+    "c": {
+      "entry": "[Function/Identifier: ({ event }) => {\n            e...]"
+    }
+  }
+}

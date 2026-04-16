@@ -1,0 +1,22 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "event": "active"
+      }
+    },
+    "active": {
+      "initial": "a",
+      "states": {
+        "a": {}
+      },
+      "always": [
+        {
+          "actions": "[Function/Identifier: () => {\n                count+...]",
+          "target": ".a"
+        }
+      ]
+    }
+  }
+}

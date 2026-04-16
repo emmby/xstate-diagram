@@ -1,0 +1,14 @@
+{
+  "initial": "active",
+  "context": {
+    "customDuration": 3000
+  },
+  "states": {
+    "active": {
+      "invoke": {
+        "src": "[Function/Identifier: timerMachine...]",
+        "input": "[Function/Identifier: ({ context }) => ({\n          ...]"
+      }
+    }
+  }
+}

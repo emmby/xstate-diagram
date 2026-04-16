@@ -1,0 +1,24 @@
+{
+  "initial": "A",
+  "states": {
+    "A": {
+      "exit": "[Function/Identifier: () => actual.push('exit_A')...]",
+      "on": {
+        "TIMER": {
+          "target": "T",
+          "actions": "[Function/Identifier: () => actual.push('timer')...]"
+        }
+      }
+    },
+    "T": {
+      "always": [
+        {
+          "target": "B"
+        }
+      ]
+    },
+    "B": {
+      "entry": "[Function/Identifier: () => actual.push('enter_B')...]"
+    }
+  }
+}

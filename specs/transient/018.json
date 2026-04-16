@@ -1,0 +1,26 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "event": "active"
+      }
+    },
+    "active": {
+      "initial": "a",
+      "states": {
+        "a": {},
+        "b": {}
+      },
+      "always": [
+        {
+          "guard": "[Function/Identifier: () => false...]",
+          "target": ".a"
+        },
+        {
+          "target": ".b"
+        }
+      ]
+    }
+  }
+}
