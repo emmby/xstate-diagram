@@ -1,0 +1,24 @@
+{
+  "initial": "inactive",
+  "context": {
+    "count": 0
+  },
+  "states": {
+    "inactive": {
+      "on": {
+        "EVENT": {
+          "target": "active",
+          "guard": {
+            "type": "custom",
+            "params": {
+              "prop": "count",
+              "op": "greaterThan",
+              "compare": 3
+            }
+          }
+        }
+      }
+    },
+    "active": {}
+  }
+}

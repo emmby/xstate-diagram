@@ -1,0 +1,8 @@
+{
+  "on": {
+    "EV": {
+      "guard": "[Call: and]",
+      "actions": "[Function/Identifier: () => {}...]"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "on": {
+    "FOO": {
+      "guard": "[Function/Identifier: () => false...]",
+      "actions": "[Function/Identifier: () => {}...]"
+    }
+  }
+}

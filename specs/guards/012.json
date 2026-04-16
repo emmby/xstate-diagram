@@ -1,0 +1,10 @@
+{
+  "on": {
+    "FOO": {
+      "guard": {
+        "type": "myGuard",
+        "params": "[Function/Identifier: ({ event }) => ({ secret: even...]"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "context": {
+    "secret": 42
+  },
+  "on": {
+    "FOO": {
+      "guard": {
+        "type": "myGuard",
+        "params": "[Function/Identifier: ({ context }) => ({ secret: co...]"
+      }
+    }
+  }
+}

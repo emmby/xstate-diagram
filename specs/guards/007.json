@@ -1,0 +1,36 @@
+{
+  "type": "parallel",
+  "states": {
+    "A": {
+      "initial": "A2",
+      "states": {
+        "A2": {
+          "on": {
+            "A": "A3"
+          }
+        },
+        "A3": {
+          "always": "A4"
+        },
+        "A4": {
+          "always": "A5"
+        },
+        "A5": {}
+      }
+    },
+    "B": {
+      "initial": "B0",
+      "states": {
+        "B0": {
+          "always": [
+            {
+              "target": "B4",
+              "guard": "[Call: stateIn]"
+            }
+          ]
+        },
+        "B4": {}
+      }
+    }
+  }
+}

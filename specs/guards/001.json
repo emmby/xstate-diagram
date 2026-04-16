@@ -1,0 +1,46 @@
+{
+  "context": "[Function/Identifier: ({ input = {} }) => ({\n       ...]",
+  "initial": "green",
+  "states": {
+    "green": {
+      "on": {
+        "TIMER": [
+          {
+            "target": "green",
+            "guard": "[Function/Identifier: ({ context: { elapsed } }) => ...]"
+          },
+          {
+            "target": "yellow",
+            "guard": "[Function/Identifier: ({ context: { elapsed } }) =>\n...]"
+          }
+        ],
+        "EMERGENCY": {
+          "target": "red",
+          "guard": "[Function/Identifier: ({ event }) => !!event.isEmerg...]"
+        }
+      }
+    },
+    "yellow": {
+      "on": {
+        "TIMER": {
+          "target": "red",
+          "guard": "minTimeElapsed"
+        },
+        "TIMER_COND_OBJ": {
+          "target": "red",
+          "guard": {
+            "type": "minTimeElapsed"
+          }
+        }
+      }
+    },
+    "red": {
+      "on": {
+        "BAD_COND": {
+          "target": "red",
+          "guard": "doesNotExist"
+        }
+      }
+    }
+  }
+}

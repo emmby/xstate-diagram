@@ -1,0 +1,7 @@
+{
+  "on": {
+    "FOO": {
+      "guard": "myGuard"
+    }
+  }
+}
