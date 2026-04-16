@@ -1,0 +1,11 @@
+{
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "after": {
+        "myDelay": "active"
+      }
+    },
+    "active": {}
+  }
+}

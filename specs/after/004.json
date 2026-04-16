@@ -1,0 +1,25 @@
+{
+  "initial": "one",
+  "states": {
+    "one": {
+      "initial": "two",
+      "entry": "[Function/Identifier: () => actual.push('entered one...]",
+      "states": {
+        "two": {
+          "entry": "[Function/Identifier: () => actual.push('entered two...]"
+        },
+        "three": {
+          "entry": "[Function/Identifier: () => actual.push('entered thr...]",
+          "always": "#end"
+        }
+      },
+      "after": {
+        "10": ".three"
+      }
+    },
+    "end": {
+      "id": "end",
+      "type": "final"
+    }
+  }
+}

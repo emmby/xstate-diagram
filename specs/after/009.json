@@ -1,0 +1,15 @@
+{
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "ACTIVATE": "active"
+      }
+    },
+    "active": {
+      "after": {
+        "someDelay": "inactive"
+      }
+    }
+  }
+}

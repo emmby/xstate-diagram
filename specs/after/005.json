@@ -1,0 +1,26 @@
+{
+  "initial": "X",
+  "states": {
+    "X": {
+      "after": {
+        "1": [
+          {
+            "target": "Y",
+            "guard": "[Function/Identifier: () => true...]"
+          },
+          {
+            "target": "Z"
+          }
+        ]
+      }
+    },
+    "Y": {
+      "on": {
+        "*": {
+          "actions": "[Function/Identifier: spy...]"
+        }
+      }
+    },
+    "Z": {}
+  }
+}

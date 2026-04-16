@@ -1,0 +1,28 @@
+{
+  "id": "light",
+  "initial": "green",
+  "context": {
+    "canTurnGreen": true
+  },
+  "states": {
+    "green": {
+      "after": {
+        "1000": "yellow"
+      }
+    },
+    "yellow": {
+      "after": {
+        "1000": [
+          {
+            "target": "red"
+          }
+        ]
+      }
+    },
+    "red": {
+      "after": {
+        "1000": "green"
+      }
+    }
+  }
+}
