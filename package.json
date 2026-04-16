@@ -10,7 +10,7 @@
     "build": "tsc",
     "start": "ts-node src/cli.ts",
     "test": "jest",
-    "generate:proof": "node scripts/validate_pr.js"
+    "generate:proof": "node scripts/validate_pr.js specs/basic_flat_machine.json src/__snapshots__/basic_flat_machine.mermaid"
   },
   "keywords": [],
   "author": "",

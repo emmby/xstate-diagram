@@ -4,55 +4,64 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-async function main() {
+async function executeValidation(jsonSpecPath, mermaidOutputPath) {
   const apiKey = process.env.GOOGLE_API_KEY;
   if (!apiKey) {
-    console.error('Error: GOOGLE_API_KEY environment variable is missing.');
-    process.exit(1);
+    throw new Error('GOOGLE_API_KEY environment variable is missing. Cannot execute remote AI validation.');
   }
 
   const ai = new GoogleGenAI({ apiKey });
   const promptTemplate = fs.readFileSync(path.join(__dirname, '../prompts/semantic_validation.md'), 'utf8');
 
-  // Let's validate the basic flat machine test case as our PR artifact
-  // In a real pipeline, loop through all test cases or take a CLI argument.
-  const testJsonPath = path.join(__dirname, '../__snapshots__/basic_flat_machine.mermaid');
-  // Wait, we need the original JSON to match it.
-  // The test source JSON is inside cli.test.ts, let's just write a dummy basic.json for the proof.
-  
-  const basicJson = {
-    id: 'basic',
-    initial: 'idle',
-    states: {
-      idle: { on: { GO: 'run' } },
-      run: {}
-    }
-  };
+  if (!fs.existsSync(jsonSpecPath)) {
+    throw new Error(`JSON spec not found at: ${jsonSpecPath}`);
+  }
+  if (!fs.existsSync(mermaidOutputPath)) {
+    throw new Error(`Mermaid output not found at: ${mermaidOutputPath}`);
+  }
 
-  const mermaidOutput = fs.readFileSync(testJsonPath, 'utf8');
+  const sourceJson = fs.readFileSync(jsonSpecPath, 'utf8');
+  const mermaidOutput = fs.readFileSync(mermaidOutputPath, 'utf8');
   
   const filledPrompt = promptTemplate
-    .replace('{source_json}', JSON.stringify(basicJson, null, 2))
+    .replace('{source_json}', sourceJson)
     .replace('{mermaid_output}', mermaidOutput);
 
   console.log('Validating Mermaid Syntax with mmdc...');
-  const proofImgPath = path.join(__dirname, '../proof.svg');
-  execSync(`npx mmdc -i ${testJsonPath} -o ${proofImgPath}`, { stdio: 'inherit' });
-  
-  console.log('Executing Semantic Validation using Gemini...');
-  try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: filledPrompt
-    });
-
-    console.log('\\n----- SEMANTIC MATCH PROOF -----\\n');
-    console.log(response.text);
-    console.log('\\n----------------------------------\\n');
-    console.log('Proof successfully generated! Include the proof.svg and the text above in the PR.');
-  } catch (err) {
-    console.error('Validation failed!', err);
+  const proofImgPath = path.join(__dirname, '../specs/001_proof.svg');
+  if (!fs.existsSync(path.dirname(proofImgPath))) {
+    fs.mkdirSync(path.dirname(proofImgPath), { recursive: true });
   }
+
+  try {
+    execSync(`npx mmdc -i "${mermaidOutputPath}" -o "${proofImgPath}"`, { stdio: 'inherit' });
+  } catch (err) {
+    throw new Error(`mmdc validation failed: ${err.message}`);
+  }
+  
+  console.log('Executing Semantic Validation using Gemini 3.0 Flash...');
+  const response = await ai.models.generateContent({
+    model: 'gemini-3.0-flash',
+    contents: filledPrompt
+  });
+
+  console.log('\\n----- SEMANTIC MATCH PROOF -----\\n');
+  console.log(response.text);
+  console.log('\\n----------------------------------\\n');
+  console.log('Proof successfully generated! Include specs/001_proof.svg and the text above in the PR.');
 }
 
-main();
+if (require.main === module) {
+  const args = process.argv.slice(2);
+  if (args.length < 2) {
+    console.error("Usage: node validate_pr.js <path_to_json_spec> <path_to_mermaid_output>");
+    process.exit(1);
+  }
+  
+  executeValidation(args[0], args[1]).catch(err => {
+    console.error("Validation failed:", err.message);
+    process.exit(1);
+  });
+}
+
+module.exports = { executeValidation };

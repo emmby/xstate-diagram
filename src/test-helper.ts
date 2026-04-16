@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import * as crypto from 'crypto';
 import { execSync } from 'child_process';
 
 export function assertValidMermaid(mermaidStr: string, snapshotName: string) {
@@ -25,8 +26,9 @@ export function assertValidMermaid(mermaidStr: string, snapshotName: string) {
 
   // Syntax validation via mermaid-cli
   const sysTemp = os.tmpdir();
-  const tmpIn = path.join(sysTemp, `${snapshotName}-${Date.now()}.mermaid`);
-  const tmpOut = path.join(sysTemp, `${snapshotName}-${Date.now()}.svg`);
+  const uuid = crypto.randomUUID();
+  const tmpIn = path.join(sysTemp, `${snapshotName}-${uuid}.mermaid`);
+  const tmpOut = path.join(sysTemp, `${snapshotName}-${uuid}.svg`);
   
   fs.writeFileSync(tmpIn, mermaidStr);
   try {

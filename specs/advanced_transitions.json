@@ -1,0 +1,16 @@
+{
+  "id": "advanced",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "GO": {
+          "target": "run",
+          "guard": "isReady",
+          "actions": ["logStart", { "type": "metrics" }]
+        }
+      }
+    },
+    "run": {}
+  }
+}

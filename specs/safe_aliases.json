@@ -1,0 +1,12 @@
+{
+  "id": "MyApp",
+  "initial": "start state",
+  "states": {
+    "start state": {
+      "on": {
+        "NEXT STEP": "end-state"
+      }
+    },
+    "end-state": {}
+  }
+}
