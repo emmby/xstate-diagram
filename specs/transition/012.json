@@ -1,0 +1,18 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "next": "waiting"
+      }
+    },
+    "waiting": {
+      "after": {
+        "10": "done"
+      }
+    },
+    "done": {
+      "type": "final"
+    }
+  }
+}

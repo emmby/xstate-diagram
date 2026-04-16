@@ -1,0 +1,31 @@
+{
+  "initial": "parent",
+  "states": {
+    "parent": {
+      "initial": "child",
+      "on": {
+        "SAME_EVENT": [
+          {
+            "guard": "[Function/Identifier: () => false...]",
+            "target": "parentTarget"
+          },
+          {
+            "target": "parentTarget2"
+          }
+        ]
+      },
+      "states": {
+        "child": {
+          "on": {
+            "SAME_EVENT": {
+              "target": "childTarget"
+            }
+          }
+        },
+        "childTarget": {}
+      }
+    },
+    "parentTarget": {},
+    "parentTarget2": {}
+  }
+}

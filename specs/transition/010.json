@@ -1,0 +1,8 @@
+{
+  "initial": "a",
+  "entry": "[Function/Identifier: fn...]",
+  "states": {
+    "a": {},
+    "b": {}
+  }
+}
