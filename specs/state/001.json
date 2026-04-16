@@ -1,0 +1,88 @@
+{
+  "initial": "one",
+  "states": {
+    "one": {
+      "entry": [
+        "enter"
+      ],
+      "on": {
+        "EXTERNAL": {
+          "target": "one",
+          "reenter": true
+        },
+        "INERT": {},
+        "INTERNAL": {
+          "actions": [
+            "doSomething"
+          ]
+        },
+        "TO_TWO": "two",
+        "TO_TWO_MAYBE": {
+          "target": "two",
+          "guard": "[Function/Identifier: function maybe() {\n           ...]"
+        },
+        "TO_THREE": "three",
+        "FORBIDDEN_EVENT": "[Function/Identifier: undefined...]",
+        "TO_FINAL": "success"
+      }
+    },
+    "two": {
+      "initial": "deep",
+      "states": {
+        "deep": {
+          "initial": "foo",
+          "states": {
+            "foo": {
+              "on": {
+                "FOO_EVENT": "bar",
+                "FORBIDDEN_EVENT": "[Function/Identifier: undefined...]"
+              }
+            },
+            "bar": {
+              "on": {
+                "BAR_EVENT": "foo"
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "DEEP_EVENT": "."
+      }
+    },
+    "three": {
+      "type": "parallel",
+      "states": {
+        "first": {
+          "initial": "p31",
+          "states": {
+            "p31": {
+              "on": {
+                "P31": "."
+              }
+            }
+          }
+        },
+        "guarded": {
+          "initial": "p32",
+          "states": {
+            "p32": {
+              "on": {
+                "P32": "."
+              }
+            }
+          }
+        }
+      },
+      "on": {
+        "THREE_EVENT": "."
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  },
+  "on": {
+    "MACHINE_EVENT": ".two"
+  }
+}

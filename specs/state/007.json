@@ -1,0 +1,11 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "entry": "[Function/Identifier: () => {}...]",
+      "on": {
+        "EV": "a"
+      }
+    }
+  }
+}

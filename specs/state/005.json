@@ -1,0 +1,15 @@
+{
+  "initial": "a",
+  "context": {
+    "count": 0
+  },
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": {
+          "actions": "[Call: assign]"
+        }
+      }
+    }
+  }
+}

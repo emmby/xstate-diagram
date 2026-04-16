@@ -1,0 +1,14 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "CHECK": {
+          "target": "b",
+          "guard": "[Function/Identifier: () => true...]"
+        }
+      }
+    },
+    "b": {}
+  }
+}
