@@ -1,0 +1,11 @@
+{
+  "context": {
+    "count": 1
+  },
+  "entry": {
+    "type": "inc",
+    "params": {
+      "by": 10
+    }
+  }
+}

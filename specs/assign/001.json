@@ -1,0 +1,66 @@
+{
+  "initial": "counting",
+  "context": {
+    "count": 0,
+    "foo": "bar"
+  },
+  "states": {
+    "counting": {
+      "on": {
+        "INC": [
+          {
+            "target": "counting",
+            "actions": "[Call: assign]"
+          }
+        ],
+        "DEC": [
+          {
+            "target": "counting",
+            "actions": [
+              "[Call: assign]"
+            ]
+          }
+        ],
+        "WIN_PROP": [
+          {
+            "target": "counting",
+            "actions": [
+              "[Call: assign]"
+            ]
+          }
+        ],
+        "WIN_STATIC": [
+          {
+            "target": "counting",
+            "actions": [
+              "[Call: assign]"
+            ]
+          }
+        ],
+        "WIN_MIX": [
+          {
+            "target": "counting",
+            "actions": [
+              "[Call: assign]"
+            ]
+          }
+        ],
+        "WIN": [
+          {
+            "target": "counting",
+            "actions": [
+              "[Call: assign]"
+            ]
+          }
+        ],
+        "SET_MAYBE": [
+          {
+            "actions": [
+              "[Call: assign]"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

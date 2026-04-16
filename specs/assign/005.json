@@ -1,0 +1,12 @@
+{
+  "on": {
+    "EVENT": {
+      "actions": {
+        "type": "inc",
+        "params": {
+          "value": 5
+        }
+      }
+    }
+  }
+}
