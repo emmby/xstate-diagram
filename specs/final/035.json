@@ -1,0 +1,14 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "NEXT": "end"
+      }
+    },
+    "end": {
+      "type": "final"
+    }
+  },
+  "output": null
+}

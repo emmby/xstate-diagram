@@ -1,0 +1,26 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "type": "parallel",
+      "states": {
+        "b": {
+          "type": "parallel",
+          "states": {
+            "c": {
+              "initial": "d",
+              "states": {
+                "d": {
+                  "type": "final"
+                }
+              }
+            }
+          }
+        }
+      },
+      "onDone": {
+        "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+      }
+    }
+  }
+}

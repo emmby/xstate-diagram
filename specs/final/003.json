@@ -1,0 +1,42 @@
+{
+  "id": "m",
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "type": "parallel",
+      "states": {
+        "first": {
+          "initial": "a",
+          "states": {
+            "a": {
+              "on": {
+                "NEXT_1": "b"
+              }
+            },
+            "b": {
+              "type": "final"
+            }
+          }
+        },
+        "second": {
+          "initial": "a",
+          "states": {
+            "a": {
+              "on": {
+                "NEXT_2": "b"
+              }
+            },
+            "b": {
+              "type": "final"
+            }
+          }
+        }
+      },
+      "onDone": {
+        "target": "bar",
+        "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+      }
+    },
+    "bar": {}
+  }
+}

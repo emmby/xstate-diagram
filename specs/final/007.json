@@ -1,0 +1,10 @@
+{
+  "types": {},
+  "initial": "done",
+  "states": {
+    "done": {
+      "type": "final"
+    }
+  },
+  "output": "[Function/Identifier: ({ self }) => ({ selfRef: self...]"
+}

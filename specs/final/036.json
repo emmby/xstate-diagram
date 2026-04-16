@@ -1,0 +1,15 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "NEXT": "end"
+      }
+    },
+    "end": {
+      "type": "final",
+      "output": null
+    }
+  },
+  "output": "[Function/Identifier: ({ event }) => event.output...]"
+}

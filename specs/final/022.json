@@ -1,0 +1,13 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EV": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  }
+}

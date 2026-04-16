@@ -1,0 +1,14 @@
+{
+  "type": "parallel",
+  "states": {
+    "a": {
+      "initial": "b",
+      "states": {
+        "b": {
+          "type": "final"
+        }
+      }
+    }
+  },
+  "output": "[Function/Identifier: ({ event }) => {\n        spy(e...]"
+}

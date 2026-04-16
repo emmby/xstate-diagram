@@ -1,0 +1,15 @@
+{
+  "initial": "start",
+  "exit": "[Function/Identifier: spy...]",
+  "states": {
+    "start": {
+      "on": {
+        "CANCEL": "canceled"
+      }
+    },
+    "canceled": {
+      "type": "final",
+      "entry": "[Call: sendParent]"
+    }
+  }
+}

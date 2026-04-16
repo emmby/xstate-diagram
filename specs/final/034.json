@@ -1,0 +1,17 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "invoke": {
+        "id": "child",
+        "src": "[Function/Identifier: child...]",
+        "onDone": "completed"
+      },
+      "on": {
+        "CHILD_CANCELED": "canceled"
+      }
+    },
+    "canceled": {},
+    "completed": {}
+  }
+}
