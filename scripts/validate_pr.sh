@@ -29,13 +29,10 @@ PROMPT_CONTENT=$(cat "$PROMPT_FILE")
 JSON_CONTENT=$(cat "$JSON_SPEC")
 MERMAID_CONTENT=$(cat "$MERMAID_OUT")
 
-# Replace tokens
-# Using bash parameter expansion if tokens are simple, or awk. Awk is safer for multiline:
-awk -v json="$JSON_CONTENT" -v mermaid="$MERMAID_CONTENT" '{
-  gsub(/{source_json}/, json)
-  gsub(/{mermaid_output}/, mermaid)
-  print
-}' "$PROMPT_FILE" > .tmp_prompt.txt
+export JSON_CONTENT
+export MERMAID_CONTENT
+
+perl -p -e 's/\{source_json\}/$ENV{JSON_CONTENT}/g; s/\{mermaid_output\}/$ENV{MERMAID_CONTENT}/g' "$PROMPT_FILE" > .tmp_prompt.txt
 
 # Pipe to gemini CLI. (Using standard piping approach common to CLI llm tools)
 cat .tmp_prompt.txt | gemini
