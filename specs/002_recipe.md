@@ -3,8 +3,13 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 
 ## The Agent Loop
 
+### Step 0: Autonomous Target Deduction
+- **Read Context**: Read `specs/001_overview.md` to review the `Phase 5: Feature Scaling` feature roadmap.
+- **Identify State**: Check the existing JSON test artifacts inside the `specs/` directory to deduce which features have *already* been implemented natively.
+- **Select Objective**: Unilaterally deduce the very next simplest un-implemented XState5 structural feature from the roadmap timeline and make it your active objective.
+
 ### Step 1: Ingest the Specification Matrix
-- Receive the target XState feature definition for the current iteration (e.g., hierarchical mappings).
+- Auto-generate a strictly valid XState V5 JSON definition tailored specifically to test your deduced active objective.
 - Create a new `{feature_name}.json` file explicitly inside the `specs/` directory to house the raw state machine mock config (example: `specs/hierarchical_states.json`).
 
 ### Step 2: Compiler Implementation
