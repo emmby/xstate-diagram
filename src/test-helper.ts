@@ -32,7 +32,8 @@ export function assertValidMermaid(mermaidStr: string, snapshotName: string) {
   
   fs.writeFileSync(tmpIn, mermaidStr);
   try {
-     execSync(`npx mmdc -i ${tmpIn} -o ${tmpOut}`, { stdio: 'pipe' });
+     const puppeteerConfig = path.join(__dirname, '../puppeteer-config.json');
+     execSync(`npx mmdc -i ${tmpIn} -o ${tmpOut} -p ${puppeteerConfig}`, { stdio: 'pipe' });
   } catch (err: any) {
      throw new Error(`Mermaid validation failed for ${snapshotName}: ${err.message}\n${err.stderr?.toString()}`);
   } finally {

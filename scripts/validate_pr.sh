@@ -19,7 +19,7 @@ if [ ! -f "$PROMPT_FILE" ]; then echo "Error: $PROMPT_FILE not found"; exit 1; f
 mkdir -p specs
 
 echo "Validating Mermaid Syntax with mmdc..."
-npx mmdc -i "$MERMAID_OUT" -o "$PROOF_SVG"
+npx mmdc -i "$MERMAID_OUT" -o "$PROOF_SVG" -p puppeteer-config.json
 echo "Syntax validated and $PROOF_SVG generated."
 
 echo "Executing Semantic Validation using gemini cli..."
