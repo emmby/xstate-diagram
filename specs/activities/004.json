@@ -1,0 +1,15 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "TIMER": "b"
+      }
+    },
+    "b": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      }
+    }
+  }
+}

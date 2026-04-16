@@ -1,0 +1,10 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      }
+    }
+  }
+}
