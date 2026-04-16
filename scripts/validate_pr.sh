@@ -34,10 +34,18 @@ export MERMAID_CONTENT
 
 perl -p -e 's/\{source_json\}/$ENV{JSON_CONTENT}/g; s/\{mermaid_output\}/$ENV{MERMAID_CONTENT}/g' "$PROMPT_FILE" > .tmp_prompt.txt
 
-# Pipe to gemini CLI. (Using standard piping approach common to CLI llm tools)
-cat .tmp_prompt.txt | gemini
+# Pipe to gemini CLI and capture output
+VALIDATION_OUTPUT=$(cat .tmp_prompt.txt | gemini)
+echo "$VALIDATION_OUTPUT"
 
 rm .tmp_prompt.txt
+
+# Grep through the model's text string for failures
+if echo "$VALIDATION_OUTPUT" | grep -q "FAIL\|❌"; then
+  echo -e "\n----------------------------------"
+  echo "Validation FAILED. Please review the missing nodes above and correct your Mermaid definition."
+  exit 1
+fi
 
 echo -e "\n----------------------------------"
 echo "Proof successfully generated! Include $PROOF_SVG and the text above in the PR."

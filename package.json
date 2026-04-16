@@ -9,8 +9,7 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/cli.ts",
-    "test": "jest",
-    "generate:proof": "bash scripts/validate_pr.sh specs/basic_flat_machine.json src/__snapshots__/basic_flat_machine.mermaid"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
