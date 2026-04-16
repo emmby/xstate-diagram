@@ -5,23 +5,22 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 
 ### Step 0: Autonomous Target Deduction
 - **Read Context**: Read `specs/001_overview.md` to review the `Phase 5: Feature Scaling` feature roadmap.
-- **Identify State**: Check the existing JSON test artifacts inside the `specs/` directory to deduce which features have *already* been implemented natively.
-- **Select Objective**: Unilaterally deduce the very next simplest un-implemented XState5 structural feature from the roadmap timeline and make it your active objective.
+- **Identify State**: Check the raw JSON artifacts inside the `specs/unsupported/` directory vs what exists inside `specs/supported/` to deduce which features have *already* been implemented natively vs what remains.
+- **Select Objective**: Unilaterally deduce the very next simplest un-implemented XState5 structural feature from the roadmap timeline and grab a specific `.json` test file out of `specs/unsupported/{feature}/` making it your active objective.
 
 ### Step 1: Ingest the Specification Matrix
-- Auto-generate a strictly valid XState V5 JSON definition tailored specifically to test your deduced active objective.
-- Create a new `{feature_name}.json` file explicitly inside the `specs/` directory to house the raw state machine mock config (example: `specs/hierarchical_states.json`).
+- Auto-generate a strictly valid XState V5 JSON definition tailored specifically to test your deduced active objective, OR use the existing mock you pulled directly from `specs/unsupported/`.
 
 ### Step 2: Compiler Implementation
 - Modify `src/compiler.ts` to natively parse the new JSON sub-properties matching the current structural iteration targets (e.g., parsing `type: 'parallel'`, looping deep nesting tree depths, or parsing delayed `after` transitions).
 - Assert the newly extracted AST properties and accurately serialize them into deterministic Mermaid `stateDiagram-v2` topology string representations.
 
 ### Step 3: Register Matrix Tests & Pass Jest
-- Open `src/cli.test.ts`.
-- Inject a new test block into the structural `testCases` array: `{ desc: 'should implement {feature}', name: '{feature_name}' }`.
+- Upon successfully compiling the Mermaid topology, formally move the target mock from the unsupported bucket into the supported bucket natively:
+  `git mv specs/unsupported/{feature}/{name}.json specs/supported/{feature}_{name}.json`
 - Run the local test suite via `npm test`. 
   > [!IMPORTANT]
-  > This test block intrinsically executes `@mermaid-js/parser` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this.
+  > The `cli.test.ts` matrix natively crawls the `specs/supported/` directory. By moving the file into this bucket, Jest will automatically detect it and intrinsically execute `@mermaid-js/parser` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this step.
 
 ### Step 4: Execute Agentic Semantic Pipeline
 - Run our semantic evaluation pipeline wrapper specifically against the target artifacts:
