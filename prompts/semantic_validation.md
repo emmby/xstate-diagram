@@ -9,12 +9,26 @@ Read both inputs carefully. You MUST algorithmically prove the equivalence by ex
 
 ## Output Format
 You must output a "Semantic Match Proof" log directly. Do not act like an assistant. Output ONLY your proof report.
-If you detect ANY missing or mismatched states, events, guards, or actions, you MUST fail the validation and explicitly state the discrepancy.
-If everything matches completely, emit:
-\`\`\`
-[SEMANTIC VALIDATION: PASS]
-Summary of paths validated: X states, Y transitions, Z actions, W guards.
-\`\`\`
+You MUST output your report as a GitHub-flavored Markdown checklist. 
+For every successful mapping you verify, output a checked box `- [x]`. 
+If you detect ANY missing or mismatched states, events, guards, or actions, explicitly state the discrepancy as an unchecked box with an X emoji `- [ ] ❌`.
+
+Example Format:
+```markdown
+## Semantic Verification Proof
+
+**States & Topology**
+- [x] Initial state is correctly mapped to `idle`
+- [x] State `idle` exists
+- [ ] ❌ State `run` is missing from Mermaid output
+
+**Transitions**
+- [x] Event `GO` correctly transitions `idle` -> `run`
+- [ ] ❌ Missing `isReady` guard on `GO` transition
+- [x] Action `logStart` is correctly labelled on `GO` transition
+
+**Validation Result**: PASS (or FAIL if there are any errors)
+```
 
 Here is the data:
 <XSTATE_JSON>
