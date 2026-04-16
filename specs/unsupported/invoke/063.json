@@ -1,0 +1,11 @@
+{
+  "invoke": {
+    "id": "count",
+    "src": "[Call: fromTransition]"
+  },
+  "on": {
+    "INC": {
+      "actions": "[Call: forwardTo]"
+    }
+  }
+}

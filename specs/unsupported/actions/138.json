@@ -1,0 +1,28 @@
+{
+  "context": {
+    "count": 0,
+    "text": "hello"
+  },
+  "entry": [
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]",
+    "[Call: assign]"
+  ],
+  "on": {
+    "say": {
+      "actions": [
+        "[Call: assign]",
+        "[Call: assign]",
+        "[Call: assign]",
+        "[Call: assign]"
+      ]
+    }
+  }
+}

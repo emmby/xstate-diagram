@@ -1,0 +1,23 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "invoke": {
+        "id": "foo",
+        "src": "[Function/Identifier: child...]"
+      },
+      "entry": "[Call: sendTo]",
+      "on": {
+        "PONG": "c"
+      }
+    },
+    "c": {
+      "type": "final"
+    }
+  }
+}

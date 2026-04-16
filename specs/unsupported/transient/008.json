@@ -1,0 +1,40 @@
+{
+  "type": "parallel",
+  "states": {
+    "A": {
+      "initial": "A1",
+      "states": {
+        "A1": {
+          "on": {
+            "A": "A2"
+          }
+        },
+        "A2": {}
+      }
+    },
+    "B": {
+      "initial": "B1",
+      "states": {
+        "B1": {
+          "always": {
+            "target": "B2",
+            "guard": "[Call: stateIn]"
+          }
+        },
+        "B2": {}
+      }
+    },
+    "C": {
+      "initial": "C1",
+      "states": {
+        "C1": {
+          "always": {
+            "target": "C2",
+            "guard": "[Call: stateIn]"
+          }
+        },
+        "C2": {}
+      }
+    }
+  }
+}

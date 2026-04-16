@@ -1,0 +1,43 @@
+{
+  "id": "machine",
+  "initial": "one",
+  "context": {},
+  "on": {
+    "ONE": {
+      "actions": "[Call: assign]"
+    },
+    "TWO": {
+      "actions": "[Call: assign]"
+    }
+  },
+  "after": {
+    "10": ".three"
+  },
+  "states": {
+    "one": {
+      "initial": "two",
+      "states": {
+        "two": {
+          "type": "parallel",
+          "states": {
+            "a": {
+              "invoke": {
+                "id": "child",
+                "src": "[Call: fromCallback]"
+              }
+            },
+            "b": {
+              "invoke": {
+                "id": "child2",
+                "src": "[Call: fromCallback]"
+              }
+            }
+          }
+        }
+      }
+    },
+    "three": {
+      "type": "final"
+    }
+  }
+}

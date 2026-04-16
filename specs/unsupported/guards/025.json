@@ -1,0 +1,18 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": [
+          {
+            "target": "b",
+            "guard": "[Function/Identifier: () => false...]"
+          },
+          "c"
+        ]
+      }
+    },
+    "b": {},
+    "c": {}
+  }
+}

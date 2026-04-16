@@ -1,0 +1,26 @@
+{
+  "id": "deep",
+  "initial": "A",
+  "on": {
+    "MACHINE_EVENT": "#deep.DONE"
+  },
+  "states": {
+    "DONE": {},
+    "A": {
+      "initial": "B",
+      "states": {
+        "B": {
+          "initial": "C",
+          "states": {
+            "C": {
+              "initial": "D",
+              "states": {
+                "D": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "context": {},
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "SPAWN": {
+          "actions": "[Call: assign]"
+        }
+      }
+    },
+    "b": {}
+  }
+}

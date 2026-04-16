@@ -1,0 +1,16 @@
+{
+  "initial": "a",
+  "invoke": {
+    "src": "[Call: createMachine]",
+    "id": "someActor"
+  },
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": {
+          "actions": "[Call: sendTo]"
+        }
+      }
+    }
+  }
+}

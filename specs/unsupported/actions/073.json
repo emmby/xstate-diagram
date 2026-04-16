@@ -1,0 +1,22 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": "b"
+      }
+    },
+    "b": {
+      "entry": [
+        "definedAction",
+        {
+          "type": "definedAction"
+        },
+        "undefinedAction"
+      ]
+    }
+  },
+  "on": {
+    "E": ".a"
+  }
+}

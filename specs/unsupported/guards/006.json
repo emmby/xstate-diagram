@@ -1,0 +1,36 @@
+{
+  "type": "parallel",
+  "states": {
+    "A": {
+      "initial": "A2",
+      "states": {
+        "A0": {},
+        "A2": {}
+      }
+    },
+    "B": {
+      "initial": "B0",
+      "states": {
+        "B0": {
+          "always": [
+            {
+              "target": "B4",
+              "guard": "[Function/Identifier: () => false...]"
+            }
+          ],
+          "on": {
+            "T2": [
+              {
+                "target": "B2",
+                "guard": "[Call: stateIn]"
+              }
+            ]
+          }
+        },
+        "B1": {},
+        "B2": {},
+        "B4": {}
+      }
+    }
+  }
+}

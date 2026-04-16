@@ -1,0 +1,21 @@
+{
+  "id": "machine",
+  "initial": "initial",
+  "context": {
+    "count": 0
+  },
+  "states": {
+    "initial": {
+      "on": {
+        "activate": "active"
+      }
+    },
+    "active": {
+      "on": {
+        "do": {
+          "actions": "[Function/Identifier: spy...]"
+        }
+      }
+    }
+  }
+}

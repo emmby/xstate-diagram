@@ -1,0 +1,21 @@
+{
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "ACTIVATE": "active"
+      }
+    },
+    "active": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      },
+      "on": {
+        "REENTER": {
+          "target": "active",
+          "reenter": true
+        }
+      }
+    }
+  }
+}

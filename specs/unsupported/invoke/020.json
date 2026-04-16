@@ -1,0 +1,24 @@
+{
+  "id": "ping",
+  "type": "parallel",
+  "states": {
+    "one": {
+      "initial": "active",
+      "states": {
+        "active": {
+          "invoke": {
+            "id": "pong",
+            "src": "[Function/Identifier: pongMachine...]",
+            "onDone": {
+              "target": "success",
+              "guard": "[Function/Identifier: ({ event }) => event.output.se...]"
+            }
+          }
+        },
+        "success": {
+          "type": "final"
+        }
+      }
+    }
+  }
+}

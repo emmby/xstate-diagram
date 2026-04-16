@@ -1,0 +1,14 @@
+{
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "[Function/Identifier: child...]",
+        "onDone": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "initial": "nested",
+  "states": {
+    "nested": {
+      "initial": "wait",
+      "states": {
+        "wait": {
+          "after": {
+            "10": "#end"
+          }
+        }
+      }
+    },
+    "end": {
+      "id": "end",
+      "type": "final"
+    }
+  }
+}

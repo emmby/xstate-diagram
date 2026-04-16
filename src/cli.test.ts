@@ -21,17 +21,31 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     console.log = originalConsoleLog;
   });
 
-  const testCases = [
-    { desc: 'should compile a basic flat state machine mapping reliably', name: 'basic_flat_machine' },
-    { desc: 'should stringently map transition events with guards and multifaceted actions', name: 'advanced_transitions' },
-    { desc: 'should map flat self-transitions gracefully', name: 'self_transitions' },
-    { desc: 'should implement safe aliases when parsing keys with spaces or special characters', name: 'safe_aliases' }
-  ];
+  const supportedDir = path.join(__dirname, '../specs/supported');
+  
+  function getTestCases(dir: string): { desc: string, name: string, fullPath: string }[] {
+    if (!fs.existsSync(dir)) return [];
+    let cases: any[] = [];
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+      const fullPath = path.join(dir, file);
+      if (fs.statSync(fullPath).isDirectory()) {
+         cases = cases.concat(getTestCases(fullPath));
+      } else if (file.endsWith('.json')) {
+         const relPath = path.relative(supportedDir, fullPath);
+         // Flatten nested names so snapshotting works without subfolders natively:
+         const name = relPath.replace(/\.json$/, '').replace(new RegExp('\\' + path.sep, 'g'), '_');
+         cases.push({ desc: `should compile supported spec dynamically: ${relPath}`, name, fullPath });
+      }
+    }
+    return cases;
+  }
 
-  testCases.forEach(({ desc, name }) => {
+  const testCases = getTestCases(supportedDir);
+
+  testCases.forEach(({ desc, name, fullPath }) => {
     it(desc, () => {
-      const specPath = path.join(__dirname, `../specs/${name}.json`);
-      const validConfig = fs.readFileSync(specPath, 'utf8');
+      const validConfig = fs.readFileSync(fullPath, 'utf8');
       
       processInput(validConfig);
       assertValidMermaid(consoleOutput[0], name);

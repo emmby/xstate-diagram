@@ -1,0 +1,41 @@
+{
+  "id": "root",
+  "initial": "A",
+  "states": {
+    "A": {
+      "on": {
+        "A_P": "#root.P"
+      },
+      "initial": "B",
+      "states": {
+        "B": {
+          "initial": "C",
+          "states": {
+            "C": {
+              "initial": "D",
+              "states": {
+                "D": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "P": {
+      "initial": "Q",
+      "states": {
+        "Q": {
+          "initial": "R",
+          "states": {
+            "R": {
+              "initial": "S",
+              "states": {
+                "S": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

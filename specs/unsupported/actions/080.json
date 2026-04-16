@@ -1,0 +1,9 @@
+{
+  "context": {
+    "secret": 42
+  },
+  "entry": {
+    "type": "entryAction",
+    "params": "[Function/Identifier: ({ context }) => ({ secret: co...]"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "GO_TO_WAITING": "waiting"
+      }
+    },
+    "waiting": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      }
+    }
+  }
+}

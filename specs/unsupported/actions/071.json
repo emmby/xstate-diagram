@@ -1,0 +1,21 @@
+{
+  "id": "root",
+  "initial": {
+    "target": "a",
+    "actions": "[Function/Identifier: spy...]"
+  },
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {}
+  },
+  "on": {
+    "REENTER": {
+      "target": "#root",
+      "reenter": true
+    }
+  }
+}

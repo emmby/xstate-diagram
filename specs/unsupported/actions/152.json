@@ -1,0 +1,8 @@
+{
+  "entry": {
+    "type": "myAction",
+    "params": {
+      "foo": "bar"
+    }
+  }
+}

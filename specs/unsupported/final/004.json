@@ -1,0 +1,27 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "initial": "bar",
+      "onDone": {
+        "actions": "[Function/Identifier: () => actual.push('fooAction')...]"
+      },
+      "states": {
+        "bar": {
+          "initial": "baz",
+          "onDone": "barFinal",
+          "states": {
+            "baz": {
+              "type": "final",
+              "entry": "[Function/Identifier: () => actual.push('bazAction')...]"
+            }
+          }
+        },
+        "barFinal": {
+          "type": "final",
+          "entry": "[Function/Identifier: () => actual.push('barAction')...]"
+        }
+      }
+    }
+  }
+}

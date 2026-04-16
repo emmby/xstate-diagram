@@ -1,0 +1,24 @@
+{
+  "id": "promise",
+  "initial": "pending",
+  "context": {
+    "foo": true
+  },
+  "states": {
+    "pending": {
+      "on": {
+        "BEGIN": "first"
+      }
+    },
+    "first": {
+      "invoke": {
+        "src": "somePromise",
+        "input": "[Function/Identifier: ({ context, event }) => ({\n   ...]",
+        "onDone": "last"
+      }
+    },
+    "last": {
+      "type": "final"
+    }
+  }
+}

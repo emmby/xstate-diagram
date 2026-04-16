@@ -1,0 +1,8 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "tags": "foo"
+    }
+  }
+}

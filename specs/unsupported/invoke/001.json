@@ -1,0 +1,17 @@
+{
+  "id": "child",
+  "initial": "init",
+  "states": {
+    "init": {
+      "on": {
+        "FORWARD_DEC": {
+          "actions": [
+            "[Call: sendParent]",
+            "[Call: sendParent]",
+            "[Call: sendParent]"
+          ]
+        }
+      }
+    }
+  }
+}

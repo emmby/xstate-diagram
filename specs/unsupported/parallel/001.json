@@ -1,0 +1,216 @@
+{
+  "initial": "ReadOnly",
+  "states": {
+    "ReadOnly": {
+      "id": "ReadOnly",
+      "initial": "StructureEdit",
+      "entry": [
+        "selectNone"
+      ],
+      "states": {
+        "StructureEdit": {
+          "id": "StructureEditRO",
+          "type": "parallel",
+          "on": {
+            "switchToProjectManagement": [
+              {
+                "target": "ProjectManagement"
+              }
+            ]
+          },
+          "states": {
+            "SelectionStatus": {
+              "initial": "SelectedNone",
+              "on": {
+                "singleClickActivity": [
+                  {
+                    "target": ".SelectedActivity",
+                    "actions": [
+                      "selectActivity"
+                    ]
+                  }
+                ],
+                "singleClickLink": [
+                  {
+                    "target": ".SelectedLink",
+                    "actions": [
+                      "selectLink"
+                    ]
+                  }
+                ]
+              },
+              "states": {
+                "SelectedNone": {
+                  "entry": [
+                    "redraw"
+                  ]
+                },
+                "SelectedActivity": {
+                  "entry": [
+                    "redraw"
+                  ],
+                  "on": {
+                    "singleClickCanvas": [
+                      {
+                        "target": "SelectedNone",
+                        "actions": [
+                          "selectNone"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "SelectedLink": {
+                  "entry": [
+                    "redraw"
+                  ],
+                  "on": {
+                    "singleClickCanvas": [
+                      {
+                        "target": "SelectedNone",
+                        "actions": [
+                          "selectNone"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "ClipboardStatus": {
+              "initial": "Empty",
+              "states": {
+                "Empty": {
+                  "entry": [
+                    "emptyClipboard"
+                  ],
+                  "on": {
+                    "cutInClipboardSuccess": [
+                      {
+                        "target": "FilledByCut"
+                      }
+                    ],
+                    "copyInClipboardSuccess": [
+                      {
+                        "target": "FilledByCopy"
+                      }
+                    ]
+                  }
+                },
+                "FilledByCopy": {
+                  "on": {
+                    "cutInClipboardSuccess": [
+                      {
+                        "target": "FilledByCut"
+                      }
+                    ],
+                    "copyInClipboardSuccess": [
+                      {
+                        "target": "FilledByCopy"
+                      }
+                    ],
+                    "pasteFromClipboardSuccess": [
+                      {
+                        "target": "FilledByCopy"
+                      }
+                    ]
+                  }
+                },
+                "FilledByCut": {
+                  "on": {
+                    "cutInClipboardSuccess": [
+                      {
+                        "target": "FilledByCut"
+                      }
+                    ],
+                    "copyInClipboardSuccess": [
+                      {
+                        "target": "FilledByCopy"
+                      }
+                    ],
+                    "pasteFromClipboardSuccess": [
+                      {
+                        "target": "Empty"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ProjectManagement": {
+          "id": "ProjectManagementRO",
+          "type": "parallel",
+          "on": {
+            "switchToStructureEdit": [
+              {
+                "target": "StructureEdit"
+              }
+            ]
+          },
+          "states": {
+            "SelectionStatus": {
+              "initial": "SelectedNone",
+              "on": {
+                "singleClickActivity": [
+                  {
+                    "target": ".SelectedActivity",
+                    "actions": [
+                      "selectActivity"
+                    ]
+                  }
+                ],
+                "singleClickLink": [
+                  {
+                    "target": ".SelectedLink",
+                    "actions": [
+                      "selectLink"
+                    ]
+                  }
+                ]
+              },
+              "states": {
+                "SelectedNone": {
+                  "entry": [
+                    "redraw"
+                  ]
+                },
+                "SelectedActivity": {
+                  "entry": [
+                    "redraw"
+                  ],
+                  "on": {
+                    "singleClickCanvas": [
+                      {
+                        "target": "SelectedNone",
+                        "actions": [
+                          "selectNone"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "SelectedLink": {
+                  "entry": [
+                    "redraw"
+                  ],
+                  "on": {
+                    "singleClickCanvas": [
+                      {
+                        "target": "SelectedNone",
+                        "actions": [
+                          "selectNone"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

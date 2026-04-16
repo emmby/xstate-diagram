@@ -1,0 +1,20 @@
+{
+  "initial": "A",
+  "states": {
+    "A": {
+      "type": "parallel",
+      "states": {
+        "B": {
+          "type": "final",
+          "output": "[Function/Identifier: spy...]"
+        },
+        "C": {
+          "initial": "C1",
+          "states": {
+            "C1": {}
+          }
+        }
+      }
+    }
+  }
+}

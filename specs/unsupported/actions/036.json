@@ -1,0 +1,18 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "initial": "a1",
+      "states": {
+        "a1": {
+          "on": {
+            "EV": {
+              "target": "a1",
+              "reenter": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

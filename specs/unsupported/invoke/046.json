@@ -1,0 +1,17 @@
+{
+  "id": "error",
+  "initial": "safe",
+  "states": {
+    "safe": {
+      "invoke": {
+        "src": "[Call: fromCallback]",
+        "onError": "failed"
+      }
+    },
+    "failed": {
+      "on": {
+        "RETRY": "safe"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "initial": "one",
+  "on": {
+    "WHATEVER": {
+      "actions": "[Function/Identifier: () => {}...]"
+    }
+  },
+  "states": {
+    "one": {}
+  }
+}

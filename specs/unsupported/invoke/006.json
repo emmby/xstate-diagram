@@ -1,0 +1,19 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "GO_TO_WAITING": "waiting"
+      }
+    },
+    "waiting": {
+      "invoke": {
+        "src": "[Function/Identifier: childMachine...]",
+        "onDone": "received"
+      }
+    },
+    "received": {
+      "type": "final"
+    }
+  }
+}

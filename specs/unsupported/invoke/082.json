@@ -1,0 +1,15 @@
+{
+  "id": "child",
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": {
+        "src": "[Call: fromPromise]",
+        "onDone": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "invoke": {
+    "id": "doubler",
+    "src": "doublerLogic",
+    "onSnapshot": {
+      "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+    }
+  },
+  "entry": "[Call: sendTo]"
+}

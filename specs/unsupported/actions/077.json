@@ -1,0 +1,14 @@
+{
+  "id": "test",
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "entry": {
+        "type": "entryAction",
+        "params": {
+          "value": "something"
+        }
+      }
+    }
+  }
+}

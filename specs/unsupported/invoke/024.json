@@ -1,0 +1,22 @@
+{
+  "id": "parent",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": "active"
+      }
+    },
+    "active": {
+      "invoke": {
+        "src": "[Function/Identifier: child...]"
+      },
+      "on": {
+        "STOPPED": "done"
+      }
+    },
+    "done": {
+      "type": "final"
+    }
+  }
+}

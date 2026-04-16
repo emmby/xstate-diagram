@@ -1,0 +1,29 @@
+{
+  "id": "test",
+  "context": {
+    "log": []
+  },
+  "type": "parallel",
+  "states": {
+    "foo": {
+      "initial": "foobar",
+      "states": {
+        "foobar": {
+          "on": {
+            "GOTO_FOOBAZ": "foobaz"
+          }
+        },
+        "foobaz": {
+          "entry": "[Call: assign]",
+          "on": {
+            "GOTO_FOOBAZ": {
+              "target": "foobaz",
+              "reenter": true
+            }
+          }
+        }
+      }
+    },
+    "bar": {}
+  }
+}

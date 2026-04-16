@@ -1,0 +1,36 @@
+{
+  "id": "machine",
+  "initial": "one",
+  "context": {},
+  "on": {
+    "ONE": {
+      "actions": "[Call: assign]"
+    },
+    "TWO": {
+      "actions": "[Call: assign]",
+      "target": ".three"
+    }
+  },
+  "states": {
+    "one": {
+      "initial": "two",
+      "states": {
+        "two": {
+          "invoke": [
+            {
+              "id": "child",
+              "src": "[Call: fromCallback]"
+            },
+            {
+              "id": "child2",
+              "src": "[Call: fromCallback]"
+            }
+          ]
+        }
+      }
+    },
+    "three": {
+      "type": "final"
+    }
+  }
+}

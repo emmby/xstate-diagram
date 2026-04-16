@@ -1,0 +1,14 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": {
+          "guard": "[Function/Identifier: () => {\n                throw ...]",
+          "target": "b"
+        }
+      }
+    },
+    "b": {}
+  }
+}

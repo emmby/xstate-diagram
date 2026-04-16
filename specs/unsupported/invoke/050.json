@@ -1,0 +1,14 @@
+{
+  "initial": "start",
+  "context": {
+    "foo": "bar"
+  },
+  "states": {
+    "start": {
+      "invoke": {
+        "src": "[Call: fromCallback]",
+        "input": "[Function/Identifier: ({ context }: any) => context...]"
+      }
+    }
+  }
+}

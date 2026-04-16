@@ -1,0 +1,50 @@
+{
+  "initial": "running",
+  "states": {
+    "running": {
+      "type": "parallel",
+      "states": {
+        "one": {
+          "initial": "active",
+          "on": {
+            "STOP_ONE": ".idle"
+          },
+          "states": {
+            "idle": {},
+            "active": {
+              "invoke": {
+                "id": "active",
+                "src": "[Call: fromCallback]"
+              },
+              "on": {
+                "NEXT": {
+                  "actions": "[Call: raise]"
+                }
+              }
+            }
+          }
+        },
+        "two": {
+          "initial": "idle",
+          "on": {
+            "NEXT": ".active"
+          },
+          "states": {
+            "idle": {},
+            "active": {
+              "invoke": {
+                "id": "post",
+                "src": "[Call: fromPromise]",
+                "onDone": "#done"
+              }
+            }
+          }
+        }
+      }
+    },
+    "done": {
+      "id": "done",
+      "type": "final"
+    }
+  }
+}

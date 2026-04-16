@@ -1,0 +1,17 @@
+{
+  "type": "parallel",
+  "states": {
+    "a": {
+      "initial": "a1",
+      "states": {
+        "a1": {}
+      }
+    },
+    "b": {
+      "initial": "b1",
+      "states": {
+        "b1": {}
+      }
+    }
+  }
+}

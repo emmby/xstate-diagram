@@ -1,0 +1,17 @@
+{
+  "id": "machine",
+  "invoke": {
+    "src": "[Call: fromCallback]"
+  },
+  "initial": "running",
+  "states": {
+    "running": {
+      "on": {
+        "finished": "complete"
+      }
+    },
+    "complete": {
+      "type": "final"
+    }
+  }
+}

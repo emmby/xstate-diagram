@@ -1,0 +1,21 @@
+{
+  "type": "parallel",
+  "states": {
+    "wak1": {
+      "initial": "wak1sonA",
+      "states": {
+        "wak1sonA": {},
+        "wak1sonB": {}
+      },
+      "on": {
+        "WAK1": ".wak1sonB"
+      }
+    },
+    "wak2": {
+      "initial": "wak2sonA",
+      "states": {
+        "wak2sonA": {}
+      }
+    }
+  }
+}

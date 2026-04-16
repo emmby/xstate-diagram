@@ -1,0 +1,21 @@
+{
+  "id": "machine",
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "next": "withAfter"
+      }
+    },
+    "withAfter": {
+      "after": {
+        "1": {
+          "target": "done"
+        }
+      }
+    },
+    "done": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  },
+  "exit": "[Function/Identifier: ({ event }) => {\n          rec...]"
+}

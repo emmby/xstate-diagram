@@ -1,0 +1,8 @@
+{
+  "invoke": {
+    "src": "childMachine",
+    "onSnapshot": {
+      "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+    }
+  }
+}

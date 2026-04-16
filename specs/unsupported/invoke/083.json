@@ -1,0 +1,12 @@
+{
+  "type": "parallel",
+  "states": {
+    "first": "[Call: createSingleState]",
+    "second": "[Call: createSingleState]"
+  },
+  "on": {
+    "*": {
+      "actions": "[Function/Identifier: ({ event }) => {\n            a...]"
+    }
+  }
+}

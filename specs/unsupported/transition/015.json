@@ -1,0 +1,26 @@
+{
+  "initial": "a",
+  "context": {
+    "count": 5
+  },
+  "states": {
+    "a": {
+      "always": [
+        {
+          "guard": "[Function/Identifier: ({ context }) => context.count...]",
+          "target": "b"
+        },
+        {
+          "guard": "[Function/Identifier: () => false...]",
+          "target": "c"
+        }
+      ],
+      "on": {
+        "GO_D": "d"
+      }
+    },
+    "b": {},
+    "c": {},
+    "d": {}
+  }
+}

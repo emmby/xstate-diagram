@@ -1,0 +1,31 @@
+{
+  "id": "greeting",
+  "initial": "pending",
+  "context": "[Function/Identifier: greetingContext...]",
+  "states": {
+    "pending": {
+      "always": [
+        {
+          "target": "morning",
+          "guard": "[Function/Identifier: ({ context }) => context.hour ...]"
+        },
+        {
+          "target": "afternoon",
+          "guard": "[Function/Identifier: ({ context }) => context.hour ...]"
+        },
+        {
+          "target": "evening"
+        }
+      ]
+    },
+    "morning": {},
+    "afternoon": {},
+    "evening": {}
+  },
+  "on": {
+    "CHANGE": {
+      "actions": "[Call: assign]"
+    },
+    "RECHECK": "#greeting"
+  }
+}

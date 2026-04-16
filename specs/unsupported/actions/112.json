@@ -1,0 +1,7 @@
+{
+  "invoke": {
+    "id": "child",
+    "src": "[Call: fromCallback]"
+  },
+  "entry": "[Call: sendTo]"
+}

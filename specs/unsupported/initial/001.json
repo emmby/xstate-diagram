@@ -1,0 +1,17 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "initial": "b",
+      "states": {
+        "b": {
+          "initial": "c",
+          "states": {
+            "c": {}
+          }
+        }
+      }
+    },
+    "leaf": {}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "initial": "a",
+  "context": {
+    "count": 100
+  },
+  "states": {
+    "a": {
+      "on": {
+        "GO_B": [
+          {
+            "guard": "[Function/Identifier: ({ context }) => context.count...]",
+            "target": "b"
+          },
+          {
+            "target": "d"
+          }
+        ],
+        "GO_C": {
+          "guard": "[Function/Identifier: ({ context }) => context.count...]",
+          "target": "c"
+        }
+      }
+    },
+    "b": {},
+    "c": {},
+    "d": {}
+  }
+}

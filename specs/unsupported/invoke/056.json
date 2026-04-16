@@ -1,0 +1,12 @@
+{
+  "context": {
+    "received": "[Function/Identifier: undefined...]"
+  },
+  "invoke": {
+    "src": "childLogic",
+    "input": 42,
+    "onSnapshot": {
+      "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+    }
+  }
+}

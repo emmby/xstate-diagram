@@ -1,0 +1,26 @@
+{
+  "initial": "green",
+  "states": {
+    "green": {
+      "tags": [
+        "go"
+      ],
+      "on": {
+        "TIMER": "yellow"
+      }
+    },
+    "yellow": {
+      "tags": [
+        "go"
+      ],
+      "on": {
+        "TIMER": "red"
+      }
+    },
+    "red": {
+      "tags": [
+        "stop"
+      ]
+    }
+  }
+}

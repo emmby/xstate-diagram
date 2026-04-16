@@ -1,0 +1,12 @@
+{
+  "id": "pong",
+  "initial": "active",
+  "states": {
+    "active": {
+      "type": "final"
+    }
+  },
+  "output": {
+    "secret": "pingpong"
+  }
+}

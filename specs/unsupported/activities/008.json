@@ -1,0 +1,21 @@
+{
+  "initial": "A",
+  "states": {
+    "A": {
+      "on": {
+        "E": "B"
+      }
+    },
+    "B": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      },
+      "always": [
+        {
+          "guard": "[Function/Identifier: () => false...]",
+          "target": "A"
+        }
+      ]
+    }
+  }
+}

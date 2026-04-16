@@ -1,0 +1,12 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "entry": "[Call: raise]",
+      "on": {
+        "EVENT": "b"
+      }
+    },
+    "b": {}
+  }
+}

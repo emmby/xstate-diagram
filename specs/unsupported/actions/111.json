@@ -1,0 +1,13 @@
+{
+  "initial": "a",
+  "context": "[Function/Identifier: ({ spawn }) => ({\n        foo:...]",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": {
+          "actions": "[Call: sendTo]"
+        }
+      }
+    }
+  }
+}

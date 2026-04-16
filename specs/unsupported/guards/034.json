@@ -1,0 +1,14 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": {
+          "target": "b",
+          "guard": "[Call: and]"
+        }
+      }
+    },
+    "b": {}
+  }
+}

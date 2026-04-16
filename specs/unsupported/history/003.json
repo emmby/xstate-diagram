@@ -1,0 +1,21 @@
+{
+  "initial": "off",
+  "states": {
+    "off": {
+      "on": {
+        "POWER": "on.hist"
+      }
+    },
+    "on": {
+      "initial": "first",
+      "states": {
+        "first": {},
+        "second": {},
+        "hist": {
+          "type": "history",
+          "history": "shallow"
+        }
+      }
+    }
+  }
+}

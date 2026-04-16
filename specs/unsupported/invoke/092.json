@@ -1,0 +1,18 @@
+{
+  "initial": "pending",
+  "context": {
+    "count": 42
+  },
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "stringService",
+        "input": "[Function/Identifier: ({ context }) => ({\n          ...]",
+        "onDone": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

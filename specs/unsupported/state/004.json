@@ -1,0 +1,12 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": {
+          "actions": "newAction"
+        }
+      }
+    }
+  }
+}

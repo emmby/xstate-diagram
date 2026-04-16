@@ -1,0 +1,9 @@
+{
+  "id": "machine",
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": "[Function/Identifier: invokeConfig...]"
+    }
+  }
+}

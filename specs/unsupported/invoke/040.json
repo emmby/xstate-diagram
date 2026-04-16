@@ -1,0 +1,25 @@
+{
+  "id": "callback",
+  "initial": "idle",
+  "context": {
+    "foo": true
+  },
+  "states": {
+    "idle": {
+      "invoke": {
+        "src": "someCallback"
+      },
+      "on": {
+        "CALLBACK": "intermediate"
+      }
+    },
+    "intermediate": {
+      "on": {
+        "NEXT": "last"
+      }
+    },
+    "last": {
+      "type": "final"
+    }
+  }
+}

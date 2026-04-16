@@ -1,0 +1,10 @@
+{
+  "on": {
+    "FOO": {
+      "actions": {
+        "type": "myAction",
+        "params": "[Function/Identifier: ({ event }) => ({ secret: even...]"
+      }
+    }
+  }
+}

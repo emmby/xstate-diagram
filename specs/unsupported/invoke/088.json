@@ -1,0 +1,19 @@
+{
+  "id": "root",
+  "invoke": {
+    "src": "[Call: fromPromise]"
+  },
+  "on": {
+    "EVENT": {
+      "target": "#two",
+      "reenter": true
+    }
+  },
+  "initial": "one",
+  "states": {
+    "one": {},
+    "two": {
+      "id": "two"
+    }
+  }
+}

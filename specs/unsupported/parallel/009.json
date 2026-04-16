@@ -1,0 +1,37 @@
+{
+  "type": "parallel",
+  "states": {
+    "OUTER1": {
+      "initial": "B",
+      "states": {
+        "A": {},
+        "B": {
+          "entry": "[Call: raise]"
+        }
+      }
+    },
+    "OUTER2": {
+      "type": "parallel",
+      "states": {
+        "INNER1": {
+          "initial": "ON",
+          "states": {
+            "OFF": {},
+            "ON": {
+              "on": {
+                "CLEAR": "OFF"
+              }
+            }
+          }
+        },
+        "INNER2": {
+          "initial": "OFF",
+          "states": {
+            "OFF": {},
+            "ON": {}
+          }
+        }
+      }
+    }
+  }
+}

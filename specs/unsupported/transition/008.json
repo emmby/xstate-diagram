@@ -1,0 +1,15 @@
+{
+  "initial": "a",
+  "context": {
+    "count": 10
+  },
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": {
+          "actions": "[Call: log]"
+        }
+      }
+    }
+  }
+}

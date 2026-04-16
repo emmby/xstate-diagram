@@ -1,0 +1,7 @@
+{
+  "on": {
+    "EV": {
+      "actions": "[Function/Identifier: function myFn() {\n            ...]"
+    }
+  }
+}

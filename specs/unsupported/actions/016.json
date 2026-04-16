@@ -1,0 +1,16 @@
+{
+  "initial": "loaded",
+  "states": {
+    "loaded": {
+      "id": "loaded",
+      "initial": "idle",
+      "states": {
+        "idle": {
+          "on": {
+            "UPDATE": "#loaded"
+          }
+        }
+      }
+    }
+  }
+}

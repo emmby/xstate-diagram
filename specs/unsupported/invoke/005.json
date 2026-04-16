@@ -1,0 +1,16 @@
+{
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "entry": "[Call: raise]",
+      "on": {
+        "RESOLVE": {
+          "target": "success"
+        }
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

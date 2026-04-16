@@ -1,0 +1,14 @@
+{
+  "id": "child",
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "STOP": "end"
+      }
+    },
+    "end": {
+      "type": "final"
+    }
+  }
+}

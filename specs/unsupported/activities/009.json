@@ -1,0 +1,15 @@
+{
+  "initial": "A",
+  "states": {
+    "A": {
+      "on": {
+        "E": "B"
+      }
+    },
+    "B": {
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      }
+    }
+  }
+}

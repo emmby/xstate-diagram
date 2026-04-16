@@ -1,0 +1,20 @@
+{
+  "initial": "parent",
+  "states": {
+    "parent": {
+      "initial": "child",
+      "on": {
+        "PARENT_EVENT": "other"
+      },
+      "states": {
+        "child": {
+          "on": {
+            "CHILD_EVENT": "sibling"
+          }
+        },
+        "sibling": {}
+      }
+    },
+    "other": {}
+  }
+}

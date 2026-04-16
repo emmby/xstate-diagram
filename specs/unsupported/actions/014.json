@@ -1,0 +1,28 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "initial": "a1",
+      "states": {
+        "a1": {
+          "on": {
+            "NEXT_FN": "a3"
+          }
+        },
+        "a2": {},
+        "a3": {
+          "on": {
+            "NEXT": {
+              "target": "a2",
+              "actions": [
+                "[Function/Identifier: transitionSpy...]"
+              ]
+            }
+          },
+          "entry": "[Function/Identifier: entrySpy...]",
+          "exit": "[Function/Identifier: exitSpy...]"
+        }
+      }
+    }
+  }
+}

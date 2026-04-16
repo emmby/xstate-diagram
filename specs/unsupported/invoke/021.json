@@ -1,0 +1,11 @@
+{
+  "invoke": {
+    "src": "[Call: fromCallback]"
+  },
+  "entry": "[Function/Identifier: () => entryActionsCount++...]",
+  "on": {
+    "UPDATE": {
+      "actions": "[Function/Identifier: () => {\n              actionsC...]"
+    }
+  }
+}

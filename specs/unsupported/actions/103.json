@@ -1,0 +1,12 @@
+{
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "on": {
+        "EVENT": {
+          "actions": "[Function/Identifier: () => resolve()...]"
+        }
+      }
+    }
+  }
+}

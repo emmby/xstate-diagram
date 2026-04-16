@@ -1,0 +1,21 @@
+{
+  "id": "promise",
+  "context": {
+    "count": 0
+  },
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "[Call: fromPromise]",
+        "onDone": {
+          "target": "success",
+          "actions": "[Call: assign]"
+        }
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

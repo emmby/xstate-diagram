@@ -1,0 +1,26 @@
+{
+  "initial": "ready",
+  "states": {
+    "ready": {
+      "type": "parallel",
+      "on": {
+        "FOO": {
+          "target": "#cameraOff",
+          "reenter": true
+        }
+      },
+      "states": {
+        "devicesInfo": {},
+        "camera": {
+          "initial": "on",
+          "states": {
+            "on": {},
+            "off": {
+              "id": "cameraOff"
+            }
+          }
+        }
+      }
+    }
+  }
+}

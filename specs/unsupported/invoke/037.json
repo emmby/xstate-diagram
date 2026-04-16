@@ -1,0 +1,21 @@
+{
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "src": "[Call: fromPromise]",
+        "onSnapshot": {}
+      },
+      "on": {
+        "deactivate": "inactive"
+      }
+    },
+    "inactive": {
+      "on": {
+        "*": {
+          "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+        }
+      }
+    }
+  }
+}

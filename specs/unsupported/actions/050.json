@@ -1,0 +1,9 @@
+{
+  "id": "child",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "exit": "[Call: sendParent]"
+    }
+  }
+}

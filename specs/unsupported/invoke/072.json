@@ -1,0 +1,14 @@
+{
+  "id": "transient",
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "id": "doNotInvoke",
+        "src": "[Call: fromCallback]"
+      },
+      "always": "inactive"
+    },
+    "inactive": {}
+  }
+}

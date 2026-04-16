@@ -1,0 +1,25 @@
+{
+  "initial": "first",
+  "states": {
+    "first": {
+      "on": {
+        "NEXT": "second.other"
+      }
+    },
+    "second": {
+      "initial": "nested",
+      "states": {
+        "nested": {},
+        "other": {},
+        "hist": {
+          "history": true
+        }
+      },
+      "on": {
+        "NEXT": {
+          "target": ".hist"
+        }
+      }
+    }
+  }
+}

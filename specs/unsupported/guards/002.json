@@ -1,0 +1,21 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "TIMER": [
+          {
+            "target": "b",
+            "guard": "[Function/Identifier: ({ event: { elapsed } }) => el...]"
+          },
+          {
+            "target": "c",
+            "guard": "[Function/Identifier: ({ event: { elapsed } }) => el...]"
+          }
+        ]
+      }
+    },
+    "b": {},
+    "c": {}
+  }
+}

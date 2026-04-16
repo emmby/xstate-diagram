@@ -1,0 +1,29 @@
+{
+  "initial": "secret",
+  "context": {
+    "revealedSecret": "[Function/Identifier: undefined...]"
+  },
+  "states": {
+    "secret": {
+      "initial": "wait",
+      "states": {
+        "wait": {
+          "on": {
+            "REQUEST_SECRET": "reveal"
+          }
+        },
+        "reveal": {
+          "type": "final",
+          "output": "[Function/Identifier: () => ({\n                secre...]"
+        }
+      },
+      "onDone": {
+        "target": "success",
+        "actions": "[Call: assign]"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

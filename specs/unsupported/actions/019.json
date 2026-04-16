@@ -1,0 +1,18 @@
+{
+  "id": "root",
+  "entry": "[Function/Identifier: entrySpy...]",
+  "exit": "[Function/Identifier: exitSpy...]",
+  "on": {
+    "EVENT": {
+      "target": "#two",
+      "reenter": true
+    }
+  },
+  "initial": "one",
+  "states": {
+    "one": {},
+    "two": {
+      "id": "two"
+    }
+  }
+}

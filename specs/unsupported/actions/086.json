@@ -1,0 +1,8 @@
+{
+  "on": {
+    "*": {
+      "guard": "[Function/Identifier: () => true...]",
+      "actions": "[Call: forwardTo]"
+    }
+  }
+}

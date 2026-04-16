@@ -1,0 +1,10 @@
+{
+  "context": {
+    "assigned": false
+  },
+  "on": {
+    "EV": {
+      "actions": "[Call: assign]"
+    }
+  }
+}

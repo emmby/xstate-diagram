@@ -1,0 +1,28 @@
+{
+  "id": "ping",
+  "initial": "innerMachine",
+  "states": {
+    "innerMachine": {
+      "initial": "active",
+      "states": {
+        "active": {
+          "invoke": {
+            "id": "pong",
+            "src": "[Function/Identifier: pongMachine...]"
+          },
+          "entry": "[Call: sendTo]",
+          "on": {
+            "PONG": "innerSuccess"
+          }
+        },
+        "innerSuccess": {
+          "type": "final"
+        }
+      },
+      "onDone": "success"
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "entry": "[Call: sendTo]",
+      "invoke": {
+        "id": "ponger",
+        "src": "[Function/Identifier: pongLogic...]"
+      },
+      "on": {
+        "PONG": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

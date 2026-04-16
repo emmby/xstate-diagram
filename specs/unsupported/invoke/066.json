@@ -1,0 +1,13 @@
+{
+  "id": "pong",
+  "initial": "active",
+  "states": {
+    "active": {
+      "on": {
+        "PING": {
+          "actions": "[Call: sendParent]"
+        }
+      }
+    }
+  }
+}

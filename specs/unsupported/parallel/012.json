@@ -1,0 +1,24 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "type": "parallel",
+      "states": {
+        "c": {
+          "initial": {
+            "target": "c1",
+            "actions": "[Function/Identifier: spy...]"
+          },
+          "states": {
+            "c1": {}
+          }
+        }
+      }
+    }
+  }
+}

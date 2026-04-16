@@ -1,0 +1,30 @@
+{
+  "initial": "B",
+  "states": {
+    "A": {
+      "on": {
+        "to-B": "B"
+      }
+    },
+    "B": {
+      "type": "parallel",
+      "on": {
+        "to-A": "A"
+      },
+      "states": {
+        "C": {
+          "initial": "C1",
+          "states": {
+            "C1": {}
+          }
+        },
+        "D": {
+          "initial": "D1",
+          "states": {
+            "D1": {}
+          }
+        }
+      }
+    }
+  }
+}

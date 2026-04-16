@@ -1,0 +1,23 @@
+{
+  "id": "pipeline",
+  "type": "parallel",
+  "states": {
+    "foo": {
+      "on": {
+        "UPDATE": {
+          "actions": "[Function/Identifier: () => {\n                  /* d...]"
+        }
+      }
+    },
+    "bar": {
+      "on": {
+        "UPDATE": ".baz"
+      },
+      "initial": "idle",
+      "states": {
+        "idle": {},
+        "baz": {}
+      }
+    }
+  }
+}

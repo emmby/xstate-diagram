@@ -1,0 +1,14 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "FINISH": "end"
+      }
+    },
+    "end": {
+      "type": "final"
+    }
+  },
+  "output": "[Function/Identifier: spy...]"
+}

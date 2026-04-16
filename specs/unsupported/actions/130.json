@@ -1,0 +1,9 @@
+{
+  "id": "foo",
+  "entry": "[Call: raise]",
+  "on": {
+    "event": {
+      "actions": "[Function/Identifier: fooSpy...]"
+    }
+  }
+}

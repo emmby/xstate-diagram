@@ -1,0 +1,12 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EV": {
+          "actions": "[Function/Identifier: () => {}...]"
+        }
+      }
+    }
+  }
+}

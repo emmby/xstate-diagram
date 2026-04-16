@@ -1,0 +1,39 @@
+{
+  "type": "parallel",
+  "states": {
+    "Pages": {
+      "initial": "About",
+      "states": {
+        "About": {
+          "id": "About"
+        },
+        "Dashboard": {
+          "id": "Dashboard"
+        }
+      }
+    },
+    "Menu": {
+      "initial": "Closed",
+      "states": {
+        "Closed": {
+          "id": "Closed",
+          "on": {
+            "toggle": "#Opened"
+          }
+        },
+        "Opened": {
+          "id": "Opened",
+          "on": {
+            "toggle": "#Closed",
+            "go to dashboard": {
+              "target": [
+                "#Dashboard",
+                "#Opened"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

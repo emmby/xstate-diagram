@@ -1,0 +1,18 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "always": {
+        "target": "b",
+        "guard": "[Function/Identifier: ({ event }) => event.type === ...]"
+      }
+    },
+    "b": {
+      "always": {
+        "target": "c",
+        "guard": "[Function/Identifier: () => true...]"
+      }
+    },
+    "c": {}
+  }
+}

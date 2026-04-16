@@ -1,0 +1,11 @@
+{
+  "invoke": {
+    "id": "count",
+    "src": "[Function/Identifier: countLogic...]"
+  },
+  "on": {
+    "INC": {
+      "actions": "[Call: forwardTo]"
+    }
+  }
+}

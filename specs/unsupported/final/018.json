@@ -1,0 +1,27 @@
+{
+  "type": "parallel",
+  "states": {
+    "a": {
+      "type": "parallel",
+      "states": {
+        "b": {
+          "initial": "c",
+          "states": {
+            "c": {
+              "type": "final"
+            }
+          },
+          "onDone": {
+            "actions": "[Function/Identifier: spy...]"
+          }
+        }
+      },
+      "onDone": {
+        "actions": "[Function/Identifier: spy...]"
+      }
+    }
+  },
+  "onDone": {
+    "actions": "[Function/Identifier: spy...]"
+  }
+}

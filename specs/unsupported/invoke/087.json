@@ -1,0 +1,16 @@
+{
+  "initial": "a",
+  "invoke": {
+    "src": "[Function/Identifier: childMachine...]"
+  },
+  "states": {
+    "a": {
+      "on": {
+        "FINISH": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  }
+}

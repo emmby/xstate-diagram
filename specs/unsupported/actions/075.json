@@ -1,0 +1,31 @@
+{
+  "initial": "a",
+  "context": {
+    "count": 0
+  },
+  "states": {
+    "a": {
+      "entry": [
+        "definedAction",
+        {
+          "type": "definedAction"
+        },
+        "undefinedAction"
+      ],
+      "on": {
+        "EVENT": {
+          "target": "b",
+          "actions": [
+            {
+              "type": "definedAction"
+            },
+            {
+              "type": "updateContext"
+            }
+          ]
+        }
+      }
+    },
+    "b": {}
+  }
+}

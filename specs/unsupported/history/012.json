@@ -1,0 +1,24 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "initial": {
+        "target": "b1",
+        "actions": "[Function/Identifier: spy...]"
+      },
+      "states": {
+        "b1": {
+          "id": "hist",
+          "type": "history",
+          "target": "b2"
+        },
+        "b2": {}
+      }
+    }
+  }
+}

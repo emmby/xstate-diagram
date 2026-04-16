@@ -1,0 +1,15 @@
+{
+  "id": "child",
+  "initial": "active",
+  "states": {
+    "active": {
+      "on": {
+        "FINISH": "done"
+      }
+    },
+    "done": {
+      "type": "final"
+    }
+  },
+  "exit": "[Call: sendParent]"
+}

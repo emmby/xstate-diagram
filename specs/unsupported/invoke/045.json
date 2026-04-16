@@ -1,0 +1,18 @@
+{
+  "id": "error",
+  "initial": "safe",
+  "states": {
+    "safe": {
+      "invoke": {
+        "src": "[Call: fromCallback]",
+        "onError": {
+          "target": "failed",
+          "guard": "[Function/Identifier: ({ event }) => {\n             ...]"
+        }
+      }
+    },
+    "failed": {
+      "type": "final"
+    }
+  }
+}

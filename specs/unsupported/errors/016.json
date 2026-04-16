@@ -1,0 +1,18 @@
+{
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "[Call: fromCallback]",
+        "onError": "failed"
+      }
+    },
+    "failed": {
+      "on": {
+        "do": {
+          "actions": "[Function/Identifier: spy...]"
+        }
+      }
+    }
+  }
+}

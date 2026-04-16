@@ -1,0 +1,26 @@
+{
+  "id": "root",
+  "initial": "A",
+  "states": {
+    "DONE": {},
+    "A": {
+      "initial": "B",
+      "states": {
+        "B": {
+          "on": {
+            "B_EVENT": "#root.DONE"
+          },
+          "initial": "C",
+          "states": {
+            "C": {
+              "initial": "D",
+              "states": {
+                "D": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

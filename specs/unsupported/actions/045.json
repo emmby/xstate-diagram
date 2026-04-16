@@ -1,0 +1,14 @@
+{
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "src": "[Function/Identifier: childMachine...]",
+        "onDone": "finished"
+      }
+    },
+    "finished": {
+      "type": "final"
+    }
+  }
+}

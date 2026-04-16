@@ -1,0 +1,30 @@
+{
+  "type": "parallel",
+  "states": {
+    "foo": {
+      "initial": "active",
+      "states": {
+        "active": {
+          "tags": "yes"
+        },
+        "inactive": {
+          "tags": "no"
+        }
+      }
+    },
+    "bar": {
+      "initial": "active",
+      "states": {
+        "active": {
+          "tags": "yes",
+          "on": {
+            "DEACTIVATE": "inactive"
+          }
+        },
+        "inactive": {
+          "tags": "no"
+        }
+      }
+    }
+  }
+}

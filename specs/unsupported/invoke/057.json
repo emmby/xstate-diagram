@@ -1,0 +1,26 @@
+{
+  "id": "obs",
+  "initial": "counting",
+  "context": {
+    "count": "[Function/Identifier: undefined...]"
+  },
+  "states": {
+    "counting": {
+      "invoke": {
+        "src": "[Call: fromEventObservable]"
+      },
+      "on": {
+        "COUNT": {
+          "actions": "[Call: assign]"
+        }
+      },
+      "always": {
+        "target": "counted",
+        "guard": "[Function/Identifier: ({ context }) => context.count...]"
+      }
+    },
+    "counted": {
+      "type": "final"
+    }
+  }
+}

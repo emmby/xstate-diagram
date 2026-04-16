@@ -1,0 +1,15 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "entry": "[Call: raise]",
+      "on": {
+        "NEXT": {
+          "target": "b",
+          "actions": "[Call: cancel]"
+        }
+      }
+    },
+    "b": {}
+  }
+}

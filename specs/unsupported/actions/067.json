@@ -1,0 +1,11 @@
+{
+  "initial": {
+    "target": "a",
+    "actions": "[Function/Identifier: () => actual.push('initialA')...]"
+  },
+  "states": {
+    "a": {
+      "entry": "[Function/Identifier: () => actual.push('entryA')...]"
+    }
+  }
+}

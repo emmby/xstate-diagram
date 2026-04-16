@@ -1,0 +1,7 @@
+{
+  "context": {},
+  "exit": [
+    "referencedAction",
+    "[Call: assign]"
+  ]
+}

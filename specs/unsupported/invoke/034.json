@@ -1,0 +1,18 @@
+{
+  "id": "promise",
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "invoke": {
+        "src": "somePromise",
+        "onDone": {
+          "target": "success",
+          "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+        }
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}
