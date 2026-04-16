@@ -1,0 +1,11 @@
+{
+  "id": "ping",
+  "initial": "active",
+  "states": {
+    "active": {
+      "on": {
+        "BEAT": { "actions": "logSelf" }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+stateDiagram-v2
+  state "idle" as advanced_idle
+  state "run" as advanced_run
+  [*] --> advanced_idle
+  advanced_idle --> advanced_run : GO [isReady] / logStart, metrics
