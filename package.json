@@ -10,7 +10,7 @@
     "build": "tsc",
     "start": "ts-node src/cli.ts",
     "test": "jest",
-    "generate:proof": "node scripts/validate_pr.js specs/basic_flat_machine.json src/__snapshots__/basic_flat_machine.mermaid"
+    "generate:proof": "bash scripts/validate_pr.sh specs/basic_flat_machine.json src/__snapshots__/basic_flat_machine.mermaid"
   },
   "keywords": [],
   "author": "",
@@ -24,12 +24,10 @@
     "xstate": "^5.30.0"
   },
   "devDependencies": {
-    "@google/genai": "^1.50.1",
     "@mermaid-js/mermaid-cli": "^11.12.0",
     "@mermaid-js/parser": "^1.1.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^25.6.0",
-    "dotenv": "^17.4.2",
     "jest": "^29.7.0",
     "jsdom": "^29.0.2",
     "mermaid": "^11.14.0",
