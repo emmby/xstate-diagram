@@ -1,0 +1,29 @@
+{
+  "initial": "red",
+  "states": {
+    "green": {
+      "tags": [
+        "go"
+      ]
+    },
+    "yellow": {},
+    "red": {
+      "tags": [
+        "stop"
+      ],
+      "initial": "walk",
+      "states": {
+        "walk": {
+          "tags": [
+            "crosswalkLight"
+          ]
+        },
+        "wait": {
+          "tags": [
+            "crosswalkLight"
+          ]
+        }
+      }
+    }
+  }
+}
