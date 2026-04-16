@@ -1,0 +1,8 @@
+{
+  "id": "grandchild",
+  "on": {
+    "STOPPED": {
+      "actions": "[Function/Identifier: spy...]"
+    }
+  }
+}

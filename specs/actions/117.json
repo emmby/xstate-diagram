@@ -1,0 +1,7 @@
+{
+  "on": {
+    "PING": {
+      "actions": "[Function/Identifier: spy2...]"
+    }
+  }
+}

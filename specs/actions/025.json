@@ -1,0 +1,16 @@
+{
+  "initial": "green",
+  "states": {
+    "green": {
+      "initial": "walk",
+      "states": {
+        "walk": {
+          "on": {
+            "PED_COUNTDOWN": "wait"
+          }
+        },
+        "wait": {}
+      }
+    }
+  }
+}

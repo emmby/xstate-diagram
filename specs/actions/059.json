@@ -1,0 +1,12 @@
+{
+  "id": "parent",
+  "invoke": {
+    "id": "myChild",
+    "src": "[Function/Identifier: child...]"
+  },
+  "on": {
+    "NEXT": {
+      "actions": "[Call: sendTo]"
+    }
+  }
+}

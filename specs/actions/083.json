@@ -1,0 +1,21 @@
+{
+  "id": "parent",
+  "initial": "first",
+  "states": {
+    "first": {
+      "invoke": {
+        "src": "[Function/Identifier: child...]",
+        "id": "myChild"
+      },
+      "on": {
+        "EVENT": {
+          "actions": "[Call: forwardTo]"
+        },
+        "SUCCESS": "last"
+      }
+    },
+    "last": {
+      "type": "final"
+    }
+  }
+}

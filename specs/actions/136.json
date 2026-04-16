@@ -1,0 +1,10 @@
+{
+  "context": {
+    "count": 0
+  },
+  "entry": [
+    "[Function/Identifier: ({ context }) => captured.push...]",
+    "[Call: enqueueActions]",
+    "[Function/Identifier: ({ context }) => captured.push...]"
+  ]
+}

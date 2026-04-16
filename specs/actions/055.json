@@ -1,0 +1,8 @@
+{
+  "id": "child",
+  "invoke": {
+    "id": "myChild",
+    "src": "[Function/Identifier: grandchild...]"
+  },
+  "exit": "[Call: sendTo]"
+}

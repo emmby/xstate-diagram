@@ -1,0 +1,26 @@
+{
+  "context": {
+    "counter": 0
+  },
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "entry": [
+        "[Call: assign]",
+        "[Call: sendTo]"
+      ],
+      "on": {
+        "EVENT": {
+          "actions": "[Function/Identifier: ({ self }) => spy(self.getSnap...]",
+          "target": "c"
+        }
+      }
+    },
+    "c": {}
+  }
+}

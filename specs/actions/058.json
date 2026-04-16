@@ -1,0 +1,19 @@
+{
+  "id": "child",
+  "initial": "a",
+  "invoke": {
+    "id": "myChild",
+    "src": "[Function/Identifier: grandchild...]"
+  },
+  "states": {
+    "a": {
+      "on": {
+        "FINISH": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  },
+  "exit": "[Call: sendTo]"
+}

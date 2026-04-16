@@ -1,0 +1,16 @@
+{
+  "initial": "ping",
+  "states": {
+    "ping": {
+      "initial": "foo",
+      "states": {
+        "foo": {
+          "on": {
+            "TACK": "bar"
+          }
+        },
+        "bar": {}
+      }
+    }
+  }
+}

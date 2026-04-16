@@ -1,0 +1,16 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "STOP": {
+          "target": "stop",
+          "actions": [
+            "[Function/Identifier: spy...]"
+          ]
+        }
+      }
+    },
+    "stop": {}
+  }
+}

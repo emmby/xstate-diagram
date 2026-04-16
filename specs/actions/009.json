@@ -1,0 +1,13 @@
+{
+  "initial": "green",
+  "states": {
+    "green": {
+      "on": {
+        "RESTART": {
+          "target": "green",
+          "reenter": true
+        }
+      }
+    }
+  }
+}

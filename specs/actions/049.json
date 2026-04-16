@@ -1,0 +1,6 @@
+{
+  "id": "parent",
+  "invoke": {
+    "src": "[Function/Identifier: child...]"
+  }
+}

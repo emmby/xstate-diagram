@@ -1,0 +1,19 @@
+{
+  "id": "anon",
+  "initial": "active",
+  "states": {
+    "active": {
+      "entry": "[Function/Identifier: () => (entryCalled = true)...]",
+      "exit": "[Function/Identifier: () => (exitCalled = true)...]",
+      "on": {
+        "EVENT": {
+          "target": "inactive",
+          "actions": [
+            "[Function/Identifier: () => (actionCalled = true)...]"
+          ]
+        }
+      }
+    },
+    "inactive": {}
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "initial": {
+    "target": "a",
+    "actions": "[Function/Identifier: () => spy('root')...]"
+  },
+  "states": {
+    "a": {
+      "initial": {
+        "target": "a1",
+        "actions": "[Function/Identifier: () => spy('inner')...]"
+      },
+      "states": {
+        "a1": {}
+      }
+    }
+  }
+}

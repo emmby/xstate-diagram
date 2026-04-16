@@ -1,0 +1,9 @@
+{
+  "exit": "[Function/Identifier: rootSpy...]",
+  "initial": "a",
+  "states": {
+    "a": {
+      "exit": "[Function/Identifier: childSpy...]"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "exit": "[Function/Identifier: () => {\n          exitCalled =...]",
+  "initial": "a",
+  "states": {
+    "a": {
+      "type": "final",
+      "exit": "[Function/Identifier: () => {\n              childExi...]"
+    }
+  }
+}

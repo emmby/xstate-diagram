@@ -1,0 +1,22 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "entry": "[Function/Identifier: () => actual.push('entryB')...]",
+      "initial": {
+        "target": "foo",
+        "actions": "[Function/Identifier: () => actual.push('initialFoo'...]"
+      },
+      "states": {
+        "foo": {
+          "entry": "[Function/Identifier: () => actual.push('entryFoo')...]"
+        }
+      }
+    }
+  }
+}

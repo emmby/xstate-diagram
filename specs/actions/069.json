@@ -1,0 +1,27 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "initial": {
+        "target": "b_child",
+        "actions": "[Function/Identifier: () => spy('initial in b')...]"
+      },
+      "states": {
+        "b_child": {
+          "initial": {
+            "target": "b_granchild",
+            "actions": "[Function/Identifier: () => spy('initial in b_child'...]"
+          },
+          "states": {
+            "b_granchild": {}
+          }
+        }
+      }
+    }
+  }
+}

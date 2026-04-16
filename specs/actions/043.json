@@ -1,0 +1,12 @@
+{
+  "initial": "one",
+  "states": {
+    "one": {
+      "after": {
+        "10": {
+          "actions": "[Function/Identifier: () => {\n                  // d...]"
+        }
+      }
+    }
+  }
+}

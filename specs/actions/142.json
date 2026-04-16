@@ -1,0 +1,8 @@
+{
+  "entry": "[Call: raise]",
+  "on": {
+    "HELLO": {
+      "actions": "[Function/Identifier: ({ event }) => {\n            s...]"
+    }
+  }
+}

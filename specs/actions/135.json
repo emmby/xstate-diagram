@@ -1,0 +1,12 @@
+{
+  "context": {
+    "count": 0
+  },
+  "entry": [
+    "[Function/Identifier: ({ context }) => captured.push...]",
+    "[Call: assign]",
+    "[Function/Identifier: ({ context }) => captured.push...]",
+    "[Call: assign]",
+    "[Function/Identifier: ({ context }) => captured.push...]"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "parent",
+  "initial": "first",
+  "context": {
+    "child": "[Function/Identifier: undefined...]"
+  },
+  "states": {
+    "first": {
+      "entry": "[Call: assign]",
+      "on": {
+        "EVENT": {
+          "actions": "[Call: forwardTo]"
+        },
+        "SUCCESS": "last"
+      }
+    },
+    "last": {
+      "type": "final"
+    }
+  }
+}

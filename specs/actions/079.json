@@ -1,0 +1,6 @@
+{
+  "entry": {
+    "type": "entryAction",
+    "params": "[Function/Identifier: () => ({ stuff: 100 })...]"
+  }
+}

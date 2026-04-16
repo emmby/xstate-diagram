@@ -1,0 +1,13 @@
+{
+  "context": {
+    "counter": 0
+  },
+  "on": {
+    "EV": {
+      "actions": [
+        "[Call: assign]",
+        "[Function/Identifier: ({ context }) => captured.push...]"
+      ]
+    }
+  }
+}

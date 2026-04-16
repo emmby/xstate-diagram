@@ -1,0 +1,14 @@
+{
+  "context": {
+    "count": 0
+  },
+  "entry": [
+    "[Call: assign]",
+    "[Call: raise]"
+  ],
+  "on": {
+    "HELLO": {
+      "actions": "[Function/Identifier: ({ context }) => {\n           ...]"
+    }
+  }
+}

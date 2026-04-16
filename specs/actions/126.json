@@ -1,0 +1,17 @@
+{
+  "invoke": [
+    {
+      "id": "foo",
+      "src": "[Call: createMachine]"
+    },
+    {
+      "id": "bar",
+      "src": "[Call: createMachine]"
+    }
+  ],
+  "on": {
+    "cancelFoo": {
+      "actions": "[Call: sendTo]"
+    }
+  }
+}

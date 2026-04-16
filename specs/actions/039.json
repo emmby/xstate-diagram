@@ -1,0 +1,21 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "ENTER_PARALLEL": "p1"
+      }
+    },
+    "p1": {
+      "type": "parallel",
+      "states": {
+        "nested": {
+          "initial": "inner",
+          "states": {
+            "inner": {}
+          }
+        }
+      }
+    }
+  }
+}

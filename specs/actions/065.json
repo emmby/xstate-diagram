@@ -1,0 +1,20 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "exit": "[Function/Identifier: () => {\n              exitActi...]",
+      "on": {
+        "INITIALIZE_SYNC_SEQUENCE": {
+          "target": "bar",
+          "actions": [
+            "[Function/Identifier: () => {\n                    //...]",
+            "[Function/Identifier: () => {}...]"
+          ]
+        }
+      }
+    },
+    "bar": {
+      "exit": "[Function/Identifier: () => {\n              exitActi...]"
+    }
+  }
+}

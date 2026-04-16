@@ -1,0 +1,10 @@
+{
+  "on": {
+    "FOO": {
+      "actions": "[Call: enqueueActions]"
+    },
+    "RAISED": {
+      "actions": "[Function/Identifier: spy...]"
+    }
+  }
+}
