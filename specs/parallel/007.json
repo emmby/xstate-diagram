@@ -1,0 +1,36 @@
+{
+  "type": "parallel",
+  "states": {
+    "X": {},
+    "V": {
+      "initial": "A",
+      "on": {
+        "a": {
+          "target": "V.A"
+        },
+        "b": {
+          "target": "V.B"
+        },
+        "c": {
+          "target": "V.C"
+        }
+      },
+      "states": {
+        "A": {},
+        "B": {
+          "initial": "BB",
+          "states": {
+            "BB": {
+              "type": "parallel",
+              "states": {
+                "BBB_A": {},
+                "BBB_B": {}
+              }
+            }
+          }
+        },
+        "C": {}
+      }
+    }
+  }
+}

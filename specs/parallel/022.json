@@ -1,0 +1,19 @@
+{
+  "id": "test",
+  "type": "parallel",
+  "states": {
+    "first": {
+      "initial": "disabled",
+      "states": {
+        "disabled": {},
+        "enabled": {}
+      },
+      "on": {
+        "MY_EVENT": {
+          "actions": "[Function/Identifier: () => {}...]"
+        }
+      }
+    },
+    "second": {}
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "initial": "parallelSteps",
+  "states": {
+    "parallelSteps": {
+      "type": "parallel",
+      "states": {
+        "hist": {
+          "type": "history"
+        },
+        "one": {
+          "initial": "wait_one",
+          "states": {
+            "wait_one": {
+              "on": {
+                "finish_one": {
+                  "target": "done"
+                }
+              }
+            },
+            "done": {
+              "type": "final"
+            }
+          }
+        },
+        "two": {
+          "initial": "wait_two",
+          "states": {
+            "wait_two": {
+              "on": {
+                "finish_two": {
+                  "target": "done"
+                }
+              }
+            },
+            "done": {
+              "type": "final"
+            }
+          }
+        }
+      },
+      "onDone": "finished"
+    },
+    "finished": {}
+  }
+}

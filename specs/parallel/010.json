@@ -1,0 +1,34 @@
+{
+  "id": "yamlEditor",
+  "type": "parallel",
+  "context": {
+    "value": ""
+  },
+  "states": {
+    "editing": {
+      "on": {
+        "CHANGE": {
+          "actions": "[Call: assign]"
+        }
+      }
+    },
+    "status": {
+      "initial": "unsaved",
+      "states": {
+        "unsaved": {
+          "on": {
+            "SAVE": {
+              "target": "saved",
+              "actions": "save"
+            }
+          }
+        },
+        "saved": {
+          "on": {
+            "CHANGE": "unsaved"
+          }
+        }
+      }
+    }
+  }
+}

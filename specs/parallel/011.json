@@ -1,0 +1,14 @@
+{
+  "type": "parallel",
+  "states": {
+    "a": {
+      "initial": {
+        "target": "a1",
+        "actions": "[Function/Identifier: spy...]"
+      },
+      "states": {
+        "a1": {}
+      }
+    }
+  }
+}

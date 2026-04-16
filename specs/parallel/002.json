@@ -1,0 +1,42 @@
+{
+  "id": "wakMachine",
+  "type": "parallel",
+  "states": {
+    "wak1": {
+      "initial": "wak1sonA",
+      "states": {
+        "wak1sonA": {
+          "entry": "wak1sonAenter",
+          "exit": "wak1sonAexit"
+        },
+        "wak1sonB": {
+          "entry": "wak1sonBenter",
+          "exit": "wak1sonBexit"
+        }
+      },
+      "on": {
+        "WAK1": ".wak1sonB"
+      },
+      "entry": "wak1enter",
+      "exit": "wak1exit"
+    },
+    "wak2": {
+      "initial": "wak2sonA",
+      "states": {
+        "wak2sonA": {
+          "entry": "wak2sonAenter",
+          "exit": "wak2sonAexit"
+        },
+        "wak2sonB": {
+          "entry": "wak2sonBenter",
+          "exit": "wak2sonBexit"
+        }
+      },
+      "on": {
+        "WAK2": ".wak2sonB"
+      },
+      "entry": "wak2enter",
+      "exit": "wak2exit"
+    }
+  }
+}

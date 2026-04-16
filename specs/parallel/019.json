@@ -1,0 +1,27 @@
+{
+  "type": "parallel",
+  "states": {
+    "Operation": {
+      "initial": "Waiting",
+      "states": {
+        "Waiting": {
+          "on": {
+            "TOGGLE_MODE": {
+              "target": "#Demo"
+            }
+          }
+        },
+        "Fetching": {}
+      }
+    },
+    "Mode": {
+      "initial": "Normal",
+      "states": {
+        "Normal": {},
+        "Demo": {
+          "id": "Demo"
+        }
+      }
+    }
+  }
+}

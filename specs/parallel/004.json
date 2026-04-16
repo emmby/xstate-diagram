@@ -1,0 +1,18 @@
+{
+  "type": "parallel",
+  "states": {
+    "foo": {},
+    "bar": {},
+    "baz": {
+      "initial": "one",
+      "states": {
+        "one": {
+          "on": {
+            "E": "two"
+          }
+        },
+        "two": {}
+      }
+    }
+  }
+}
