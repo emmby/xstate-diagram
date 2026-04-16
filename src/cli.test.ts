@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import { processInput } from './cli';
+import { assertValidMermaid } from './test-helper';
 
 describe('Phase 3: Basic Mermaid String Compilation', () => {
   let tempDir: string;
@@ -35,14 +36,7 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     };
     
     processInput(JSON.stringify(validConfig));
-    expect(consoleOutput[0]).toMatchInlineSnapshot(`
-"stateDiagram-v2
-  state "idle" as basic_idle
-  state "run" as basic_run
-  [*] --> basic_idle
-  basic_idle --> basic_run : GO
-"
-`);
+    assertValidMermaid(consoleOutput[0], 'basic_flat_machine');
   });
 
   it('should stringently map transition events with guards and multifaceted actions', () => {
@@ -64,14 +58,7 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     };
     
     processInput(JSON.stringify(complexTransitionConfig));
-    expect(consoleOutput[0]).toMatchInlineSnapshot(`
-"stateDiagram-v2
-  state "idle" as advanced_idle
-  state "run" as advanced_run
-  [*] --> advanced_idle
-  advanced_idle --> advanced_run : GO [isReady] / logStart, metrics
-"
-`);
+    assertValidMermaid(consoleOutput[0], 'advanced_transitions');
   });
 
   it('should map flat self-transitions gracefully', () => {
@@ -88,13 +75,7 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     };
     
     processInput(JSON.stringify(selfConfig));
-    expect(consoleOutput[0]).toMatchInlineSnapshot(`
-"stateDiagram-v2
-  state "active" as ping_active
-  [*] --> ping_active
-  ping_active --> ping_active : BEAT / logSelf
-"
-`);
+    assertValidMermaid(consoleOutput[0], 'self_transitions');
   });
 
   it('should implement safe aliases when parsing keys with spaces or special characters', () => {
@@ -112,14 +93,7 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     };
     
     processInput(JSON.stringify(spaceConfig));
-    expect(consoleOutput[0]).toMatchInlineSnapshot(`
-"stateDiagram-v2
-  state "start state" as MyApp_start_state
-  state "end-state" as MyApp_end_state
-  [*] --> MyApp_start_state
-  MyApp_start_state --> MyApp_end_state : NEXT STEP
-"
-`);
+    assertValidMermaid(consoleOutput[0], 'safe_aliases');
   });
 
   it('should fail elegantly with invalid JSON syntax', () => {
