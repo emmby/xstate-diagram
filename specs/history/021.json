@@ -1,0 +1,47 @@
+{
+  "initial": "on",
+  "states": {
+    "off": {
+      "on": {
+        "POWER": "on.history"
+      }
+    },
+    "on": {
+      "initial": "first",
+      "states": {
+        "first": {
+          "on": {
+            "SWITCH": "second"
+          }
+        },
+        "second": {
+          "initial": "A",
+          "states": {
+            "A": {
+              "on": {
+                "INNER": "B"
+              }
+            },
+            "B": {
+              "initial": "P",
+              "states": {
+                "P": {
+                  "on": {
+                    "INNER": "Q"
+                  }
+                },
+                "Q": {}
+              }
+            }
+          }
+        },
+        "history": {
+          "history": "deep"
+        }
+      },
+      "on": {
+        "POWER": "off"
+      }
+    }
+  }
+}

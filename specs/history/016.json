@@ -1,0 +1,18 @@
+{
+  "initial": "running",
+  "states": {
+    "running": {
+      "on": {
+        "PING": {
+          "target": "refresh"
+        }
+      },
+      "invoke": {
+        "src": "[Call: fromCallback]"
+      }
+    },
+    "refresh": {
+      "type": "history"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "initial": "off",
+  "states": {
+    "off": {
+      "on": {
+        "SWITCH": "on",
+        "DEEP_POWER": "on.deepHistory"
+      }
+    },
+    "on": {
+      "type": "parallel",
+      "states": {
+        "A": {
+          "initial": "B",
+          "states": {
+            "B": {
+              "on": {
+                "INNER_A": "C"
+              }
+            },
+            "C": {
+              "initial": "D",
+              "states": {
+                "D": {},
+                "E": {}
+              }
+            },
+            "hist": {
+              "history": true
+            },
+            "deepHistory": {
+              "history": "deep"
+            }
+          }
+        },
+        "K": {
+          "initial": "L",
+          "states": {
+            "L": {},
+            "M": {},
+            "hist": {
+              "history": true
+            },
+            "deepHistory": {
+              "history": "deep"
+            }
+          }
+        },
+        "deepHistory": {
+          "history": "deep"
+        }
+      },
+      "on": {
+        "POWER": "off"
+      }
+    }
+  }
+}

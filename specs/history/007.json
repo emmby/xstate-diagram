@@ -1,0 +1,10 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "type": "history",
+      "target": "bar"
+    },
+    "bar": {}
+  }
+}
