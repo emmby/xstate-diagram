@@ -6,7 +6,9 @@ Read both inputs carefully. You MUST algorithmically prove the equivalence by ex
 2. Validate that EVERY single EVENT transition (the `on` property keys) from the source exists perfectly between the same two states in the Mermaid output.
 3. Validate that IF a transition has a \`guard\`, it is accurately represented in the Mermaid transition label as \`[guard]\`.
 4. Validate that IF a transition has \`actions\`, they are accurately represented in the Mermaid transition label after a slash (e.g., \`/ action1, action2\`).
-5. Validate that ALL keys, dynamic transition labels, and mapped state aliases strictly render explicitly mirroring the JSON primitives without silently carrying over any internal XState engine artifact strings or namespace properties (e.g., \`(machine)\`, \`xstate.\`, etc.).
+5. Validate that ALL keys and dynamic transition labels strictly render explicitly mirroring the JSON primitives without silently carrying over any internal XState engine artifact strings or namespace properties (e.g., `xstate.`, etc.). 
+  * Note: Mermaid mapped state aliases (like `baz_one`) are permitted to include parent prefixing to ensure uniqueness, as long as the display string (e.g. `state "one" as baz_one`) correctly mirrors the JSON primitive key (`one`).
+  * Note: If the root XState machine `type` is `parallel`, Mermaid requires all parallel regions to be nested inside a parent block. Therefore, a top-level wrapper state (e.g., `state "root" as root`) is completely valid and functionally required, even if it is not explicitly defined in the JSON.
 
 ## Output Format
 You must output a "Semantic Match Proof" log directly. Do not act like an assistant. Output ONLY your proof report.

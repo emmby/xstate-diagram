@@ -1,0 +1,13 @@
+stateDiagram-v2
+  state "(machine)" as _machine_ {
+    state "foo" as foo
+    --
+    state "bar" as bar
+    --
+    state "baz" as baz {
+      [*] --> baz_one
+      state "one" as baz_one
+      baz_one --> baz_two : E
+      state "two" as baz_two
+    }
+  }

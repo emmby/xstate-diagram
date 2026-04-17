@@ -27,7 +27,13 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
     }
 
     // Recursively compile child states
+    const isParallel = stateNode.type === 'parallel';
+    let firstChild = true;
     for (const [childKey, childNode] of Object.entries((stateNode as any).states)) {
+      if (isParallel && !firstChild) {
+        result += `${indent}  --\n`;
+      }
+      firstChild = false;
       result += compileStateNode(childKey, childNode as AnyStateNode, indent + '  ');
     }
 
@@ -109,8 +115,27 @@ export function compile(machine: AnyStateMachine): string {
   }
 
   // 2. Iterate recursively
-  for (const [stateKey, stateNode] of Object.entries(machine.root.states)) {
-    mermaid += compileStateNode(stateKey, stateNode, '  ');
+  const isParallelRoot = machine.root.type === 'parallel';
+  
+  if (isParallelRoot) {
+    const rootId = getSafeId(machine.root);
+    const rootLabel = (machine.id || 'machine').replace(/"/g, '\\"');
+    mermaid += `  state "${rootLabel}" as ${rootId} {\n`;
+    
+    let firstRootChild = true;
+    for (const [stateKey, stateNode] of Object.entries(machine.root.states)) {
+      if (!firstRootChild) {
+        mermaid += `    --\n`;
+      }
+      firstRootChild = false;
+      // Note: indent is '    ' to match the root block
+      mermaid += compileStateNode(stateKey, stateNode, '    ');
+    }
+    mermaid += `  }\n`;
+  } else {
+    for (const [stateKey, stateNode] of Object.entries(machine.root.states)) {
+      mermaid += compileStateNode(stateKey, stateNode, '  ');
+    }
   }
 
   return mermaid;
