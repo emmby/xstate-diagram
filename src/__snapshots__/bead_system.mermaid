@@ -1,29 +1,29 @@
 stateDiagram-v2
-  state "calibrating" as bead_system_calibrating
-  state "training_prompt" as bead_system_training_prompt
-  state "training_capture" as bead_system_training_capture
-  state "production_idle" as bead_system_production_idle
-  state "down_pause" as bead_system_down_pause
-  state "moving_up" as bead_system_moving_up
-  state "reading_bead" as bead_system_reading_bead
   [*] --> bead_system_calibrating
+  state "calibrating" as bead_system_calibrating
   bead_system_calibrating : entry / runCalibration
   bead_system_calibrating : entry / renderCalibration
   bead_system_calibrating --> bead_system_training_prompt : after 100
+  state "training_prompt" as bead_system_training_prompt
   bead_system_training_prompt : entry / renderTrainingPrompt
   bead_system_training_prompt --> bead_system_training_capture : BTN_PRESS
+  state "training_capture" as bead_system_training_capture
   bead_system_training_capture : entry / captureTrainingBead
   bead_system_training_capture : entry / renderCapturing
   bead_system_training_capture --> bead_system_training_prompt : NEXT_BEAD
   bead_system_training_capture --> bead_system_production_idle : FINISH_TRAINING
+  state "production_idle" as bead_system_production_idle
   bead_system_production_idle : entry / servoDown
   bead_system_production_idle : entry / renderIdle
   bead_system_production_idle --> bead_system_down_pause : BTN_PRESS
+  state "down_pause" as bead_system_down_pause
   bead_system_down_pause : entry / servoDown
   bead_system_down_pause : entry / renderDown
   bead_system_down_pause --> bead_system_moving_up : after 500
+  state "moving_up" as bead_system_moving_up
   bead_system_moving_up : entry / servoUp
   bead_system_moving_up : entry / renderUp
   bead_system_moving_up --> bead_system_reading_bead : after 400
+  state "reading_bead" as bead_system_reading_bead
   bead_system_reading_bead : entry / takeProductionReading
   bead_system_reading_bead --> bead_system_production_idle : after 100

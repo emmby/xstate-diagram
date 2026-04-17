@@ -21,6 +21,8 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 - Run the local test suite via `npm test -- -u`. (If the suite isn't already failing natively, run it WITHOUT `-u` first!).
   > [!IMPORTANT]
   > **Snapshot Overwrite Hazard**: If ANY existing `mermaid` snapshot test fails or generates a diff, STOP IMMEDIATELY. Inspect the diff carefully to determine if the change represents an accidental regression or an intentional structural layout improvement. If it is an accidental regression, fix your `compiler.ts` logic until the older tests dynamically pass unchanged again. Only rely on `-u` safely when implicitly logging your new features natively without blindly breaking older features structurally.
+  > 
+  > **IF you decide that an intentional layout improvement requires overriding unrelated older golden snapshots natively, you MUST formally justify it**. You are explicitly required to add a `### Modified Golden Snapshots` defense block to your GitHub Pull Request description natively detailing why it is not an accidental regression.
   > The `cli.test.ts` matrix natively crawls the `specs/supported/` directory. By moving the file into this bucket, Jest will automatically detect it and intrinsically execute `mermaid-cli` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this step.
 
 ### Step 4: Execute Agentic Semantic Pipeline
@@ -35,12 +37,14 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 
 ### Step 5: Assemble PR Proof Formatting
 - Ensure both you and the user are on a fresh `git worktree` and formally commit the modified file structures.
-- Submit or propose a GitHub Pull Request natively mapping your branch.
+- Use the `gh` CLI tool to automatically submit the GitHub Pull Request natively mapping your branch (e.g. `gh pr create --title "..." --body-file payload.md`). DO NOT simply propose the text; you must execute the PR creation natively.
 - Assemble the Pull Request description EXACTLY matching the format below. Drop the `gemini` standard output checklist explicitly into the text body under the `## Semantic Verification Proof` header logic.
 
 #### Standardized PR Template Structure
 ```markdown
 Implement feature: {feature_name}
+
+*(If unrelated older snapshots were intentionally overwritten with `UPDATE_SNAPSHOTS=1`, insert a `### Modified Golden Snapshots` header here. Explicitly list the mutated tests, document the underlying structural pipeline shift causing the diff, and mathematically justify why it is NOT a regression. Omit this section entirely if only the target feature snapshot was generated.)*
 
 ### Machine Definition
 ```json
