@@ -8,6 +8,30 @@ function getSafeId(node: AnyStateNode): string {
   return idStr.replace(/[^a-zA-Z0-9_]/g, '_');
 }
 
+function compileStateChildren(stateNode: AnyStateNode, indent: string): string {
+  let result = '';
+  
+  // Initial transition for this composite state
+  if (stateNode.initial) {
+    stateNode.initial.target.forEach((node: AnyStateNode) => {
+      result += `${indent}  [*] --> ${getSafeId(node)}\n`;
+    });
+  }
+
+  // Recursively compile child states
+  const isParallel = stateNode.type === 'parallel';
+  let firstChild = true;
+  for (const [childKey, childNode] of Object.entries((stateNode as any).states)) {
+    if (isParallel && !firstChild) {
+      result += `${indent}  --\n`;
+    }
+    firstChild = false;
+    result += compileStateNode(childKey, childNode as AnyStateNode, indent + '  ');
+  }
+
+  return result;
+}
+
 function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: string): string {
   let result = '';
   const safeId = getSafeId(stateNode);
@@ -18,19 +42,7 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
 
   if (isComposite) {
     result += `${indent}state "${label}" as ${safeId} {\n`;
-    
-    // Initial transition for this composite state
-    if (stateNode.initial) {
-      stateNode.initial.target.forEach((node: AnyStateNode) => {
-        result += `${indent}  [*] --> ${getSafeId(node)}\n`;
-      });
-    }
-
-    // Recursively compile child states
-    for (const [childKey, childNode] of Object.entries((stateNode as any).states)) {
-      result += compileStateNode(childKey, childNode as AnyStateNode, indent + '  ');
-    }
-
+    result += compileStateChildren(stateNode, indent);
     result += `${indent}}\n`;
   } else {
     result += `${indent}state "${label}" as ${safeId}\n`;
@@ -101,16 +113,17 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
 export function compile(machine: AnyStateMachine): string {
   let mermaid = 'stateDiagram-v2\n';
 
-  // 1. Root initial transition
-  if (machine.root.initial) {
-    machine.root.initial.target.forEach((node: AnyStateNode) => {
-      mermaid += `  [*] --> ${getSafeId(node)}\n`;
-    });
-  }
+  const rootNode = machine.root;
+  // Check if root has any transitions, actions or is parallel
+  const hasRootTransitions = Array.from(rootNode.transitions.entries()).some(([_, t]) => t.length > 0);
+  const hasRootActions = rootNode.entry.length > 0 || rootNode.exit.length > 0;
+  const isParallelRoot = rootNode.type === 'parallel';
 
-  // 2. Iterate recursively
-  for (const [stateKey, stateNode] of Object.entries(machine.root.states)) {
-    mermaid += compileStateNode(stateKey, stateNode, '  ');
+  if (hasRootTransitions || hasRootActions || isParallelRoot) {
+    const rootLabel = (machine.id || 'machine').replace(/"/g, '\\"');
+    mermaid += compileStateNode(rootLabel, rootNode, '  ');
+  } else {
+    mermaid += compileStateChildren(rootNode, '');
   }
 
   return mermaid;
