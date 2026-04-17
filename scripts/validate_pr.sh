@@ -41,7 +41,7 @@ echo "$VALIDATION_OUTPUT"
 rm .tmp_prompt.txt
 
 # Grep through the model's text string for failures
-if echo "$VALIDATION_OUTPUT" | grep -q "FAIL\|❌"; then
+if echo "$VALIDATION_OUTPUT" | grep -q "Validation Result.*FAIL\|❌"; then
   echo -e "\n----------------------------------"
   echo "Validation FAILED. Please review the missing nodes above and correct your Mermaid definition."
   exit 1

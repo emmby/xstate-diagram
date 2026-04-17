@@ -1,0 +1,26 @@
+Validating Mermaid Syntax with mmdc...
+Generating single mermaid chart
+Syntax validated and specs/001_proof.svg generated.
+Executing Semantic Validation using gemini cli...
+## Semantic Verification Proof
+
+**States & Topology**
+- [x] Initial state `root` points to `A` (represented as `root_A`)
+- [x] State `DONE` exists as `root_DONE`
+- [x] State `FAIL` exists as `root_FAIL`
+- [x] State `A` exists as `root_A`
+- [x] Hierarchical state `A` correctly sets initial to `B` (`root_A_B`)
+- [x] State `B` exists as `root_A_B`
+- [x] Hierarchical state `B` correctly sets initial to `C` (`root_A_B_C`)
+- [x] State `C` exists as `root_A_B_C`
+- [x] Hierarchical state `C` correctly sets initial to `D` (`root_A_B_C_D`)
+- [x] State `D` exists as `root_A_B_C_D`
+
+**Transitions**
+- [x] Event `A_EVENT` correctly transitions `root_A` -> `root_DONE`
+- [x] Transition `A_EVENT` correctly resolves the target `#root.DONE` to the `DONE` state
+
+**Validation Result**: PASS
+
+----------------------------------
+Proof successfully generated! Include specs/001_proof.svg and the text above in the PR.

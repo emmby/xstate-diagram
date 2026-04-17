@@ -1,5 +1,5 @@
 stateDiagram-v2
-  state "start state" as MyApp_start_state
-  state "end-state" as MyApp_end_state
   [*] --> MyApp_start_state
+  state "start state" as MyApp_start_state
   MyApp_start_state --> MyApp_end_state : NEXT STEP
+  state "end-state" as MyApp_end_state

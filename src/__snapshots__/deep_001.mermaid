@@ -1,0 +1,15 @@
+stateDiagram-v2
+  [*] --> root_A
+  state "DONE" as root_DONE
+  state "FAIL" as root_FAIL
+  state "A" as root_A {
+    [*] --> root_A_B
+    state "B" as root_A_B {
+      [*] --> root_A_B_C
+      state "C" as root_A_B_C {
+        [*] --> root_A_B_C_D
+        state "D" as root_A_B_C_D
+      }
+    }
+  }
+  root_A --> root_DONE : A_EVENT
