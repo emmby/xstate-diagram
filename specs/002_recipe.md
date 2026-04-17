@@ -20,7 +20,7 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
   `git mv specs/unsupported/{feature}/{name}.json specs/supported/{feature}_{name}.json`
 - Run the local test suite via `npm test`. 
   > [!IMPORTANT]
-  > The `cli.test.ts` matrix natively crawls the `specs/supported/` directory. By moving the file into this bucket, Jest will automatically detect it and intrinsically execute `@mermaid-js/parser` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this step.
+  > The `cli.test.ts` matrix natively crawls the `specs/supported/` directory. By moving the file into this bucket, Jest will automatically detect it and intrinsically execute `mermaid-cli` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this step.
 
 ### Step 4: Execute Agentic Semantic Pipeline
 - Run our semantic evaluation pipeline wrapper specifically against the target artifacts:
