@@ -1,0 +1,6 @@
+stateDiagram-v2
+  state "start" as _machine__start
+  state "end" as _machine__end
+  [*] --> _machine__start
+  _machine__start --> _machine__end : FINISH
+  _machine__end --> [*]
