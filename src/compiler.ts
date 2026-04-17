@@ -1,7 +1,10 @@
 import { AnyStateMachine } from 'xstate';
 
 function getSafeId(node: any): string {
-  const idStr = node.id || node.key || 'state';
+  let idStr = node.id || node.key || 'state';
+  if (idStr.startsWith('(machine).')) {
+    idStr = idStr.substring(10);
+  }
   return idStr.replace(/[^a-zA-Z0-9_]/g, '_');
 }
 
@@ -37,6 +40,14 @@ export function compile(machine: AnyStateMachine): string {
         
         targets.forEach(targetNode => {
           let edgeLabel = eventType;
+
+          // Map string 'after' transition labels naturally
+          if (eventType.startsWith('xstate.after.')) {
+            const delayMatch = eventType.match(/xstate\.after\.([\d.]+)\./);
+            if (delayMatch && delayMatch[1]) {
+              edgeLabel = `after ${delayMatch[1]}`;
+            }
+          }
 
           // Parse Guard
           if (t.guard) {
