@@ -27,7 +27,7 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 - Run our semantic evaluation pipeline wrapper specifically against the target artifacts:
   `./scripts/validate_pr.sh specs/supported/{feature_name}.json src/__snapshots__/{feature_name}.mermaid`
 - Ensure the bash wrapper prints **Exit Code `0`** natively. This systematically proves:
-    1. `mmdc` natively traced the topological relationships and dropped `specs/001_proof.svg` into the tree without `Puppeteer` sandbox crashes.
+    1. `mmdc` natively traced the topological relationships without `Puppeteer` sandbox crashes.
     2. The `gemini` LLM parsed your string stdout, compared it aggressively against the raw mapping tree config structurally, and asserted the layout matching perfectly.
 - Explicitly copy the **Semantic Checkboxes (`[x]`) payload** printed to the stdout for the next step.
   > [!WARNING]
@@ -37,7 +37,6 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 - Ensure both you and the user are on a fresh `git worktree` and formally commit the modified file structures.
 - Submit or propose a GitHub Pull Request natively mapping your branch.
 - Assemble the Pull Request description EXACTLY matching the format below. Drop the `gemini` standard output checklist explicitly into the text body under the `## Semantic Verification Proof` header logic.
-- Execute the exact GitHub Blob URL mapping for the graphic asset. You MUST append `?raw=true` natively on the blob URL wrapper to seamlessly bypass GitHub's private security blockade preventing implicit external 404 images:
 
 #### Standardized PR Template Structure
 ```markdown
