@@ -18,8 +18,9 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 ### Step 3: Register Matrix Tests & Pass Jest
 - Upon successfully compiling the Mermaid topology, formally move the target mock from the unsupported bucket into the supported bucket natively:
   `git mv specs/unsupported/{feature}/{name}.json specs/supported/{feature}_{name}.json`
-- Run the local test suite via `npm test`. 
+- Run the local test suite via `npm test -- -u`. (If the suite isn't already failing natively, run it WITHOUT `-u` first!).
   > [!IMPORTANT]
+  > **Snapshot Overwrite Hazard**: If ANY existing `mermaid` snapshot test fails or generates a diff, STOP IMMEDIATELY. Inspect the diff carefully to determine if the change represents an accidental regression or an intentional structural layout improvement. If it is an accidental regression, fix your `compiler.ts` logic until the older tests dynamically pass unchanged again. Only rely on `-u` safely when implicitly logging your new features natively without blindly breaking older features structurally.
   > The `cli.test.ts` matrix natively crawls the `specs/supported/` directory. By moving the file into this bucket, Jest will automatically detect it and intrinsically execute `mermaid-cli` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this step.
 
 ### Step 4: Execute Agentic Semantic Pipeline
@@ -29,6 +30,8 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
     1. `mmdc` natively traced the topological relationships and dropped `specs/001_proof.svg` into the tree without `Puppeteer` sandbox crashes.
     2. The `gemini` LLM parsed your string stdout, compared it aggressively against the raw mapping tree config structurally, and asserted the layout matching perfectly.
 - Explicitly copy the **Semantic Checkboxes (`[x]`) payload** printed to the stdout for the next step.
+  > [!WARNING]
+  > **Parity Verification**: Proactively ensure your `prompts/semantic_validation.md` rigorously enforces true algorithmic parity. As a general rule: there should be absolutely nothing in the generated Mermaid diagram that wasn't natively defined structurally in the JSON, and there should be nothing structurally defined inside the JSON that was incorrectly omitted from the Mermaid diagram.
 
 ### Step 5: Assemble PR Proof Formatting
 - Ensure both you and the user are on a fresh `git worktree` and formally commit the modified file structures.
