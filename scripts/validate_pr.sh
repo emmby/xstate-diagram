@@ -9,7 +9,6 @@ fi
 JSON_SPEC=$1
 MERMAID_OUT=$2
 PROMPT_FILE="prompts/semantic_validation.md"
-PROOF_SVG="specs/001_proof.svg"
 
 # Ensure all files exist
 if [ ! -f "$JSON_SPEC" ]; then echo "Error: $JSON_SPEC not found"; exit 1; fi
@@ -19,8 +18,9 @@ if [ ! -f "$PROMPT_FILE" ]; then echo "Error: $PROMPT_FILE not found"; exit 1; f
 mkdir -p specs
 
 echo "Validating Mermaid Syntax with mmdc..."
-npx mmdc -i "$MERMAID_OUT" -o "$PROOF_SVG" -p puppeteer-config.json
-echo "Syntax validated and $PROOF_SVG generated."
+npx mmdc -i "$MERMAID_OUT" -o "$MERMAID_OUT.svg" -p puppeteer-config.json
+rm "$MERMAID_OUT.svg"
+echo "Syntax successfully validated."
 
 echo "Executing Semantic Validation using gemini cli..."
 
@@ -48,4 +48,4 @@ if echo "$VALIDATION_OUTPUT" | grep -q "Validation Result.*FAIL\|❌"; then
 fi
 
 echo -e "\n----------------------------------"
-echo "Proof successfully generated! Include $PROOF_SVG and the text above in the PR."
+echo "Proof successfully generated! Include the text above in the PR."
