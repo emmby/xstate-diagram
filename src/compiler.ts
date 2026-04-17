@@ -38,6 +38,14 @@ export function compile(machine: AnyStateMachine): string {
         targets.forEach(targetNode => {
           let edgeLabel = eventType;
 
+          // Map string 'after' transition labels naturally
+          if (eventType.startsWith('xstate.after.')) {
+            const delayMatch = eventType.match(/xstate\.after\.(.*?)\./);
+            if (delayMatch && delayMatch[1]) {
+              edgeLabel = `after ${delayMatch[1]}`;
+            }
+          }
+
           // Parse Guard
           if (t.guard) {
             const guardName = typeof t.guard === 'string' ? t.guard : (t.guard && typeof t.guard === 'object' && 'type' in t.guard ? String(t.guard.type) : undefined);
