@@ -41,9 +41,14 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 Implement feature: {feature_name}
 
 ### Machine Definition
-\`\`\`json
+```json
 {INSERT_JSON_CONFIG_MOCK_HERE}
-\`\`\`
+```
+
+### Mermaid Topology
+```mermaid
+{INSERT_MERMAID_OUTPUT_HERE}
+```
 
 ### Validation Proof
 ![Proof](https://github.com/emmby/xstate-diagram/blob/{branch_name}/specs/001_proof.svg?raw=true)
