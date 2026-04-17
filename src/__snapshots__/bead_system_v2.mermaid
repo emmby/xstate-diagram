@@ -1,0 +1,42 @@
+stateDiagram-v2
+  state "bead_system" as bead_system {
+    [*] --> bead_system_initialization
+    state "initialization" as bead_system_initialization {
+      [*] --> bead_system_initialization_calibrating
+      state "calibrating" as bead_system_initialization_calibrating
+      bead_system_initialization_calibrating : entry / runCalibration
+      bead_system_initialization_calibrating : entry / renderCalibration
+      bead_system_initialization_calibrating --> bead_system_sorting_idle : MODEL_READY
+      bead_system_initialization_calibrating --> bead_system_training_prompt : MODEL_EMPTY
+    }
+    state "training" as bead_system_training {
+      [*] --> bead_system_training_prompt
+      state "prompt" as bead_system_training_prompt
+      bead_system_training_prompt : entry / renderTrainingPrompt
+      bead_system_training_prompt --> bead_system_training_capture : BTN_PRESS
+      state "capture" as bead_system_training_capture
+      bead_system_training_capture : entry / renderCapturing
+      bead_system_training_capture : entry / captureTrainingBead
+      bead_system_training_capture --> bead_system_training_prompt : NEXT_BEAD
+      bead_system_training_capture --> bead_system_sorting_idle : FINISH_TRAINING
+    }
+    state "sorting" as bead_system_sorting {
+      [*] --> bead_system_sorting_idle
+      state "idle" as bead_system_sorting_idle
+      bead_system_sorting_idle : entry / servoDown
+      bead_system_sorting_idle : entry / renderIdle
+      bead_system_sorting_idle --> bead_system_sorting_down_pause : BTN_PRESS
+      state "down_pause" as bead_system_sorting_down_pause
+      bead_system_sorting_down_pause : entry / servoDown
+      bead_system_sorting_down_pause : entry / renderDown
+      bead_system_sorting_down_pause --> bead_system_sorting_moving_up : after 500
+      state "moving_up" as bead_system_sorting_moving_up
+      bead_system_sorting_moving_up : entry / servoUp
+      bead_system_sorting_moving_up : entry / renderUp
+      bead_system_sorting_moving_up --> bead_system_sorting_reading_bead : after 400
+      state "reading_bead" as bead_system_sorting_reading_bead
+      bead_system_sorting_reading_bead : entry / takeProductionReading
+      bead_system_sorting_reading_bead --> bead_system_sorting_idle : after 100
+    }
+  }
+  bead_system --> bead_system_training_prompt : LONG_PRESS
