@@ -33,21 +33,22 @@ export function compile(machine: AnyStateMachine): string {
       mermaid += `  ${sourceId} --> [*]\n`;
     }
 
-    // Map Entry Actions
-    if (stateNode.entry && stateNode.entry.length > 0) {
-      stateNode.entry.forEach((action: any) => {
-        const actionStr = typeof action === 'string' ? action : action.type;
-        if (actionStr) mermaid += `  ${sourceId} : entry / ${actionStr}\n`;
-      });
-    }
-
-    // Map Exit Actions
-    if (stateNode.exit && stateNode.exit.length > 0) {
-      stateNode.exit.forEach((action: any) => {
-        const actionStr = typeof action === 'string' ? action : action.type;
-        if (actionStr) mermaid += `  ${sourceId} : exit / ${actionStr}\n`;
-      });
-    }
+    // Map Entry and Exit Actions
+    (['entry', 'exit'] as const).forEach((type) => {
+      const actions = stateNode[type];
+      if (Array.isArray(actions)) {
+        const seenActions = new Set<string>();
+        actions.forEach((action: any) => {
+          const actionStr = typeof action === 'string'
+            ? action
+            : (action && typeof action === 'object' && 'type' in action ? String(action.type) : undefined);
+          if (actionStr && !seenActions.has(actionStr)) {
+            seenActions.add(actionStr);
+            mermaid += `  ${sourceId} : ${type} / ${actionStr}\n`;
+          }
+        });
+      }
+    });
 
     // Iterate transitions for this state node
     for (const [eventType, transitions] of stateNode.transitions) {
