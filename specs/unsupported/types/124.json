@@ -1,5 +1,5 @@
 {
-  "types": "[Node: {} as {\n        actions:\n          | { type: 'greet'; params: { name: string } }\n          | { type: 'poke'; params?: { target: string } };\n      }]",
+  "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
   "entry": {
     "type": "poke"
   }

@@ -1,4 +1,8 @@
 {
-  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child;\n        };\n      }]",
-  "entry": "[Node: spawnChild('other')]"
+  "types": {
+    "context": "[Node: {} as { count: number }]"
+  },
+  "context": {
+    "count": 0
+  }
 }

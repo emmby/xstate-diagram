@@ -1,9 +1,9 @@
 {
   "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
   "entry": {
-    "type": "other",
+    "type": "greet",
     "params": {
-      "foo": "bar"
+      "name": "David"
     }
   }
 }

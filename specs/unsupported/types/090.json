@@ -5,7 +5,9 @@
       {
         "target": ".a"
       },
-      ".b"
+      {
+        "target": ".b"
+      }
     ]
   },
   "initial": "a",

@@ -1,3 +1,3 @@
 {
-  "types": "[Node: {} as {\n        actors:\n          | {\n              src: 'child1';\n              id: 'counter';\n              logic: typeof child1;\n            }\n          | {\n              src: 'child2';\n              logic: typeof child2;\n            };\n      }]"
+  "types": "[Node: {} as {\n        actors:\n          | {\n              src: 'child1';\n              id: 'counter';\n              logic: typeof child1;\n            }\n          | {\n              src: 'child2';\n              id: 'quiz';\n              logic: typeof child2;\n            };\n      }]"
 }

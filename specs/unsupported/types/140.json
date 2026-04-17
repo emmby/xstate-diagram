@@ -1,8 +1,6 @@
 {
-  "types": "[Node: {} as {\n        events:\n          | {\n              type: 'SOMETHING';\n            }\n          | {\n              type: 'SOMETHING_ELSE';\n            };\n      }]",
-  "on": {
-    "SOMETHING": {
-      "actions": "[Node: enqueueActions(({ enqueue }) => {\n            enqueue(raise({ type: 'SOMETHING_ELSE' }));\n          })]"
-    }
-  }
+  "types": {
+    "guards": "[Node: {} as\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' }]"
+  },
+  "entry": "[Node: enqueueActions(({ check }) => {\n        check((_, params) => {\n          params satisfies undefined;\n          undefined satisfies typeof params;\n          // @ts-expect-error\n          params satisfies 'not any';\n\n          return true;\n        });\n      })]"
 }

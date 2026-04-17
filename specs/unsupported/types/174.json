@@ -1,4 +1,4 @@
 {
   "types": "[Node: {} as {\n        delays: 'one second' | 'one minute';\n      }]",
-  "entry": "[Node: sendTo(otherActor, { type: 'FOO' }, { delay: 'one minute' })]"
+  "entry": "[Node: sendTo(otherActor, { type: 'FOO' }, { delay: 100 })]"
 }

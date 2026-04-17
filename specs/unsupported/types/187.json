@@ -1,5 +1,5 @@
 {
   "invoke": {
-    "src": "[Node: fromCallback(\n          // @ts-ignore\n          () => {\n            return 42;\n          }\n        )]"
+    "src": "[Node: fromCallback(\n          // @ts-ignore\n          async () => {}\n        )]"
   }
 }

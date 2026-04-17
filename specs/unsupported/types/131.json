@@ -1,11 +1,10 @@
 {
-  "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
-  "on": {
-    "FOO": {
-      "actions": {
-        "type": "greet",
-        "params": "[Node: ({ event }) => {\n              ((_accept: 'FOO') => {})(event.type);\n              // @ts-expect-error\n              ((_accept: 'not any') => {})(event.type);\n              return {\n                name: 'Anders'\n              };\n            }]"
-      }
-    }
+  "types": "[Node: {} as {\n        context: {\n          count: number;\n        };\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
+  "context": {
+    "count": 1
+  },
+  "entry": {
+    "type": "greet",
+    "params": "[Node: ({ context }) => {\n          ((_accept: number) => {})(context.count);\n          // @ts-expect-error\n          ((_accept: 'not any') => {})(context.count);\n          return {\n            name: 'Anders'\n          };\n        }]"
   }
 }

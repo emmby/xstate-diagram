@@ -1,8 +1,8 @@
 {
-  "types": "[Node: {} as {\n        events: { type: 'TOGGLE_ITALIC' } | { type: 'TOGGLE_BOLD' };\n      }]",
-  "type": "parallel",
-  "states": {
-    "italic": "[Node: italicState]",
-    "bold": "[Node: boldState]"
+  "types": {
+    "context": "[Node: {} as {\n        literalTest: 'foo' | 'bar';\n      }]"
+  },
+  "context": {
+    "literalTest": "anything"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "types": "[Node: {} as {\n        context: {\n          count: number;\n        };\n        events: {\n          type: 'TOGGLE';\n        };\n      }]",
-  "context": {
-    "count": 0
-  }
+  "types": {
+    "events": "[Node: {} as {\n          type: 'FOO';\n        }]"
+  },
+  "entry": "[Node: () => {}]"
 }

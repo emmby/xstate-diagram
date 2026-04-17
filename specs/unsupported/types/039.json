@@ -1,8 +1,8 @@
 {
-  "types": {
-    "context": "[Node: {} as { count: number }]"
-  },
-  "context": {
-    "count": 0
+  "types": "[Node: {} as {\n        events:\n          | {\n              type: 'FOO' | 'BAR';\n              value: string;\n            }\n          | {\n              type: 'OTHER';\n            };\n      }]",
+  "on": {
+    "FOO": {
+      "actions": "[Node: ({ event }) => {\n            event.type satisfies 'FOO' | 'BAR'; // it could be narrowed down to `FOO` but it's not worth the effort/complexity\n            event.value satisfies string;\n            // @ts-expect-error\n            event.value satisfies number;\n          }]"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
   "types": {
-    "guards": "[Node: {} as\n            | {\n                type: 'isGreaterThan';\n                params: {\n                  count: number;\n                };\n              }\n            | { type: 'plainGuard' }]"
+    "actions": "[Node: {} as { type: 'foo' } | { type: 'bar' }]"
   }
 }

@@ -1,4 +1,4 @@
 {
   "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
-  "entry": "[Node: enqueueActions(({ enqueue }) => {\n        enqueue(\n          // @ts-expect-error\n          {\n            type: 'other'\n          }\n        );\n      })]"
+  "entry": "[Node: enqueueActions(({ enqueue }) => {\n        // @ts-expect-error\n        enqueue({\n          type: 'greet',\n          params: {}\n        });\n      })]"
 }

@@ -2,5 +2,5 @@
   "types": {
     "events": "[Node: {} as {\n          type: 'FOO';\n        }]"
   },
-  "entry": "[Node: () => {}]"
+  "entry": "[Node: raise<any, any, any, any, any, any>({ type: 'FOO' })]"
 }

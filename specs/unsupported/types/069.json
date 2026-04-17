@@ -1,5 +1,6 @@
 {
-  "types": "[Node: {} as {\n        context: {\n          myChild?: ActorRefFrom<typeof child>;\n        };\n      }]",
-  "context": {},
-  "entry": "[Node: assign({\n        myChild: ({ spawn }) => {\n          return spawn(child);\n        }\n      })]"
+  "types": "[Node: {} as {\n        context: {\n          counter: number;\n        };\n      }]",
+  "context": {
+    "counter": 100
+  }
 }

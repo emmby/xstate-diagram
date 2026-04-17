@@ -1,4 +1,4 @@
 {
   "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n      }]",
-  "entry": "[Node: assign(({ self }) => {\n        self.send({ type: 'FOO' });\n        self.send({ type: 'BAR' });\n        // @ts-expect-error\n        self.send({ type: 'BAZ' });\n        return {};\n      })]"
+  "entry": "[Node: ({ self }) => {\n        self.send({ type: 'FOO' });\n        self.send({ type: 'BAR' });\n        // @ts-expect-error\n        self.send({ type: 'BAZ' });\n      }]"
 }

@@ -1,11 +1,8 @@
 {
   "types": "[Node: {} as {\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
   "on": {
-    "FOO": {
-      "guard": {
-        "type": "isGreaterThan",
-        "params": "[Node: () => ({ count: 100 })]"
-      }
+    "EV": {
+      "guard": "[Node: stateIn('foo')]"
     }
   }
 }

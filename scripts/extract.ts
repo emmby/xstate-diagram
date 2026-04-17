@@ -15,6 +15,12 @@ function processNode(node: ts.Node, sourceFile: ts.SourceFile): any {
             if (ts.isPropertyAssignment(prop)) {
                 const key = sanitizeKey(prop.name.getText(sourceFile));
                 obj[key] = processNode(prop.initializer, sourceFile);
+            } else if (ts.isShorthandPropertyAssignment(prop)) {
+                const key = prop.name.text;
+                obj[key] = `[Node: ${key}]`;
+            } else if (ts.isMethodDeclaration(prop)) {
+                const key = sanitizeKey(prop.name.getText(sourceFile));
+                obj[key] = `[Node: ${prop.getText(sourceFile)}]`;
             }
         }
         return obj;

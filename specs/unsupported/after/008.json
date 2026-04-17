@@ -1,5 +1,6 @@
 {
   "initial": "inactive",
+  "context": "[Node: context]",
   "states": {
     "inactive": {
       "after": {

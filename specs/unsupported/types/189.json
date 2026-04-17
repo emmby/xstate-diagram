@@ -1,5 +1,5 @@
 {
   "invoke": {
-    "src": "[Node: fromCallback(() => {\n          return undefined;\n        })]"
+    "src": "[Node: fromCallback(() => {})]"
   }
 }

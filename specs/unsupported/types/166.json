@@ -1,10 +1,13 @@
 {
-  "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
+  "types": "[Node: {} as {\n        context: {\n          count: number;\n        };\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
+  "context": {
+    "count": 1
+  },
   "on": {
     "FOO": {
       "guard": {
         "type": "isGreaterThan",
-        "params": "[Node: ({ event }) => {\n              ((_accept: 'FOO') => {})(event.type);\n              // @ts-expect-error\n              ((_accept: 'not any') => {})(event.type);\n              return {\n                count: 100\n              };\n            }]"
+        "params": "[Node: ({ context }) => {\n              ((_accept: number) => {})(context.count);\n              // @ts-expect-error\n              ((_accept: 'not any') => {})(context.count);\n              return {\n                count: context.count\n              };\n            }]"
       }
     }
   }

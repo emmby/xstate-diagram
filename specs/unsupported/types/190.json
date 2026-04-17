@@ -1,4 +1,5 @@
 {
-  "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n      }]",
-  "entry": "[Node: ({ self }) => {\n        self.send({ type: 'FOO' });\n        self.send({ type: 'BAR' });\n        // @ts-expect-error\n        self.send({ type: 'BAZ' });\n      }]"
+  "invoke": {
+    "src": "[Node: fromCallback(() => {\n          return undefined;\n        })]"
+  }
 }

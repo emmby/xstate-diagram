@@ -1,11 +1,10 @@
 {
   "types": {
-    "events": "[Node: {} as {\n          type: 'TOGGLE';\n        }]",
-    "context": "[Node: {} as {\n          count: number;\n          mode: 'foo' | 'bar' | null;\n        }]"
+    "context": "[Node: {} as {\n          count: number;\n          childRef: ActorRefFrom<typeof childMachine>;\n          promiseRef: ActorRefFrom<PromiseActorLogic<string>>;\n        }]"
   },
-  "context": {
-    "count": 0,
-    "mode": "[Node: null]"
-  },
-  "entry": "[Node: assign({ mode: 'foo' })]"
+  "context": "[Node: ({ spawn }) => ({\n        count: 0,\n        childRef: spawn(childMachine),\n        promiseRef: spawn(fromPromise(() => Promise.resolve('foo')))\n      })]",
+  "entry": [
+    "[Node: stopChild(({ context }) => {\n          ((_accept: number) => {})(context.count);\n          // @ts-expect-error\n          ((_accept: \"ain't any\") => {})(context.count);\n          return context.childRef;\n        })]",
+    "[Node: stopChild(({ context }) => {\n          ((_accept: number) => {})(context.count);\n          // @ts-expect-error\n          ((_accept: \"ain't any\") => {})(context.count);\n          return context.promiseRef;\n        })]"
+  ]
 }

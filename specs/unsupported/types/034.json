@@ -1,8 +1,6 @@
 {
   "types": "[Node: {} as {\n        events:\n          | { type: 'mouse.click.up'; direction: 'up' }\n          | { type: 'mouse.click.down'; direction: 'down' }\n          | { type: 'mouse.move' }\n          | { type: 'mouse' }\n          | { type: 'keypress' };\n      }]",
   "on": {
-    "mouse": {
-      "actions": "[Node: ({ event }) => {\n            ((_accept: 'mouse') => {})(event.type);\n            // @ts-expect-error\n            ((_accept: 'not any') => {})(event.type);\n          }]"
-    }
+    "mouse.doubleClick": {}
   }
 }

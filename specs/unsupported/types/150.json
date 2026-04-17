@@ -3,9 +3,9 @@
   "on": {
     "EV": {
       "guard": {
-        "type": "isGreaterThan",
+        "type": "other",
         "params": {
-          "count": "bar"
+          "foo": "bar"
         }
       }
     }

@@ -1,9 +1,11 @@
 {
   "types": {
-    "context": "[Node: {} as {\n          count: number;\n        }]"
+    "context": "[Node: {} as {\n          count: number;\n          childRef: ActorRefFrom<typeof childMachine>;\n        }]"
   },
-  "context": {
-    "count": 0
-  },
-  "entry": "[Node: stopChild(\n        // @ts-expect-error\n        ({ context }) => {\n          return context.count;\n        }\n      )]"
+  "context": "[Node: ({ spawn }) => ({\n        count: 0,\n        childRef: spawn(childMachine)\n      })]",
+  "on": {
+    "FOO": {
+      "actions": "[Node: stopChild(({ context }) => {\n            ((_accept: number) => {})(context.count);\n            // @ts-expect-error\n            ((_accept: \"ain't any\") => {})(context.count);\n            return context.childRef;\n          })]"
+    }
+  }
 }

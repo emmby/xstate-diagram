@@ -2,7 +2,7 @@
   "types": "[Node: {} as {\n        events:\n          | {\n              type: 'SOMETHING';\n            }\n          | {\n              type: 'SOMETHING_ELSE';\n            };\n      }]",
   "on": {
     "SOMETHING": {
-      "actions": "[Node: enqueueActions(({ enqueue }) => {\n            enqueue(\n              raise({\n                // @ts-expect-error\n                type: 'OTHER'\n              })\n            );\n          })]"
+      "actions": "[Node: enqueueActions(({ enqueue }) => {\n            enqueue.raise({ type: 'SOMETHING_ELSE' });\n          })]"
     }
   }
 }

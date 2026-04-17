@@ -5,12 +5,8 @@
   "context": {
     "count": 0
   },
-  "on": {
-    "FOO": {
-      "actions": [
-        "foo",
-        "[Node: assign(({ context }) => {\n              ((_accept: number) => {})(context.count);\n              // @ts-expect-error\n              ((_accept: \"ain't any\") => {})(context.count);\n              return {};\n            })]"
-      ]
-    }
-  }
+  "entry": [
+    "foo",
+    "[Node: assign(({ context }) => {\n          ((_accept: number) => {})(context.count);\n          // @ts-expect-error\n          ((_accept: \"ain't any\") => {})(context.count);\n          return {};\n        })]"
+  ]
 }

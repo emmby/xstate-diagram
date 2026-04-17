@@ -1,5 +1,3 @@
 {
-  "invoke": {
-    "src": "[Node: fromCallback(\n          // @ts-ignore\n          () => {\n            return new Promise(() => {});\n          }\n        )]"
-  }
+  "types": "[Node: {} as {\n        tags: 'a' | 'b' | 'c';\n      }]"
 }

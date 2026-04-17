@@ -1,6 +1,4 @@
 {
   "types": "[Node: {} as {\n        tags: 'pending' | 'success' | 'error';\n      }]",
-  "tags": [
-    "pending"
-  ]
+  "tags": "pending"
 }

@@ -1,3 +1,5 @@
 {
-  "types": {}
+  "types": {
+    "input": "[Node: {} as {\n          count: number;\n        }]"
+  }
 }

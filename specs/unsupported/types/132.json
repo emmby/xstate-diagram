@@ -1,4 +1,11 @@
 {
-  "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
-  "entry": "[Node: enqueueActions(({ enqueue }) => {\n        enqueue({\n          type: 'greet',\n          params: {\n            name: 'Anders'\n          }\n        });\n      })]"
+  "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
+  "on": {
+    "FOO": {
+      "actions": {
+        "type": "greet",
+        "params": "[Node: ({ event }) => {\n              ((_accept: 'FOO') => {})(event.type);\n              // @ts-expect-error\n              ((_accept: 'not any') => {})(event.type);\n              return {\n                name: 'Anders'\n              };\n            }]"
+      }
+    }
+  }
 }

@@ -1,6 +1,8 @@
 {
-  "types": {
-    "input": "[Node: {} as {\n          count: number;\n        }]"
-  },
-  "context": "[Node: ({ input }) => {\n        ((_accept: number) => {})(input.count);\n        // @ts-expect-error\n        ((_accept: string) => {})(input.count);\n        return {};\n      }]"
+  "types": "[Node: {} as {\n        events:\n          | {\n              type: 'SOMETHING';\n            }\n          | {\n              type: 'SOMETHING_ELSE';\n            };\n      }]",
+  "on": {
+    "SOMETHING": {
+      "actions": "[Node: enqueueActions(({ enqueue }) => {\n            enqueue.raise({\n              // @ts-expect-error\n              type: 'OTHER'\n            });\n          })]"
+    }
+  }
 }

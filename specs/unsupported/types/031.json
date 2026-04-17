@@ -1,8 +1,14 @@
 {
-  "types": "[Node: {} as {\n        events:\n          | { type: 'mouse.click.up'; direction: 'up' }\n          | { type: 'mouse.click.down'; direction: 'down' }\n          | { type: 'mouse.move' }\n          | { type: 'mouse' }\n          | { type: 'keypress' };\n      }]",
+  "types": {
+    "context": "[Node: {} as {\n          count: number;\n        }]",
+    "events": "[Node: {} as\n          | { type: 'EVENT_WITH_FLAG'; flag: boolean }\n          | {\n              type: 'EVENT_WITHOUT_FLAG';\n            }]"
+  },
+  "context": {
+    "count": 0
+  },
   "on": {
-    "mouse.click.*": {
-      "actions": "[Node: ({ event }) => {\n            ((_accept: 'mouse.click.up' | 'mouse.click.down') => {})(\n              event.type\n            );\n            ((_accept: 'up' | 'down') => {})(event.direction);\n            // @ts-expect-error\n            ((_accept: 'not any') => {})(event.type);\n          }]"
+    "*": {
+      "actions": "[Node: ({ event }) => {\n            ((_accept: 'EVENT_WITH_FLAG' | 'EVENT_WITHOUT_FLAG') => {})(\n              event.type\n            );\n            // @ts-expect-error\n            ((_accept: 'is not any') => {})(event);\n          }]"
     }
   }
 }

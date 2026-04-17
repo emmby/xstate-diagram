@@ -1,6 +1,5 @@
 {
-  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child;\n        };\n      }]",
-  "invoke": {
-    "src": "other"
-  }
+  "types": "[Node: {} as {\n        context: {\n          myChild?: ActorRefFrom<typeof child>;\n        };\n        actors:\n          | {\n              src: 'child';\n              logic: typeof child;\n            }\n          | {\n              src: 'other';\n              logic: typeof otherChild;\n            };\n      }]",
+  "context": {},
+  "entry": "[Node: assign({\n        myChild: ({ spawn }) => {\n          return spawn('child');\n        }\n      })]"
 }

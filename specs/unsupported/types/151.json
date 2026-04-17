@@ -4,7 +4,9 @@
     "EV": {
       "guard": {
         "type": "isGreaterThan",
-        "params": {}
+        "params": {
+          "count": "bar"
+        }
       }
     }
   }

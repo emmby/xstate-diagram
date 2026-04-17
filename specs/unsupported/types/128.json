@@ -1,7 +1,3 @@
 {
-  "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
-  "entry": {
-    "type": "greet",
-    "params": "[Node: () => ({\n          name: 'Anders'\n        })]"
-  }
+  "types": "[Node: {} as {\n          actions:\n            | { type: 'greet'; params: { name: string } }\n            | { type: 'poke' };\n        }]"
 }

@@ -1,6 +1,7 @@
 {
   "types": "[Node: {} as {\n        context: typeof context;\n        events: TodoEvent;\n      }]",
   "id": "todos",
+  "context": "[Node: context]",
   "initial": "active",
   "states": {
     "active": {

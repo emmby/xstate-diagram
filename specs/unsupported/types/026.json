@@ -1,6 +1,7 @@
 {
-  "types": {
-    "events": "[Node: {} as {\n          type: 'FOO';\n        }]"
-  },
-  "entry": "[Node: raise<any, any, any, any, any, any>({ type: 'FOO' })]"
+  "types": "[Node: {} as {\n        events: { type: 'TOGGLE_ITALIC' } | { type: 'TOGGLE_BOLD' };\n      }]",
+  "type": "parallel",
+  "states": {
+    "underline": "[Node: underlineState]"
+  }
 }

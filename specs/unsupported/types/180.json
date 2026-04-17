@@ -1,4 +1,5 @@
 {
-  "types": "[Node: {} as {\n        tags: 'pending' | 'success' | 'error';\n      }]",
-  "tags": "pending"
+  "after": {
+    "just_any_delay": {}
+  }
 }

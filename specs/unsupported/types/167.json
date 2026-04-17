@@ -1,6 +1,11 @@
 {
-  "types": "[Node: {} as {\n        delays: 'one second' | 'one minute';\n      }]",
-  "after": {
-    "100": {}
+  "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
+  "on": {
+    "FOO": {
+      "guard": {
+        "type": "isGreaterThan",
+        "params": "[Node: ({ event }) => {\n              ((_accept: 'FOO') => {})(event.type);\n              // @ts-expect-error\n              ((_accept: 'not any') => {})(event.type);\n              return {\n                count: 100\n              };\n            }]"
+      }
+    }
   }
 }

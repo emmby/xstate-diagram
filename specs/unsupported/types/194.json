@@ -1,7 +1,8 @@
 {
-  "types": "[Node: {} as {\n        context: { count: number };\n      }]",
-  "context": {
-    "count": 0
-  },
-  "entry": "[Node: ({ self }) => {\n        ((_accept: number) => {})(self.getSnapshot().context.count);\n        // @ts-expect-error\n        ((_accept: string) => {})(self.getSnapshot().context.count);\n      }]"
+  "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n      }]",
+  "on": {
+    "FOO": {
+      "actions": "[Node: assign(({ self }) => {\n            self.send({ type: 'FOO' });\n            self.send({ type: 'BAR' });\n            // @ts-expect-error\n            self.send({ type: 'BAZ' });\n            return {};\n          })]"
+    }
+  }
 }

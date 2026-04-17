@@ -1,3 +1,16 @@
 {
-  "types": "[Node: {} as {\n          actors: {\n            src: 'child';\n            logic: typeof child;\n          };\n        }]"
+  "invoke": {
+    "src": "[Node: fromPromise(() => new Promise((resolve) => resolve(1)))]",
+    "onDone": [
+      {
+        "target": ".a"
+      },
+      ".b"
+    ]
+  },
+  "initial": "a",
+  "states": {
+    "a": {},
+    "b": {}
+  }
 }

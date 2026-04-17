@@ -1,6 +1,7 @@
 {
   "id": "interval",
   "types": "[Node: {} as { context: typeof context }]",
+  "context": "[Node: context]",
   "initial": "active",
   "states": {
     "active": {

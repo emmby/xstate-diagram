@@ -2,6 +2,6 @@
   "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child;\n        };\n      }]",
   "invoke": {
     "src": "child",
-    "input": 42
+    "input": "hello"
   }
 }

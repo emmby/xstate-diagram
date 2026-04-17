@@ -2,6 +2,6 @@
   "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child;\n        };\n      }]",
   "invoke": {
     "src": "child",
-    "input": "[Node: () => 'hello']"
+    "input": "[Node: Math.random() > 0.5 ? 'string' : 42]"
   }
 }

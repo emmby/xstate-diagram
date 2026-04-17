@@ -1,9 +1,11 @@
 {
-  "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
-  "entry": {
-    "type": "greet",
-    "params": {
-      "name": "David"
-    }
-  }
+  "types": {
+    "context": "[Node: {} as {\n          count: number;\n          skip: boolean;\n        }]",
+    "events": "[Node: {} as {\n          type: 'TOGGLE';\n        }]"
+  },
+  "context": {
+    "count": 0,
+    "skip": true
+  },
+  "entry": "[Node: assign({\n        count: ({ context }) => context.count + 1,\n        skip: true\n      })]"
 }

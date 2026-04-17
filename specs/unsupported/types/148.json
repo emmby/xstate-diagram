@@ -1,13 +1,10 @@
 {
-  "types": "[Node: {} as {\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
+  "id": "b",
+  "types": "[Node: {} as {\n          events: { type: 'EVENT' };\n        }]",
   "on": {
-    "EV": {
-      "guard": {
-        "type": "isGreaterThan",
-        "params": {
-          "count": 10
-        }
-      }
+    "EVENT": {
+      "target": "#b",
+      "guard": "[Node: not('falsy')]"
     }
   }
 }

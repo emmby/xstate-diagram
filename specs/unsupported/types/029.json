@@ -1,14 +1,6 @@
 {
-  "types": {
-    "context": "[Node: {} as {\n          count: number;\n        }]",
-    "events": "[Node: {} as\n          | { type: 'EVENT_WITH_FLAG'; flag: boolean }\n          | {\n              type: 'EVENT_WITHOUT_FLAG';\n            }]"
-  },
+  "types": "[Node: {} as {\n        context: {\n          count: number;\n        };\n        events: {\n          type: 'TOGGLE';\n        };\n      }]",
   "context": {
     "count": 0
-  },
-  "on": {
-    "EVENT_WITH_FLAG": {
-      "actions": "[Node: ({ event }) => {\n            ((_accept: 'EVENT_WITH_FLAG') => {})(event.type);\n            ((_accept: boolean) => {})(event.flag);\n            // @ts-expect-error\n            ((_accept: 'is not any') => {})(event);\n          }]"
-    }
   }
 }

@@ -1,6 +1,7 @@
 {
-  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child1;\n        };\n      }]",
+  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child;\n        };\n      }]",
   "invoke": {
-    "src": "[Node: child2]"
+    "id": "someId",
+    "src": "child"
   }
 }
