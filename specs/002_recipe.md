@@ -35,7 +35,7 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 
 ### Step 5: Assemble PR Proof Formatting
 - Ensure both you and the user are on a fresh `git worktree` and formally commit the modified file structures.
-- Submit or propose a GitHub Pull Request natively mapping your branch.
+- Use the `gh` CLI tool to automatically submit the GitHub Pull Request natively mapping your branch (e.g. `gh pr create --title "..." --body-file payload.md`). DO NOT simply propose the text; you must execute the PR creation natively.
 - Assemble the Pull Request description EXACTLY matching the format below. Drop the `gemini` standard output checklist explicitly into the text body under the `## Semantic Verification Proof` header logic.
 
 #### Standardized PR Template Structure
