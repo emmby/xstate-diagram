@@ -43,7 +43,7 @@ export function compile(machine: AnyStateMachine): string {
 
           // Map string 'after' transition labels naturally
           if (eventType.startsWith('xstate.after.')) {
-            const delayMatch = eventType.match(/xstate\.after\.(.*)\./);
+            const delayMatch = eventType.match(/xstate\.after\.([\d.]+)\./);
             if (delayMatch && delayMatch[1]) {
               edgeLabel = `after ${delayMatch[1]}`;
             }

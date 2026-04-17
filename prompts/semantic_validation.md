@@ -6,6 +6,7 @@ Read both inputs carefully. You MUST algorithmically prove the equivalence by ex
 2. Validate that EVERY single EVENT transition (the `on` property keys) from the source exists perfectly between the same two states in the Mermaid output.
 3. Validate that IF a transition has a \`guard\`, it is accurately represented in the Mermaid transition label as \`[guard]\`.
 4. Validate that IF a transition has \`actions\`, they are accurately represented in the Mermaid transition label after a slash (e.g., \`/ action1, action2\`).
+5. Validate that all timeout transition nodes (\`after {delay}\`) strictly render as explicit primitive numeric mappings natively mirroring the JSON without silently carrying over internal state-engine artifact strings or namespace properties like \`(machine)\`.
 
 ## Output Format
 You must output a "Semantic Match Proof" log directly. Do not act like an assistant. Output ONLY your proof report.
