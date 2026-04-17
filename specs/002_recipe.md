@@ -50,9 +50,6 @@ Implement feature: {feature_name}
 {INSERT_MERMAID_OUTPUT_HERE}
 ```
 
-### Validation Proof
-![Proof](https://github.com/emmby/xstate-diagram/blob/{branch_name}/specs/001_proof.svg?raw=true)
-
 ## Semantic Verification Proof
 
 {INSERT_BASH_LLM_OUTPUT_CHECKLIST_HERE}
