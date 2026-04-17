@@ -1,0 +1,13 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "NEXT": "done"
+      }
+    },
+    "done": {
+      "type": "final"
+    }
+  }
+}

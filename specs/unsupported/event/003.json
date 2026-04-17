@@ -1,0 +1,41 @@
+{
+  "types": "[Node: {} as { context: SignInContext; events: ChangePassword }]",
+  "context": {
+    "email": "",
+    "password": ""
+  },
+  "initial": "passwordField",
+  "states": {
+    "passwordField": {
+      "initial": "hidden",
+      "states": {
+        "hidden": {
+          "on": {
+            "changePassword": {
+              "actions": "assignPassword"
+            }
+          }
+        },
+        "valid": {},
+        "invalid": {}
+      },
+      "on": {
+        "changePassword": [
+          {
+            "guard": "[Node: ({ event }) => event.password.length >= 10]",
+            "target": ".invalid",
+            "actions": [
+              "assignPassword"
+            ]
+          },
+          {
+            "target": ".valid",
+            "actions": [
+              "assignPassword"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

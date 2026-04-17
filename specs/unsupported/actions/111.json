@@ -1,13 +1,17 @@
 {
-  "initial": "a",
-  "context": "[Function/Identifier: ({ spawn }) => ({\n        foo:...]",
-  "states": {
-    "a": {
-      "on": {
-        "EVENT": {
-          "actions": "[Call: sendTo]"
-        }
-      }
+  "invoke": [
+    {
+      "id": "foo",
+      "src": "[Node: createMachine({\n            id: 'foo',\n            entry: raise({ type: 'event' }, { id: 'sameId', delay: 100 }),\n            on: {\n              event: { actions: fooSpy },\n              cancel: { actions: cancel('sameId') }\n            }\n          })]"
+    },
+    {
+      "id": "bar",
+      "src": "[Node: createMachine({\n            id: 'bar',\n            entry: raise({ type: 'event' }, { id: 'sameId', delay: 100 }),\n            on: {\n              event: { actions: barSpy }\n            }\n          })]"
+    }
+  ],
+  "on": {
+    "cancelFoo": {
+      "actions": "[Node: sendTo('foo', { type: 'cancel' })]"
     }
   }
 }

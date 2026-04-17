@@ -1,0 +1,32 @@
+{
+  "id": "light",
+  "initial": "green",
+  "states": {
+    "green": {
+      "entry": [
+        "[Node: raise({ type: 'TIMER' }, { id: 'TIMER1', delay: 10 })]"
+      ],
+      "on": {
+        "TIMER": "yellow",
+        "KEEP_GOING": {
+          "actions": [
+            "[Node: cancel('TIMER1')]"
+          ]
+        }
+      }
+    },
+    "yellow": {
+      "entry": [
+        "[Node: raise({ type: 'TIMER' }, { delay: 10 })]"
+      ],
+      "on": {
+        "TIMER": "red"
+      }
+    },
+    "red": {
+      "after": {
+        "10": "green"
+      }
+    }
+  }
+}

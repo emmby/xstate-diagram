@@ -1,26 +1,18 @@
 {
-  "id": "interval",
-  "initial": "counting",
-  "context": {
-    "count": 0
-  },
+  "id": "ping-pong",
+  "initial": "active",
   "states": {
-    "counting": {
+    "active": {
       "invoke": {
-        "id": "intervalService",
-        "src": "[Call: fromCallback]"
+        "id": "child",
+        "src": "[Node: fromCallback(({ sendBack, receive }) => {\n                receive((e) => {\n                  if (e.type === 'PING') {\n                    sendBack({ type: 'PONG' });\n                  }\n                });\n              })]"
       },
-      "always": {
-        "target": "finished",
-        "guard": "[Function/Identifier: ({ context }) => context.count...]"
-      },
+      "entry": "[Node: sendTo('child', { type: 'PING' })]",
       "on": {
-        "INC": {
-          "actions": "[Call: assign]"
-        }
+        "PONG": "done"
       }
     },
-    "finished": {
+    "done": {
       "type": "final"
     }
   }

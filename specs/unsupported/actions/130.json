@@ -1,9 +1,3 @@
 {
-  "id": "foo",
-  "entry": "[Call: raise]",
-  "on": {
-    "event": {
-      "actions": "[Function/Identifier: fooSpy...]"
-    }
-  }
+  "entry": "[Node: (_, params) => {\n          spy(params);\n        }]"
 }

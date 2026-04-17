@@ -1,10 +1,11 @@
 {
-  "on": {
-    "FOO": {
-      "actions": "[Call: enqueueActions]"
-    },
-    "RAISED": {
-      "actions": "[Function/Identifier: spy...]"
+  "types": "[Node: {} as {\n        events: { type: 'EVENT' };\n      }]",
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "on": {
+        "EVENT": {}
+      }
     }
   }
 }

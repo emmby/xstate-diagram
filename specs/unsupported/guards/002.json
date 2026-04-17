@@ -6,11 +6,11 @@
         "TIMER": [
           {
             "target": "b",
-            "guard": "[Function/Identifier: ({ event: { elapsed } }) => el...]"
+            "guard": "[Node: ({ event: { elapsed } }) => elapsed > 200]"
           },
           {
             "target": "c",
-            "guard": "[Function/Identifier: ({ event: { elapsed } }) => el...]"
+            "guard": "[Node: ({ event: { elapsed } }) => elapsed > 100]"
           }
         ]
       }

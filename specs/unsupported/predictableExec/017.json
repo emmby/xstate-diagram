@@ -1,0 +1,7 @@
+{
+  "on": {
+    "*": {
+      "actions": "[Node: ({ event }) => {\n                    received = event;\n                  }]"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "invoke": {
+    "src": "child",
+    "id": "child"
+  },
+  "on": {
+    "INC": {
+      "actions": "[Node: sendTo('child', {\n              type: 'INC'\n            })]"
+    }
+  }
+}

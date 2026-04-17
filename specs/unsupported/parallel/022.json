@@ -10,7 +10,7 @@
       },
       "on": {
         "MY_EVENT": {
-          "actions": "[Function/Identifier: () => {}...]"
+          "actions": "[Node: () => {}]"
         }
       }
     },

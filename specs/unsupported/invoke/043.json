@@ -1,16 +1,18 @@
 {
-  "id": "interval",
-  "initial": "counting",
+  "id": "error",
+  "initial": "safe",
   "states": {
-    "counting": {
+    "safe": {
       "invoke": {
-        "id": "intervalService",
-        "src": "[Call: fromCallback]"
-      },
-      "on": {
-        "NEXT": "idle"
+        "src": "[Node: fromCallback(() => {\n                throw new Error('test');\n              })]",
+        "onError": {
+          "target": "failed",
+          "guard": "[Node: ({ event }) => {\n                  return (\n                    event.error instanceof Error &&\n                    event.error.message === 'test'\n                  );\n                }]"
+        }
       }
     },
-    "idle": {}
+    "failed": {
+      "type": "final"
+    }
   }
 }

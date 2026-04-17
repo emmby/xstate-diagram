@@ -1,9 +1,3 @@
 {
-  "context": {
-    "secret": 42
-  },
-  "entry": {
-    "type": "entryAction",
-    "params": "[Function/Identifier: ({ context }) => ({ secret: co...]"
-  }
+  "entry": "[Node: enqueueActions(({ enqueue }) => {\n          enqueue('someAction');\n          enqueue('someAction');\n        })]"
 }

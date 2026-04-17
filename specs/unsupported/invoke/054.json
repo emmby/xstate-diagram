@@ -1,24 +1,13 @@
 {
-  "id": "obs",
-  "initial": "counting",
+  "types": "[Node: {} as {\n            actors: {\n              src: 'childLogic';\n              logic: typeof childLogic;\n            };\n          }]",
   "context": {
-    "count": "[Function/Identifier: undefined...]"
+    "received": "[Node: undefined]"
   },
-  "states": {
-    "counting": {
-      "invoke": {
-        "src": "[Call: fromObservable]",
-        "onSnapshot": {
-          "actions": "[Call: assign]"
-        },
-        "onDone": {
-          "target": "counted",
-          "guard": "[Function/Identifier: ({ context }) => context.count...]"
-        }
-      }
-    },
-    "counted": {
-      "type": "final"
+  "invoke": {
+    "src": "childLogic",
+    "input": 42,
+    "onSnapshot": {
+      "actions": "[Node: ({ event }) => {\n                if (\n                  event.snapshot.status === 'active' &&\n                  event.snapshot.context === 42\n                ) {\n                  resolve();\n                }\n              }]"
     }
   }
 }

@@ -1,18 +1,9 @@
 {
-  "initial": "searching",
-  "context": {
-    "url": "example.com"
-  },
+  "id": "machine",
+  "initial": "a",
   "states": {
-    "searching": {
-      "invoke": {
-        "src": "search",
-        "input": "[Function/Identifier: ({ context }) => ({ endpoint: ...]",
-        "onDone": "success"
-      }
-    },
-    "success": {
-      "type": "final"
+    "a": {
+      "invoke": "[Node: invokeConfig]"
     }
   }
 }

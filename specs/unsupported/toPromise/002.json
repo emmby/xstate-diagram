@@ -1,0 +1,12 @@
+{
+  "types": "[Node: {} as {\n        output: { count: 42 };\n      }]",
+  "initial": "done",
+  "states": {
+    "done": {
+      "type": "final"
+    }
+  },
+  "output": {
+    "count": 42
+  }
+}

@@ -1,8 +1,14 @@
 {
-  "on": {
-    "FOO": {
-      "guard": "[Function/Identifier: () => false...]",
-      "actions": "[Function/Identifier: () => {}...]"
-    }
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": {
+          "target": "b",
+          "guard": "[Node: not(and([not('truthy'), 'truthy']))]"
+        }
+      }
+    },
+    "b": {}
   }
 }

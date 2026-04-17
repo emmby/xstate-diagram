@@ -1,7 +1,22 @@
 {
-  "id": "child",
-  "initial": "init",
+  "id": "parent",
+  "types": "[Node: {} as {\n          context: { count: number };\n          actors: {\n            src: 'child';\n            id: 'someService';\n            logic: typeof childMachine;\n          };\n        }]",
+  "context": {
+    "count": 0
+  },
+  "initial": "start",
   "states": {
-    "init": {}
+    "start": {
+      "invoke": {
+        "src": "child",
+        "id": "someService"
+      },
+      "on": {
+        "STOP": "stop"
+      }
+    },
+    "stop": {
+      "type": "final"
+    }
   }
 }

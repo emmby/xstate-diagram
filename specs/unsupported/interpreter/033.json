@@ -1,0 +1,23 @@
+{
+  "id": "interval",
+  "types": "[Node: {} as { context: typeof context }]",
+  "initial": "active",
+  "states": {
+    "active": {
+      "after": {
+        "10": {
+          "target": "active",
+          "reenter": true,
+          "actions": "[Node: assign({\n                count: ({ context }) => context.count + 1\n              })]"
+        }
+      },
+      "always": {
+        "target": "finished",
+        "guard": "[Node: ({ context }) => context.count >= 5]"
+      }
+    },
+    "finished": {
+      "type": "final"
+    }
+  }
+}

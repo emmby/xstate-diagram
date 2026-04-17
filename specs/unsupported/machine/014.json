@@ -1,0 +1,11 @@
+{
+  "types": "[Node: {} as { context: { value: number } }]",
+  "context": {
+    "value": 42
+  },
+  "on": {
+    "INC": {
+      "actions": "[Node: assign({ value: ({ context }) => context.value + 1 })]"
+    }
+  }
+}

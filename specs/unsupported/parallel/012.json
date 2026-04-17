@@ -12,7 +12,7 @@
         "c": {
           "initial": {
             "target": "c1",
-            "actions": "[Function/Identifier: spy...]"
+            "actions": "[Node: spy]"
           },
           "states": {
             "c1": {}

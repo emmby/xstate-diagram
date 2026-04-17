@@ -1,0 +1,19 @@
+{
+  "id": "defer",
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT_A": "b"
+      }
+    },
+    "b": {
+      "on": {
+        "NEXT_B": "c"
+      }
+    },
+    "c": {
+      "type": "final"
+    }
+  }
+}

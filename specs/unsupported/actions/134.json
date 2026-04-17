@@ -1,7 +1,3 @@
 {
-  "on": {
-    "PING": {
-      "actions": "[Function/Identifier: spy...]"
-    }
-  }
+  "entry": "myAction"
 }

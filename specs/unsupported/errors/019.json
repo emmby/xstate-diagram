@@ -1,10 +1,14 @@
 {
-  "initial": "pending",
+  "initial": "a",
   "states": {
-    "pending": {
-      "invoke": {
-        "src": "[Call: fromCallback]"
+    "a": {
+      "on": {
+        "NEXT": {
+          "guard": "[Node: () => {\n                throw new Error('error_thrown_in_guard_when_transitioning');\n              }]",
+          "target": "b"
+        }
       }
-    }
+    },
+    "b": {}
   }
 }

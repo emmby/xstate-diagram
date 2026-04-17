@@ -1,0 +1,19 @@
+{
+  "types": "[Node: {} as { context: { items: number[]; refs: any[] } }]",
+  "id": "start",
+  "initial": "start",
+  "context": {
+    "items": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "refs": []
+  },
+  "states": {
+    "start": {
+      "entry": "[Node: assign({\n            refs: ({ context, spawn }) => {\n              count++;\n              const c = context.items.map((item) =>\n                spawn(fromPromise(() => new Promise((res) => res(item))))\n              );\n\n              return c;\n            }\n          })]"
+    }
+  }
+}

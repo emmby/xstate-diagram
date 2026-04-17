@@ -1,19 +1,7 @@
 {
-  "initial": "a",
-  "states": {
-    "a": {
-      "entry": "[Call: raise]",
-      "on": {
-        "TO_B": "b"
-      }
-    },
-    "b": {
-      "on": {
-        "EVENT": "c"
-      }
-    },
-    "c": {
-      "type": "final"
+  "on": {
+    "PING": {
+      "actions": "[Node: spy]"
     }
   }
 }

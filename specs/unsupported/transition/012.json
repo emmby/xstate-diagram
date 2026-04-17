@@ -1,18 +1,15 @@
 {
-  "initial": "start",
+  "initial": "a",
   "states": {
-    "start": {
-      "on": {
-        "next": "waiting"
-      }
-    },
-    "waiting": {
+    "a": {
       "after": {
-        "10": "done"
+        "1000": "b"
+      },
+      "on": {
+        "GO_C": "c"
       }
     },
-    "done": {
-      "type": "final"
-    }
+    "b": {},
+    "c": {}
   }
 }

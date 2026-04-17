@@ -1,0 +1,16 @@
+{
+  "initial": "A",
+  "states": {
+    "A": {
+      "on": {
+        "foo.bar.*": {
+          "target": "fail",
+          "guard": "[Node: () => false]"
+        },
+        "foo.*": "pass"
+      }
+    },
+    "fail": {},
+    "pass": {}
+  }
+}

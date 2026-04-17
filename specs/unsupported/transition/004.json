@@ -1,15 +1,16 @@
 {
   "initial": "a",
+  "invoke": {
+    "src": "[Node: createMachine({})]",
+    "id": "someActor"
+  },
   "states": {
     "a": {
-      "entry": "[Call: raise]",
       "on": {
         "NEXT": {
-          "target": "b",
-          "actions": "[Call: cancel]"
+          "actions": "[Node: sendTo('someActor', { type: 'someEvent' })]"
         }
       }
-    },
-    "b": {}
+    }
   }
 }

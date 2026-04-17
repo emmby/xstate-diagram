@@ -1,0 +1,16 @@
+{
+  "types": {
+    "events": "[Node: {} as {\n          type: 'ACTIVATE';\n          origin: AnyActorRef;\n        }]"
+  },
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "ACTIVATE": "active"
+      }
+    },
+    "active": {
+      "entry": "[Node: sendTo(({ event }) => event.origin, { type: 'EXISTING.DONE' })]"
+    }
+  }
+}

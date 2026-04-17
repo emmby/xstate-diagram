@@ -1,0 +1,9 @@
+{
+  "exit": "[Node: () => actual.push('root')]",
+  "initial": "a",
+  "states": {
+    "a": {
+      "exit": "[Node: () => actual.push('a')]"
+    }
+  }
+}

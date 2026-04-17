@@ -1,0 +1,23 @@
+{
+  "id": "root",
+  "initial": "happy path",
+  "states": {
+    "happy path": {
+      "entry": [
+        "[Node: spawnChild(createMachine({}), { systemId: 'child1' })]"
+      ],
+      "invoke": [
+        {
+          "src": "[Node: createMachine({\n                id: 'machine'\n              })]",
+          "systemId": "child2"
+        }
+      ],
+      "on": {
+        "stopChild1": "sad path"
+      }
+    },
+    "sad path": {
+      "entry": "[Node: stopChild(({ system }) => system.get('child1'))]"
+    }
+  }
+}

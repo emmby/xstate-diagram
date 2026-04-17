@@ -1,21 +1,19 @@
 {
-  "initial": "inactive",
+  "types": "[Node: {} as {\n          context: { count: number };\n          actors: {\n            src: 'stringService';\n            logic: PromiseActorLogic<\n              boolean,\n              {\n                staticVal: string;\n                newCount: number;\n              }\n            >;\n          };\n        }]",
+  "initial": "pending",
+  "context": {
+    "count": 42
+  },
   "states": {
-    "inactive": {
-      "on": {
-        "ACTIVATE": "active"
+    "pending": {
+      "invoke": {
+        "src": "stringService",
+        "input": "[Node: ({ context }) => ({\n                staticVal: 'hello',\n                newCount: context.count * 2\n              })]",
+        "onDone": "success"
       }
     },
-    "active": {
-      "invoke": {
-        "src": "[Call: fromCallback]"
-      },
-      "on": {
-        "REENTER": {
-          "target": "active",
-          "reenter": true
-        }
-      }
+    "success": {
+      "type": "final"
     }
   }
 }

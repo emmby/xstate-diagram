@@ -1,0 +1,5 @@
+{
+  "types": "[Node: {} as {\n        context: { count: number };\n        input: { startCount: number };\n      }]",
+  "context": "[Node: ({ input }) => ({\n        count: input.startCount\n      })]",
+  "entry": "[Node: ({ context }) => {\n        spy(context.count);\n      }]"
+}

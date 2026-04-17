@@ -1,0 +1,16 @@
+{
+  "types": {
+    "events": "[Node: {} as { type: 'CODE'; sender: AnyActorRef }]"
+  },
+  "id": "authServer",
+  "initial": "waitingForCode",
+  "states": {
+    "waitingForCode": {
+      "on": {
+        "CODE": {
+          "actions": "[Node: sendTo(\n                ({ event }) => {\n                  expect(event.sender).toBeDefined();\n                  return event.sender;\n                },\n                { type: 'TOKEN' },\n                { delay: 10 }\n              )]"
+        }
+      }
+    }
+  }
+}

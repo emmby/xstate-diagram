@@ -1,14 +1,19 @@
 {
-  "id": "child",
+  "id": "parent",
   "initial": "one",
+  "invoke": {
+    "id": "foo-child",
+    "src": "[Node: subMachine]"
+  },
   "states": {
     "one": {
+      "entry": "[Node: sendTo('foo-child', { type: 'NEXT' })]",
       "on": {
         "NEXT": "two"
       }
     },
     "two": {
-      "entry": "[Call: sendParent]"
+      "type": "final"
     }
   }
 }

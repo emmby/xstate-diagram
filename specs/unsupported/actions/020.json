@@ -1,4 +1,5 @@
 {
+  "id": "root",
   "initial": "ping",
   "states": {
     "ping": {
@@ -6,11 +7,12 @@
       "states": {
         "foo": {
           "on": {
-            "TACK": "bar"
+            "ABSOLUTE_TACK": "#root.ping.bar"
           }
         },
         "bar": {}
       }
-    }
+    },
+    "pong": {}
   }
 }

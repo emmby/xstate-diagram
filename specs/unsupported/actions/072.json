@@ -1,16 +1,15 @@
 {
-  "initial": "idle",
+  "types": "[Node: {} as {\n        events: {\n          type: 'EVENT';\n          value: number;\n        };\n      }]",
+  "id": "child",
+  "initial": "active",
   "states": {
-    "idle": {
+    "active": {
       "on": {
-        "STOP": {
-          "target": "stop",
-          "actions": [
-            "[Function/Identifier: spy...]"
-          ]
+        "EVENT": {
+          "actions": "[Node: sendParent({ type: 'SUCCESS' })]",
+          "guard": "[Node: ({ event }) => event.value === 42]"
         }
       }
-    },
-    "stop": {}
+    }
   }
 }

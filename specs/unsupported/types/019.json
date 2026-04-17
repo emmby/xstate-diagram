@@ -1,0 +1,7 @@
+{
+  "types": "[Node: {} as {\n        context: { password: string };\n        output: {\n          secret: string;\n        };\n      }]",
+  "context": {
+    "password": "okoń"
+  },
+  "output": "[Node: ({ context }) => {\n        ((_accept: string) => {})(context.password);\n        // @ts-expect-error\n        ((_accept: number) => {})(context.password);\n        return {\n          secret: 'the secret'\n        };\n      }]"
+}

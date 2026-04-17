@@ -1,25 +1,21 @@
 {
   "id": "callback",
-  "initial": "pending",
+  "initial": "idle",
   "context": {
     "foo": true
   },
   "states": {
-    "pending": {
-      "on": {
-        "BEGIN": "first"
-      }
-    },
-    "first": {
+    "idle": {
       "invoke": {
-        "src": "someCallback",
-        "input": "[Function/Identifier: ({ context, event }) => ({\n   ...]"
+        "src": "someCallback"
       },
       "on": {
-        "CALLBACK": {
-          "target": "last",
-          "guard": "[Function/Identifier: ({ event }) => event.data === ...]"
-        }
+        "CALLBACK": "intermediate"
+      }
+    },
+    "intermediate": {
+      "on": {
+        "NEXT": "last"
       }
     },
     "last": {

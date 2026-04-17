@@ -1,14 +1,13 @@
 {
   "initial": "a",
-  "invoke": {
-    "src": "[Call: createMachine]",
-    "id": "someActor"
+  "context": {
+    "count": 10
   },
   "states": {
     "a": {
       "on": {
         "NEXT": {
-          "actions": "[Call: sendTo]"
+          "actions": "[Node: emit(({ context }) => ({\n                type: 'counted',\n                count: context.count\n              }))]"
         }
       }
     }

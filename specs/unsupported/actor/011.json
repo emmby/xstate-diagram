@@ -1,0 +1,21 @@
+{
+  "id": "observable",
+  "initial": "idle",
+  "context": {
+    "observableRef": "[Node: undefined! as AnyActorRef]"
+  },
+  "states": {
+    "idle": {
+      "entry": "[Node: assign({\n              observableRef: ({ spawn }) =>\n                spawn('interval', { id: 'int', syncSnapshot: true })\n            })]",
+      "on": {
+        "xstate.snapshot.int": {
+          "target": "success",
+          "guard": "[Node: ({ event }) => event.snapshot.context === 5]"
+        }
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

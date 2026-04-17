@@ -1,9 +1,4 @@
 {
-  "id": "child",
-  "initial": "idle",
-  "states": {
-    "idle": {
-      "exit": "[Call: sendParent]"
-    }
-  }
+  "id": "grandchild",
+  "entry": "[Node: () => {\n          throw new Error('This should not be called.');\n        }]"
 }

@@ -1,11 +1,14 @@
 {
   "id": "child",
-  "initial": "init",
+  "initial": "one",
   "states": {
-    "init": {
-      "entry": [
-        "[Call: sendParent]"
-      ]
+    "one": {
+      "on": {
+        "NEXT": "two"
+      }
+    },
+    "two": {
+      "entry": "[Node: sendParent({ type: 'NEXT' })]"
     }
   }
 }

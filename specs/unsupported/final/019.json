@@ -5,13 +5,14 @@
       "type": "parallel",
       "states": {
         "b": {
-          "initial": "c",
-          "states": {
-            "c": {
-              "type": "final"
-            }
-          }
+          "type": "final"
+        },
+        "c": {
+          "type": "final"
         }
+      },
+      "onDone": {
+        "actions": "[Node: spy]"
       }
     }
   }

@@ -1,0 +1,9 @@
+{
+  "types": {
+    "context": "[Node: {} as {\n          count: number;\n        }]"
+  },
+  "context": {
+    "count": 0
+  },
+  "entry": "[Node: stopChild(\n        // @ts-expect-error\n        ({ context }) => {\n          return context.count;\n        }\n      )]"
+}

@@ -1,14 +1,24 @@
 {
-  "id": "transient",
+  "types": "[Node: {} as { context: { counter: number } }]",
   "initial": "active",
+  "context": {
+    "counter": 0
+  },
   "states": {
     "active": {
       "invoke": {
-        "id": "doNotInvoke",
-        "src": "[Call: fromCallback]"
+        "src": "[Node: fromCallback(() => {\n                actorStartedCount++;\n              })]"
       },
-      "always": "inactive"
+      "always": [
+        {
+          "guard": "[Node: ({ context }) => context.counter === 0]",
+          "target": "inactive"
+        }
+      ]
     },
-    "inactive": {}
+    "inactive": {
+      "entry": "[Node: assign({ counter: ({ context }) => ++context.counter })]",
+      "always": "active"
+    }
   }
 }

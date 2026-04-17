@@ -1,0 +1,15 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "always": [
+        {
+          "target": "stopped"
+        }
+      ]
+    },
+    "stopped": {
+      "type": "final"
+    }
+  }
+}

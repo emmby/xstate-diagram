@@ -1,0 +1,11 @@
+{
+  "initial": "idle",
+  "context": {
+    "actor": "[Node: undefined! as ActorRefFrom<PromiseActorLogic<unknown>>]"
+  },
+  "states": {
+    "idle": {
+      "entry": "[Node: assign({\n              actor: ({ spawn }) => {\n                return spawn(\n                  fromPromise(\n                    () =>\n                      new Promise(() => {\n                        promiseSpawned++;\n                      })\n                  )\n                );\n              }\n            })]"
+    }
+  }
+}

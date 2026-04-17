@@ -1,0 +1,11 @@
+{
+  "initial": "done",
+  "states": {
+    "done": {
+      "type": "final"
+    }
+  },
+  "output": {
+    "count": 100
+  }
+}

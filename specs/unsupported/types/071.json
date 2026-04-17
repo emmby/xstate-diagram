@@ -1,0 +1,5 @@
+{
+  "types": "[Node: {} as {\n        context: {\n          myChild?: ActorRefFrom<typeof child>;\n        };\n      }]",
+  "context": {},
+  "entry": "[Node: assign({\n        // @ts-expect-error\n        myChild: ({ spawn }) => {\n          return spawn(otherChild);\n        }\n      })]"
+}

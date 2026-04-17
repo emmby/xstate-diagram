@@ -1,0 +1,12 @@
+{
+  "initial": "active",
+  "states": {
+    "active": {
+      "on": {
+        "FIRE": {
+          "actions": "[Node: sendParent({ type: 'FIRED' })]"
+        }
+      }
+    }
+  }
+}

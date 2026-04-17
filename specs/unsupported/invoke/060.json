@@ -1,11 +1,18 @@
 {
-  "invoke": {
-    "src": "[Call: fromEventObservable]",
-    "input": 42
-  },
-  "on": {
-    "obs.event": {
-      "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "entry": "[Node: sendTo('ponger', { type: 'PING' })]",
+      "invoke": {
+        "id": "ponger",
+        "src": "[Node: pongLogic]"
+      },
+      "on": {
+        "PONG": "success"
+      }
+    },
+    "success": {
+      "type": "final"
     }
   }
 }

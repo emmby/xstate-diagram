@@ -1,36 +1,23 @@
 {
-  "id": "machine",
-  "initial": "one",
-  "context": {},
-  "on": {
-    "ONE": {
-      "actions": "[Call: assign]"
-    },
-    "TWO": {
-      "actions": "[Call: assign]",
-      "target": ".three"
-    }
-  },
+  "initial": "withNonLeafInvoke",
   "states": {
-    "one": {
-      "initial": "two",
+    "withNonLeafInvoke": {
+      "invoke": {
+        "id": "doNotInvoke",
+        "src": "[Node: fromCallback(() => {\n                actorStarted = true;\n              })]"
+      },
+      "initial": "first",
       "states": {
-        "two": {
-          "invoke": [
-            {
-              "id": "child",
-              "src": "[Call: fromCallback]"
-            },
-            {
-              "id": "child2",
-              "src": "[Call: fromCallback]"
-            }
-          ]
+        "first": {
+          "always": "second"
+        },
+        "second": {
+          "always": "#inactive"
         }
       }
     },
-    "three": {
-      "type": "final"
+    "inactive": {
+      "id": "inactive"
     }
   }
 }

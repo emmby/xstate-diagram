@@ -3,12 +3,8 @@
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromCallback]",
-        "onError": "failed"
+        "src": "[Node: fromCallback(() => {\n              throw new Error(\n                'error_thrown_when_not_every_observer_comes_with_an_error_listener'\n              );\n            })]"
       }
-    },
-    "failed": {
-      "type": "final"
     }
   }
 }

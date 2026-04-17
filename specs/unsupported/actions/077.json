@@ -1,14 +1,6 @@
 {
-  "id": "test",
-  "initial": "foo",
-  "states": {
-    "foo": {
-      "entry": {
-        "type": "entryAction",
-        "params": {
-          "value": "something"
-        }
-      }
-    }
-  }
+  "context": {
+    "count": 42
+  },
+  "entry": "[Node: log(({ context }) => `expr ${context.count}`, 'expr label')]"
 }

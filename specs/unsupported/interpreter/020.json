@@ -1,0 +1,25 @@
+{
+  "types": "[Node: {} as {\n          events: {\n            type: 'NEXT';\n            password: string;\n          };\n        }]",
+  "id": "parent",
+  "initial": "start",
+  "states": {
+    "start": {
+      "invoke": {
+        "id": "child",
+        "src": "[Node: childMachine]",
+        "input": {
+          "password": "foo"
+        }
+      },
+      "on": {
+        "NEXT": {
+          "target": "finish",
+          "guard": "[Node: ({ event }) => event.password === 'foo']"
+        }
+      }
+    },
+    "finish": {
+      "type": "final"
+    }
+  }
+}

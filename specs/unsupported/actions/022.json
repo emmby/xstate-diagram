@@ -1,6 +1,17 @@
 {
   "initial": "green",
   "states": {
-    "green": {}
+    "green": {
+      "on": {
+        "RESTART": {
+          "target": "green",
+          "reenter": true
+        }
+      },
+      "initial": "walk",
+      "states": {
+        "walk": {}
+      }
+    }
   }
 }

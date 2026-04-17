@@ -1,20 +1,24 @@
 {
   "id": "promise",
-  "context": {
-    "count": 0
-  },
+  "types": "[Node: {} as {\n              context: { foo: boolean };\n              events: BeginEvent;\n              actors: {\n                src: 'somePromise';\n                logic: typeof promiseActor;\n              };\n            }]",
   "initial": "pending",
+  "context": {
+    "foo": true
+  },
   "states": {
     "pending": {
-      "invoke": {
-        "src": "[Call: fromPromise]",
-        "onDone": {
-          "target": "success",
-          "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
-        }
+      "on": {
+        "BEGIN": "first"
       }
     },
-    "success": {
+    "first": {
+      "invoke": {
+        "src": "somePromise",
+        "input": "[Node: ({ context, event }) => ({\n                    foo: context.foo,\n                    event: event\n                  })]",
+        "onDone": "last"
+      }
+    },
+    "last": {
       "type": "final"
     }
   }

@@ -1,0 +1,14 @@
+{
+  "invoke": {
+    "src": "[Node: fromPromise(() => new Promise((resolve) => resolve(1)))]",
+    "onDone": [
+      ".a",
+      ".b"
+    ]
+  },
+  "initial": "a",
+  "states": {
+    "a": {},
+    "b": {}
+  }
+}

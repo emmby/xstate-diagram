@@ -1,0 +1,7 @@
+{
+  "types": {
+    "context": "[Node: {} as {\n          ref: AnyActorRef;\n        }]",
+    "actors": "[Node: {} as {\n          src: 'reducer';\n          logic: typeof reducer;\n          ids: 'child';\n        }]"
+  },
+  "context": "[Node: ({ spawn }) => ({\n        ref: spawn('reducer', { id: 'child' })\n      })]"
+}

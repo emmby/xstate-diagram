@@ -5,21 +5,13 @@
       "type": "parallel",
       "states": {
         "b": {
-          "type": "parallel",
+          "initial": "c",
           "states": {
             "c": {
-              "initial": "d",
-              "states": {
-                "d": {
-                  "type": "final"
-                }
-              }
+              "type": "final"
             }
           }
         }
-      },
-      "onDone": {
-        "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
       }
     }
   }

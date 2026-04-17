@@ -1,0 +1,11 @@
+{
+  "initial": "one",
+  "states": {
+    "one": {
+      "initial": "deep",
+      "states": {
+        "deep": {}
+      }
+    }
+  }
+}

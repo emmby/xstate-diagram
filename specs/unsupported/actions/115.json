@@ -1,7 +1,9 @@
 {
+  "id": "foo",
+  "entry": "[Node: raise({ type: 'event' }, { id: 'sameId', delay: 100 })]",
   "on": {
-    "PING": {
-      "actions": "[Function/Identifier: spy2...]"
+    "event": {
+      "actions": "[Node: fooSpy]"
     }
   }
 }

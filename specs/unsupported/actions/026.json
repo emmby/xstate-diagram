@@ -1,6 +1,19 @@
 {
-  "initial": "green",
+  "initial": "a",
   "states": {
-    "green": {}
+    "a": {
+      "on": {
+        "EV": "a"
+      },
+      "initial": "a1",
+      "states": {
+        "a1": {
+          "initial": "a11",
+          "states": {
+            "a11": {}
+          }
+        }
+      }
+    }
   }
 }

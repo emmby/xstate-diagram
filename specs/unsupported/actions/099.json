@@ -1,3 +1,7 @@
 {
-  "entry": "[Call: enqueueActions]"
+  "invoke": {
+    "id": "child",
+    "src": "[Node: fromCallback(() => {})]"
+  },
+  "entry": "[Node: sendTo('child', 'a string')]"
 }

@@ -1,19 +1,22 @@
 {
-  "id": "child",
   "initial": "a",
-  "invoke": {
-    "id": "myChild",
-    "src": "[Function/Identifier: grandchild...]"
-  },
   "states": {
     "a": {
       "on": {
-        "FINISH": "b"
+        "NEXT": "b"
       }
     },
     "b": {
-      "type": "final"
+      "entry": "[Node: () => actual.push('entryB')]",
+      "initial": {
+        "target": "foo",
+        "actions": "[Node: () => actual.push('initialFoo')]"
+      },
+      "states": {
+        "foo": {
+          "entry": "[Node: () => actual.push('entryFoo')]"
+        }
+      }
     }
-  },
-  "exit": "[Call: sendTo]"
+  }
 }

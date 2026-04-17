@@ -1,4 +1,7 @@
 {
-  "context": "[Function/Identifier: ({ spawn }) => ({\n        chil...]",
-  "entry": "[Call: sendTo]"
+  "on": {
+    "PING": {
+      "actions": "[Node: spy2]"
+    }
+  }
 }

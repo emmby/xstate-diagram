@@ -1,6 +1,5 @@
 {
   "initial": "start",
-  "exit": "[Function/Identifier: spy...]",
   "states": {
     "start": {
       "on": {
@@ -8,8 +7,8 @@
       }
     },
     "canceled": {
-      "type": "final",
-      "entry": "[Call: sendParent]"
+      "type": "final"
     }
-  }
+  },
+  "exit": "[Node: sendParent({ type: 'CHILD_CANCELED' })]"
 }

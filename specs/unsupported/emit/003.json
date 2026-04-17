@@ -1,0 +1,14 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "ev": {
+          "actions": "[Node: emit({ type: 'someEvent' })]",
+          "target": "b"
+        }
+      }
+    },
+    "b": {}
+  }
+}

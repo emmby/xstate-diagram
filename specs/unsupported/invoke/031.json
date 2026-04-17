@@ -7,10 +7,10 @@
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromPromise]",
+        "src": "[Node: fromPromise(() =>\n                  createPromise((resolve) => resolve({ count: 1 }))\n                )]",
         "onDone": {
           "target": "success",
-          "actions": "[Call: assign]"
+          "actions": "[Node: ({ event }) => {\n                    count = (event.output as any).count;\n                  }]"
         }
       }
     },

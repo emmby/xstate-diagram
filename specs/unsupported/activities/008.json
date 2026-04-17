@@ -8,11 +8,11 @@
     },
     "B": {
       "invoke": {
-        "src": "[Call: fromCallback]"
+        "src": "[Node: fromCallback(() => {\n              active = true;\n              return () => (active = false);\n            })]"
       },
       "always": [
         {
-          "guard": "[Function/Identifier: () => false...]",
+          "guard": "[Node: () => false]",
           "target": "A"
         }
       ]

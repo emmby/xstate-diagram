@@ -1,0 +1,18 @@
+{
+  "types": "[Node: {} as {\n          context: { count: ActorRefFrom<PromiseActorLogic<number>> };\n        }]",
+  "context": "[Node: ({ spawn }) => ({\n          count: spawn(\n            fromPromise(\n              () =>\n                new Promise<number>((_, rej) => {\n                  setTimeout(() => rej(errorMessage), 1);\n                })\n            ),\n            { id: 'test' }\n          )\n        })]",
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "on": {
+        "xstate.error.actor.test": {
+          "target": "success",
+          "guard": "[Node: ({ event }) => {\n                  return event.error === errorMessage;\n                }]"
+        }
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "observable",
+  "initial": "idle",
+  "context": {
+    "observableRef": "[Node: undefined! as ActorRefFrom<typeof observableLogic>]"
+  },
+  "states": {
+    "idle": {
+      "entry": "[Node: spawnChild(observableLogic, {\n            id: 'int',\n            syncSnapshot: true\n          })]",
+      "on": {
+        "xstate.snapshot.int": {
+          "target": "success",
+          "guard": "[Node: ({ event }) => event.snapshot.context === 5]"
+        }
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

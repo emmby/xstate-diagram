@@ -1,14 +1,8 @@
 {
-  "initial": "a",
-  "states": {
-    "a": {
-      "on": {
-        "CHECK": {
-          "target": "b",
-          "guard": "[Function/Identifier: () => true...]"
-        }
-      }
-    },
-    "b": {}
+  "context": {},
+  "on": {
+    "EVENT": {
+      "actions": "[Node: assign((ctx) => {\n              // Side-effect just for testing\n              executed = true;\n              return ctx;\n            })]"
+    }
   }
 }

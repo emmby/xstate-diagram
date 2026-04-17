@@ -1,3 +1,12 @@
 {
-  "entry": "[Call: enqueueActions]"
+  "types": "[Node: {} as {\n        events: ChildEvent;\n      }]",
+  "id": "child",
+  "initial": "start",
+  "states": {
+    "start": {
+      "entry": [
+        "[Node: sendParent({ type: 'PARENT' })]"
+      ]
+    }
+  }
 }

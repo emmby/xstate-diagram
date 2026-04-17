@@ -1,0 +1,10 @@
+{
+  "initial": "foo",
+  "on": {
+    "CLICKED": ".bar"
+  },
+  "states": {
+    "foo": {},
+    "bar": {}
+  }
+}

@@ -6,15 +6,15 @@
   "states": {
     "a": {
       "invoke": {
-        "src": "[Call: fromCallback]"
+        "src": "[Node: fromCallback(() => {\n              active = true;\n              return () => (active = false);\n            })]"
       },
       "always": {
-        "guard": "[Function/Identifier: ({ context }) => context.count...]",
+        "guard": "[Node: ({ context }) => context.counter !== 0]",
         "target": "b"
       },
       "on": {
         "INC": {
-          "actions": "[Call: assign]"
+          "actions": "[Node: assign(({ context }) => ({\n                counter: context.counter + 1\n              }))]"
         }
       }
     },

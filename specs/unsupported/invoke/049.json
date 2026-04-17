@@ -1,12 +1,13 @@
 {
-  "initial": "safe",
+  "id": "child",
+  "initial": "start",
   "states": {
-    "safe": {
-      "invoke": {
-        "src": "[Call: fromCallback]"
+    "start": {
+      "on": {
+        "STOP": "end"
       }
     },
-    "failed": {
+    "end": {
       "type": "final"
     }
   }

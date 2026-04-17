@@ -3,7 +3,7 @@
     "FOO": {
       "guard": {
         "type": "myGuard",
-        "params": "[Function/Identifier: () => ({ stuff: 100 })...]"
+        "params": "[Node: () => ({ stuff: 100 })]"
       }
     }
   }

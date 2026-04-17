@@ -1,7 +1,7 @@
 {
   "on": {
-    "PING": {
-      "actions": "[Function/Identifier: spy2...]"
+    "FOO": {
+      "actions": "[Node: cancel('foo')]"
     }
   }
 }

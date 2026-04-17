@@ -1,0 +1,6 @@
+{
+  "invoke": {
+    "id": "child",
+    "src": "[Node: createMachine({\n          initial: 'inner',\n          states: { inner: {} }\n        })]"
+  }
+}

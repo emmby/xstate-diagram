@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as { context: { value: string }; events: Events }]",
   "id": "yamlEditor",
   "type": "parallel",
   "context": {
@@ -8,7 +9,7 @@
     "editing": {
       "on": {
         "CHANGE": {
-          "actions": "[Call: assign]"
+          "actions": "[Node: assign({\n                value: ({ event }) => event.value\n              })]"
         }
       }
     },

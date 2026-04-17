@@ -1,12 +1,14 @@
 {
-  "initial": "waiting",
+  "initial": "a",
   "states": {
-    "waiting": {
+    "a": {
       "on": {
-        "EVENT": {
-          "actions": "[Function/Identifier: () => resolve()...]"
-        }
+        "NEXT": {
+          "actions": "[Node: raise(() => ({ type: 'RAISED' }))]"
+        },
+        "RAISED": "b"
       }
-    }
+    },
+    "b": {}
   }
 }

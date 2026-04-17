@@ -1,14 +1,3 @@
 {
-  "initial": "pending",
-  "states": {
-    "pending": {
-      "invoke": {
-        "src": "[Call: fromCallback]",
-        "onDone": "success"
-      }
-    },
-    "success": {
-      "type": "final"
-    }
-  }
+  "entry": "[Node: () => {\n        throw new Error('error_thrown_in_initial_entry_action');\n      }]"
 }

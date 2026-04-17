@@ -1,14 +1,3 @@
 {
-  "id": "child",
-  "initial": "active",
-  "states": {
-    "active": {
-      "on": {
-        "EVENT": {
-          "actions": "[Call: sendParent]",
-          "guard": "[Function/Identifier: ({ event }) => event.value ===...]"
-        }
-      }
-    }
-  }
+  "entry": "[Node: enqueueActions(({ enqueue }) => {\n        enqueue(spy);\n      })]"
 }

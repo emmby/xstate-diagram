@@ -1,17 +1,7 @@
 {
-  "initial": "a",
+  "type": "parallel",
   "states": {
-    "a": {
-      "invoke": {
-        "src": "someSrc",
-        "onDone": {
-          "guard": "[Function/Identifier: ({ event }) => {\n             ...]",
-          "target": "b"
-        }
-      }
-    },
-    "b": {
-      "type": "final"
-    }
+    "first": "[Node: createSingleState()]",
+    "second": "[Node: createSingleState()]"
   }
 }

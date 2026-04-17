@@ -1,10 +1,14 @@
 {
-  "initial": "waiting",
+  "initial": "a",
   "states": {
-    "waiting": {
+    "a": {
+      "entry": "[Node: raise({ type: 'TO_B' })]",
       "on": {
-        "EVENT": {}
+        "TO_B": "b"
       }
+    },
+    "b": {
+      "type": "final"
     }
   }
 }

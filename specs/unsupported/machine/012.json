@@ -1,0 +1,7 @@
+{
+  "id": "some-id",
+  "initial": "idle",
+  "states": {
+    "idle": {}
+  }
+}

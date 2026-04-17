@@ -1,43 +1,13 @@
 {
-  "initial": "start",
+  "initial": "safe",
   "states": {
-    "start": {
-      "on": {
-        "FETCH": "fetch"
+    "safe": {
+      "invoke": {
+        "src": "[Node: fromCallback(() => {\n                throw new Error('test');\n              })]"
       }
     },
-    "fetch": {
-      "type": "parallel",
-      "states": {
-        "first": {
-          "initial": "waiting",
-          "states": {
-            "waiting": {
-              "invoke": {
-                "src": "[Call: fromCallback]",
-                "onError": {
-                  "target": "failed"
-                }
-              }
-            },
-            "failed": {}
-          }
-        },
-        "second": {
-          "initial": "waiting",
-          "states": {
-            "waiting": {
-              "invoke": {
-                "src": "[Call: fromCallback]",
-                "onError": {
-                  "target": "failed"
-                }
-              }
-            },
-            "failed": {}
-          }
-        }
-      }
+    "failed": {
+      "type": "final"
     }
   }
 }

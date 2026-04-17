@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as {\n          actions: { type: 'inc'; params: { by: number } };\n        }]",
   "context": {
     "count": 1
   },

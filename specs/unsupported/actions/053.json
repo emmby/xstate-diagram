@@ -1,12 +1,9 @@
 {
-  "id": "parent",
-  "context": "[Function/Identifier: ({ spawn }) => ({\n          ch...]",
-  "on": {
-    "FINISH_CHILD": {
-      "actions": "[Call: sendTo]"
-    },
-    "CHILD_DONE": {
-      "actions": "[Function/Identifier: () => {\n              eventRec...]"
-    }
-  }
+  "context": {
+    "executedAssigns": "[Node: [] as string[]]"
+  },
+  "exit": [
+    "referencedAction",
+    "[Node: assign({\n              executedAssigns: ({ context }) => [\n                ...context.executedAssigns,\n                'inline'\n              ]\n            })]"
+  ]
 }

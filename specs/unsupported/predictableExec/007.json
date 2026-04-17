@@ -1,0 +1,17 @@
+{
+  "context": {},
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "invoke": {
+        "id": "myChild",
+        "src": "[Node: fromCallback(() => {})]"
+      }
+    }
+  }
+}

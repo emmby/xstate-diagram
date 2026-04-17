@@ -3,7 +3,7 @@
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromPromise]",
+        "src": "[Node: fromPromise(() =>\n              Promise.reject(\n                new Error(\n                  'unhandled_rejection_in_promise_actor_with_parent_listener'\n                )\n              )\n            )]",
         "onDone": "success"
       }
     },

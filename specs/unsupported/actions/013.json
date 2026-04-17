@@ -6,10 +6,22 @@
       "states": {
         "a1": {
           "on": {
-            "NEXT": "a2"
+            "NEXT_FN": "a3"
           }
         },
-        "a2": {}
+        "a2": {},
+        "a3": {
+          "on": {
+            "NEXT": {
+              "target": "a2",
+              "actions": [
+                "[Node: transitionSpy]"
+              ]
+            }
+          },
+          "entry": "[Node: entrySpy]",
+          "exit": "[Node: exitSpy]"
+        }
       }
     }
   }

@@ -1,49 +1,18 @@
 {
-  "initial": "running",
+  "types": "[Node: {} as {\n          context: { url: string };\n          actors: {\n            src: 'search';\n            logic: PromiseActorLogic<\n              number,\n              {\n                endpoint: string;\n              }\n            >;\n          };\n        }]",
+  "initial": "searching",
+  "context": {
+    "url": "example.com"
+  },
   "states": {
-    "running": {
-      "type": "parallel",
-      "states": {
-        "one": {
-          "initial": "active",
-          "on": {
-            "STOP_ONE": ".idle"
-          },
-          "states": {
-            "idle": {},
-            "active": {
-              "invoke": {
-                "id": "active",
-                "src": "[Call: fromCallback]"
-              },
-              "on": {
-                "NEXT": {
-                  "actions": "[Call: raise]"
-                }
-              }
-            }
-          }
-        },
-        "two": {
-          "initial": "idle",
-          "on": {
-            "NEXT": ".active"
-          },
-          "states": {
-            "idle": {},
-            "active": {
-              "invoke": {
-                "id": "post",
-                "src": "[Call: fromPromise]",
-                "onDone": "#done"
-              }
-            }
-          }
-        }
+    "searching": {
+      "invoke": {
+        "src": "search",
+        "input": "[Node: ({ context }) => ({ endpoint: context.url })]",
+        "onDone": "success"
       }
     },
-    "done": {
-      "id": "done",
+    "success": {
       "type": "final"
     }
   }

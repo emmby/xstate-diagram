@@ -6,8 +6,8 @@
   "states": {
     "counting": {
       "always": {
-        "guard": "[Function/Identifier: ({ context }) => context.count...]",
-        "actions": "[Call: assign]"
+        "guard": "[Node: ({ context }) => context.count < 5]",
+        "actions": "[Node: assign({ count: ({ context }) => context.count + 1 })]"
       }
     }
   }

@@ -7,7 +7,7 @@
       }
     },
     "b": {
-      "entry": "[Function/Identifier: spy...]",
+      "entry": "[Node: spy]",
       "initial": "b1",
       "states": {
         "b1": {},

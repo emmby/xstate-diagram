@@ -1,4 +1,14 @@
 {
-  "context": "[Function/Identifier: ({ spawn }) => ({\n        chil...]",
-  "entry": "[Call: sendTo]"
+  "initial": "a",
+  "states": {
+    "a": {
+      "entry": "[Node: raise(\n            { type: 'TO_B' },\n            {\n              delay: 100\n            }\n          )]",
+      "on": {
+        "TO_B": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  }
 }

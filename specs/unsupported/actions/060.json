@@ -1,4 +1,17 @@
 {
-  "id": "grandchild",
-  "entry": "[Function/Identifier: () => {\n          throw new Er...]"
+  "initial": {
+    "target": "a",
+    "actions": "[Node: () => spy('root')]"
+  },
+  "states": {
+    "a": {
+      "initial": {
+        "target": "a1",
+        "actions": "[Node: () => spy('inner')]"
+      },
+      "states": {
+        "a1": {}
+      }
+    }
+  }
 }

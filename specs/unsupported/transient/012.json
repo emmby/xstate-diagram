@@ -1,16 +1,18 @@
 {
   "initial": "initial",
-  "context": "[Function/Identifier: ({ input }: { input: { duratio...]",
-  "types": {},
+  "context": "[Node: ({ input }: { input: { duration: number } }) => ({\n        duration: input.duration\n      })]",
+  "types": {
+    "context": "[Node: {} as { duration: number }]"
+  },
   "states": {
     "initial": {
       "always": [
         {
-          "target": "finished",
-          "guard": "[Function/Identifier: ({ context }) => context.durat...]"
+          "target": "[Node: `finished`]",
+          "guard": "[Node: ({ context }) => context.duration < 1000]"
         },
         {
-          "target": "active"
+          "target": "[Node: `active`]"
         }
       ]
     },

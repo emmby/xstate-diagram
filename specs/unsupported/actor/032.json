@@ -1,0 +1,15 @@
+{
+  "types": "[Node: {} as { context: { ref: ActorRefFrom<typeof childMachine> } }]",
+  "context": "[Node: ({ spawn }) => ({\n        ref: spawn(childMachine)\n      })]",
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "on": {
+        "TEST": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

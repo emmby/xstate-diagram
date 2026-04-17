@@ -1,0 +1,13 @@
+{
+  "types": "[Node: {} as {\n          actors: {\n            src: 'service';\n            logic: typeof subjectLogic;\n          };\n        }]",
+  "invoke": [
+    {
+      "src": "service",
+      "onSnapshot": {
+        "actions": [
+          "[Node: ({ event }) => spy(event.snapshot.context)]"
+        ]
+      }
+    }
+  ]
+}

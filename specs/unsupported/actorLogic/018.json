@@ -1,0 +1,3 @@
+{
+  "entry": "[Node: ({ system }) => {\n        expect(system).toBeDefined();\n      }]"
+}

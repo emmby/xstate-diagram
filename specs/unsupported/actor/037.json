@@ -1,0 +1,18 @@
+{
+  "types": {
+    "context": "[Node: {} as {\n          child: ActorRefFrom<typeof emptyObservable> | null;\n        }]"
+  },
+  "context": {
+    "child": "[Node: null]"
+  },
+  "entry": "[Node: assign({\n        child: ({ spawn }) => spawn(emptyObservable, { id: 'myactor' })\n      })]",
+  "initial": "init",
+  "states": {
+    "init": {
+      "on": {
+        "xstate.done.actor.myactor": "done"
+      }
+    },
+    "done": {}
+  }
+}

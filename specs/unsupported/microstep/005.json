@@ -1,0 +1,34 @@
+{
+  "initial": "first",
+  "states": {
+    "first": {
+      "on": {
+        "TRIGGER": {
+          "target": "second",
+          "actions": [
+            "[Node: raise({ type: 'FOO' })]",
+            "[Node: raise({ type: 'BAR' })]"
+          ]
+        }
+      }
+    },
+    "second": {
+      "on": {
+        "FOO": {
+          "target": "third"
+        }
+      }
+    },
+    "third": {
+      "on": {
+        "BAR": {
+          "target": "fourth"
+        }
+      }
+    },
+    "fourth": {
+      "always": "fifth"
+    },
+    "fifth": {}
+  }
+}

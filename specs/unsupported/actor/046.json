@@ -1,0 +1,7 @@
+{
+  "on": {
+    "event": {
+      "actions": "[Node: assign(({ spawn }) => {\n            spawn(\n              fromPromise(async () => {\n                throw new Error('uh oh');\n              })\n            );\n          })]"
+    }
+  }
+}

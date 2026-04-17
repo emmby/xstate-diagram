@@ -13,7 +13,7 @@
       },
       "always": [
         {
-          "actions": "[Function/Identifier: () => {\n                count+...]",
+          "actions": "[Node: () => {\n                count++;\n                if (count > 5) {\n                  throw new Error('Infinite loop detected');\n                }\n              }]",
           "target": ".a"
         }
       ]

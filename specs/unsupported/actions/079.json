@@ -1,6 +1,3 @@
 {
-  "entry": {
-    "type": "entryAction",
-    "params": "[Function/Identifier: () => ({ stuff: 100 })...]"
-  }
+  "entry": "[Node: enqueueActions(({ enqueue }) => {\n          enqueue('someAction');\n          enqueue('otherAction');\n        })]"
 }

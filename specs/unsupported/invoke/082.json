@@ -1,11 +1,12 @@
 {
-  "id": "child",
   "initial": "a",
+  "invoke": {
+    "src": "[Node: fromCallback(() => {\n          return () => {\n            disposed = true;\n          };\n        })]"
+  },
   "states": {
     "a": {
-      "invoke": {
-        "src": "[Call: fromPromise]",
-        "onDone": "b"
+      "on": {
+        "FINISH": "b"
       }
     },
     "b": {

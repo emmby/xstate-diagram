@@ -1,4 +1,4 @@
 {
   "type": "final",
-  "output": "[Function/Identifier: ({ event }) => {\n        spy(e...]"
+  "output": "[Node: ({ event }) => {\n        spy(event);\n      }]"
 }

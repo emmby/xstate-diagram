@@ -1,7 +1,12 @@
 {
-  "invoke": {
-    "id": "child",
-    "src": "[Call: fromCallback]"
-  },
-  "entry": "[Call: sendTo]"
+  "id": "foo",
+  "entry": "[Node: raise({ type: 'event' }, { id: 'sameId', delay: 100 })]",
+  "on": {
+    "event": {
+      "actions": "[Node: fooSpy]"
+    },
+    "cancel": {
+      "actions": "[Node: cancel('sameId')]"
+    }
+  }
 }

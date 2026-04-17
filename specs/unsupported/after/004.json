@@ -3,13 +3,13 @@
   "states": {
     "one": {
       "initial": "two",
-      "entry": "[Function/Identifier: () => actual.push('entered one...]",
+      "entry": "[Node: () => actual.push('entered one')]",
       "states": {
         "two": {
-          "entry": "[Function/Identifier: () => actual.push('entered two...]"
+          "entry": "[Node: () => actual.push('entered two')]"
         },
         "three": {
-          "entry": "[Function/Identifier: () => actual.push('entered thr...]",
+          "entry": "[Node: () => actual.push('entered three')]",
           "always": "#end"
         }
       },

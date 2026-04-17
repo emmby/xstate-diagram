@@ -1,0 +1,11 @@
+{
+  "invoke": [
+    {
+      "src": "[Node: createMachine({})]",
+      "systemId": "test"
+    },
+    {
+      "src": "[Node: fromPromise(({ system }) => {\n            expect(system.get('test')).toBeDefined();\n            return Promise.resolve();\n          })]"
+    }
+  ]
+}

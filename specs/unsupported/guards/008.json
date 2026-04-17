@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as {\n          context: Ctx;\n          events: Events;\n          guards: {\n            type: 'custom';\n            params: {\n              prop: keyof Ctx;\n              op: 'greaterThan';\n              compare: number;\n            };\n          };\n        }]",
   "initial": "inactive",
   "context": {
     "count": 0

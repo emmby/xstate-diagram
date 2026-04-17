@@ -1,21 +1,19 @@
 {
+  "types": "[Node: {} as { context: { count: number } }]",
   "id": "promise",
-  "initial": "parent",
+  "context": {
+    "count": 0
+  },
+  "initial": "pending",
   "states": {
-    "parent": {
-      "initial": "pending",
-      "states": {
-        "pending": {
-          "invoke": {
-            "src": "somePromise",
-            "onDone": "success"
-          }
-        },
-        "success": {
-          "type": "final"
+    "pending": {
+      "invoke": {
+        "src": "somePromise",
+        "onDone": {
+          "target": "success",
+          "actions": "[Node: assign({\n                      count: ({ event }) => event.output.count\n                    })]"
         }
-      },
-      "onDone": "success"
+      }
     },
     "success": {
       "type": "final"

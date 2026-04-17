@@ -1,0 +1,17 @@
+{
+  "types": "[Node: {} as { events: { type: 'EV'; data: number } }]",
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EV": "b"
+      }
+    },
+    "b": {
+      "invoke": {
+        "src": "cb",
+        "input": "[Node: ({ event }) => event.data]"
+      }
+    }
+  }
+}

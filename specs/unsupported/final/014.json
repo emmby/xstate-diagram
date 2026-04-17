@@ -2,8 +2,18 @@
   "type": "parallel",
   "states": {
     "a": {
-      "type": "final"
+      "type": "parallel",
+      "states": {
+        "b": {
+          "initial": "c",
+          "states": {
+            "c": {
+              "type": "final"
+            }
+          }
+        }
+      }
     }
   },
-  "output": "[Function/Identifier: ({ event }) => {\n        spy(e...]"
+  "output": "[Node: ({ event }) => {\n        spy(event);\n      }]"
 }

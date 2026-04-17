@@ -1,10 +1,14 @@
 {
-  "on": {
-    "FOO": {
-      "guard": {
-        "type": "myGuard",
-        "params": "foo"
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": {
+          "target": "b",
+          "guard": "referenced"
+        }
       }
-    }
+    },
+    "b": {}
   }
 }

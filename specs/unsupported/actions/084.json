@@ -1,14 +1,10 @@
 {
-  "id": "child",
-  "initial": "active",
-  "states": {
-    "active": {
-      "on": {
-        "EVENT": {
-          "actions": "[Call: sendParent]",
-          "guard": "[Function/Identifier: ({ event }) => event.value ===...]"
-        }
-      }
+  "on": {
+    "FOO": {
+      "actions": "[Node: enqueueActions(({ enqueue }) => {\n            enqueue.raise({\n              type: 'RAISED'\n            });\n          })]"
+    },
+    "RAISED": {
+      "actions": "[Node: spy]"
     }
   }
 }

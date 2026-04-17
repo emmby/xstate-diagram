@@ -1,0 +1,3 @@
+{
+  "types": "[Node: {} as {\n          context: { count: number };\n        }]"
+}

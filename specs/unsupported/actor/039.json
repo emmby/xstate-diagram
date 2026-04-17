@@ -1,0 +1,6 @@
+{
+  "invoke": {
+    "id": "observable",
+    "src": "[Node: fromEventObservable(() => {\n          subscriptionCount++;\n          return of({ type: 'TEST' });\n        })]"
+  }
+}

@@ -1,9 +1,18 @@
 {
-  "on": {
-    "EV": {
-      "guard": {
-        "type": "checkStuff"
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": [
+          {
+            "target": "b",
+            "guard": "[Node: () => false]"
+          },
+          "c"
+        ]
       }
-    }
+    },
+    "b": {},
+    "c": {}
   }
 }

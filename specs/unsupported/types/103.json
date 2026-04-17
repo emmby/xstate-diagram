@@ -1,0 +1,3 @@
+{
+  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          id: 'myChild';\n          logic: typeof child;\n        };\n      }]"
+}

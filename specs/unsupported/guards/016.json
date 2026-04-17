@@ -1,9 +1,8 @@
 {
   "on": {
-    "FOO": {
+    "EV": {
       "guard": {
-        "type": "myGuard",
-        "params": "foo"
+        "type": "checkStuff"
       }
     }
   }

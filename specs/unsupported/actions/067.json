@@ -1,11 +1,14 @@
 {
-  "initial": {
-    "target": "a",
-    "actions": "[Function/Identifier: () => actual.push('initialA')...]"
-  },
+  "id": "test",
+  "initial": "foo",
   "states": {
-    "a": {
-      "entry": "[Function/Identifier: () => actual.push('entryA')...]"
+    "foo": {
+      "entry": {
+        "type": "entryAction",
+        "params": {
+          "value": "something"
+        }
+      }
     }
   }
 }

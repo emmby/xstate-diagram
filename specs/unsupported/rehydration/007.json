@@ -1,0 +1,11 @@
+{
+  "initial": "parent",
+  "states": {
+    "parent": {
+      "initial": "valid",
+      "states": {
+        "valid": {}
+      }
+    }
+  }
+}

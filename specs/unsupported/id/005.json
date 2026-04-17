@@ -1,0 +1,21 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "EV": "#some\\\\\\\\.thing"
+      }
+    },
+    "foo": {
+      "id": "some\\\\.thing"
+    },
+    "bar": {
+      "id": "some\\\\",
+      "initial": "baz",
+      "states": {
+        "baz": {},
+        "thing": {}
+      }
+    }
+  }
+}

@@ -1,50 +1,20 @@
 {
-  "type": "parallel",
+  "initial": "a",
   "states": {
     "a": {
       "initial": "a1",
       "states": {
-        "a1": {
-          "on": {
-            "CHANGE": {
-              "target": "a2",
-              "actions": [
-                "[Function/Identifier: () => actual.push('do_a2')...]",
-                "[Function/Identifier: () => actual.push('another_do_...]"
-              ]
-            }
-          },
-          "entry": "[Function/Identifier: () => actual.push('enter_a1')...]",
-          "exit": "[Function/Identifier: () => actual.push('exit_a1')...]"
-        },
-        "a2": {
-          "entry": "[Function/Identifier: () => actual.push('enter_a2')...]",
-          "exit": "[Function/Identifier: () => actual.push('exit_a2')...]"
-        }
+        "a1": {}
       },
-      "entry": "[Function/Identifier: () => actual.push('enter_a')...]",
-      "exit": "[Function/Identifier: () => actual.push('exit_a')...]"
+      "on": {
+        "CHANGE": "b"
+      }
     },
     "b": {
       "initial": "b1",
       "states": {
-        "b1": {
-          "on": {
-            "CHANGE": {
-              "target": "b2",
-              "actions": "[Function/Identifier: () => actual.push('do_b2')...]"
-            }
-          },
-          "entry": "[Function/Identifier: () => actual.push('enter_b1')...]",
-          "exit": "[Function/Identifier: () => actual.push('exit_b1')...]"
-        },
-        "b2": {
-          "entry": "[Function/Identifier: () => actual.push('enter_b2')...]",
-          "exit": "[Function/Identifier: () => actual.push('exit_b2')...]"
-        }
-      },
-      "entry": "[Function/Identifier: () => actual.push('enter_b')...]",
-      "exit": "[Function/Identifier: () => actual.push('exit_b')...]"
+        "b1": {}
+      }
     }
   }
 }

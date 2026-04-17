@@ -1,27 +1,13 @@
 {
-  "initial": "B",
+  "initial": "loaded",
   "states": {
-    "A": {
-      "on": {
-        "to-B": "B"
-      }
-    },
-    "B": {
-      "type": "parallel",
-      "on": {
-        "to-A": "A"
-      },
+    "loaded": {
+      "id": "loaded",
+      "initial": "idle",
       "states": {
-        "C": {
-          "initial": "C1",
-          "states": {
-            "C1": {}
-          }
-        },
-        "D": {
-          "initial": "D1",
-          "states": {
-            "D1": {}
+        "idle": {
+          "on": {
+            "UPDATE": "#loaded"
           }
         }
       }

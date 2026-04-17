@@ -1,0 +1,7 @@
+{
+  "on": {
+    "FOO": {
+      "actions": "[Node: spy]"
+    }
+  }
+}

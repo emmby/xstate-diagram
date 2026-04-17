@@ -5,7 +5,7 @@
       "on": {
         "EVENT": {
           "target": "b",
-          "guard": "referenced"
+          "guard": "[Node: not(() => false)]"
         }
       }
     },

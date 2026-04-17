@@ -1,11 +1,13 @@
 {
-  "initial": "one",
+  "types": "[Node: {} as {\n          context: {\n            child: ActorRefFromLogic<typeof child>;\n          };\n        }]",
+  "id": "parent",
+  "context": "[Node: ({ spawn }) => ({\n          child: spawn(child)\n        })]",
   "on": {
-    "WHATEVER": {
-      "actions": "[Function/Identifier: () => {}...]"
+    "STOP_CHILD": {
+      "actions": "[Node: stopChild(({ context }) => context.child)]"
+    },
+    "EXIT": {
+      "actions": "[Node: () => {\n              throw new Error('This should not be called.');\n            }]"
     }
-  },
-  "states": {
-    "one": {}
   }
 }

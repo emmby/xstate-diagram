@@ -1,0 +1,4 @@
+{
+  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          id: 'ok1' | 'ok2';\n          logic: typeof child;\n        };\n      }]",
+  "entry": "[Node: assign(({ spawn }) => {\n        // @ts-expect-error\n        spawn('child', {\n          id: 'child'\n        });\n        return {};\n      })]"
+}

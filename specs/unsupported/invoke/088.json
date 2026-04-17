@@ -1,19 +1,23 @@
 {
-  "id": "root",
-  "invoke": {
-    "src": "[Call: fromPromise]"
-  },
-  "on": {
-    "EVENT": {
-      "target": "#two",
-      "reenter": true
-    }
-  },
-  "initial": "one",
+  "initial": "a",
   "states": {
-    "one": {},
-    "two": {
-      "id": "two"
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "invoke": {
+        "id": "foo",
+        "src": "[Node: child]"
+      },
+      "entry": "[Node: sendTo('foo', ({ self }) => ({ type: 'PING', origin: self }), {\n            delay: 1\n          })]",
+      "on": {
+        "PONG": "c"
+      }
+    },
+    "c": {
+      "type": "final"
     }
   }
 }

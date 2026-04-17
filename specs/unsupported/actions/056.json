@@ -1,15 +1,20 @@
 {
-  "id": "parent",
-  "initial": "a",
+  "initial": "foo",
   "states": {
-    "a": {
-      "invoke": {
-        "src": "[Function/Identifier: child...]"
-      },
+    "foo": {
+      "exit": "[Node: () => {\n              executedActions.push('foo exit action');\n            }]",
       "on": {
-        "NEXT": "b"
+        "INITIALIZE_SYNC_SEQUENCE": {
+          "target": "bar",
+          "actions": [
+            "[Node: () => {\n                    // immediately stop *while* the `INITIALIZE_SYNC_SEQUENCE` is still being processed\n                    service.stop();\n                  }]",
+            "[Node: () => {\n                    executedActions.push('foo transition action');\n                  }]"
+          ]
+        }
       }
     },
-    "b": {}
+    "bar": {
+      "exit": "[Node: () => {\n              executedActions.push('bar exit action');\n            }]"
+    }
   }
 }

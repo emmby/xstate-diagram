@@ -1,18 +1,10 @@
 {
+  "exit": "[Node: () => {\n          exitCalled = true;\n        }]",
   "initial": "a",
   "states": {
     "a": {
-      "initial": "a1",
-      "states": {
-        "a1": {
-          "on": {
-            "EV": {
-              "target": "a1",
-              "reenter": true
-            }
-          }
-        }
-      }
+      "type": "final",
+      "exit": "[Node: () => {\n              childExitCalled = true;\n            }]"
     }
   }
 }

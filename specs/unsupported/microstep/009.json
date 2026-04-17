@@ -1,0 +1,15 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "entry": "[Node: () => {}]",
+      "always": {
+        "target": "b",
+        "actions": "[Node: () => {}]"
+      }
+    },
+    "b": {
+      "entry": "[Node: () => {}]"
+    }
+  }
+}

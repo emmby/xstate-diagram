@@ -1,0 +1,15 @@
+{
+  "types": "[Node: {} as { context: { ref?: ActorRefFrom<typeof anotherMachine> } }]",
+  "initial": "testing",
+  "context": "[Node: ({ spawn }) => {\n        spawnCalled++;\n        // throw in case of an infinite loop\n        expect(spawnCalled).toBe(1);\n        return {\n          ref: spawn(anotherMachine)\n        };\n      }]",
+  "states": {
+    "testing": {
+      "on": {
+        "ping": {
+          "target": "done"
+        }
+      }
+    },
+    "done": {}
+  }
+}

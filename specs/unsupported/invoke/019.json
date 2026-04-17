@@ -1,12 +1,24 @@
 {
-  "id": "pong",
-  "initial": "active",
+  "id": "ping",
+  "type": "parallel",
   "states": {
-    "active": {
-      "type": "final"
+    "one": {
+      "initial": "active",
+      "states": {
+        "active": {
+          "invoke": {
+            "id": "pong",
+            "src": "[Node: pongMachine]",
+            "onDone": {
+              "target": "success",
+              "guard": "[Node: ({ event }) => event.output.secret === 'pingpong']"
+            }
+          }
+        },
+        "success": {
+          "type": "final"
+        }
+      }
     }
-  },
-  "output": {
-    "secret": "pingpong"
   }
 }

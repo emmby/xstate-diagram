@@ -1,14 +1,26 @@
 {
   "initial": "a",
+  "context": {
+    "count": 5
+  },
   "states": {
     "a": {
-      "on": {
-        "event": {
-          "target": "b",
-          "actions": "[Function/Identifier: fn...]"
+      "always": [
+        {
+          "guard": "[Node: ({ context }) => context.count > 10]",
+          "target": "b"
+        },
+        {
+          "guard": "[Node: () => false]",
+          "target": "c"
         }
+      ],
+      "on": {
+        "GO_D": "d"
       }
     },
-    "b": {}
+    "b": {},
+    "c": {},
+    "d": {}
   }
 }

@@ -1,0 +1,3 @@
+{
+  "entry": "[Node: ({ event }) => {\n        expect(event.input.greeting).toBe('hello');\n        resolve();\n      }]"
+}

@@ -1,0 +1,15 @@
+{
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "src": "[Node: createMachine({})]",
+        "systemId": "test"
+      },
+      "on": {
+        "toggle": "inactive"
+      }
+    },
+    "inactive": {}
+  }
+}

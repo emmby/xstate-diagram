@@ -1,9 +1,12 @@
 {
-  "id": "machine",
-  "initial": "a",
+  "type": "parallel",
   "states": {
-    "a": {
-      "invoke": "[Function/Identifier: invokeConfig...]"
+    "first": "[Node: createSingleState()]",
+    "second": "[Node: createSingleState()]"
+  },
+  "on": {
+    "*": {
+      "actions": "[Node: ({ event }) => {\n            actual.push(event);\n          }]"
     }
   }
 }

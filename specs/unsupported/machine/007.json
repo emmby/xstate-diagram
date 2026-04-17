@@ -1,0 +1,4 @@
+{
+  "types": "[Node: {} as { context: { foo: { prop: string } } }]",
+  "context": "[Node: () => ({\n          foo: { prop: 'baz' }\n        })]"
+}

@@ -1,7 +1,6 @@
 {
-  "on": {
-    "PING": {
-      "actions": "[Call: sendTo]"
-    }
+  "invoke": {
+    "src": "[Node: fromCallback(({ input }) => {\n          expect(input.responder.send).toBeDefined();\n          resolve();\n        })]",
+    "input": "[Node: ({ self }) => ({\n          responder: self\n        })]"
   }
 }

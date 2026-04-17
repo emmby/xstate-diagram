@@ -1,0 +1,23 @@
+{
+  "id": "form",
+  "initial": "present",
+  "context": "[Node: {} as {\n          machineRef: ActorRefFrom<typeof childMachine>;\n          promiseRef: ActorRefFrom<typeof fromPromise>;\n          observableRef: AnyActorRef;\n        }]",
+  "entry": "[Node: assign({\n          machineRef: ({ spawn }) =>\n            spawn(childMachine, { id: 'machineChild' }),\n          promiseRef: ({ spawn }) =>\n            spawn(\n              fromPromise(\n                () =>\n                  new Promise(() => {\n                    // ...\n                  })\n              ),\n              { id: 'promiseChild' }\n            ),\n          observableRef: ({ spawn }) =>\n            spawn(\n              fromObservable(() => interval(1000)),\n              { id: 'observableChild' }\n            )\n        })]",
+  "states": {
+    "present": {
+      "on": {
+        "NEXT": {
+          "target": "gone",
+          "actions": [
+            "[Node: stopChild(({ context }) => context.machineRef)]",
+            "[Node: stopChild(({ context }) => context.promiseRef)]",
+            "[Node: stopChild(({ context }) => context.observableRef)]"
+          ]
+        }
+      }
+    },
+    "gone": {
+      "type": "final"
+    }
+  }
+}

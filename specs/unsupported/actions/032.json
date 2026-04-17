@@ -1,20 +1,18 @@
 {
-  "initial": "A",
+  "initial": "start",
   "states": {
-    "A": {
-      "initial": "A1",
+    "start": {
       "on": {
-        "NEXT": {
-          "reenter": true,
-          "target": ".A2"
-        }
-      },
+        "ENTER_PARALLEL": "p1"
+      }
+    },
+    "p1": {
+      "type": "parallel",
       "states": {
-        "A1": {},
-        "A2": {
-          "initial": "A2a",
+        "nested": {
+          "initial": "inner",
           "states": {
-            "A2a": {}
+            "inner": {}
           }
         }
       }

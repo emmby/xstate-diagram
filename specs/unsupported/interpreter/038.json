@@ -1,0 +1,17 @@
+{
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "id": "childActor",
+        "src": "[Node: childMachine]"
+      },
+      "on": {
+        "FIRED": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

@@ -1,24 +1,25 @@
 {
   "id": "fetch",
-  "context": "[Function/Identifier: ({ input }) => ({\n        user...]",
+  "types": "[Node: {} as {\n        context: { userId: string | undefined; user?: typeof user | undefined };\n        events: {\n          type: 'RESOLVE';\n          user: typeof user;\n        };\n        input: { userId: string };\n      }]",
+  "context": "[Node: ({ input }) => ({\n        userId: input.userId\n      })]",
   "initial": "pending",
   "states": {
     "pending": {
-      "entry": "[Call: raise]",
+      "entry": "[Node: raise({ type: 'RESOLVE', user })]",
       "on": {
         "RESOLVE": {
           "target": "success",
-          "guard": "[Function/Identifier: ({ context }) => {\n           ...]"
+          "guard": "[Node: ({ context }) => {\n                return context.userId !== undefined;\n              }]"
         }
       }
     },
     "success": {
       "type": "final",
-      "entry": "[Call: assign]"
+      "entry": "[Node: assign({\n            user: ({ event }) => event.user\n          })]"
     },
     "failure": {
-      "entry": "[Call: sendParent]"
+      "entry": "[Node: sendParent({ type: 'REJECT' })]"
     }
   },
-  "output": "[Function/Identifier: ({ context }) => ({ user: cont...]"
+  "output": "[Node: ({ context }) => ({ user: context.user })]"
 }

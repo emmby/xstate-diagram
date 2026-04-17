@@ -1,8 +1,9 @@
 {
+  "types": "[Node: {} as {\n        events: { type: 'RESOLVE' };\n        input: { userId: string };\n      }]",
   "initial": "pending",
   "states": {
     "pending": {
-      "entry": "[Call: raise]",
+      "entry": "[Node: raise({ type: 'RESOLVE' })]",
       "on": {
         "RESOLVE": {
           "target": "success"

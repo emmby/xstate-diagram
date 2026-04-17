@@ -3,7 +3,7 @@
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromPromise]",
+        "src": "[Node: child]",
         "onDone": "success"
       }
     },

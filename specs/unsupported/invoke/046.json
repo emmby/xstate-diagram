@@ -1,16 +1,14 @@
 {
-  "id": "error",
-  "initial": "safe",
+  "initial": "idle",
   "states": {
-    "safe": {
-      "invoke": {
-        "src": "[Call: fromCallback]",
-        "onError": "failed"
+    "idle": {
+      "on": {
+        "GO_TO_WAITING": "waiting"
       }
     },
-    "failed": {
-      "on": {
-        "RETRY": "safe"
+    "waiting": {
+      "invoke": {
+        "src": "[Node: fromCallback(() => {})]"
       }
     }
   }

@@ -1,9 +1,8 @@
 {
-  "exit": "[Function/Identifier: rootSpy...]",
-  "initial": "a",
-  "states": {
-    "a": {
-      "exit": "[Function/Identifier: childSpy...]"
-    }
-  }
+  "id": "child",
+  "invoke": {
+    "id": "myChild",
+    "src": "[Node: grandchild]"
+  },
+  "exit": "[Node: sendTo('myChild', { type: 'STOPPED' })]"
 }

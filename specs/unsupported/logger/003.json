@@ -1,0 +1,3 @@
+{
+  "entry": "[Node: spawnChild(\n        createMachine({\n          entry: log('hello')\n        })\n      )]"
+}

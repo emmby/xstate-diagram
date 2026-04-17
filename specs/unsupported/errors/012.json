@@ -3,7 +3,7 @@
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromCallback]"
+        "src": "[Node: fromCallback(() => {\n              throw new Error('unhandled_sync_error_in_actor_start');\n            })]"
       }
     }
   }

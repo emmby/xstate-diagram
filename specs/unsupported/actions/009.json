@@ -7,6 +7,12 @@
           "target": "green",
           "reenter": true
         }
+      },
+      "initial": "walk",
+      "states": {
+        "walk": {},
+        "wait": {},
+        "stop": {}
       }
     }
   }

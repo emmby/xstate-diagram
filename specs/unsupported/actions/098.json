@@ -1,6 +1,14 @@
 {
-  "context": {
-    "count": 0
-  },
-  "entry": "[Call: enqueueActions]"
+  "types": "[Node: {} as {\n        context: Record<string, CallbackActorRef<EventObject>>;\n        events: { type: 'EVENT'; value: string };\n      }]",
+  "initial": "a",
+  "context": "[Node: ({ spawn }) => ({\n        foo: spawn(\n          fromCallback(({ receive }) => {\n            receive((event) => {\n              expect(event).toEqual({ type: 'EVENT' });\n            });\n          })\n        )\n      })]",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": {
+          "actions": "[Node: sendTo(({ context, event }) => context[event.value], {\n                type: 'EVENT'\n              })]"
+        }
+      }
+    }
+  }
 }

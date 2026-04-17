@@ -1,0 +1,24 @@
+{
+  "id": "authClient",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "AUTH": "authorizing"
+      }
+    },
+    "authorizing": {
+      "invoke": {
+        "id": "auth-server",
+        "src": "[Node: authServerMachine]"
+      },
+      "entry": "[Node: sendTo('auth-server', ({ self }) => ({\n            type: 'CODE',\n            sender: self\n          }))]",
+      "on": {
+        "TOKEN": "authorized"
+      }
+    },
+    "authorized": {
+      "type": "final"
+    }
+  }
+}

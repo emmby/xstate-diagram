@@ -1,33 +1,16 @@
 {
-  "id": "callback",
-  "initial": "pending",
-  "context": {
-    "foo": true
-  },
+  "id": "interval",
+  "initial": "counting",
   "states": {
-    "pending": {
-      "on": {
-        "BEGIN": "first"
-      }
-    },
-    "first": {
-      "always": "second"
-    },
-    "second": {
+    "counting": {
       "invoke": {
-        "src": "someCallback"
+        "id": "intervalService",
+        "src": "[Node: fromCallback(() => spy)]"
       },
       "on": {
-        "CALLBACK": "third"
+        "NEXT": "idle"
       }
     },
-    "third": {
-      "on": {
-        "NEXT": "last"
-      }
-    },
-    "last": {
-      "type": "final"
-    }
+    "idle": {}
   }
 }

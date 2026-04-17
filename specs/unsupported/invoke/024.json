@@ -1,21 +1,24 @@
 {
-  "id": "parent",
-  "initial": "idle",
+  "types": "[Node: {} as { context: { id: number; succeed: boolean } }]",
+  "id": "invokePromise",
+  "initial": "pending",
+  "context": "[Node: ({\n          input\n        }: {\n          input: { id?: number; succeed?: boolean };\n        }) => ({\n          id: 42,\n          succeed: true,\n          ...input\n        })]",
   "states": {
-    "idle": {
-      "on": {
-        "START": "active"
-      }
-    },
-    "active": {
+    "pending": {
       "invoke": {
-        "src": "[Function/Identifier: child...]"
-      },
-      "on": {
-        "STOPPED": "done"
+        "src": "[Node: fromPromise(({ input }) =>\n                createPromise((resolve) => {\n                  if (input.succeed) {\n                    resolve(input.id);\n                  } else {\n                    throw new Error(`failed on purpose for: ${input.id}`);\n                  }\n                })\n              )]",
+        "input": "[Node: ({ context }: any) => context]",
+        "onDone": {
+          "target": "success",
+          "guard": "[Node: ({ context, event }) => {\n                  return event.output === context.id;\n                }]"
+        },
+        "onError": "failure"
       }
     },
-    "done": {
+    "success": {
+      "type": "final"
+    },
+    "failure": {
       "type": "final"
     }
   }

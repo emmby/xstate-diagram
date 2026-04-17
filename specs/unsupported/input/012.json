@@ -1,0 +1,6 @@
+{
+  "invoke": {
+    "src": "[Node: createMachine({})]",
+    "input": "[Node: ({ self }: any) => spy(self)]"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "on": {
+    "TARGETLESS_ARRAY": [
+      {
+        "actions": [
+          "[Node: spy]"
+        ]
+      }
+    ]
+  },
+  "initial": "foo",
+  "states": {
+    "foo": {}
+  }
+}

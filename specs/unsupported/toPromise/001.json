@@ -1,0 +1,17 @@
+{
+  "types": "[Node: {} as {\n        output: { count: 42 };\n      }]",
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "on": {
+        "RESOLVE": "done"
+      }
+    },
+    "done": {
+      "type": "final"
+    }
+  },
+  "output": {
+    "count": 42
+  }
+}

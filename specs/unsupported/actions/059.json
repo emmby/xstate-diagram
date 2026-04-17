@@ -1,12 +1,27 @@
 {
-  "id": "parent",
-  "invoke": {
-    "id": "myChild",
-    "src": "[Function/Identifier: child...]"
-  },
-  "on": {
-    "NEXT": {
-      "actions": "[Call: sendTo]"
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "initial": {
+        "target": "b_child",
+        "actions": "[Node: () => spy('initial in b')]"
+      },
+      "states": {
+        "b_child": {
+          "initial": {
+            "target": "b_granchild",
+            "actions": "[Node: () => spy('initial in b_child')]"
+          },
+          "states": {
+            "b_granchild": {}
+          }
+        }
+      }
     }
   }
 }

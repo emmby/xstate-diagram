@@ -1,0 +1,7 @@
+{
+  "invoke": {
+    "src": "[Node: createMachine({})]",
+    "systemId": "test"
+  },
+  "entry": "[Node: ({ system }) => {\n        expect(system.get('test')).toBeDefined();\n      }]"
+}

@@ -1,15 +1,16 @@
 {
+  "types": "[Node: {} as {\n        events: {\n          type: 'SUCCESS';\n          data: number;\n        };\n      }]",
   "id": "machine-invoke",
   "initial": "pending",
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: createMachine]"
+        "src": "[Node: createMachine({\n              id: 'child',\n              initial: 'sending',\n              states: {\n                sending: {\n                  entry: sendParent({ type: 'SUCCESS', data: 42 })\n                }\n              }\n            })]"
       },
       "on": {
         "SUCCESS": {
           "target": "success",
-          "guard": "[Function/Identifier: ({ event }) => {\n             ...]"
+          "guard": "[Node: ({ event }) => {\n                return event.data === 42;\n              }]"
         }
       }
     },

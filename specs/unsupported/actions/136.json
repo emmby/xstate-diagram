@@ -1,10 +1,3 @@
 {
-  "context": {
-    "count": 0
-  },
-  "entry": [
-    "[Function/Identifier: ({ context }) => captured.push...]",
-    "[Call: enqueueActions]",
-    "[Function/Identifier: ({ context }) => captured.push...]"
-  ]
+  "entry": "[Node: () => {\n        assign({});\n        raise({ type: '' });\n        sendTo('', { type: '' });\n        emit({ type: '' });\n      }]"
 }

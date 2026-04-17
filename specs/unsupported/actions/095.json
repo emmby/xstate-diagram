@@ -1,10 +1,5 @@
 {
-  "on": {
-    "FOO": {
-      "actions": "[Call: enqueueActions]"
-    },
-    "RAISED": {
-      "actions": "[Function/Identifier: spy...]"
-    }
-  }
+  "types": "[Node: {} as {\n        context: {\n          child: ActorRefFromLogic<typeof childMachine>;\n        };\n      }]",
+  "context": "[Node: ({ spawn }) => ({\n        child: spawn(childMachine)\n      })]",
+  "entry": "[Node: sendTo(({ context }) => context.child, {\n        // @ts-expect-error\n        type: 'UNKNOWN'\n      })]"
 }

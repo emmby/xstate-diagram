@@ -1,0 +1,3 @@
+{
+  "entry": "[Node: () => {\n        called = true;\n      }]"
+}

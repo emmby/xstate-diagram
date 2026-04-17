@@ -1,0 +1,26 @@
+{
+  "types": "[Node: {} as {\n        context: {\n          user: { age: number; name: string };\n          position: {\n            x: number;\n            y: number;\n          };\n        };\n        events:\n          | {\n              type: 'UPDATE_USER';\n              user: { age: number; name: string };\n            }\n          | {\n              type: 'UPDATE_POSITION';\n              position: {\n                x: number;\n                y: number;\n              };\n            };\n      }]",
+  "context": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "user": {
+      "name": "John",
+      "age": 30
+    }
+  },
+  "initial": "G",
+  "states": {
+    "G": {
+      "on": {
+        "UPDATE_USER": {
+          "actions": "[Node: assign({ user: ({ event }) => event.user })]"
+        },
+        "UPDATE_POSITION": {
+          "actions": "[Node: assign({ position: ({ event }) => event.position })]"
+        }
+      }
+    }
+  }
+}

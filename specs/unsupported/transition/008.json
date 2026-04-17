@@ -1,15 +1,18 @@
 {
-  "initial": "a",
-  "context": {
-    "count": 10
-  },
+  "initial": "start",
   "states": {
-    "a": {
+    "start": {
       "on": {
-        "NEXT": {
-          "actions": "[Call: log]"
-        }
+        "next": "waiting"
       }
+    },
+    "waiting": {
+      "after": {
+        "10": "done"
+      }
+    },
+    "done": {
+      "type": "final"
     }
   }
 }

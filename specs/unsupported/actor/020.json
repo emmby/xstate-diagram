@@ -1,0 +1,14 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "invoke": {
+        "src": "[Node: child]",
+        "onDone": "end"
+      }
+    },
+    "end": {
+      "type": "final"
+    }
+  }
+}

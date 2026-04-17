@@ -1,0 +1,4 @@
+{
+  "types": "[Node: {} as {\n        actors:\n          | {\n              src: 'child1';\n              logic: typeof child1;\n            }\n          | {\n              src: 'child2';\n              logic: typeof child2;\n            };\n      }]",
+  "entry": "[Node: spawnChild('child1', {\n          input: 'hello'\n        })]"
+}

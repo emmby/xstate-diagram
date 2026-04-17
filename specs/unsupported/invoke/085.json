@@ -1,16 +1,19 @@
 {
-  "initial": "a",
+  "id": "root",
   "invoke": {
-    "src": "[Call: fromCallback]"
+    "src": "[Node: fromPromise(() => {\n          count++;\n          return Promise.resolve(42);\n        })]"
   },
+  "on": {
+    "EVENT": {
+      "target": "#two",
+      "reenter": true
+    }
+  },
+  "initial": "one",
   "states": {
-    "a": {
-      "on": {
-        "FINISH": "b"
-      }
-    },
-    "b": {
-      "type": "final"
+    "one": {},
+    "two": {
+      "id": "two"
     }
   }
 }

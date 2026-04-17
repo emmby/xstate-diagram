@@ -1,13 +1,21 @@
 {
-  "id": "child",
+  "id": "parent",
   "initial": "one",
   "states": {
     "one": {
-      "on": {
-        "NEXT": "two"
-      }
+      "invoke": {
+        "id": "foo-child",
+        "src": "[Node: doneSubMachine]",
+        "onDone": "two"
+      },
+      "entry": "[Node: sendTo('foo-child', { type: 'NEXT' })]"
     },
     "two": {
+      "on": {
+        "NEXT": "three"
+      }
+    },
+    "three": {
       "type": "final"
     }
   }

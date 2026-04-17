@@ -1,0 +1,17 @@
+{
+  "context": {
+    "ref": "[Node: null! as AnyActorRef]"
+  },
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "entry": "[Node: assign({\n              ref: ({ spawn }) => spawn('child')\n            })]",
+      "on": {
+        "DONE": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

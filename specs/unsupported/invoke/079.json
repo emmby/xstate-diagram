@@ -1,3 +1,15 @@
 {
-  "id": "someId"
+  "id": "child",
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": {
+        "src": "[Node: fromPromise(() => {\n              return Promise.resolve(42);\n            })]",
+        "onDone": "b"
+      }
+    },
+    "b": {
+      "type": "final"
+    }
+  }
 }

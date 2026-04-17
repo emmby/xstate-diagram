@@ -1,42 +1,49 @@
 {
-  "id": "machine",
-  "initial": "one",
-  "context": {},
-  "on": {
-    "ONE": {
-      "actions": "[Call: assign]"
-    },
-    "TWO": {
-      "actions": "[Call: assign]"
-    }
-  },
-  "after": {
-    "10": ".three"
-  },
+  "initial": "running",
   "states": {
-    "one": {
-      "initial": "two",
+    "running": {
+      "type": "parallel",
       "states": {
-        "two": {
-          "type": "parallel",
+        "one": {
+          "initial": "active",
+          "on": {
+            "STOP_ONE": ".idle"
+          },
           "states": {
-            "a": {
+            "idle": {},
+            "active": {
               "invoke": {
-                "id": "child",
-                "src": "[Call: fromCallback]"
+                "id": "active",
+                "src": "[Node: fromCallback(() => {\n                        /* ... */\n                      })]"
+              },
+              "on": {
+                "NEXT": {
+                  "actions": "[Node: raise({ type: 'STOP_ONE' })]"
+                }
               }
-            },
-            "b": {
+            }
+          }
+        },
+        "two": {
+          "initial": "idle",
+          "on": {
+            "NEXT": ".active"
+          },
+          "states": {
+            "idle": {},
+            "active": {
               "invoke": {
-                "id": "child2",
-                "src": "[Call: fromCallback]"
+                "id": "post",
+                "src": "[Node: fromPromise(() => Promise.resolve(42))]",
+                "onDone": "#done"
               }
             }
           }
         }
       }
     },
-    "three": {
+    "done": {
+      "id": "done",
       "type": "final"
     }
   }

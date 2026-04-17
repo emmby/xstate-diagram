@@ -1,0 +1,4 @@
+{
+  "types": "[Node: {} as {\n        delays: 'one second' | 'one minute';\n      }]",
+  "entry": "[Node: enqueueActions(({ enqueue }) => {\n        enqueue.raise({ type: 'FOO' }, { delay: 'one minute' });\n      })]"
+}

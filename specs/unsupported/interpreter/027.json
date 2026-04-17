@@ -1,0 +1,15 @@
+{
+  "id": "delayed",
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "after": {
+        "50": {
+          "target": "bar",
+          "actions": "[Node: () => {\n                  called = true;\n                }]"
+        }
+      }
+    },
+    "bar": {}
+  }
+}

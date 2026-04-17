@@ -1,0 +1,11 @@
+{
+  "initial": "foo",
+  "on": {
+    "PARENT_EVENT": {
+      "actions": "[Node: () => {}]"
+    }
+  },
+  "states": {
+    "foo": {}
+  }
+}

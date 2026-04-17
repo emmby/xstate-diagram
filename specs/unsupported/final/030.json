@@ -2,16 +2,13 @@
   "initial": "start",
   "states": {
     "start": {
-      "invoke": {
-        "id": "child",
-        "src": "[Function/Identifier: child...]",
-        "onDone": "completed"
-      },
       "on": {
-        "CHILD_CANCELED": "canceled"
+        "NEXT": "end"
       }
     },
-    "canceled": {},
-    "completed": {}
-  }
+    "end": {
+      "type": "final"
+    }
+  },
+  "output": "[Node: null]"
 }

@@ -1,0 +1,6 @@
+{
+  "types": {
+    "guards": "[Node: {} as\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' }]"
+  },
+  "entry": "[Node: enqueueActions(({ check }) => {\n        check((_, params) => {\n          params satisfies undefined;\n          undefined satisfies typeof params;\n          // @ts-expect-error\n          params satisfies 'not any';\n\n          return true;\n        });\n      })]"
+}

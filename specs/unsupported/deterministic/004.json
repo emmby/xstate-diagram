@@ -1,0 +1,16 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "initial": "b",
+      "states": {
+        "b": {
+          "on": {
+            "NEXT": "c"
+          }
+        },
+        "c": {}
+      }
+    }
+  }
+}

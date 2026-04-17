@@ -10,7 +10,7 @@
           }
         },
         "A2": {
-          "entry": "[Call: raise]"
+          "entry": "[Node: raise({ type: 'INT1' })]"
         }
       }
     },
@@ -23,7 +23,7 @@
           }
         },
         "B2": {
-          "entry": "[Call: raise]"
+          "entry": "[Node: raise({ type: 'INT2' })]"
         }
       }
     },

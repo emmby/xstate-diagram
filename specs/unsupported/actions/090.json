@@ -1,3 +1,13 @@
 {
-  "entry": "[Call: enqueueActions]"
+  "types": "[Node: {} as {\n        events: { type: 'EVENT' };\n      }]",
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "on": {
+        "EVENT": {
+          "actions": "[Node: () => resolve()]"
+        }
+      }
+    }
+  }
 }

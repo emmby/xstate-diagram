@@ -1,0 +1,22 @@
+{
+  "id": "transient",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": "transient"
+      }
+    },
+    "transient": {
+      "always": "next"
+    },
+    "next": {
+      "on": {
+        "FINISH": "end"
+      }
+    },
+    "end": {
+      "type": "final"
+    }
+  }
+}

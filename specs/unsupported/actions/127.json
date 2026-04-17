@@ -1,12 +1,8 @@
 {
-  "id": "foo",
-  "entry": "[Call: raise]",
+  "entry": "[Node: raise({ type: 'HELLO' })]",
   "on": {
-    "event": {
-      "actions": "[Function/Identifier: fooSpy...]"
-    },
-    "cancel": {
-      "actions": "[Call: cancel]"
+    "HELLO": {
+      "actions": "foo"
     }
   }
 }

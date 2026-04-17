@@ -9,12 +9,12 @@
     "b": {
       "initial": "b1",
       "invoke": {
-        "src": "[Call: fromCallback]"
+        "src": "[Node: fromCallback(() => {\n              active1 = true;\n              return () => (active1 = false);\n            })]"
       },
       "states": {
         "b1": {
           "invoke": {
-            "src": "[Call: fromCallback]"
+            "src": "[Node: fromCallback(() => {\n                  active2 = true;\n                  return () => (active2 = false);\n                })]"
           }
         }
       },

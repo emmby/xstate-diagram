@@ -1,10 +1,9 @@
 {
-  "on": {
-    "INITIALIZE_SYNC_SEQUENCE": {
-      "actions": "[Function/Identifier: () => {\n              // sched...]"
+  "entry": [
+    "definedAction",
+    {
+      "type": "definedAction"
     },
-    "SOME_EVENT": {
-      "actions": "[Function/Identifier: () => {\n              throw ne...]"
-    }
-  }
+    "undefinedAction"
+  ]
 }

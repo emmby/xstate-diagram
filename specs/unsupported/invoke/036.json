@@ -1,51 +1,29 @@
 {
-  "context": {
-    "result1": null,
-    "result2": null
-  },
+  "id": "callback",
+  "types": "[Node: {} as {\n            context: { foo: boolean };\n            events: BeginEvent | CallbackEvent;\n            actors: {\n              src: 'someCallback';\n              logic: typeof someCallback;\n            };\n          }]",
   "initial": "pending",
+  "context": {
+    "foo": true
+  },
   "states": {
     "pending": {
-      "type": "parallel",
-      "states": {
-        "state1": {
-          "initial": "active",
-          "states": {
-            "active": {
-              "invoke": {
-                "src": "getRandomNumber",
-                "onDone": {
-                  "target": "success",
-                  "actions": "[Call: assign]"
-                }
-              }
-            },
-            "success": {
-              "type": "final"
-            }
-          }
-        },
-        "state2": {
-          "initial": "active",
-          "states": {
-            "active": {
-              "invoke": {
-                "src": "getRandomNumber",
-                "onDone": {
-                  "target": "success",
-                  "actions": "[Call: assign]"
-                }
-              }
-            },
-            "success": {
-              "type": "final"
-            }
-          }
-        }
-      },
-      "onDone": "done"
+      "on": {
+        "BEGIN": "first"
+      }
     },
-    "done": {
+    "first": {
+      "invoke": {
+        "src": "someCallback",
+        "input": "[Node: ({ context, event }) => ({\n                  foo: context.foo,\n                  event: event\n                })]"
+      },
+      "on": {
+        "CALLBACK": {
+          "target": "last",
+          "guard": "[Node: ({ event }) => event.data === 42]"
+        }
+      }
+    },
+    "last": {
       "type": "final"
     }
   }

@@ -1,18 +1,30 @@
 {
-  "initial": "a",
+  "type": "parallel",
   "states": {
     "a": {
-      "type": "parallel",
+      "initial": "child_a1",
       "states": {
-        "b": {
-          "type": "final"
+        "child_a1": {
+          "on": {
+            "EV2": "child_a2"
+          }
         },
-        "c": {
+        "child_a2": {
           "type": "final"
         }
-      },
-      "onDone": {
-        "actions": "[Function/Identifier: spy...]"
+      }
+    },
+    "b": {
+      "initial": "child_b1",
+      "states": {
+        "child_b1": {
+          "on": {
+            "EV1": "child_b2"
+          }
+        },
+        "child_b2": {
+          "type": "final"
+        }
       }
     }
   }

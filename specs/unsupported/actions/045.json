@@ -1,14 +1,8 @@
 {
-  "initial": "active",
-  "states": {
-    "active": {
-      "invoke": {
-        "src": "[Function/Identifier: childMachine...]",
-        "onDone": "finished"
-      }
-    },
-    "finished": {
-      "type": "final"
+  "id": "grandchild",
+  "on": {
+    "STOPPED": {
+      "actions": "[Node: spy]"
     }
   }
 }

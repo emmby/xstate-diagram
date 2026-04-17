@@ -1,0 +1,13 @@
+{
+  "types": "[Node: {} as {\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
+  "on": {
+    "EV": {
+      "guard": {
+        "type": "isGreaterThan",
+        "params": {
+          "count": "bar"
+        }
+      }
+    }
+  }
+}

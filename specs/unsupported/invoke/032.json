@@ -1,8 +1,5 @@
 {
   "id": "promise",
-  "context": {
-    "count": 0
-  },
   "initial": "pending",
   "states": {
     "pending": {
@@ -10,7 +7,7 @@
         "src": "somePromise",
         "onDone": {
           "target": "success",
-          "actions": "[Call: assign]"
+          "actions": "[Node: ({ event }) => {\n                      count = event.output.count;\n                    }]"
         }
       }
     },

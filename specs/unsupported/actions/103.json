@@ -1,12 +1,19 @@
 {
-  "initial": "waiting",
+  "initial": "a",
   "states": {
-    "waiting": {
+    "a": {
+      "entry": "[Node: raise(\n            { type: 'EVENT' },\n            {\n              delay: 1\n            }\n          )]",
       "on": {
-        "EVENT": {
-          "actions": "[Function/Identifier: () => resolve()...]"
-        }
+        "TO_B": "b"
       }
+    },
+    "b": {
+      "on": {
+        "EVENT": "c"
+      }
+    },
+    "c": {
+      "type": "final"
     }
   }
 }

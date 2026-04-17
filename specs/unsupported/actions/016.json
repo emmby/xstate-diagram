@@ -1,16 +1,10 @@
 {
-  "initial": "loaded",
-  "states": {
-    "loaded": {
-      "id": "loaded",
-      "initial": "idle",
-      "states": {
-        "idle": {
-          "on": {
-            "UPDATE": "#loaded"
-          }
-        }
-      }
+  "context": {
+    "assigned": false
+  },
+  "on": {
+    "EV": {
+      "actions": "[Node: assign({ assigned: true })]"
     }
   }
 }

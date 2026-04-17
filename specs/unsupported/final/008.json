@@ -14,12 +14,12 @@
         },
         "a2": {
           "type": "final",
-          "entry": "[Call: assign]",
-          "output": "[Function/Identifier: ({ context }) => context.count...]"
+          "entry": "[Node: assign({\n                count: 1\n              })]",
+          "output": "[Node: ({ context }) => context.count]"
         }
       },
       "onDone": {
-        "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+        "actions": "[Node: ({ event }) => {\n              spy(event.output);\n            }]"
       }
     }
   }

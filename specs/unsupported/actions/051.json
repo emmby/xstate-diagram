@@ -1,12 +1,5 @@
 {
   "id": "parent",
-  "context": "[Function/Identifier: ({ spawn }) => ({\n          ch...]",
-  "on": {
-    "STOP_CHILD": {
-      "actions": "[Call: stopChild]"
-    },
-    "EXIT": {
-      "actions": "[Function/Identifier: () => {\n              throw ne...]"
-    }
-  }
+  "context": {},
+  "exit": "[Node: assign({\n          actorRef: ({ spawn }) => spawn(grandchild)\n        })]"
 }

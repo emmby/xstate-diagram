@@ -1,3 +1,19 @@
 {
-  "entry": "[Call: raise]"
+  "type": "parallel",
+  "states": {
+    "a": {
+      "on": {
+        "FOO": {
+          "actions": "[Node: () => actual.push('a')]"
+        }
+      }
+    },
+    "b": {
+      "on": {
+        "FOO": {
+          "actions": "[Node: () => actual.push('b')]"
+        }
+      }
+    }
+  }
 }

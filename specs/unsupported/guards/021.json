@@ -1,15 +1,8 @@
 {
-  "id": "invalid-predicate",
-  "initial": "active",
-  "states": {
-    "active": {
-      "on": {
-        "EVENT": {
-          "target": "inactive",
-          "guard": "missing-predicate"
-        }
-      }
-    },
-    "inactive": {}
+  "on": {
+    "FOO": {
+      "guard": "[Node: () => false]",
+      "actions": "[Node: () => {}]"
+    }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "event": {
+          "target": "b",
+          "actions": "[Node: fn]"
+        }
+      }
+    },
+    "b": {}
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "types": {
+    "context": "[Node: {} as { count: number }]"
+  },
+  "context": {
+    "count": 0
+  },
+  "entry": [
+    "foo",
+    "[Node: assign(({ context }) => {\n          ((_accept: number) => {})(context.count);\n          // @ts-expect-error\n          ((_accept: \"ain't any\") => {})(context.count);\n          return {};\n        })]"
+  ]
+}

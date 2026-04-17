@@ -1,10 +1,21 @@
 {
-  "initial": "green",
+  "initial": "a",
   "states": {
-    "green": {
-      "initial": "walk",
+    "a": {
+      "on": {
+        "EV": {
+          "target": "a",
+          "reenter": true
+        }
+      },
+      "initial": "a1",
       "states": {
-        "walk": {}
+        "a1": {
+          "initial": "a11",
+          "states": {
+            "a11": {}
+          }
+        }
       }
     }
   }

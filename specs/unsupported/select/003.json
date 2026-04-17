@@ -1,0 +1,20 @@
+{
+  "types": "[Node: {} as {\n        context: { age: number; name: string };\n        events:\n          | {\n              type: 'UPDATE_NAME';\n              name: string;\n            }\n          | {\n              type: 'UPDATE_AGE';\n              age: number;\n            };\n      }]",
+  "context": {
+    "age": 42,
+    "name": "John"
+  },
+  "initial": "G",
+  "states": {
+    "G": {
+      "on": {
+        "UPDATE_NAME": {
+          "actions": "[Node: assign({ name: ({ event }) => event.name })]"
+        },
+        "UPDATE_AGE": {
+          "actions": "[Node: assign({ age: ({ event }) => event.age })]"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": "invoked"
+      }
+    },
+    "invoked": {
+      "invoke": {
+        "id": "child",
+        "src": "[Node: childMachine]"
+      },
+      "on": {
+        "NEXT": {
+          "actions": "[Node: sendTo('child', { type: 'NEXT' })]"
+        },
+        "LAST": {
+          "actions": "[Node: sendTo('child', { type: 'LAST' })]"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "exit": "[Node: () => actual.push('root')]",
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "NEXT": "active"
+      }
+    },
+    "active": {
+      "exit": "[Node: () => actual.push('active')]"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "context": {},
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "on": {
+        "RAISED": "c"
+      },
+      "entry": "[Node: raise({ type: 'RAISED' })]"
+    },
+    "c": {
+      "invoke": {
+        "src": "[Node: fromCallback(({ input }) => {\n              eventArg = input.event;\n            })]",
+        "input": "[Node: ({ event }: any) => ({ event })]"
+      }
+    }
+  }
+}

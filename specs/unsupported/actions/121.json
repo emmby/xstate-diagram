@@ -1,14 +1,14 @@
 {
-  "initial": "a",
-  "states": {
-    "a": {
-      "entry": "[Call: raise]",
-      "on": {
-        "TO_B": "b"
-      }
-    },
-    "b": {
-      "type": "final"
+  "types": "[Node: {} as {\n        context: { counter: number };\n      }]",
+  "context": {
+    "counter": 0
+  },
+  "on": {
+    "EV": {
+      "actions": [
+        "[Node: assign({ counter: ({ context }) => context.counter + 1 })]",
+        "[Node: ({ context }) => captured.push(context.counter)]"
+      ]
     }
   }
 }
