@@ -1,7 +1,10 @@
 import { AnyStateMachine } from 'xstate';
 
 function getSafeId(node: any): string {
-  const idStr = node.id || node.key || 'state';
+  let idStr = node.id || node.key || 'state';
+  if (idStr.startsWith('(machine).')) {
+    idStr = idStr.substring(10);
+  }
   return idStr.replace(/[^a-zA-Z0-9_]/g, '_');
 }
 

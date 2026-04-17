@@ -1,5 +1,5 @@
 stateDiagram-v2
-  state "green" as _machine__green
-  state "yellow" as _machine__yellow
-  [*] --> _machine__green
-  _machine__green --> _machine__yellow : after 1.(machine)
+  state "green" as green
+  state "yellow" as yellow
+  [*] --> green
+  green --> yellow : after 1.(machine)
