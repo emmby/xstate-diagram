@@ -78,7 +78,10 @@ function extractMachines(sourceCode: string, filePath: string) {
     visit(sourceFile);
 }
 
-const inputDir = '.tmp/xstate/packages/core/test';
+const inputDir = process.argv[2] || '.tmp/xstate/packages/core/test';
+if (!fs.existsSync(inputDir)) {
+    throw new Error("Input directory not found: " + inputDir);
+}
 const files = fs.readdirSync(inputDir).filter(f => f.endsWith('.test.ts'));
 
 for (const file of files) {
