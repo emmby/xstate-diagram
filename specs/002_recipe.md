@@ -40,6 +40,11 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 ```markdown
 Implement feature: {feature_name}
 
+### Machine Definition
+\`\`\`json
+{INSERT_JSON_CONFIG_MOCK_HERE}
+\`\`\`
+
 ### Validation Proof
 ![Proof](https://github.com/emmby/xstate-diagram/blob/{branch_name}/specs/001_proof.svg?raw=true)
 
