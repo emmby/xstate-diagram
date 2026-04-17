@@ -1,0 +1,19 @@
+{
+  "id": "action_test",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "entry": ["initSystem"],
+      "exit": ["cleanUp", "logExit"],
+      "on": {
+        "START": { "target": "running" }
+      }
+    },
+    "running": {
+      "entry": ["startMotor", "renderRunning"],
+      "on": {
+        "STOP": { "target": "idle" }
+      }
+    }
+  }
+}
