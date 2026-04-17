@@ -31,11 +31,11 @@ function processNode(node: ts.Node, sourceFile: ts.SourceFile): any {
     }
     
     if (ts.isStringLiteral(node)) {
-        return node.getText(sourceFile).replace(/^['"]|['"]$/g, '');
+        return node.text;
     }
     
     if (ts.isNumericLiteral(node)) {
-        return Number(node.getText(sourceFile));
+        return Number(node.text);
     }
     
     if (node.kind === ts.SyntaxKind.TrueKeyword) return true;

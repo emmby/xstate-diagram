@@ -3,14 +3,14 @@
   "states": {
     "start": {
       "on": {
-        "EV": "#some\\\\\\\\.thing"
+        "EV": "#some\\\\.thing"
       }
     },
     "foo": {
-      "id": "some\\\\.thing"
+      "id": "some\\.thing"
     },
     "bar": {
-      "id": "some\\\\",
+      "id": "some\\",
       "initial": "baz",
       "states": {
         "baz": {},

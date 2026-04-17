@@ -3,7 +3,7 @@
   "states": {
     "start": {
       "on": {
-        "escaped": "#foo\\\\.bar",
+        "escaped": "#foo\\.bar",
         "unescaped": "#foo.bar"
       }
     },
