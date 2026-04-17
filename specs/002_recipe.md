@@ -24,7 +24,7 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 
 ### Step 4: Execute Agentic Semantic Pipeline
 - Run our semantic evaluation pipeline wrapper specifically against the target artifacts:
-  `./scripts/validate_pr.sh specs/{feature_name}.json src/__snapshots__/{feature_name}.mermaid`
+  `./scripts/validate_pr.sh specs/supported/{feature_name}.json src/__snapshots__/{feature_name}.mermaid`
 - Ensure the bash wrapper prints **Exit Code `0`** natively. This systematically proves:
     1. `mmdc` natively traced the topological relationships and dropped `specs/001_proof.svg` into the tree without `Puppeteer` sandbox crashes.
     2. The `gemini` LLM parsed your string stdout, compared it aggressively against the raw mapping tree config structurally, and asserted the layout matching perfectly.
