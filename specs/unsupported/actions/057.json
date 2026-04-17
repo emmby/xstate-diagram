@@ -1,8 +1,11 @@
 {
-  "id": "grandchild",
-  "on": {
-    "STOPPED": {
-      "actions": "[Function/Identifier: spy...]"
+  "initial": {
+    "target": "a",
+    "actions": "[Node: () => actual.push('initialA')]"
+  },
+  "states": {
+    "a": {
+      "entry": "[Node: () => actual.push('entryA')]"
     }
   }
 }

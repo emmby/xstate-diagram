@@ -4,7 +4,7 @@
     "foo": {
       "initial": "bar",
       "onDone": {
-        "actions": "[Function/Identifier: () => actual.push('fooAction')...]"
+        "actions": "[Node: () => actual.push('fooAction')]"
       },
       "states": {
         "bar": {
@@ -13,13 +13,13 @@
           "states": {
             "baz": {
               "type": "final",
-              "entry": "[Function/Identifier: () => actual.push('bazAction')...]"
+              "entry": "[Node: () => actual.push('bazAction')]"
             }
           }
         },
         "barFinal": {
           "type": "final",
-          "entry": "[Function/Identifier: () => actual.push('barAction')...]"
+          "entry": "[Node: () => actual.push('barAction')]"
         }
       }
     }

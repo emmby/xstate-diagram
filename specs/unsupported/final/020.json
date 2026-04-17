@@ -1,12 +1,13 @@
 {
-  "type": "parallel",
+  "initial": "a",
   "states": {
     "a": {
-      "type": "final"
+      "on": {
+        "EV": "b"
+      }
     },
     "b": {
       "type": "final"
     }
-  },
-  "output": "[Function/Identifier: spy...]"
+  }
 }

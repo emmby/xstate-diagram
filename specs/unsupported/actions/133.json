@@ -1,7 +1,7 @@
 {
   "on": {
-    "PING": {
-      "actions": "[Function/Identifier: spy...]"
+    "FOO": {
+      "actions": "[Node: assign((_, params) => {\n              spy(params);\n              return {};\n            })]"
     }
   }
 }

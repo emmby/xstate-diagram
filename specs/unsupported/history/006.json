@@ -16,8 +16,8 @@
           }
         },
         "a2": {
-          "entry": "[Function/Identifier: () => actual.push('a2 entered'...]",
-          "exit": "[Function/Identifier: () => actual.push('a2 exited')...]"
+          "entry": "[Node: () => actual.push('a2 entered')]",
+          "exit": "[Node: () => actual.push('a2 exited')]"
         },
         "a3": {
           "type": "history",

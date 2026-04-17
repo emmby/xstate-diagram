@@ -1,18 +1,16 @@
 {
-  "id": "root",
-  "entry": "[Function/Identifier: entrySpy...]",
-  "exit": "[Function/Identifier: exitSpy...]",
-  "on": {
-    "EVENT": {
-      "target": "#two",
-      "reenter": true
-    }
-  },
-  "initial": "one",
+  "initial": "ping",
   "states": {
-    "one": {},
-    "two": {
-      "id": "two"
+    "ping": {
+      "initial": "foo",
+      "states": {
+        "foo": {
+          "on": {
+            "TACK": "bar"
+          }
+        },
+        "bar": {}
+      }
     }
   }
 }

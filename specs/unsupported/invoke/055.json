@@ -1,23 +1,26 @@
 {
+  "types": "[Node: {} as { context: { count: number | undefined }; events: Events }]",
   "id": "obs",
   "initial": "counting",
   "context": {
-    "count": "[Function/Identifier: undefined...]"
+    "count": "[Node: undefined]"
   },
   "states": {
     "counting": {
       "invoke": {
-        "src": "[Call: fromObservable]",
-        "onSnapshot": {
-          "actions": "[Call: assign]"
-        },
-        "onError": {
-          "target": "success",
-          "guard": "[Function/Identifier: ({ context, event }) => {\n    ...]"
+        "src": "[Node: fromEventObservable(() =>\n                interval(10).pipe(map((value) => ({ type: 'COUNT', value })))\n              )]"
+      },
+      "on": {
+        "COUNT": {
+          "actions": "[Node: assign({ count: ({ event }) => event.value })]"
         }
+      },
+      "always": {
+        "target": "counted",
+        "guard": "[Node: ({ context }) => context.count === 5]"
       }
     },
-    "success": {
+    "counted": {
       "type": "final"
     }
   }

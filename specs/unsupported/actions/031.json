@@ -1,23 +1,18 @@
 {
-  "initial": "A",
+  "initial": "a",
   "states": {
-    "A": {
-      "id": "ancestor",
-      "initial": "A1",
+    "a": {
+      "id": "parent",
+      "initial": "a2",
       "states": {
-        "A1": {
+        "a1": {
           "on": {
-            "NEXT": "A2"
+            "EV": "#parent"
           }
         },
-        "A2": {
-          "initial": "A2_child",
-          "states": {
-            "A2_child": {
-              "on": {
-                "NEXT": "#ancestor"
-              }
-            }
+        "a2": {
+          "on": {
+            "EV": "a1"
           }
         }
       }

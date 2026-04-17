@@ -1,0 +1,8 @@
+{
+  "context": "[Node: contextSpy]",
+  "entry": "[Node: entrySpy]",
+  "initial": "foo",
+  "states": {
+    "foo": {}
+  }
+}

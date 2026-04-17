@@ -1,0 +1,21 @@
+{
+  "types": "[Node: {} as {\n      events: PingPongEvent;\n    }]",
+  "id": "server",
+  "initial": "waitPing",
+  "states": {
+    "waitPing": {
+      "on": {
+        "PING": "sendPong"
+      }
+    },
+    "sendPong": {
+      "entry": [
+        "[Node: sendParent({ type: 'PONG' })]",
+        "[Node: raise({ type: 'SUCCESS' })]"
+      ],
+      "on": {
+        "SUCCESS": "waitPing"
+      }
+    }
+  }
+}

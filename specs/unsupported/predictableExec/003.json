@@ -1,0 +1,8 @@
+{
+  "context": {
+    "called": false
+  },
+  "entry": [
+    "[Node: assign({\n          called: true\n        })]"
+  ]
+}

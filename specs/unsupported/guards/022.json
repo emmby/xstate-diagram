@@ -1,14 +1,8 @@
 {
-  "initial": "a",
-  "states": {
-    "a": {
-      "on": {
-        "EVENT": {
-          "target": "b",
-          "guard": "referenced"
-        }
-      }
-    },
-    "b": {}
+  "on": {
+    "FOO": {
+      "guard": "[Node: not(() => false)]",
+      "actions": "[Node: () => {}]"
+    }
   }
 }

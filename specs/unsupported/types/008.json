@@ -1,0 +1,10 @@
+{
+  "types": {
+    "events": "[Node: {} as { type: 'FOO' } | { type: 'BAR' }]"
+  },
+  "on": {
+    "FOO": {
+      "actions": "[Node: log(({ event }) => {\n            ((_arg: 'FOO') => {})(event.type);\n            // @ts-expect-error\n            ((_arg: 'BAR') => {})(event.type);\n          })]"
+    }
+  }
+}

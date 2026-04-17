@@ -1,7 +1,17 @@
 {
+  "invoke": [
+    {
+      "id": "foo",
+      "src": "[Node: createMachine({\n            id: 'foo',\n            entry: raise({ type: 'event' }, { id: 'sameId', delay: 100 }),\n            on: {\n              event: { actions: fooSpy }\n            }\n          })]"
+    },
+    {
+      "id": "bar",
+      "src": "[Node: createMachine({\n            id: 'bar',\n            entry: raise({ type: 'event' }, { id: 'sameId', delay: 100 }),\n            on: {\n              event: { actions: barSpy },\n              cancel: { actions: cancel('sameId') }\n            }\n          })]"
+    }
+  ],
   "on": {
-    "PING": {
-      "actions": "[Function/Identifier: spy1...]"
+    "cancelBar": {
+      "actions": "[Node: sendTo('bar', { type: 'cancel' })]"
     }
   }
 }

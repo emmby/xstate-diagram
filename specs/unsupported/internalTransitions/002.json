@@ -1,0 +1,18 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "initial": "left",
+      "states": {
+        "left": {},
+        "right": {}
+      },
+      "on": {
+        "NEXT": {
+          "target": ".right",
+          "reenter": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "initial": "active",
+  "states": {
+    "active": {
+      "id": "active",
+      "invoke": {
+        "src": "someSrc",
+        "onDone": "foo",
+        "onError": "bar"
+      },
+      "on": {
+        "EVENT": "foo"
+      }
+    },
+    "foo": {},
+    "bar": {}
+  }
+}

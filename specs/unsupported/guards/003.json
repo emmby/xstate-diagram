@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as { context: LightMachineCtx; events: LightMachineEvents }]",
   "context": {
     "elapsed": 10
   },
@@ -9,16 +10,16 @@
         "TIMER": [
           {
             "target": "green",
-            "guard": "[Function/Identifier: ({ context: { elapsed } }) => ...]"
+            "guard": "[Node: ({ context: { elapsed } }) => elapsed < 100]"
           },
           {
             "target": "yellow",
-            "guard": "[Function/Identifier: ({ context: { elapsed } }) =>\n...]"
+            "guard": "[Node: ({ context: { elapsed } }) =>\n                    elapsed >= 100 && elapsed < 200]"
           }
         ],
         "EMERGENCY": {
           "target": "red",
-          "guard": "[Function/Identifier: ({ event }) => !!event.isEmerg...]"
+          "guard": "[Node: ({ event }) => !!event.isEmergency]"
         }
       }
     },

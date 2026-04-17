@@ -1,14 +1,15 @@
 {
+  "id": "parent",
   "initial": "a",
   "states": {
     "a": {
+      "invoke": {
+        "src": "[Node: child]"
+      },
       "on": {
         "NEXT": "b"
       }
     },
-    "b": {
-      "type": "final"
-    }
-  },
-  "exit": "[Function/Identifier: ({ event }) => {\n          rec...]"
+    "b": {}
+  }
 }

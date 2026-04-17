@@ -9,12 +9,12 @@
     "b": {
       "always": {
         "target": "c",
-        "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+        "actions": "[Node: ({ event }) => {\n              expect(event).toEqual({ type: 'EVENT', value: 42 });\n            }]"
       },
-      "exit": "[Function/Identifier: ({ event }) => {\n            e...]"
+      "exit": "[Node: ({ event }) => {\n            expect(event).toEqual({ type: 'EVENT', value: 42 });\n          }]"
     },
     "c": {
-      "entry": "[Function/Identifier: ({ event }) => {\n            e...]"
+      "entry": "[Node: ({ event }) => {\n            expect(event).toEqual({ type: 'EVENT', value: 42 });\n          }]"
     }
   }
 }

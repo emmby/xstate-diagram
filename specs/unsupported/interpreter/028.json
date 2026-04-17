@@ -1,0 +1,13 @@
+{
+  "initial": "waiting",
+  "states": {
+    "waiting": {
+      "on": {
+        "TRIGGER": "active"
+      }
+    },
+    "active": {
+      "entry": "[Node: () => {\n              called = true;\n            }]"
+    }
+  }
+}

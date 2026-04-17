@@ -1,18 +1,13 @@
 {
-  "initial": "pending",
+  "initial": "a",
   "states": {
-    "pending": {
-      "invoke": {
-        "src": "[Call: fromCallback]",
-        "onError": "failed"
+    "a": {
+      "on": {
+        "NEXT": "b"
       }
     },
-    "failed": {
-      "on": {
-        "do": {
-          "actions": "[Function/Identifier: spy...]"
-        }
-      }
+    "b": {
+      "entry": "[Node: () => {\n            throw new Error(\n              'error_thrown_in_a_custom_entry_action_when_transitioning'\n            );\n          }]"
     }
   }
 }

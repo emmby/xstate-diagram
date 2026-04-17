@@ -1,5 +1,6 @@
 {
   "id": "parent",
+  "types": "[Node: {} as {\n          context: { count: number };\n          actors: {\n            src: 'child';\n            id: 'someService';\n            logic: typeof childMachine;\n          };\n        }]",
   "context": {
     "count": 0
   },
@@ -12,14 +13,14 @@
       },
       "always": {
         "target": "stop",
-        "guard": "[Function/Identifier: ({ context }) => context.count...]"
+        "guard": "[Node: ({ context }) => context.count === -3]"
       },
       "on": {
         "DEC": {
-          "actions": "[Call: assign]"
+          "actions": "[Node: assign({ count: ({ context }) => context.count - 1 })]"
         },
         "FORWARD_DEC": {
-          "actions": "[Call: sendTo]"
+          "actions": "[Node: sendTo('someService', { type: 'FORWARD_DEC' })]"
         }
       }
     },

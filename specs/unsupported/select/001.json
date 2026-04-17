@@ -1,0 +1,16 @@
+{
+  "types": "[Node: {} as { context: { data: number } }]",
+  "context": {
+    "data": 42
+  },
+  "initial": "G",
+  "states": {
+    "G": {
+      "on": {
+        "INC": {
+          "actions": "[Node: assign({ data: ({ context }) => context.data + 1 })]"
+        }
+      }
+    }
+  }
+}

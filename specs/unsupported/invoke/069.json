@@ -1,8 +1,14 @@
 {
-  "invoke": {
-    "src": "childMachine",
-    "onSnapshot": {
-      "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
-    }
+  "id": "transient",
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "id": "doNotInvoke",
+        "src": "[Node: fromCallback(() => {\n                actorStarted = true;\n              })]"
+      },
+      "always": "inactive"
+    },
+    "inactive": {}
   }
 }

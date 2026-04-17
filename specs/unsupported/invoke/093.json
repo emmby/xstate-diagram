@@ -1,6 +1,0 @@
-{
-  "invoke": {
-    "src": "[Call: fromCallback]",
-    "input": "[Function/Identifier: ({ self }) => ({\n          res...]"
-  }
-}

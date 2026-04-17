@@ -1,0 +1,4 @@
+{
+  "types": "[Node: {} as {\n        input: { greeting: string };\n        context: { message: string };\n      }]",
+  "context": "[Node: ({ input }) => {\n        return { message: `Hello, ${input.greeting}` };\n      }]"
+}

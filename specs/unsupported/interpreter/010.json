@@ -1,0 +1,39 @@
+{
+  "types": "[Node: {} as {\n            events: { type: 'FIRE_DELAY'; value: number };\n          }]",
+  "id": "letter",
+  "context": {
+    "delay": 100
+  },
+  "initial": "a",
+  "states": {
+    "a": {
+      "after": {
+        "delayA": "b"
+      }
+    },
+    "b": {
+      "after": {
+        "someDelay": "c"
+      }
+    },
+    "c": {
+      "entry": "[Node: raise({ type: 'FIRE_DELAY', value: 200 }, { delay: 20 })]",
+      "on": {
+        "FIRE_DELAY": "d"
+      }
+    },
+    "d": {
+      "after": {
+        "delayD": "e"
+      }
+    },
+    "e": {
+      "after": {
+        "someDelay": "f"
+      }
+    },
+    "f": {
+      "type": "final"
+    }
+  }
+}

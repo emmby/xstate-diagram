@@ -1,21 +1,6 @@
 {
-  "id": "parent",
-  "initial": "first",
   "context": {
-    "child": "[Function/Identifier: undefined...]"
+    "count": 0
   },
-  "states": {
-    "first": {
-      "entry": "[Call: assign]",
-      "on": {
-        "EVENT": {
-          "actions": "[Call: forwardTo]"
-        },
-        "SUCCESS": "last"
-      }
-    },
-    "last": {
-      "type": "final"
-    }
-  }
+  "entry": "[Node: enqueueActions(({ enqueue }) => {\n        enqueue.assign({\n          count: 42\n        });\n      })]"
 }

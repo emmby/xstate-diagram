@@ -1,0 +1,11 @@
+{
+  "types": "[Node: {} as {\n        events: { type: 'PING'; ref: AnyActorRef };\n      }]",
+  "invoke": {
+    "src": "[Node: fromCallback(({ self, sendBack, receive }) => {\n          receive((event) => {\n            switch (event.type) {\n              case 'PONG': {\n                resolve();\n              }\n            }\n          });\n\n          sendBack({\n            type: 'PING',\n            ref: self\n          });\n        })]"
+  },
+  "on": {
+    "PING": {
+      "actions": "[Node: sendTo(\n            ({ event }) => event.ref,\n            () => ({ type: 'PONG' })\n          )]"
+    }
+  }
+}

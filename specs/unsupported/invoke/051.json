@@ -1,13 +1,24 @@
 {
-  "id": "child",
-  "initial": "start",
+  "types": "[Node: {} as { context: { count: number | undefined }; events: Events }]",
+  "id": "infiniteObs",
+  "initial": "counting",
+  "context": {
+    "count": "[Node: undefined]"
+  },
   "states": {
-    "start": {
-      "on": {
-        "STOP": "end"
+    "counting": {
+      "invoke": {
+        "src": "[Node: fromObservable(() => interval(10))]",
+        "onSnapshot": {
+          "actions": "[Node: assign({\n                  count: ({ event }) => event.snapshot.context\n                })]"
+        }
+      },
+      "always": {
+        "target": "counted",
+        "guard": "[Node: ({ context }) => context.count === 5]"
       }
     },
-    "end": {
+    "counted": {
       "type": "final"
     }
   }

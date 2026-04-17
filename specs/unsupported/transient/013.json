@@ -6,8 +6,8 @@
   "states": {
     "active": {
       "invoke": {
-        "src": "[Function/Identifier: timerMachine...]",
-        "input": "[Function/Identifier: ({ context }) => ({\n          ...]"
+        "src": "[Node: timerMachine]",
+        "input": "[Node: ({ context }) => ({\n              duration: context.customDuration\n            })]"
       }
     }
   }

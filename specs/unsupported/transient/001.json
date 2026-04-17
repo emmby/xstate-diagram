@@ -1,17 +1,18 @@
 {
+  "types": "[Node: {} as { context: typeof greetingContext }]",
   "id": "greeting",
   "initial": "pending",
-  "context": "[Function/Identifier: greetingContext...]",
+  "context": "[Node: greetingContext]",
   "states": {
     "pending": {
       "always": [
         {
           "target": "morning",
-          "guard": "[Function/Identifier: ({ context }) => context.hour ...]"
+          "guard": "[Node: ({ context }) => context.hour < 12]"
         },
         {
           "target": "afternoon",
-          "guard": "[Function/Identifier: ({ context }) => context.hour ...]"
+          "guard": "[Node: ({ context }) => context.hour < 18]"
         },
         {
           "target": "evening"
@@ -24,7 +25,7 @@
   },
   "on": {
     "CHANGE": {
-      "actions": "[Call: assign]"
+      "actions": "[Node: assign({ hour: 20 })]"
     },
     "RECHECK": "#greeting"
   }

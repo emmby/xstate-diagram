@@ -1,14 +1,14 @@
 {
-  "initial": "idle",
+  "types": "[Node: {} as {\n          context: { foo: string };\n        }]",
+  "initial": "start",
+  "context": {
+    "foo": "bar"
+  },
   "states": {
-    "idle": {
-      "on": {
-        "GO_TO_WAITING": "waiting"
-      }
-    },
-    "waiting": {
+    "start": {
       "invoke": {
-        "src": "[Call: fromCallback]"
+        "src": "[Node: fromCallback(({ input }) => {\n                expect(input).toEqual({ foo: 'bar' });\n                resolve();\n              })]",
+        "input": "[Node: ({ context }: any) => context]"
       }
     }
   }

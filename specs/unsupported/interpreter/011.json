@@ -1,0 +1,15 @@
+{
+  "id": "activity",
+  "initial": "on",
+  "states": {
+    "on": {
+      "invoke": {
+        "src": "myActivity"
+      },
+      "on": {
+        "TURN_OFF": "off"
+      }
+    },
+    "off": {}
+  }
+}

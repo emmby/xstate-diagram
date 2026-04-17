@@ -1,0 +1,13 @@
+{
+  "initial": "A",
+  "states": {
+    "A": {
+      "on": {
+        "*": "fail",
+        "NEXT": "pass"
+      }
+    },
+    "fail": {},
+    "pass": {}
+  }
+}

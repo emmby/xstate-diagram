@@ -1,11 +1,26 @@
 {
-  "id": "child",
-  "initial": "start",
+  "context": {
+    "counter": 0
+  },
+  "initial": "a",
   "states": {
-    "start": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
       "entry": [
-        "[Call: sendParent]"
-      ]
-    }
+        "[Node: assign({ counter: 1 })]",
+        "[Node: sendTo(({ self }) => self, { type: 'EVENT' })]"
+      ],
+      "on": {
+        "EVENT": {
+          "actions": "[Node: ({ self }) => spy(self.getSnapshot().context)]",
+          "target": "c"
+        }
+      }
+    },
+    "c": {}
   }
 }

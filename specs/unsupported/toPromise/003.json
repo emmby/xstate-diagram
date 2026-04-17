@@ -1,0 +1,12 @@
+{
+  "initial": "pending",
+  "states": {
+    "pending": {
+      "on": {
+        "REJECT": {
+          "actions": "[Node: () => {\n                throw new Error('oh noes');\n              }]"
+        }
+      }
+    }
+  }
+}

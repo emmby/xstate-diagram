@@ -1,0 +1,16 @@
+{
+  "types": "[Node: {} as {\n        actors:\n          | {\n              src: 'foo';\n              logic: AnyActorLogic;\n            }\n          | {\n              src: 'bar';\n              logic: AnyActorLogic;\n            };\n      }]",
+  "id": "invoke",
+  "invoke": [
+    {
+      "src": "foo"
+    },
+    {
+      "src": "bar"
+    }
+  ],
+  "initial": "idle",
+  "states": {
+    "idle": {}
+  }
+}

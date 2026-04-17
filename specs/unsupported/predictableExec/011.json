@@ -1,0 +1,13 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "after": {
+        "1": "b"
+      }
+    },
+    "b": {
+      "entry": "[Node: sendParent({ type: 'CHILD_UPDATED' })]"
+    }
+  }
+}

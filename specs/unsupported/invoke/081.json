@@ -1,7 +1,16 @@
 {
-  "type": "parallel",
+  "initial": "a",
   "states": {
-    "first": "[Call: createSingleState]",
-    "second": "[Call: createSingleState]"
+    "a": {
+      "invoke": {
+        "src": "[Node: fromCallback(() => {\n              invokeCount++;\n            })]"
+      },
+      "on": {
+        "GO_AWAY_AND_REENTER": "b"
+      }
+    },
+    "b": {
+      "always": "a"
+    }
   }
 }

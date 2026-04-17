@@ -1,0 +1,16 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "initial": "bar",
+      "states": {
+        "bar": {
+          "initial": "baz",
+          "states": {
+            "baz": {}
+          }
+        }
+      }
+    }
+  }
+}

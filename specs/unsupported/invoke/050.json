@@ -1,14 +1,21 @@
 {
-  "initial": "start",
-  "context": {
-    "foo": "bar"
-  },
+  "id": "parent",
+  "initial": "begin",
   "states": {
-    "start": {
+    "begin": {
       "invoke": {
-        "src": "[Call: fromCallback]",
-        "input": "[Function/Identifier: ({ context }: any) => context...]"
+        "src": "[Node: anotherChildMachine]",
+        "id": "invoked.child",
+        "onDone": "completed"
+      },
+      "on": {
+        "STOPCHILD": {
+          "actions": "[Node: sendTo('invoked.child', { type: 'STOP' })]"
+        }
       }
+    },
+    "completed": {
+      "type": "final"
     }
   }
 }

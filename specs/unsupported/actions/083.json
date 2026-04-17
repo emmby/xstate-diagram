@@ -1,21 +1,10 @@
 {
-  "id": "parent",
-  "initial": "first",
-  "states": {
-    "first": {
-      "invoke": {
-        "src": "[Function/Identifier: child...]",
-        "id": "myChild"
-      },
-      "on": {
-        "EVENT": {
-          "actions": "[Call: forwardTo]"
-        },
-        "SUCCESS": "last"
-      }
+  "on": {
+    "FOO": {
+      "actions": "[Node: enqueueActions(({ enqueue }) => {\n            enqueue(\n              raise({\n                type: 'RAISED'\n              })\n            );\n          })]"
     },
-    "last": {
-      "type": "final"
+    "RAISED": {
+      "actions": "[Node: spy]"
     }
   }
 }

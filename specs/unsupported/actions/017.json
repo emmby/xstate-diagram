@@ -1,10 +1,7 @@
 {
-  "context": {
-    "assigned": false
-  },
   "on": {
     "EV": {
-      "actions": "[Call: assign]"
+      "actions": "[Node: function myFn() {\n                called = true;\n              }]"
     }
   }
 }

@@ -10,10 +10,18 @@
             "c": {
               "type": "final"
             }
+          },
+          "onDone": {
+            "actions": "[Node: spy]"
           }
         }
+      },
+      "onDone": {
+        "actions": "[Node: spy]"
       }
     }
   },
-  "output": "[Function/Identifier: ({ event }) => {\n        spy(e...]"
+  "onDone": {
+    "actions": "[Node: spy]"
+  }
 }

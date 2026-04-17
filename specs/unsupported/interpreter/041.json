@@ -1,0 +1,9 @@
+{
+  "id": "form",
+  "initial": "idle",
+  "context": {},
+  "entry": "[Node: assign({\n          firstNameRef: ({ spawn }) => spawn(childMachine, { id: 'child' })\n        })]",
+  "states": {
+    "idle": {}
+  }
+}

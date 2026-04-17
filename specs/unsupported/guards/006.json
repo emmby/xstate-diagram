@@ -15,14 +15,14 @@
           "always": [
             {
               "target": "B4",
-              "guard": "[Function/Identifier: () => false...]"
+              "guard": "[Node: () => false]"
             }
           ],
           "on": {
             "T2": [
               {
                 "target": "B2",
-                "guard": "[Call: stateIn]"
+                "guard": "[Node: stateIn('A.A2')]"
               }
             ]
           }

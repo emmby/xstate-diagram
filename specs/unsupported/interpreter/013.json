@@ -1,0 +1,31 @@
+{
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "TOGGLE": "active"
+      }
+    },
+    "active": {
+      "invoke": {
+        "src": "blink"
+      },
+      "on": {
+        "TOGGLE": "inactive"
+      },
+      "initial": "A",
+      "states": {
+        "A": {
+          "on": {
+            "SWITCH": "B"
+          }
+        },
+        "B": {
+          "on": {
+            "SWITCH": "A"
+          }
+        }
+      }
+    }
+  }
+}

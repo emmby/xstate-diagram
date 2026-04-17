@@ -1,8 +1,0 @@
-{
-  "entry": "[Call: raise]",
-  "on": {
-    "HELLO": {
-      "actions": "foo"
-    }
-  }
-}

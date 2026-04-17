@@ -3,10 +3,7 @@
   "states": {
     "a": {
       "on": {
-        "EV": {
-          "target": "a",
-          "actions": "[Function/Identifier: () => {}...]"
-        }
+        "EV": "[Node: undefined]"
       }
     }
   }

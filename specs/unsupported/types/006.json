@@ -1,0 +1,6 @@
+{
+  "types": {
+    "events": "[Node: {} as { type: 'FOO' } | { type: 'BAR' }]"
+  },
+  "entry": "[Node: raise(() => ({\n        type: 'UNKNOWN'\n      }))]"
+}

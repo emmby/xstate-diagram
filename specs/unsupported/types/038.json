@@ -1,0 +1,13 @@
+{
+  "types": {
+    "context": "[Node: {} as {\n          count: number;\n        }]"
+  },
+  "context": {
+    "count": 0
+  },
+  "on": {
+    "FOO": {
+      "actions": "[Node: ({ event }) => {\n            ((_accept: string) => {})(event.type);\n          }]"
+    }
+  }
+}

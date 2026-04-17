@@ -5,7 +5,7 @@
       "on": {
         "EVENT": {
           "target": "b",
-          "guard": "[Call: and]"
+          "guard": "[Node: or([\n                  () => false,\n                  not('truthy'),\n                  and([not('falsy'), 'truthy'])\n                ])]"
         }
       }
     },

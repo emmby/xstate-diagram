@@ -1,0 +1,11 @@
+{
+  "types": "[Node: {} as {\n          context: { password: string };\n          input: { password: string };\n        }]",
+  "id": "child",
+  "initial": "start",
+  "context": "[Node: ({ input }) => ({\n          password: input.password\n        })]",
+  "states": {
+    "start": {
+      "entry": "[Node: sendParent(({ context }) => {\n              return { type: 'NEXT', password: context.password };\n            })]"
+    }
+  }
+}

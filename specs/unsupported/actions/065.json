@@ -1,20 +1,32 @@
 {
-  "initial": "foo",
+  "types": "[Node: {} as { context: Context; events: EventType }]",
+  "initial": "a",
+  "context": {
+    "count": 0
+  },
   "states": {
-    "foo": {
-      "exit": "[Function/Identifier: () => {\n              exitActi...]",
+    "a": {
+      "entry": [
+        "definedAction",
+        {
+          "type": "definedAction"
+        },
+        "undefinedAction"
+      ],
       "on": {
-        "INITIALIZE_SYNC_SEQUENCE": {
-          "target": "bar",
+        "EVENT": {
+          "target": "b",
           "actions": [
-            "[Function/Identifier: () => {\n                    //...]",
-            "[Function/Identifier: () => {}...]"
+            {
+              "type": "definedAction"
+            },
+            {
+              "type": "updateContext"
+            }
           ]
         }
       }
     },
-    "bar": {
-      "exit": "[Function/Identifier: () => {\n              exitActi...]"
-    }
+    "b": {}
   }
 }

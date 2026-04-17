@@ -1,0 +1,8 @@
+{
+  "types": "[Node: {} as {\n          actors: {\n            src: 'child';\n            logic: typeof child;\n          };\n          input: number;\n          context: {\n            count: number;\n          };\n        }]",
+  "context": "[Node: ({ input }) => ({\n          count: input\n        })]",
+  "invoke": {
+    "src": "child",
+    "input": "[Node: ({ context }) => {\n            return context.count + 100;\n          }]"
+  }
+}

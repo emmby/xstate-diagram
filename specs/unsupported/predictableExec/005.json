@@ -1,0 +1,21 @@
+{
+  "context": {},
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "on": {
+        "RAISED": {
+          "target": "c",
+          "actions": "[Node: assign(({ event }) => {\n                eventArg = event;\n                return {};\n              })]"
+        }
+      },
+      "entry": "[Node: raise({ type: 'RAISED' })]"
+    },
+    "c": {}
+  }
+}

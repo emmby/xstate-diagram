@@ -1,0 +1,16 @@
+{
+  "initial": "active",
+  "states": {
+    "active": {
+      "invoke": {
+        "id": "my-service",
+        "src": "[Node: fromCallback(({ receive }) => {\n              receive((event) => {\n                if (event.type === 'MY_EVENT') {\n                  resolve();\n                }\n              });\n            })]"
+      },
+      "exit": "[Node: sendTo('my-service', { type: 'MY_EVENT' })]",
+      "on": {
+        "TOGGLE": "inactive"
+      }
+    },
+    "inactive": {}
+  }
+}

@@ -1,9 +1,19 @@
 {
   "id": "child",
-  "initial": "idle",
+  "initial": "a",
+  "invoke": {
+    "id": "myChild",
+    "src": "[Node: grandchild]"
+  },
   "states": {
-    "idle": {
-      "exit": "[Call: sendParent]"
+    "a": {
+      "on": {
+        "FINISH": "b"
+      }
+    },
+    "b": {
+      "type": "final"
     }
-  }
+  },
+  "exit": "[Node: sendTo('myChild', { type: 'STOPPED' })]"
 }

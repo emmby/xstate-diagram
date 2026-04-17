@@ -1,29 +1,18 @@
 {
-  "type": "parallel",
+  "initial": "A",
   "states": {
-    "a": {
-      "initial": "child_a1",
+    "A": {
+      "type": "parallel",
       "states": {
-        "child_a1": {
-          "on": {
-            "EV": "child_a2"
-          }
+        "B": {
+          "type": "final",
+          "output": "[Node: spy]"
         },
-        "child_a2": {
-          "type": "final"
-        }
-      }
-    },
-    "b": {
-      "initial": "child_b1",
-      "states": {
-        "child_b1": {
-          "on": {
-            "EV": "child_b2"
+        "C": {
+          "initial": "C1",
+          "states": {
+            "C1": {}
           }
-        },
-        "child_b2": {
-          "type": "final"
         }
       }
     }

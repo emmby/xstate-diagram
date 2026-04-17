@@ -11,7 +11,7 @@
     },
     "c": {
       "always": {
-        "guard": "[Function/Identifier: ({ event }) => {\n             ...]",
+        "guard": "[Node: ({ event }) => {\n              expect(event.type).toEqual('EVENT');\n              return event.type === 'EVENT';\n            }]",
         "target": "d"
       }
     },

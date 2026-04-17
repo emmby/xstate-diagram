@@ -1,0 +1,22 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "on": {
+        "EXTERNAL_EVENT": {
+          "actions": [
+            "[Node: raise({ type: 'RAISED_EVENT' })]",
+            "[Node: logAction]"
+          ]
+        }
+      }
+    }
+  },
+  "on": {
+    "*": {
+      "actions": [
+        "[Node: logAction]"
+      ]
+    }
+  }
+}

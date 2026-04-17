@@ -1,17 +1,17 @@
 {
-  "type": "parallel",
+  "initial": "start",
   "states": {
-    "A": {
-      "type": "final"
-    },
-    "B": {
-      "initial": "B1",
-      "states": {
-        "B1": {},
-        "B2": {
-          "type": "final"
-        }
+    "start": {
+      "invoke": {
+        "id": "child",
+        "src": "[Node: child]",
+        "onDone": "completed"
+      },
+      "on": {
+        "CHILD_CANCELED": "canceled"
       }
-    }
+    },
+    "canceled": {},
+    "completed": {}
   }
 }

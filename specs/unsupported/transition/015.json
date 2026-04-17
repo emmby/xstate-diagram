@@ -1,26 +1,33 @@
 {
-  "initial": "a",
-  "context": {
-    "count": 5
-  },
+  "type": "parallel",
   "states": {
-    "a": {
-      "always": [
-        {
-          "guard": "[Function/Identifier: ({ context }) => context.count...]",
-          "target": "b"
-        },
-        {
-          "guard": "[Function/Identifier: () => false...]",
-          "target": "c"
-        }
-      ],
+    "regionA": {
+      "initial": "a1",
       "on": {
-        "GO_D": "d"
+        "REGION_A_EVENT": ".a2"
+      },
+      "states": {
+        "a1": {
+          "on": {
+            "A1_EVENT": "a2"
+          }
+        },
+        "a2": {}
       }
     },
-    "b": {},
-    "c": {},
-    "d": {}
+    "regionB": {
+      "initial": "b1",
+      "on": {
+        "REGION_B_EVENT": ".b2"
+      },
+      "states": {
+        "b1": {
+          "on": {
+            "B1_EVENT": "b2"
+          }
+        },
+        "b2": {}
+      }
+    }
   }
 }

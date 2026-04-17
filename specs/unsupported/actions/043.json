@@ -1,12 +1,15 @@
 {
-  "initial": "one",
+  "id": "child",
+  "initial": "active",
   "states": {
-    "one": {
-      "after": {
-        "10": {
-          "actions": "[Function/Identifier: () => {\n                  // d...]"
-        }
+    "active": {
+      "on": {
+        "FINISH": "done"
       }
+    },
+    "done": {
+      "type": "final"
     }
-  }
+  },
+  "exit": "[Node: sendParent({ type: 'CHILD_DONE' })]"
 }

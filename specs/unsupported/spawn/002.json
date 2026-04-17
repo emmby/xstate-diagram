@@ -1,0 +1,4 @@
+{
+  "types": "[Node: {} as { context: { ref: ActorRefFrom<typeof childMachine> } }]",
+  "context": "[Node: ({ spawn }) => ({\n        ref: spawn(childMachine, { input: { value: 42 }, systemId: 'test' })\n      })]"
+}

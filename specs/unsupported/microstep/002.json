@@ -1,0 +1,14 @@
+{
+  "initial": "first",
+  "states": {
+    "first": {
+      "on": {
+        "TRIGGER": "second"
+      }
+    },
+    "second": {
+      "always": "third"
+    },
+    "third": {}
+  }
+}

@@ -1,19 +1,17 @@
 {
-  "id": "ping-pong",
-  "initial": "active",
+  "id": "error",
+  "initial": "safe",
   "states": {
-    "active": {
+    "safe": {
       "invoke": {
-        "id": "child",
-        "src": "[Call: fromCallback]"
-      },
-      "entry": "[Call: sendTo]",
-      "on": {
-        "PONG": "done"
+        "src": "[Node: fromCallback(() => {\n                throw new Error('test');\n              })]",
+        "onError": "failed"
       }
     },
-    "done": {
-      "type": "final"
+    "failed": {
+      "on": {
+        "RETRY": "safe"
+      }
     }
   }
 }

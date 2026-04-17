@@ -1,28 +1,19 @@
 {
   "type": "parallel",
   "states": {
-    "a": {
-      "initial": "child_a1",
+    "A": {
+      "initial": "A1",
       "states": {
-        "child_a1": {
-          "on": {
-            "EV2": "child_a2"
-          }
-        },
-        "child_a2": {
+        "A1": {
           "type": "final"
         }
       }
     },
-    "b": {
-      "initial": "child_b1",
+    "B": {
+      "initial": "B1",
       "states": {
-        "child_b1": {
-          "on": {
-            "EV1": "child_b2"
-          }
-        },
-        "child_b2": {
+        "B1": {},
+        "B2": {
           "type": "final"
         }
       }

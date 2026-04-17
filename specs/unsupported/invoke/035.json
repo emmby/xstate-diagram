@@ -1,24 +1,21 @@
 {
-  "id": "promise",
-  "initial": "pending",
-  "context": {
-    "foo": true
-  },
+  "initial": "active",
   "states": {
-    "pending": {
-      "on": {
-        "BEGIN": "first"
-      }
-    },
-    "first": {
+    "active": {
       "invoke": {
-        "src": "somePromise",
-        "input": "[Function/Identifier: ({ context, event }) => ({\n   ...]",
-        "onDone": "last"
+        "src": "[Node: fromPromise(() =>\n                  createPromise((res) => {\n                    setTimeout(() => res(42), 5);\n                  })\n                )]",
+        "onSnapshot": {}
+      },
+      "on": {
+        "deactivate": "inactive"
       }
     },
-    "last": {
-      "type": "final"
+    "inactive": {
+      "on": {
+        "*": {
+          "actions": "[Node: ({ event }) => {\n                    if (event.snapshot) {\n                      throw new Error(\n                        `Received unexpected event: ${event.type}`\n                      );\n                    }\n                  }]"
+        }
+      }
     }
   }
 }

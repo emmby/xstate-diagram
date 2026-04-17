@@ -1,0 +1,8 @@
+{
+  "invoke": {
+    "src": "[Node: invokedMachine]",
+    "input": {
+      "greeting": "hello"
+    }
+  }
+}

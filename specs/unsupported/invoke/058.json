@@ -1,26 +1,11 @@
 {
-  "id": "obs",
-  "initial": "counting",
-  "context": {
-    "count": "[Function/Identifier: undefined...]"
+  "invoke": {
+    "src": "[Node: fromEventObservable(({ input }) =>\n            of({\n              type: 'obs.event',\n              value: input\n            })\n          )]",
+    "input": 42
   },
-  "states": {
-    "counting": {
-      "invoke": {
-        "src": "[Call: fromEventObservable]",
-        "onDone": {
-          "target": "counted",
-          "guard": "[Function/Identifier: ({ context }) => context.count...]"
-        }
-      },
-      "on": {
-        "COUNT": {
-          "actions": "[Call: assign]"
-        }
-      }
-    },
-    "counted": {
-      "type": "final"
+  "on": {
+    "obs.event": {
+      "actions": "[Node: ({ event }) => {\n              expect(event.value).toEqual(42);\n              resolve();\n            }]"
     }
   }
 }

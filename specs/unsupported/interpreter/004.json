@@ -1,0 +1,25 @@
+{
+  "initial": "green",
+  "states": {
+    "green": {
+      "on": {
+        "TIMER": {
+          "target": "yellow",
+          "actions": "[Node: () => (called = true)]"
+        }
+      }
+    },
+    "yellow": {
+      "on": {
+        "TIMER": {
+          "target": "red"
+        }
+      }
+    },
+    "red": {
+      "on": {
+        "TIMER": "green"
+      }
+    }
+  }
+}

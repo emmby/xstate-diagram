@@ -1,0 +1,13 @@
+{
+  "initial": "A",
+  "states": {
+    "A": {
+      "on": {
+        "foo.*": "fail",
+        "foo.bar.*": "pass"
+      }
+    },
+    "fail": {},
+    "pass": {}
+  }
+}

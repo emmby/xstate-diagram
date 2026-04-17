@@ -1,0 +1,13 @@
+{
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "NEXT": "active"
+      }
+    },
+    "active": {
+      "tags": "foo"
+    }
+  }
+}

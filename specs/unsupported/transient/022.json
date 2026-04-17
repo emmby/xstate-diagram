@@ -1,13 +1,13 @@
 {
   "always": {
-    "actions": "[Function/Identifier: () => spy(counter)...]"
+    "actions": "[Node: () => spy(counter)]"
   },
   "on": {
     "EV": {
-      "actions": "[Call: raise]"
+      "actions": "[Node: raise({ type: 'RAISED' })]"
     },
     "RAISED": {
-      "actions": "[Function/Identifier: () => {\n            ++counter;...]"
+      "actions": "[Node: () => {\n            ++counter;\n          }]"
     }
   }
 }

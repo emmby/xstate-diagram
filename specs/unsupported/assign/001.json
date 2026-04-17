@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as { context: CounterContext }]",
   "initial": "counting",
   "context": {
     "count": 0,
@@ -10,14 +11,14 @@
         "INC": [
           {
             "target": "counting",
-            "actions": "[Call: assign]"
+            "actions": "[Node: assign(({ context }) => ({\n                count: context.count + 1\n              }))]"
           }
         ],
         "DEC": [
           {
             "target": "counting",
             "actions": [
-              "[Call: assign]"
+              "[Node: assign({\n                  count: ({ context }) => context.count - 1\n                })]"
             ]
           }
         ],
@@ -25,7 +26,7 @@
           {
             "target": "counting",
             "actions": [
-              "[Call: assign]"
+              "[Node: assign({\n                  count: () => 100,\n                  foo: () => 'win'\n                })]"
             ]
           }
         ],
@@ -33,7 +34,7 @@
           {
             "target": "counting",
             "actions": [
-              "[Call: assign]"
+              "[Node: assign({\n                  count: 100,\n                  foo: 'win'\n                })]"
             ]
           }
         ],
@@ -41,7 +42,7 @@
           {
             "target": "counting",
             "actions": [
-              "[Call: assign]"
+              "[Node: assign({\n                  count: () => 100,\n                  foo: 'win'\n                })]"
             ]
           }
         ],
@@ -49,14 +50,14 @@
           {
             "target": "counting",
             "actions": [
-              "[Call: assign]"
+              "[Node: assign(() => ({\n                  count: 100,\n                  foo: 'win'\n                }))]"
             ]
           }
         ],
         "SET_MAYBE": [
           {
             "actions": [
-              "[Call: assign]"
+              "[Node: assign({\n                  maybe: 'defined'\n                })]"
             ]
           }
         ]

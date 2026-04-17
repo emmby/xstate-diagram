@@ -1,26 +1,9 @@
 {
-  "initial": "ready",
+  "id": "child",
+  "initial": "idle",
   "states": {
-    "ready": {
-      "type": "parallel",
-      "on": {
-        "FOO": {
-          "target": "#cameraOff",
-          "reenter": true
-        }
-      },
-      "states": {
-        "devicesInfo": {},
-        "camera": {
-          "initial": "on",
-          "states": {
-            "on": {},
-            "off": {
-              "id": "cameraOff"
-            }
-          }
-        }
-      }
+    "idle": {
+      "exit": "[Node: sendParent({ type: 'EXIT' })]"
     }
   }
 }

@@ -1,12 +1,5 @@
 {
-  "type": "parallel",
-  "states": {
-    "first": "[Call: createSingleState]",
-    "second": "[Call: createSingleState]"
-  },
-  "on": {
-    "*": {
-      "actions": "[Function/Identifier: ({ event }) => {\n            a...]"
-    }
+  "invoke": {
+    "src": "[Node: fromCallback(() => {\n          return () => {\n            disposed = true;\n          };\n        })]"
   }
 }

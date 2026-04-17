@@ -1,0 +1,17 @@
+{
+  "initial": "a",
+  "context": {},
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "entry": [
+        "[Node: () => {\n              actual.push('custom');\n            }]",
+        "[Node: assign(() => {\n              actual.push('assign');\n              return {};\n            })]"
+      ]
+    }
+  }
+}

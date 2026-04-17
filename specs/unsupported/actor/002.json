@@ -1,0 +1,36 @@
+{
+  "types": "[Node: {} as { context: ClientContext; events: PingPongEvent }]",
+  "id": "client",
+  "initial": "init",
+  "context": {
+    "server": "[Node: undefined]"
+  },
+  "states": {
+    "init": {
+      "entry": [
+        "[Node: assign({\n            server: ({ spawn }) => spawn(serverMachine)\n          })]",
+        "[Node: raise({ type: 'SUCCESS' })]"
+      ],
+      "on": {
+        "SUCCESS": "sendPing"
+      }
+    },
+    "sendPing": {
+      "entry": [
+        "[Node: sendTo(({ context }) => context.server!, { type: 'PING' })]",
+        "[Node: raise({ type: 'SUCCESS' })]"
+      ],
+      "on": {
+        "SUCCESS": "waitPong"
+      }
+    },
+    "waitPong": {
+      "on": {
+        "PONG": "complete"
+      }
+    },
+    "complete": {
+      "type": "final"
+    }
+  }
+}

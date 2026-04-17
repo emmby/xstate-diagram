@@ -1,0 +1,13 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "on": {
+        "NEXT": "bar"
+      }
+    },
+    "bar": {
+      "type": "final"
+    }
+  }
+}

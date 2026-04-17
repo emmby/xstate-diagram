@@ -1,0 +1,8 @@
+{
+  "types": "[Node: {} as {\n        events: { type: 'FOO' } | { type: 'BAR' };\n      }]",
+  "on": {
+    "FOO": {
+      "actions": "[Node: assign(({ self }) => {\n            self.send({ type: 'FOO' });\n            self.send({ type: 'BAR' });\n            // @ts-expect-error\n            self.send({ type: 'BAZ' });\n            return {};\n          })]"
+    }
+  }
+}

@@ -20,11 +20,11 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
   `git mv specs/unsupported/{feature}/{name}.json specs/supported/{feature}_{name}.json`
 - Run the local test suite via `npm test`. 
   > [!IMPORTANT]
-  > The `cli.test.ts` matrix natively crawls the `specs/supported/` directory. By moving the file into this bucket, Jest will automatically detect it and intrinsically execute `@mermaid-js/parser` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this step.
+  > The `cli.test.ts` matrix natively crawls the `specs/supported/` directory. By moving the file into this bucket, Jest will automatically detect it and intrinsically execute `mermaid-cli` validating the strict character syntax of your `compiler.ts` logic output without false positives. Do not bypass this step.
 
 ### Step 4: Execute Agentic Semantic Pipeline
 - Run our semantic evaluation pipeline wrapper specifically against the target artifacts:
-  `./scripts/validate_pr.sh specs/{feature_name}.json src/__snapshots__/{feature_name}.mermaid`
+  `./scripts/validate_pr.sh specs/supported/{feature_name}.json src/__snapshots__/{feature_name}.mermaid`
 - Ensure the bash wrapper prints **Exit Code `0`** natively. This systematically proves:
     1. `mmdc` natively traced the topological relationships and dropped `specs/001_proof.svg` into the tree without `Puppeteer` sandbox crashes.
     2. The `gemini` LLM parsed your string stdout, compared it aggressively against the raw mapping tree config structurally, and asserted the layout matching perfectly.
@@ -39,6 +39,11 @@ Because this is simply a horizontal scaling operation covering a matrix of indiv
 #### Standardized PR Template Structure
 ```markdown
 Implement feature: {feature_name}
+
+### Machine Definition
+\`\`\`json
+{INSERT_JSON_CONFIG_MOCK_HERE}
+\`\`\`
 
 ### Validation Proof
 ![Proof](https://github.com/emmby/xstate-diagram/blob/{branch_name}/specs/001_proof.svg?raw=true)

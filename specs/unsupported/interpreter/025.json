@@ -1,0 +1,7 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {},
+    "bar": {}
+  }
+}

@@ -1,25 +1,26 @@
 {
+  "types": "[Node: {} as { context: Ctx; events: Events }]",
   "id": "obs",
   "initial": "counting",
   "context": {
-    "count": "[Function/Identifier: undefined...]"
+    "count": "[Node: undefined]"
   },
   "states": {
     "counting": {
       "invoke": {
-        "src": "[Call: fromEventObservable]"
+        "src": "[Node: fromEventObservable(() =>\n                interval(10).pipe(\n                  map((value) => {\n                    if (value === 5) {\n                      throw new Error('some error');\n                    }\n\n                    return { type: 'COUNT', value };\n                  })\n                )\n              )]",
+        "onError": {
+          "target": "success",
+          "guard": "[Node: ({ context, event }) => {\n                  expect((event.error as any).message).toEqual('some error');\n                  return (\n                    context.count === 4 &&\n                    (event.error as any).message === 'some error'\n                  );\n                }]"
+        }
       },
       "on": {
         "COUNT": {
-          "actions": "[Call: assign]"
+          "actions": "[Node: assign({ count: ({ event }) => event.value })]"
         }
-      },
-      "always": {
-        "target": "counted",
-        "guard": "[Function/Identifier: ({ context }) => context.count...]"
       }
     },
-    "counted": {
+    "success": {
       "type": "final"
     }
   }

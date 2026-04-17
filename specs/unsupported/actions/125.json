@@ -1,17 +1,24 @@
 {
-  "initial": "a",
+  "type": "parallel",
   "states": {
     "a": {
-      "on": {
-        "NEXT": {
-          "actions": "[Call: raise]"
-        },
-        "RAISED": "b",
-        "CANCEL": {
-          "actions": "[Call: cancel]"
+      "initial": "a1",
+      "states": {
+        "a1": {
+          "on": {
+            "FOO": {
+              "actions": "[Node: () => actual.push('a1')]"
+            }
+          }
         }
       }
     },
-    "b": {}
+    "b": {
+      "on": {
+        "FOO": {
+          "actions": "[Node: () => actual.push('b')]"
+        }
+      }
+    }
   }
 }

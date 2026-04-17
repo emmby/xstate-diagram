@@ -1,21 +1,30 @@
 {
-  "initial": "active",
+  "id": "callback",
+  "initial": "pending",
+  "context": {
+    "foo": true
+  },
   "states": {
-    "active": {
-      "invoke": {
-        "src": "[Call: fromPromise]",
-        "onSnapshot": {}
-      },
+    "pending": {
       "on": {
-        "deactivate": "inactive"
+        "BEGIN": "first"
       }
     },
-    "inactive": {
+    "first": {
+      "invoke": {
+        "src": "someCallback"
+      },
       "on": {
-        "*": {
-          "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
-        }
+        "CALLBACK": "intermediate"
       }
+    },
+    "intermediate": {
+      "on": {
+        "NEXT": "last"
+      }
+    },
+    "last": {
+      "type": "final"
     }
   }
 }

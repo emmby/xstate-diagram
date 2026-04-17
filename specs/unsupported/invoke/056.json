@@ -1,12 +1,27 @@
 {
+  "types": "[Node: {} as { context: Ctx; events: Events }]",
+  "id": "obs",
+  "initial": "counting",
   "context": {
-    "received": "[Function/Identifier: undefined...]"
+    "count": "[Node: undefined]"
   },
-  "invoke": {
-    "src": "childLogic",
-    "input": 42,
-    "onSnapshot": {
-      "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+  "states": {
+    "counting": {
+      "invoke": {
+        "src": "[Node: fromEventObservable(() =>\n                interval(10).pipe(\n                  take(5),\n                  map((value) => ({ type: 'COUNT', value }))\n                )\n              )]",
+        "onDone": {
+          "target": "counted",
+          "guard": "[Node: ({ context }) => context.count === 4]"
+        }
+      },
+      "on": {
+        "COUNT": {
+          "actions": "[Node: assign({\n                  count: ({ event }) => event.value\n                })]"
+        }
+      }
+    },
+    "counted": {
+      "type": "final"
     }
   }
 }

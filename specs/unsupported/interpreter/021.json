@@ -1,0 +1,18 @@
+{
+  "id": "send",
+  "initial": "inactive",
+  "states": {
+    "inactive": {
+      "on": {
+        "EVENT": {
+          "target": "active",
+          "guard": "[Node: ({ event }) => event.id === 42]"
+        },
+        "ACTIVATE": "active"
+      }
+    },
+    "active": {
+      "type": "final"
+    }
+  }
+}

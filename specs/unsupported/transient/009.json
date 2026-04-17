@@ -7,7 +7,7 @@
       }
     },
     "b": {
-      "entry": "[Call: raise]",
+      "entry": "[Node: raise({ type: 'BAR' })]",
       "always": "c",
       "on": {
         "BAR": "d"

@@ -1,23 +1,18 @@
 {
-  "initial": "withNonLeafInvoke",
+  "types": "[Node: {} as {\n          actors: {\n            src: 'search';\n            logic: PromiseActorLogic<\n              number,\n              {\n                endpoint: string;\n              }\n            >;\n          };\n        }]",
+  "initial": "searching",
   "states": {
-    "withNonLeafInvoke": {
+    "searching": {
       "invoke": {
-        "id": "doNotInvoke",
-        "src": "[Call: fromCallback]"
-      },
-      "initial": "first",
-      "states": {
-        "first": {
-          "always": "second"
+        "src": "search",
+        "input": {
+          "endpoint": "example.com"
         },
-        "second": {
-          "always": "#inactive"
-        }
+        "onDone": "success"
       }
     },
-    "inactive": {
-      "id": "inactive"
+    "success": {
+      "type": "final"
     }
   }
 }

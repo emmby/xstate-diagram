@@ -1,9 +1,3 @@
 {
-  "id": "test",
-  "initial": "foo",
-  "states": {
-    "foo": {
-      "entry": "entryAction"
-    }
-  }
+  "entry": "[Node: enqueueActions(({ enqueue }) => {\n          enqueue('someAction');\n        })]"
 }

@@ -25,7 +25,7 @@
           "always": [
             {
               "target": "B4",
-              "guard": "[Call: stateIn]"
+              "guard": "[Node: stateIn('A.A4')]"
             }
           ]
         },

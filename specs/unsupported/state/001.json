@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as {\n    events: Events;\n  }]",
   "initial": "one",
   "states": {
     "one": {
@@ -19,10 +20,10 @@
         "TO_TWO": "two",
         "TO_TWO_MAYBE": {
           "target": "two",
-          "guard": "[Function/Identifier: function maybe() {\n           ...]"
+          "guard": "[Node: function maybe() {\n            return true;\n          }]"
         },
         "TO_THREE": "three",
-        "FORBIDDEN_EVENT": "[Function/Identifier: undefined...]",
+        "FORBIDDEN_EVENT": "[Node: undefined]",
         "TO_FINAL": "success"
       }
     },
@@ -35,7 +36,7 @@
             "foo": {
               "on": {
                 "FOO_EVENT": "bar",
-                "FORBIDDEN_EVENT": "[Function/Identifier: undefined...]"
+                "FORBIDDEN_EVENT": "[Node: undefined]"
               }
             },
             "bar": {

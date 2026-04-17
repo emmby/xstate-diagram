@@ -1,0 +1,26 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "GO": "a"
+      }
+    },
+    "a": {
+      "entry": "[Node: raise({ type: 'NEXT' })]",
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {
+      "always": "c"
+    },
+    "c": {
+      "entry": "[Node: raise({ type: 'NEXT' })]",
+      "on": {
+        "NEXT": "d"
+      }
+    },
+    "d": {}
+  }
+}

@@ -1,18 +1,11 @@
 {
-  "initial": "waiting",
-  "states": {
-    "waiting": {
-      "entry": "[Call: sendTo]",
-      "invoke": {
-        "id": "ponger",
-        "src": "[Function/Identifier: pongLogic...]"
-      },
-      "on": {
-        "PONG": "success"
-      }
-    },
-    "success": {
-      "type": "final"
+  "types": "[Node: {} as {\n            actors: { src: 'doublerLogic'; logic: typeof doublerLogic };\n          }]",
+  "invoke": {
+    "id": "doubler",
+    "src": "doublerLogic",
+    "onSnapshot": {
+      "actions": "[Node: ({ event }) => {\n                if (event.snapshot.context === 42) {\n                  resolve();\n                }\n              }]"
     }
-  }
+  },
+  "entry": "[Node: sendTo('doubler', { type: 'update', value: 21 }, { delay: 10 })]"
 }

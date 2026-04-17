@@ -1,17 +1,3 @@
 {
-  "initial": "a",
-  "context": {
-    "eventType": "RAISED"
-  },
-  "states": {
-    "a": {
-      "on": {
-        "NEXT": {
-          "actions": "[Call: raise]"
-        },
-        "RAISED": "b"
-      }
-    },
-    "b": {}
-  }
+  "entry": "[Node: ({ self }) => {\n        expect(self.send).toBeDefined();\n      }]"
 }

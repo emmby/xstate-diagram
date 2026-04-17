@@ -1,20 +1,42 @@
 {
-  "initial": "parent",
+  "type": "parallel",
+  "on": {
+    "ROOT_EVENT": {}
+  },
   "states": {
-    "parent": {
-      "initial": "child",
+    "regionA": {
+      "initial": "nested",
       "on": {
-        "PARENT_EVENT": "other"
+        "REGION_A_EVENT": ".nested"
       },
       "states": {
-        "child": {
+        "nested": {
+          "initial": "deep",
           "on": {
-            "CHILD_EVENT": "sibling"
+            "NESTED_A_EVENT": ".deep"
+          },
+          "states": {
+            "deep": {
+              "on": {
+                "DEEP_A_EVENT": "deep"
+              }
+            }
           }
-        },
-        "sibling": {}
+        }
       }
     },
-    "other": {}
+    "regionB": {
+      "initial": "leaf",
+      "on": {
+        "REGION_B_EVENT": ".leaf"
+      },
+      "states": {
+        "leaf": {
+          "on": {
+            "LEAF_B_EVENT": "leaf"
+          }
+        }
+      }
+    }
   }
 }

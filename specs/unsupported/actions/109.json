@@ -1,12 +1,3 @@
 {
-  "initial": "waiting",
-  "states": {
-    "waiting": {
-      "on": {
-        "EVENT": {
-          "actions": "[Function/Identifier: () => resolve()...]"
-        }
-      }
-    }
-  }
+  "entry": "[Node: raise(\n        // @ts-ignore\n        'a string'\n      )]"
 }

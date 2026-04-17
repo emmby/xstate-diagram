@@ -1,0 +1,20 @@
+{
+  "type": "parallel",
+  "states": {
+    "selected": {},
+    "location": {
+      "initial": "home",
+      "states": {
+        "home": {
+          "on": {
+            "NEXT": {
+              "target": "success",
+              "guard": "hasSelection"
+            }
+          }
+        },
+        "success": {}
+      }
+    }
+  }
+}

@@ -1,11 +1,12 @@
 {
-  "context": {
-    "count": 1
-  },
-  "entry": {
-    "type": "inc",
-    "params": {
-      "by": 10
+  "on": {
+    "EVENT": {
+      "actions": {
+        "type": "inc",
+        "params": {
+          "value": 5
+        }
+      }
     }
   }
 }

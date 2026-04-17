@@ -1,0 +1,11 @@
+{
+  "types": "[Node: {} as {\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
+  "context": {
+    "counter": 0
+  },
+  "on": {
+    "EV": {
+      "guard": "[Node: not((_, params) => {\n            params satisfies unknown;\n            // @ts-expect-error\n            params satisfies undefined;\n            // @ts-expect-error\n            params satisfies 'not any';\n            return true;\n          })]"
+    }
+  }
+}

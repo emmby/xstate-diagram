@@ -1,0 +1,5 @@
+{
+  "types": "[Node: {} as {\n        input: { greeting: string };\n        context: { greeting: string };\n      }]",
+  "context": "[Node: ({ input }) => input]",
+  "entry": "[Node: ({ context, event }) => {\n        expect(context.greeting).toBe('hello');\n        expect(event.input.greeting).toBe('hello');\n        resolve();\n      }]"
+}

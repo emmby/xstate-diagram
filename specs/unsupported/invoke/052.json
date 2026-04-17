@@ -1,20 +1,24 @@
 {
-  "id": "parent",
-  "initial": "begin",
+  "types": "[Node: {} as { context: Ctx; events: Events }]",
+  "id": "obs",
+  "initial": "counting",
+  "context": {
+    "count": "[Node: undefined]"
+  },
   "states": {
-    "begin": {
+    "counting": {
       "invoke": {
-        "src": "[Function/Identifier: anotherChildMachine...]",
-        "id": "invoked.child",
-        "onDone": "completed"
-      },
-      "on": {
-        "STOPCHILD": {
-          "actions": "[Call: sendTo]"
+        "src": "[Node: fromObservable(() => interval(10).pipe(take(5)))]",
+        "onSnapshot": {
+          "actions": "[Node: assign({\n                  count: ({ event }) => event.snapshot.context\n                })]"
+        },
+        "onDone": {
+          "target": "counted",
+          "guard": "[Node: ({ context }) => context.count === 4]"
         }
       }
     },
-    "completed": {
+    "counted": {
       "type": "final"
     }
   }

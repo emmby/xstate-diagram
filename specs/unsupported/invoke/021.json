@@ -1,11 +1,17 @@
 {
+  "id": "machine",
   "invoke": {
-    "src": "[Call: fromCallback]"
+    "src": "[Node: fromCallback(() => () => (actorStopped = true))]"
   },
-  "entry": "[Function/Identifier: () => entryActionsCount++...]",
-  "on": {
-    "UPDATE": {
-      "actions": "[Function/Identifier: () => {\n              actionsC...]"
+  "initial": "running",
+  "states": {
+    "running": {
+      "on": {
+        "finished": "complete"
+      }
+    },
+    "complete": {
+      "type": "final"
     }
   }
 }

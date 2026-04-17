@@ -1,0 +1,6 @@
+{
+  "types": {
+    "actors": "[Node: {} as {\n            src: 'fetchNum';\n            logic: typeof fetchNum;\n          }]"
+  },
+  "entry": "[Node: spawnChild('fetchNum', { id: 'child', input: 21 })]"
+}

@@ -1,4 +1,18 @@
 {
-  "context": "[Function/Identifier: ({ spawn }) => ({\n        chil...]",
-  "entry": "[Call: sendTo]"
+  "types": "[Node: {} as { context: MachineContext; events: MachineEvent }]",
+  "initial": "a",
+  "context": {
+    "eventType": "RAISED"
+  },
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": {
+          "actions": "[Node: raise(({ context }) => ({\n                type: context.eventType\n              }))]"
+        },
+        "RAISED": "b"
+      }
+    },
+    "b": {}
+  }
 }

@@ -1,16 +1,16 @@
 {
   "initial": "a",
+  "invoke": {
+    "src": "[Node: childMachine]"
+  },
   "states": {
     "a": {
-      "invoke": {
-        "src": "[Call: fromCallback]"
-      },
       "on": {
-        "GO_AWAY_AND_REENTER": "b"
+        "FINISH": "b"
       }
     },
     "b": {
-      "always": "a"
+      "type": "final"
     }
   }
 }

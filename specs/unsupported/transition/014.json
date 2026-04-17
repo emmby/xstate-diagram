@@ -1,28 +1,31 @@
 {
-  "initial": "a",
-  "context": {
-    "count": 100
-  },
+  "initial": "parent",
   "states": {
-    "a": {
+    "parent": {
+      "initial": "child",
       "on": {
-        "GO_B": [
+        "SAME_EVENT": [
           {
-            "guard": "[Function/Identifier: ({ context }) => context.count...]",
-            "target": "b"
+            "guard": "[Node: () => false]",
+            "target": "parentTarget"
           },
           {
-            "target": "d"
+            "target": "parentTarget2"
           }
-        ],
-        "GO_C": {
-          "guard": "[Function/Identifier: ({ context }) => context.count...]",
-          "target": "c"
-        }
+        ]
+      },
+      "states": {
+        "child": {
+          "on": {
+            "SAME_EVENT": {
+              "target": "childTarget"
+            }
+          }
+        },
+        "childTarget": {}
       }
     },
-    "b": {},
-    "c": {},
-    "d": {}
+    "parentTarget": {},
+    "parentTarget2": {}
   }
 }

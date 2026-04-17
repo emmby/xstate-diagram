@@ -1,0 +1,3 @@
+{
+  "types": "[Node: {} as {\n              events:\n                | {\n                    type: 'EV_1';\n                  }\n                | {\n                    type: 'EV_2';\n                  };\n            }]"
+}

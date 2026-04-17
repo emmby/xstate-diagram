@@ -1,5 +1,21 @@
 {
-  "id": "parent",
-  "context": {},
-  "exit": "[Call: assign]"
+  "id": "root",
+  "initial": {
+    "target": "a",
+    "actions": "[Node: spy]"
+  },
+  "states": {
+    "a": {
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {}
+  },
+  "on": {
+    "REENTER": {
+      "target": "#root",
+      "reenter": true
+    }
+  }
 }

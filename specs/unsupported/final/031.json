@@ -3,12 +3,13 @@
   "states": {
     "start": {
       "on": {
-        "CANCEL": "canceled"
+        "NEXT": "end"
       }
     },
-    "canceled": {
+    "end": {
       "type": "final",
-      "entry": "[Call: sendParent]"
+      "output": "[Node: null]"
     }
-  }
+  },
+  "output": "[Node: ({ event }) => event.output]"
 }

@@ -1,0 +1,11 @@
+{
+  "invoke": [
+    {
+      "src": "[Node: createMachine({})]",
+      "systemId": "test"
+    },
+    {
+      "src": "[Node: fromCallback(({ system }) => {\n            expect(system.get('test')).toBeDefined();\n          })]"
+    }
+  ]
+}

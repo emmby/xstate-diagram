@@ -6,7 +6,7 @@
         "1": [
           {
             "target": "Y",
-            "guard": "[Function/Identifier: () => true...]"
+            "guard": "[Node: () => true]"
           },
           {
             "target": "Z"
@@ -17,7 +17,7 @@
     "Y": {
       "on": {
         "*": {
-          "actions": "[Function/Identifier: spy...]"
+          "actions": "[Node: spy]"
         }
       }
     },

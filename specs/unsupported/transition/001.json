@@ -1,5 +1,5 @@
 {
   "entry": [
-    "[Call: enqueueActions]"
+    "[Node: enqueueActions((x) => {\n          x.enqueue('stringAction');\n          x.enqueue({ type: 'objectAction' });\n        })]"
   ]
 }

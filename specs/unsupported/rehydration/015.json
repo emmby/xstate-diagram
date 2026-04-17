@@ -1,0 +1,10 @@
+{
+  "context": {
+    "count": 0
+  },
+  "on": {
+    "INC": {
+      "actions": "[Node: assign({\n            count: ({ context }) => context.count + 1\n          })]"
+    }
+  }
+}

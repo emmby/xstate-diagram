@@ -1,0 +1,24 @@
+{
+  "initial": "waiting",
+  "invoke": [
+    {
+      "id": "a",
+      "src": "[Node: fromPromise(() => Promise.resolve(42))]",
+      "onDone": {
+        "actions": "[Node: raise({ type: 'done' })]"
+      }
+    },
+    {
+      "id": "b",
+      "src": "[Node: childMachine]"
+    }
+  ],
+  "states": {
+    "waiting": {
+      "on": {
+        "done": "success"
+      }
+    },
+    "success": {}
+  }
+}

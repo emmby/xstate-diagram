@@ -1,17 +1,9 @@
 {
-  "initial": {
-    "target": "a",
-    "actions": "[Function/Identifier: () => spy('root')...]"
+  "context": {
+    "secret": 42
   },
-  "states": {
-    "a": {
-      "initial": {
-        "target": "a1",
-        "actions": "[Function/Identifier: () => spy('inner')...]"
-      },
-      "states": {
-        "a1": {}
-      }
-    }
+  "entry": {
+    "type": "entryAction",
+    "params": "[Node: ({ context }) => ({ secret: context.secret })]"
   }
 }

@@ -1,0 +1,13 @@
+{
+  "id": "start",
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "initial": "one",
+      "states": {
+        "one": {}
+      }
+    },
+    "bar": {}
+  }
+}

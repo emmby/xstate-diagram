@@ -3,12 +3,16 @@
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromCallback]",
+        "src": "[Node: fromCallback(() => {\n              throw new Error('handled_sync_error_in_actor_start');\n            })]",
         "onError": "failed"
       }
     },
     "failed": {
-      "type": "final"
+      "on": {
+        "do": {
+          "actions": "[Node: spy]"
+        }
+      }
     }
   }
 }

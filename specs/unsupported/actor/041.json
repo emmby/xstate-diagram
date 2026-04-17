@@ -1,0 +1,17 @@
+{
+  "types": "[Node: {} as {\n        context: {\n          actorRef: CallbackActorRef<EventObject>;\n        };\n      }]",
+  "initial": "active",
+  "context": "[Node: ({ spawn }) => {\n        const localId = ++invokeCounter;\n\n        return {\n          actorRef: spawn(\n            fromCallback(() => {\n              actual.push(`start ${localId}`);\n              return () => {\n                actual.push(`stop ${localId}`);\n              };\n            }),\n            { id: 'my_name' }\n          )\n        };\n      }]",
+  "states": {
+    "active": {
+      "on": {
+        "update": {
+          "actions": [
+            "[Node: stopChild(({ context }) => context.actorRef)]",
+            "[Node: assign({\n                  actorRef: ({ spawn }) => {\n                    const localId = ++invokeCounter;\n\n                    return spawn(\n                      fromCallback(() => {\n                        actual.push(`start ${localId}`);\n                        return () => {\n                          actual.push(`stop ${localId}`);\n                        };\n                      }),\n                      { id: 'my_name' }\n                    );\n                  }\n                })]"
+          ]
+        }
+      }
+    }
+  }
+}

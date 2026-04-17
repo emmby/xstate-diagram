@@ -1,22 +1,15 @@
 {
-  "type": "parallel",
+  "initial": "start",
+  "exit": "[Node: spy]",
   "states": {
-    "A": {
-      "initial": "A1",
-      "states": {
-        "A1": {
-          "type": "final"
-        }
+    "start": {
+      "on": {
+        "CANCEL": "canceled"
       }
     },
-    "B": {
-      "initial": "B1",
-      "states": {
-        "B1": {},
-        "B2": {
-          "type": "final"
-        }
-      }
+    "canceled": {
+      "type": "final",
+      "entry": "[Node: sendParent({ type: 'CHILD_CANCELED' })]"
     }
   }
 }

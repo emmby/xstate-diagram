@@ -3,11 +3,11 @@
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromCallback]",
-        "onError": "failed"
+        "src": "[Node: fromCallback(() => {\n              throw new Error(\n                'unhandled_sync_error_in_actor_start_with_root_error_listener'\n              );\n            })]",
+        "onDone": "success"
       }
     },
-    "failed": {
+    "success": {
       "type": "final"
     }
   }

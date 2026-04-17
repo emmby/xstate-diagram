@@ -1,0 +1,18 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "escaped": "foo\\.bar",
+        "unescaped": "foo.bar"
+      }
+    },
+    "foo.bar": {},
+    "foo": {
+      "initial": "bar",
+      "states": {
+        "bar": {}
+      }
+    }
+  }
+}

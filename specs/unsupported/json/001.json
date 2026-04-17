@@ -1,0 +1,83 @@
+{
+  "types": "[Node: {} as { context: Context }]",
+  "initial": "foo",
+  "version": "1.0.0",
+  "context": {
+    "number": 0,
+    "string": "hello"
+  },
+  "invoke": [
+    {
+      "id": "invokeId",
+      "src": "invokeSrc"
+    }
+  ],
+  "states": {
+    "testActions": {
+      "invoke": [
+        {
+          "id": "invokeId",
+          "src": "invokeSrc"
+        }
+      ],
+      "entry": [
+        "stringActionType",
+        {
+          "type": "objectActionType"
+        },
+        {
+          "type": "objectActionTypeWithExec",
+          "exec": "[Node: () => {\n                return true;\n              }]",
+          "other": "any"
+        },
+        "[Node: function actionFunction() {\n              return true;\n            }]",
+        "[Node: assign({\n              number: 10,\n              string: 'test',\n              evalNumber: () => 42\n            }) as any]",
+        "[Node: assign((ctx) => ({\n              ...ctx\n            }))]"
+      ],
+      "on": {
+        "TO_FOO": {
+          "target": [
+            "foo",
+            "bar"
+          ],
+          "guard": "[Node: ({ context }) => !!context.string]"
+        }
+      },
+      "after": {
+        "1000": "bar"
+      }
+    },
+    "foo": {},
+    "bar": {},
+    "testHistory": {
+      "type": "history",
+      "history": "deep"
+    },
+    "testFinal": {
+      "type": "final",
+      "output": {
+        "something": "else"
+      }
+    },
+    "testParallel": {
+      "type": "parallel",
+      "states": {
+        "one": {
+          "initial": "inactive",
+          "states": {
+            "inactive": {}
+          }
+        },
+        "two": {
+          "initial": "inactive",
+          "states": {
+            "inactive": {}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "result": 42
+  }
+}

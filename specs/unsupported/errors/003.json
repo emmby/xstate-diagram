@@ -1,15 +1,14 @@
 {
-  "id": "machine",
-  "initial": "initial",
-  "context": {
-    "count": 0
-  },
+  "initial": "pending",
   "states": {
-    "initial": {
-      "on": {
-        "activate": "active"
+    "pending": {
+      "invoke": {
+        "src": "[Node: fromCallback(() => {\n              throw new Error('unhandled_sync_error_in_actor_start');\n            })]",
+        "onDone": "success"
       }
     },
-    "active": {}
+    "success": {
+      "type": "final"
+    }
   }
 }

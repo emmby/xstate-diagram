@@ -1,0 +1,6 @@
+{
+  "types": {
+    "events": "[Node: {} as {\n          type: 'FOO';\n        }]"
+  },
+  "entry": "[Node: () => {}]"
+}

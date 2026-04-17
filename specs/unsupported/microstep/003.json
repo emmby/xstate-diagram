@@ -1,0 +1,19 @@
+{
+  "initial": "first",
+  "states": {
+    "first": {
+      "on": {
+        "TRIGGER": {
+          "target": "second",
+          "actions": "[Node: raise({ type: 'RAISED' })]"
+        }
+      }
+    },
+    "second": {
+      "on": {
+        "RAISED": "third"
+      }
+    },
+    "third": {}
+  }
+}

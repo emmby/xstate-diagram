@@ -1,9 +1,12 @@
 {
+  "context": {},
   "initial": "a",
   "states": {
     "a": {
       "on": {
-        "NEXT": "b"
+        "SPAWN": {
+          "actions": "[Node: assign(({ spawn }) => ({\n                  ref: spawn(\n                    fromCallback(() => {\n                      spawned = true;\n                    })\n                  )\n                }))]"
+        }
       }
     },
     "b": {}

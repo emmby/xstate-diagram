@@ -1,20 +1,19 @@
 {
-  "initial": "foo",
+  "id": "anon",
+  "initial": "active",
   "states": {
-    "foo": {
-      "exit": "[Function/Identifier: () => {\n              executed...]",
+    "active": {
+      "entry": "[Node: () => (entryCalled = true)]",
+      "exit": "[Node: () => (exitCalled = true)]",
       "on": {
-        "INITIALIZE_SYNC_SEQUENCE": {
-          "target": "bar",
+        "EVENT": {
+          "target": "inactive",
           "actions": [
-            "[Function/Identifier: () => {\n                    //...]",
-            "[Function/Identifier: () => {\n                    ex...]"
+            "[Node: () => (actionCalled = true)]"
           ]
         }
       }
     },
-    "bar": {
-      "exit": "[Function/Identifier: () => {\n              executed...]"
-    }
+    "inactive": {}
   }
 }

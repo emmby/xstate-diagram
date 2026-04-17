@@ -34,7 +34,7 @@
       },
       "onDone": {
         "target": "bar",
-        "actions": "[Function/Identifier: ({ event }) => {\n             ...]"
+        "actions": "[Node: ({ event }) => {\n              onDoneSpy(event.type);\n            }]"
       }
     },
     "bar": {}

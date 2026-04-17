@@ -1,16 +1,23 @@
 {
-  "initial": "a",
+  "initial": "ready",
   "states": {
-    "a": {
+    "ready": {
+      "type": "parallel",
       "on": {
-        "EV": "a"
+        "FOO": {
+          "target": "#cameraOff",
+          "reenter": true
+        }
       },
-      "initial": "a1",
       "states": {
-        "a1": {
-          "initial": "a11",
+        "devicesInfo": {},
+        "camera": {
+          "initial": "on",
           "states": {
-            "a11": {}
+            "on": {},
+            "off": {
+              "id": "cameraOff"
+            }
           }
         }
       }

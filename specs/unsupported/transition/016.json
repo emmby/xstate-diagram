@@ -1,15 +1,29 @@
 {
-  "initial": "a",
+  "initial": "level1",
+  "on": {
+    "ROOT_EVENT": ".level1"
+  },
   "states": {
-    "a": {
-      "after": {
-        "1000": "b"
-      },
+    "level1": {
+      "initial": "level2",
       "on": {
-        "GO_C": "c"
+        "LEVEL1_EVENT": ".level2"
+      },
+      "states": {
+        "level2": {
+          "initial": "level3",
+          "on": {
+            "LEVEL2_EVENT": ".level3"
+          },
+          "states": {
+            "level3": {
+              "on": {
+                "LEVEL3_EVENT": "level3"
+              }
+            }
+          }
+        }
       }
-    },
-    "b": {},
-    "c": {}
+    }
   }
 }

@@ -1,25 +1,22 @@
 {
-  "id": "child",
+  "id": "parent",
   "initial": "idle",
   "states": {
     "idle": {
-      "invoke": {
-        "src": "[Call: fromCallback]"
-      },
       "on": {
-        "STARTED": "active"
+        "START": "active"
       }
     },
     "active": {
       "invoke": {
-        "src": "[Call: fromCallback]"
+        "src": "[Node: child]"
       },
       "on": {
-        "STOPPED": {
-          "target": "idle",
-          "actions": "[Call: forwardTo]"
-        }
+        "STOPPED": "done"
       }
+    },
+    "done": {
+      "type": "final"
     }
   }
 }

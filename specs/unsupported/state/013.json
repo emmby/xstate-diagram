@@ -1,14 +1,30 @@
 {
-  "initial": "a",
+  "type": "parallel",
   "states": {
     "a": {
-      "on": {
-        "CHECK": {
-          "target": "b",
-          "guard": "[Function/Identifier: () => false...]"
+      "initial": "a1",
+      "states": {
+        "a1": {
+          "id": "foo",
+          "on": {
+            "EVENT": {
+              "target": [
+                "#foo",
+                "#bar"
+              ]
+            }
+          }
         }
       }
     },
-    "b": {}
+    "b": {
+      "initial": "b1",
+      "states": {
+        "b1": {},
+        "b2": {
+          "id": "bar"
+        }
+      }
+    }
   }
 }

@@ -11,14 +11,17 @@
       }
     },
     "first": {
+      "always": "second"
+    },
+    "second": {
       "invoke": {
         "src": "someCallback"
       },
       "on": {
-        "CALLBACK": "intermediate"
+        "CALLBACK": "third"
       }
     },
-    "intermediate": {
+    "third": {
       "on": {
         "NEXT": "last"
       }

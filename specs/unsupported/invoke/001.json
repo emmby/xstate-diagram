@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as {\n        events: { type: 'FORWARD_DEC' };\n      }]",
   "id": "child",
   "initial": "init",
   "states": {
@@ -6,9 +7,9 @@
       "on": {
         "FORWARD_DEC": {
           "actions": [
-            "[Call: sendParent]",
-            "[Call: sendParent]",
-            "[Call: sendParent]"
+            "[Node: sendParent({ type: 'DEC' })]",
+            "[Node: sendParent({ type: 'DEC' })]",
+            "[Node: sendParent({ type: 'DEC' })]"
           ]
         }
       }

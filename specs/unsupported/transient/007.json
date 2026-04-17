@@ -15,7 +15,7 @@
         "A3": {
           "always": {
             "target": "A4",
-            "guard": "[Call: stateIn]"
+            "guard": "[Node: stateIn({ B: 'B3' })]"
           }
         },
         "A4": {}
@@ -32,13 +32,13 @@
         "B2": {
           "always": {
             "target": "B3",
-            "guard": "[Call: stateIn]"
+            "guard": "[Node: stateIn({ A: 'A2' })]"
           }
         },
         "B3": {
           "always": {
             "target": "B4",
-            "guard": "[Call: stateIn]"
+            "guard": "[Node: stateIn({ A: 'A3' })]"
           }
         },
         "B4": {}

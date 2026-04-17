@@ -1,0 +1,5 @@
+{
+  "types": "[Node: {} as {\n        context: {\n          parent: AnyActorRef;\n        };\n        input: {\n          parent: AnyActorRef;\n        };\n      }]",
+  "context": "[Node: ({ input }) => ({\n        parent: input.parent\n      })]",
+  "entry": "[Node: sendTo(({ context }) => context.parent, { type: 'GREET' })]"
+}

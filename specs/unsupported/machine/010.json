@@ -1,0 +1,13 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "always": [
+        {
+          "target": "b"
+        }
+      ]
+    },
+    "b": {}
+  }
+}

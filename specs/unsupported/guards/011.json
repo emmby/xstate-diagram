@@ -6,7 +6,7 @@
     "FOO": {
       "guard": {
         "type": "myGuard",
-        "params": "[Function/Identifier: ({ context }) => ({ secret: co...]"
+        "params": "[Node: ({ context }) => ({ secret: context.secret })]"
       }
     }
   }

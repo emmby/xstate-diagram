@@ -1,18 +1,11 @@
 {
-  "id": "root",
-  "initial": "ping",
+  "initial": "green",
   "states": {
-    "ping": {
-      "initial": "foo",
+    "green": {
+      "initial": "walk",
       "states": {
-        "foo": {
-          "on": {
-            "ABSOLUTE_TACK": "#root.ping.bar"
-          }
-        },
-        "bar": {}
+        "walk": {}
       }
-    },
-    "pong": {}
+    }
   }
 }

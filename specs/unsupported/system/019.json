@@ -1,0 +1,16 @@
+{
+  "initial": "listening",
+  "states": {
+    "listening": {
+      "invoke": {
+        "systemId": "listener",
+        "src": "[Node: fromCallback(({ receive }) => {\n              const localId = counter++;\n\n              receive((event) => {\n                spy(localId, event);\n              });\n\n              return () => {};\n            })]"
+      }
+    }
+  },
+  "on": {
+    "RESTART": {
+      "target": ".listening"
+    }
+  }
+}

@@ -1,22 +1,22 @@
 {
-  "initial": "a",
+  "types": "[Node: {} as {\n        events:\n          | {\n              type: 'EVENT';\n              value: number;\n            }\n          | {\n              type: 'SUCCESS';\n            };\n      }]",
+  "id": "parent",
+  "initial": "first",
   "states": {
-    "a": {
+    "first": {
+      "invoke": {
+        "src": "[Node: child]",
+        "id": "myChild"
+      },
       "on": {
-        "EVENT": "b"
+        "EVENT": {
+          "actions": "[Node: forwardTo('myChild')]"
+        },
+        "SUCCESS": "last"
       }
     },
-    "b": {
-      "entry": [
-        "definedAction",
-        {
-          "type": "definedAction"
-        },
-        "undefinedAction"
-      ]
+    "last": {
+      "type": "final"
     }
-  },
-  "on": {
-    "E": ".a"
   }
 }

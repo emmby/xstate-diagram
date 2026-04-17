@@ -1,0 +1,7 @@
+{
+  "types": "[Node: {} as {\n        context: { child: ActorRefFrom<typeof emptyObservableLogic> | null };\n      }]",
+  "context": {
+    "child": "[Node: null]"
+  },
+  "entry": "[Node: assign({\n        child: ({ spawn }) => spawn(emptyObservableLogic)\n      })]"
+}

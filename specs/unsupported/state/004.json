@@ -3,9 +3,7 @@
   "states": {
     "a": {
       "on": {
-        "NEXT": {
-          "actions": "newAction"
-        }
+        "EV": "a"
       }
     }
   }

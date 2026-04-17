@@ -1,15 +1,8 @@
 {
   "initial": "a",
-  "context": {
-    "count": 10
-  },
+  "entry": "[Node: fn]",
   "states": {
-    "a": {
-      "on": {
-        "NEXT": {
-          "actions": "[Call: emit]"
-        }
-      }
-    }
+    "a": {},
+    "b": {}
   }
 }

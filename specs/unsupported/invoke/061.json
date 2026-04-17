@@ -1,11 +1,11 @@
 {
   "invoke": {
     "id": "count",
-    "src": "[Function/Identifier: countLogic...]"
+    "src": "[Node: fromTransition(countReducer, 0)]"
   },
   "on": {
     "INC": {
-      "actions": "[Call: forwardTo]"
+      "actions": "[Node: forwardTo('count')]"
     }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "context": {
+    "childId": "myChild"
+  },
+  "entry": [
+    "[Node: spawnChild(child, { id: ({ context }) => context.childId })]",
+    "[Node: sendTo('myChild', {\n          type: 'FOO'\n        })]"
+  ]
+}

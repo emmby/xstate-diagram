@@ -1,11 +1,28 @@
 {
-  "invoke": {
-    "id": "count",
-    "src": "[Call: fromTransition]"
-  },
-  "on": {
-    "INC": {
-      "actions": "[Call: forwardTo]"
+  "id": "ping",
+  "initial": "innerMachine",
+  "states": {
+    "innerMachine": {
+      "initial": "active",
+      "states": {
+        "active": {
+          "invoke": {
+            "id": "pong",
+            "src": "[Node: pongMachine]"
+          },
+          "entry": "[Node: sendTo('pong', { type: 'PING' })]",
+          "on": {
+            "PONG": "innerSuccess"
+          }
+        },
+        "innerSuccess": {
+          "type": "final"
+        }
+      },
+      "onDone": "success"
+    },
+    "success": {
+      "type": "final"
     }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "id": "test",
+  "initial": "first",
+  "states": {
+    "first": {
+      "meta": {
+        "name": "first state"
+      }
+    },
+    "second": {
+      "meta": {
+        "name": "second state"
+      }
+    }
+  }
+}

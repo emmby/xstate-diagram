@@ -1,7 +1,7 @@
 {
   "on": {
     "FOO": {
-      "actions": "[Call: cancel]"
+      "actions": "[Node: (_, params) => {\n              spy(params);\n            }]"
     }
   }
 }

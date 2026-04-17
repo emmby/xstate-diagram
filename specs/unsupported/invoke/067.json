@@ -1,27 +1,36 @@
 {
-  "id": "ping",
-  "initial": "innerMachine",
-  "states": {
-    "innerMachine": {
-      "initial": "active",
-      "states": {
-        "active": {
-          "invoke": {
-            "id": "pong",
-            "src": "[Function/Identifier: pongMachine...]"
-          },
-          "entry": "[Call: sendTo]",
-          "on": {
-            "PONG": "innerSuccess"
-          }
-        },
-        "innerSuccess": {
-          "type": "final"
-        }
-      },
-      "onDone": "success"
+  "types": "[Node: {} as { context: { one?: string; two?: string } }]",
+  "id": "machine",
+  "initial": "one",
+  "context": {},
+  "on": {
+    "ONE": {
+      "actions": "[Node: assign({\n            one: 'one'\n          })]"
     },
-    "success": {
+    "TWO": {
+      "actions": "[Node: assign({\n            two: 'two'\n          })]",
+      "target": ".three"
+    }
+  },
+  "states": {
+    "one": {
+      "initial": "two",
+      "states": {
+        "two": {
+          "invoke": [
+            {
+              "id": "child",
+              "src": "[Node: fromCallback(({ sendBack }) => sendBack({ type: 'ONE' }))]"
+            },
+            {
+              "id": "child2",
+              "src": "[Node: fromCallback(({ sendBack }) => sendBack({ type: 'TWO' }))]"
+            }
+          ]
+        }
+      }
+    },
+    "three": {
       "type": "final"
     }
   }

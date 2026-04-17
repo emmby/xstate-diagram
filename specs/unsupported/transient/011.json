@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as { context: { count: number } }]",
   "id": "machine",
   "initial": "first",
   "context": {
@@ -8,7 +9,7 @@
     "first": {
       "on": {
         "ADD": {
-          "actions": "[Call: assign]"
+          "actions": "[Node: assign({ count: ({ context }) => context.count + 1 })]"
         }
       }
     },
@@ -19,7 +20,7 @@
   "always": [
     {
       "target": ".success",
-      "guard": "[Function/Identifier: ({ context }) => {\n           ...]"
+      "guard": "[Node: ({ context }) => {\n            return context.count > 0;\n          }]"
     }
   ]
 }

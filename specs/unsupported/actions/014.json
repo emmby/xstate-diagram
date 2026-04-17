@@ -1,26 +1,28 @@
 {
-  "initial": "a",
+  "initial": "B",
   "states": {
-    "a": {
-      "initial": "a1",
+    "A": {
+      "on": {
+        "to-B": "B"
+      }
+    },
+    "B": {
+      "type": "parallel",
+      "on": {
+        "to-A": "A"
+      },
       "states": {
-        "a1": {
-          "on": {
-            "NEXT_FN": "a3"
+        "C": {
+          "initial": "C1",
+          "states": {
+            "C1": {}
           }
         },
-        "a2": {},
-        "a3": {
-          "on": {
-            "NEXT": {
-              "target": "a2",
-              "actions": [
-                "[Function/Identifier: transitionSpy...]"
-              ]
-            }
-          },
-          "entry": "[Function/Identifier: entrySpy...]",
-          "exit": "[Function/Identifier: exitSpy...]"
+        "D": {
+          "initial": "D1",
+          "states": {
+            "D1": {}
+          }
         }
       }
     }

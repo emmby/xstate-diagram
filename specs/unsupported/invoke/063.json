@@ -1,11 +1,13 @@
 {
-  "invoke": {
-    "id": "count",
-    "src": "[Call: fromTransition]"
-  },
-  "on": {
-    "INC": {
-      "actions": "[Call: forwardTo]"
+  "id": "pong",
+  "initial": "active",
+  "states": {
+    "active": {
+      "on": {
+        "PING": {
+          "actions": "[Node: sendParent({ type: 'PONG' })]"
+        }
+      }
     }
   }
 }

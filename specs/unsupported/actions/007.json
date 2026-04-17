@@ -1,6 +1,13 @@
 {
   "initial": "green",
   "states": {
-    "green": {}
+    "green": {
+      "initial": "walk",
+      "states": {
+        "walk": {},
+        "wait": {},
+        "stop": {}
+      }
+    }
   }
 }

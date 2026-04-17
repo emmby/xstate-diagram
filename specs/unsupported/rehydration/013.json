@@ -1,0 +1,8 @@
+{
+  "invoke": {
+    "src": "failure",
+    "onError": {
+      "actions": "[Node: spy]"
+    }
+  }
+}

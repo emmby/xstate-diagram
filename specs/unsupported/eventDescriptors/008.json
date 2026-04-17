@@ -1,0 +1,13 @@
+{
+  "initial": "start",
+  "states": {
+    "start": {
+      "on": {
+        "event.foo.bar.*": "success"
+      }
+    },
+    "success": {
+      "type": "final"
+    }
+  }
+}

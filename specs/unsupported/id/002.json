@@ -1,0 +1,26 @@
+{
+  "initial": "foo",
+  "on": {
+    "ACTION": "#bar.qux.quux"
+  },
+  "states": {
+    "foo": {
+      "id": "foo"
+    },
+    "bar": {
+      "id": "bar",
+      "initial": "baz",
+      "states": {
+        "baz": {},
+        "qux": {
+          "initial": "quux",
+          "states": {
+            "quux": {
+              "id": "#bar.qux.quux"
+            }
+          }
+        }
+      }
+    }
+  }
+}

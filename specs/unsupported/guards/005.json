@@ -15,14 +15,14 @@
           "always": [
             {
               "target": "B4",
-              "guard": "[Function/Identifier: () => false...]"
+              "guard": "[Node: () => false]"
             }
           ],
           "on": {
             "T1": [
               {
                 "target": "B1",
-                "guard": "[Function/Identifier: () => false...]"
+                "guard": "[Node: () => false]"
               }
             ]
           }

@@ -3,7 +3,10 @@
   "states": {
     "a": {
       "on": {
-        "EV": "a"
+        "EV": {
+          "target": "a",
+          "actions": "[Node: () => {}]"
+        }
       }
     }
   }

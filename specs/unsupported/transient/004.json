@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as { context: { data: boolean; status?: string } }]",
   "context": {
     "data": true
   },
@@ -13,7 +14,7 @@
       "always": [
         {
           "target": "D",
-          "guard": "[Function/Identifier: ({ context: { data } }) => !da...]"
+          "guard": "[Node: ({ context: { data } }) => !data]"
         },
         {
           "target": "F"

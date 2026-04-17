@@ -13,7 +13,7 @@
     "active": {
       "on": {
         "do": {
-          "actions": "[Function/Identifier: spy...]"
+          "actions": "[Node: spy]"
         }
       }
     }

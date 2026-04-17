@@ -8,7 +8,7 @@
         }
       },
       "invoke": {
-        "src": "[Call: fromCallback]"
+        "src": "[Node: fromCallback(spy)]"
       }
     },
     "refresh": {

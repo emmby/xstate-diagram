@@ -2,11 +2,11 @@
   "initial": "A",
   "states": {
     "A": {
-      "exit": "[Function/Identifier: () => actual.push('exit_A')...]",
+      "exit": "[Node: () => actual.push('exit_A')]",
       "on": {
         "TIMER": {
           "target": "T",
-          "actions": "[Function/Identifier: () => actual.push('timer')...]"
+          "actions": "[Node: () => actual.push('timer')]"
         }
       }
     },
@@ -18,7 +18,7 @@
       ]
     },
     "B": {
-      "entry": "[Function/Identifier: () => actual.push('enter_B')...]"
+      "entry": "[Node: () => actual.push('enter_B')]"
     }
   }
 }

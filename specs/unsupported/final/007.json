@@ -1,10 +1,12 @@
 {
-  "types": {},
+  "types": {
+    "output": "[Node: {} as {\n          selfRef: AnyActorRef;\n        }]"
+  },
   "initial": "done",
   "states": {
     "done": {
       "type": "final"
     }
   },
-  "output": "[Function/Identifier: ({ self }) => ({ selfRef: self...]"
+  "output": "[Node: ({ self }) => ({ selfRef: self })]"
 }

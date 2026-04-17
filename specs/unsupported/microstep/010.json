@@ -1,0 +1,14 @@
+{
+  "initial": "parent",
+  "states": {
+    "parent": {
+      "entry": "[Node: () => {}]",
+      "initial": "child",
+      "states": {
+        "child": {
+          "entry": "[Node: () => {}]"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "todo",
+  "initial": "incomplete",
+  "states": {
+    "incomplete": {
+      "on": {
+        "SET_COMPLETE": "complete"
+      }
+    },
+    "complete": {
+      "entry": "[Node: sendParent({ type: 'TODO_COMPLETED' })]"
+    }
+  }
+}

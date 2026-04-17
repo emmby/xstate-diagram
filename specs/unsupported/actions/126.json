@@ -1,17 +1,8 @@
 {
-  "invoke": [
-    {
-      "id": "foo",
-      "src": "[Call: createMachine]"
-    },
-    {
-      "id": "bar",
-      "src": "[Call: createMachine]"
-    }
-  ],
+  "entry": "[Node: raise({ type: 'HELLO' })]",
   "on": {
-    "cancelFoo": {
-      "actions": "[Call: sendTo]"
+    "HELLO": {
+      "actions": "[Node: ({ event }) => {\n            spy(event);\n          }]"
     }
   }
 }

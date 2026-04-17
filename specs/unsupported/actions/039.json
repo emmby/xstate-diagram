@@ -1,21 +1,14 @@
 {
-  "initial": "start",
+  "initial": "a",
   "states": {
-    "start": {
+    "a": {
       "on": {
-        "ENTER_PARALLEL": "p1"
+        "NEXT": "b"
       }
     },
-    "p1": {
-      "type": "parallel",
-      "states": {
-        "nested": {
-          "initial": "inner",
-          "states": {
-            "inner": {}
-          }
-        }
-      }
+    "b": {
+      "type": "final"
     }
-  }
+  },
+  "exit": "[Node: ({ event }) => {\n          receivedEvent = event;\n        }]"
 }

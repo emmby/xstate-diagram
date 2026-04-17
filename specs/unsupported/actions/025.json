@@ -1,15 +1,22 @@
 {
-  "initial": "green",
+  "initial": "A",
   "states": {
-    "green": {
-      "initial": "walk",
+    "A": {
+      "initial": "A1",
+      "on": {
+        "NEXT": {
+          "reenter": true,
+          "target": ".A2"
+        }
+      },
       "states": {
-        "walk": {
-          "on": {
-            "PED_COUNTDOWN": "wait"
+        "A1": {},
+        "A2": {
+          "initial": "A2a",
+          "states": {
+            "A2a": {}
           }
-        },
-        "wait": {}
+        }
       }
     }
   }

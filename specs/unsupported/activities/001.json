@@ -1,5 +1,5 @@
 {
   "invoke": {
-    "src": "[Call: fromCallback]"
+    "src": "[Node: fromCallback(() => {\n          active = true;\n        })]"
   }
 }

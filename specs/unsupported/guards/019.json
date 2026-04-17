@@ -1,7 +1,14 @@
 {
-  "on": {
-    "EV": {
-      "guard": "checkStuff"
-    }
+  "initial": "a",
+  "states": {
+    "a": {
+      "on": {
+        "EVENT": {
+          "target": "b",
+          "guard": "ref1"
+        }
+      }
+    },
+    "b": {}
   }
 }

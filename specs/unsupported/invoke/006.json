@@ -8,7 +8,7 @@
     },
     "waiting": {
       "invoke": {
-        "src": "[Function/Identifier: childMachine...]",
+        "src": "[Node: childMachine]",
         "onDone": "received"
       }
     },

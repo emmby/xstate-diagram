@@ -1,0 +1,6 @@
+{
+  "types": {
+    "input": "[Node: {} as {\n          count: number;\n        }]"
+  },
+  "context": "[Node: ({ input }) => {\n        ((_accept: number) => {})(input.count);\n        // @ts-expect-error\n        ((_accept: string) => {})(input.count);\n        return {};\n      }]"
+}

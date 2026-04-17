@@ -1,7 +1,8 @@
 {
+  "types": "[Node: {} as { context: Ctx }]",
   "initial": "secret",
   "context": {
-    "revealedSecret": "[Function/Identifier: undefined...]"
+    "revealedSecret": "[Node: undefined]"
   },
   "states": {
     "secret": {
@@ -14,12 +15,12 @@
         },
         "reveal": {
           "type": "final",
-          "output": "[Function/Identifier: () => ({\n                secre...]"
+          "output": "[Node: () => ({\n                secret: 'the secret'\n              })]"
         }
       },
       "onDone": {
         "target": "success",
-        "actions": "[Call: assign]"
+        "actions": "[Node: assign({\n              revealedSecret: ({ event }) => {\n                return (event.output as any).secret;\n              }\n            })]"
       }
     },
     "success": {

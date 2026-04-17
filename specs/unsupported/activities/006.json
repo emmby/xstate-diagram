@@ -16,7 +16,7 @@
         },
         "b2": {
           "invoke": {
-            "src": "[Call: fromCallback]"
+            "src": "[Node: fromCallback(() => {\n                  active = true;\n                  return () => (active = false);\n                })]"
           },
           "on": {
             "TIMER": "b3"

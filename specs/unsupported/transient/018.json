@@ -14,7 +14,7 @@
       },
       "always": [
         {
-          "guard": "[Function/Identifier: () => false...]",
+          "guard": "[Node: () => false]",
           "target": ".a"
         },
         {

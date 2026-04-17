@@ -1,14 +1,26 @@
 {
-  "type": "parallel",
+  "initial": "a",
   "states": {
     "a": {
-      "initial": "b",
+      "type": "parallel",
       "states": {
         "b": {
-          "type": "final"
+          "type": "parallel",
+          "states": {
+            "c": {
+              "initial": "d",
+              "states": {
+                "d": {
+                  "type": "final"
+                }
+              }
+            }
+          }
         }
+      },
+      "onDone": {
+        "actions": "[Node: ({ event }) => {\n              spy(event);\n            }]"
       }
     }
-  },
-  "output": "[Function/Identifier: ({ event }) => {\n        spy(e...]"
+  }
 }

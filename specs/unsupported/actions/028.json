@@ -1,11 +1,13 @@
 {
-  "initial": "green",
+  "initial": "a",
   "states": {
-    "green": {
-      "on": {
-        "RESTART": {
-          "target": "green",
-          "reenter": true
+    "a": {
+      "initial": "a1",
+      "states": {
+        "a1": {
+          "on": {
+            "EV": "a1"
+          }
         }
       }
     }

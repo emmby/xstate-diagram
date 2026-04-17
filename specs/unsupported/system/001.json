@@ -1,0 +1,17 @@
+{
+  "id": "parent",
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": [
+        {
+          "src": "[Node: fromCallback(({ receive }) => {\n                receive((event) => {\n                  expect(event.type).toBe('HELLO');\n                  resolve();\n                });\n              })]",
+          "systemId": "receiver"
+        },
+        {
+          "src": "[Node: createMachine({\n                id: 'childmachine',\n                entry: ({ system }) => {\n                  const receiver = (system as MySystem)?.get('receiver');\n\n                  if (receiver) {\n                    receiver.send({ type: 'HELLO' });\n                  }\n                }\n              })]"
+        }
+      ]
+    }
+  }
+}

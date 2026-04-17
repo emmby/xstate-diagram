@@ -1,0 +1,6 @@
+{
+  "initial": "idle",
+  "states": {
+    "idle": {}
+  }
+}

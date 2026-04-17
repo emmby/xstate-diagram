@@ -6,7 +6,7 @@
       "states": {
         "A": {},
         "B": {
-          "entry": "[Call: raise]"
+          "entry": "[Node: raise({ type: 'CLEAR' })]"
         }
       }
     },

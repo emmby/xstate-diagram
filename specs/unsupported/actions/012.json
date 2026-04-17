@@ -4,16 +4,12 @@
     "a": {
       "initial": "a1",
       "states": {
-        "a1": {}
-      },
-      "on": {
-        "CHANGE": "b"
-      }
-    },
-    "b": {
-      "initial": "b1",
-      "states": {
-        "b1": {}
+        "a1": {
+          "on": {
+            "NEXT": "a2"
+          }
+        },
+        "a2": {}
       }
     }
   }

@@ -1,24 +1,27 @@
 {
-  "id": "callback",
-  "initial": "idle",
+  "types": "[Node: {} as { context: { count: number } }]",
+  "id": "interval",
+  "initial": "counting",
   "context": {
-    "foo": true
+    "count": 0
   },
   "states": {
-    "idle": {
+    "counting": {
       "invoke": {
-        "src": "someCallback"
+        "id": "intervalService",
+        "src": "[Node: fromCallback(({ sendBack }) => {\n                const ivl = setInterval(() => {\n                  sendBack({ type: 'INC' });\n                }, 10);\n\n                return () => clearInterval(ivl);\n              })]"
+      },
+      "always": {
+        "target": "finished",
+        "guard": "[Node: ({ context }) => context.count === 3]"
       },
       "on": {
-        "CALLBACK": "intermediate"
+        "INC": {
+          "actions": "[Node: assign({ count: ({ context }) => context.count + 1 })]"
+        }
       }
     },
-    "intermediate": {
-      "on": {
-        "NEXT": "last"
-      }
-    },
-    "last": {
+    "finished": {
       "type": "final"
     }
   }

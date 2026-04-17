@@ -1,57 +1,32 @@
 {
-  "initial": "first",
+  "initial": "a",
   "states": {
-    "first": {
+    "a": {
       "type": "parallel",
+      "onDone": "b",
       "states": {
-        "alpha": {
+        "a1": {
           "type": "parallel",
           "states": {
-            "one": {
-              "initial": "start",
-              "states": {
-                "start": {
-                  "on": {
-                    "finish_one_alpha": "finish"
-                  }
-                },
-                "finish": {
-                  "type": "final"
-                }
-              }
+            "a1a": {
+              "type": "final"
             },
-            "two": {
-              "initial": "start",
-              "states": {
-                "start": {
-                  "on": {
-                    "finish_two_alpha": "finish"
-                  }
-                },
-                "finish": {
-                  "type": "final"
-                }
-              }
+            "a1b": {
+              "type": "final"
             }
           }
         },
-        "beta": {
-          "initial": "three",
+        "a2": {
+          "initial": "a2a",
           "states": {
-            "three": {
-              "on": {
-                "finish_beta": "finish"
-              }
-            },
-            "finish": {
+            "a2a": {
               "type": "final"
             }
           }
         }
-      },
-      "onDone": "done"
+      }
     },
-    "done": {
+    "b": {
       "type": "final"
     }
   }

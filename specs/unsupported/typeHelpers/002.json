@@ -1,0 +1,5 @@
+{
+  "types": {
+    "events": "[Node: {} as\n          | { type: 'UPDATE_NAME'; value: string }\n          | { type: 'UPDATE_AGE'; value: number }\n          | { type: 'ANOTHER_EVENT' }]"
+  }
+}

@@ -1,13 +1,20 @@
 {
-  "initial": "a",
+  "initial": "parent",
   "states": {
-    "a": {
+    "parent": {
+      "initial": "child",
       "on": {
-        "GO_B": "b",
-        "GO_C": "c"
+        "PARENT_EVENT": "other"
+      },
+      "states": {
+        "child": {
+          "on": {
+            "CHILD_EVENT": "sibling"
+          }
+        },
+        "sibling": {}
       }
     },
-    "b": {},
-    "c": {}
+    "other": {}
   }
 }

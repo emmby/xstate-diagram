@@ -1,6 +1,12 @@
 {
   "id": "parent",
   "invoke": {
-    "src": "[Function/Identifier: child...]"
+    "id": "myChild",
+    "src": "[Node: child]"
+  },
+  "on": {
+    "NEXT": {
+      "actions": "[Node: sendTo('myChild', { type: 'FINISH' })]"
+    }
   }
 }

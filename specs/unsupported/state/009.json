@@ -3,10 +3,12 @@
   "states": {
     "a": {
       "on": {
-        "EV": {
-          "actions": "[Function/Identifier: () => {}...]"
+        "CHECK": {
+          "target": "b",
+          "guard": "[Node: () => true]"
         }
       }
-    }
+    },
+    "b": {}
   }
 }

@@ -1,18 +1,43 @@
 {
-  "id": "error",
-  "initial": "safe",
+  "initial": "start",
   "states": {
-    "safe": {
-      "invoke": {
-        "src": "[Call: fromCallback]",
-        "onError": {
-          "target": "failed",
-          "guard": "[Function/Identifier: ({ event }) => {\n             ...]"
-        }
+    "start": {
+      "on": {
+        "FETCH": "fetch"
       }
     },
-    "failed": {
-      "type": "final"
+    "fetch": {
+      "type": "parallel",
+      "states": {
+        "first": {
+          "initial": "waiting",
+          "states": {
+            "waiting": {
+              "invoke": {
+                "src": "[Node: fromCallback(() => {\n                        throw new Error('test');\n                      })]",
+                "onError": {
+                  "target": "failed"
+                }
+              }
+            },
+            "failed": {}
+          }
+        },
+        "second": {
+          "initial": "waiting",
+          "states": {
+            "waiting": {
+              "invoke": {
+                "src": "[Node: fromCallback(() => {\n                        // empty\n                        return () => {};\n                      })]",
+                "onError": {
+                  "target": "failed"
+                }
+              }
+            },
+            "failed": {}
+          }
+        }
+      }
     }
   }
 }

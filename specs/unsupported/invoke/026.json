@@ -1,9 +1,10 @@
 {
+  "id": "invokePromise",
   "initial": "pending",
   "states": {
     "pending": {
       "invoke": {
-        "src": "[Call: fromPromise]",
+        "src": "[Node: fromPromise(() =>\n                  createPromise(() => {\n                    throw new Error('test');\n                  })\n                )]",
         "onDone": "success"
       }
     },

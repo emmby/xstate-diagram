@@ -1,21 +1,11 @@
 {
-  "id": "parent",
-  "context": {
-    "count": 0
-  },
-  "initial": "start",
+  "id": "child",
+  "initial": "init",
   "states": {
-    "start": {
-      "invoke": {
-        "src": "child",
-        "id": "someService"
-      },
-      "on": {
-        "STOP": "stop"
-      }
-    },
-    "stop": {
-      "type": "final"
+    "init": {
+      "entry": [
+        "[Node: sendParent({ type: 'STOP' })]"
+      ]
     }
   }
 }

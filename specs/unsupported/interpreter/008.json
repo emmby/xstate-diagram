@@ -1,0 +1,24 @@
+{
+  "types": "[Node: {} as {\n          context: DelayExprMachineCtx;\n          events: DelayExpMachineEvents;\n        }]",
+  "id": "delayExpr",
+  "context": {
+    "initialDelay": 100
+  },
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "ACTIVATE": "pending"
+      }
+    },
+    "pending": {
+      "entry": "[Node: raise(\n              { type: 'FINISH' },\n              {\n                delay: ({ context, event }) =>\n                  context.initialDelay + ('wait' in event ? event.wait : 0)\n              }\n            )]",
+      "on": {
+        "FINISH": "finished"
+      }
+    },
+    "finished": {
+      "type": "final"
+    }
+  }
+}

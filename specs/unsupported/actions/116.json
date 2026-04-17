@@ -1,7 +1,12 @@
 {
+  "id": "bar",
+  "entry": "[Node: raise({ type: 'event' }, { id: 'sameId', delay: 100 })]",
   "on": {
-    "PING": {
-      "actions": "[Function/Identifier: spy1...]"
+    "event": {
+      "actions": "[Node: barSpy]"
+    },
+    "cancel": {
+      "actions": "[Node: cancel('sameId')]"
     }
   }
 }

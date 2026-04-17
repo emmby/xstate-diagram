@@ -4,13 +4,13 @@
     "a": {
       "always": {
         "target": "b",
-        "guard": "[Function/Identifier: ({ event }) => event.type === ...]"
+        "guard": "[Node: ({ event }) => event.type === 'WHATEVER']"
       }
     },
     "b": {
       "always": {
         "target": "c",
-        "guard": "[Function/Identifier: () => true...]"
+        "guard": "[Node: () => true]"
       }
     },
     "c": {}

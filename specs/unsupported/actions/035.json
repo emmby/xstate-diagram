@@ -1,13 +1,10 @@
 {
-  "initial": "a",
+  "initial": "one",
   "states": {
-    "a": {
-      "initial": "a1",
-      "states": {
-        "a1": {
-          "on": {
-            "EV": "a1"
-          }
+    "one": {
+      "after": {
+        "10": {
+          "actions": "[Node: () => {\n                  // do smth\n                }]"
         }
       }
     }

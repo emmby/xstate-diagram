@@ -1,0 +1,19 @@
+{
+  "initial": "a",
+  "states": {
+    "a": {
+      "invoke": {
+        "src": "[Node: fromCallback(({ sendBack }) => {\n              sendToParent = () =>\n                sendBack({\n                  type: 'FROM_CALLBACK'\n                });\n            })]"
+      },
+      "on": {
+        "NEXT": "b"
+      }
+    },
+    "b": {}
+  },
+  "on": {
+    "FROM_CALLBACK": {
+      "actions": "[Node: spy]"
+    }
+  }
+}

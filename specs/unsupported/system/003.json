@@ -1,0 +1,10 @@
+{
+  "types": "[Node: {} as {\n        context: {\n          ref: CallbackActorRef<EventObject, unknown>;\n          machineRef?: ActorRefFrom<AnyStateMachine>;\n        };\n      }]",
+  "id": "parent",
+  "context": "[Node: ({ spawn }) => ({\n        ref: spawn(\n          fromCallback(({ receive }) => {\n            receive((event) => {\n              expect(event.type).toBe('HELLO');\n              resolve();\n            });\n          }),\n          { systemId: 'receiver' }\n        )\n      })]",
+  "on": {
+    "toggle": {
+      "actions": "[Node: assign({\n            machineRef: ({ spawn }) => {\n              return spawn(\n                createMachine({\n                  id: 'childmachine',\n                  entry: ({ system }) => {\n                    const receiver = (system as MySystem)?.get('receiver');\n\n                    if (receiver) {\n                      receiver.send({ type: 'HELLO' });\n                    } else {\n                      throw new Error('no');\n                    }\n                  }\n                })\n              );\n            }\n          })]"
+    }
+  }
+}

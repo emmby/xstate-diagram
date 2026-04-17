@@ -1,9 +1,22 @@
 {
-  "entry": [
-    "definedAction",
-    {
-      "type": "definedAction"
+  "types": "[Node: {} as {\n        context: { child?: AnyActorRef };\n        events: { type: 'EVENT'; value: number } | { type: 'SUCCESS' };\n      }]",
+  "id": "parent",
+  "initial": "first",
+  "context": {
+    "child": "[Node: undefined]"
+  },
+  "states": {
+    "first": {
+      "entry": "[Node: assign({\n            child: ({ spawn }) => spawn(child, { id: 'x' })\n          })]",
+      "on": {
+        "EVENT": {
+          "actions": "[Node: forwardTo(({ context }) => context.child!)]"
+        },
+        "SUCCESS": "last"
+      }
     },
-    "undefinedAction"
-  ]
+    "last": {
+      "type": "final"
+    }
+  }
 }

@@ -1,12 +1,3 @@
 {
-  "id": "bar",
-  "entry": "[Call: raise]",
-  "on": {
-    "event": {
-      "actions": "[Function/Identifier: barSpy...]"
-    },
-    "cancel": {
-      "actions": "[Call: cancel]"
-    }
-  }
+  "entry": "[Node: assign((_, params) => {\n          spy(params);\n          return {};\n        })]"
 }

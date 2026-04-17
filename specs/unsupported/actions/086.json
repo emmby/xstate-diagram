@@ -1,8 +1,6 @@
 {
-  "on": {
-    "*": {
-      "guard": "[Function/Identifier: () => true...]",
-      "actions": "[Call: forwardTo]"
-    }
-  }
+  "context": {
+    "count": 0
+  },
+  "entry": "[Node: enqueueActions(({ check }) => {\n          check('alwaysTrue');\n        })]"
 }

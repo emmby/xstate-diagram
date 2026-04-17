@@ -4,7 +4,7 @@
     "a": {
       "initial": {
         "target": "a1",
-        "actions": "[Function/Identifier: spy...]"
+        "actions": "[Node: spy]"
       },
       "states": {
         "a1": {}

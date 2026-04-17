@@ -1,4 +1,5 @@
 {
+  "types": "[Node: {} as {\n        context: { count: number };\n        events: { type: 'INC'; value: number };\n      }]",
   "initial": "active",
   "context": {
     "count": 0
@@ -7,7 +8,7 @@
     "active": {
       "on": {
         "INC": {
-          "actions": "[Call: assign]"
+          "actions": "[Node: assign({\n                count: ({ event }) => event.value\n              })]"
         }
       }
     }

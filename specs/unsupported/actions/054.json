@@ -1,8 +1,10 @@
 {
-  "id": "grandchild",
   "on": {
-    "STOPPED": {
-      "actions": "[Function/Identifier: spy...]"
+    "INITIALIZE_SYNC_SEQUENCE": {
+      "actions": "[Node: () => {\n              // schedule those 2 events\n              service.send({ type: 'SOME_EVENT' });\n              service.send({ type: 'SOME_EVENT' });\n              // but also immediately stop *while* the `INITIALIZE_SYNC_SEQUENCE` is still being processed\n              service.stop();\n            }]"
+    },
+    "SOME_EVENT": {
+      "actions": "[Node: () => {\n              throw new Error('This should not be called.');\n            }]"
     }
   }
 }

@@ -1,17 +1,3 @@
 {
-  "initial": "searching",
-  "states": {
-    "searching": {
-      "invoke": {
-        "src": "search",
-        "input": {
-          "endpoint": "example.com"
-        },
-        "onDone": "success"
-      }
-    },
-    "success": {
-      "type": "final"
-    }
-  }
+  "id": "someId"
 }

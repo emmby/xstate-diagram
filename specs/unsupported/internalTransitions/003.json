@@ -1,0 +1,22 @@
+{
+  "initial": "foo",
+  "states": {
+    "foo": {
+      "initial": "a",
+      "states": {
+        "a": {
+          "on": {
+            "NEXT": "b"
+          }
+        },
+        "b": {}
+      },
+      "on": {
+        "RESET": {
+          "target": "foo",
+          "reenter": true
+        }
+      }
+    }
+  }
+}

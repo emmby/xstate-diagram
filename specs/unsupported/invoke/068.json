@@ -1,11 +1,44 @@
 {
-  "initial": "a",
+  "types": "[Node: {} as { context: { one?: string; two?: string } }]",
+  "id": "machine",
+  "initial": "one",
+  "context": {},
+  "on": {
+    "ONE": {
+      "actions": "[Node: assign({\n            one: 'one'\n          })]"
+    },
+    "TWO": {
+      "actions": "[Node: assign({\n            two: 'two'\n          })]"
+    }
+  },
+  "after": {
+    "10": ".three"
+  },
   "states": {
-    "a": {
-      "after": {
-        "10": "b"
+    "one": {
+      "initial": "two",
+      "states": {
+        "two": {
+          "type": "parallel",
+          "states": {
+            "a": {
+              "invoke": {
+                "id": "child",
+                "src": "[Node: fromCallback(({ sendBack }) =>\n                      sendBack({ type: 'ONE' })\n                    )]"
+              }
+            },
+            "b": {
+              "invoke": {
+                "id": "child2",
+                "src": "[Node: fromCallback(({ sendBack }) =>\n                      sendBack({ type: 'TWO' })\n                    )]"
+              }
+            }
+          }
+        }
       }
     },
-    "b": {}
+    "three": {
+      "type": "final"
+    }
   }
 }
