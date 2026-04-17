@@ -25,6 +25,11 @@ export function compile(machine: AnyStateMachine): string {
   for (const [stateKey, stateNode] of Object.entries(machine.root.states)) {
     const sourceId = getSafeId(stateNode);
 
+    // Map Final Types
+    if (stateNode.type === 'final') {
+      mermaid += `  ${sourceId} --> [*]\n`;
+    }
+
     // Iterate transitions for this state node
     for (const [eventType, transitions] of stateNode.transitions) {
       transitions.forEach(t => {
