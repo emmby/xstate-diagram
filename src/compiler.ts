@@ -125,7 +125,7 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
           }
         }
 
-        transitions.push(`  ${safeId} --> ${getSafeId(targetNode)} : ${edgeLabel}`);
+        transitions.push(`  ${safeId} --> ${getSafeId(targetNode)}${edgeLabel ? ` : ${edgeLabel}` : ''}`);
       });
     });
   }
