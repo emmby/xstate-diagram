@@ -2,5 +2,7 @@
 description: Implement the next spec from the specs directory
 ---
 
-/wt-workflow @specs/002_spec.md
-If the implementation plan has no questions, continue directly to implemenation.
+- Sync the repo
+- /wt-workflow @specs/002_spec.md
+- Notify the user what you picked
+- If the implementation plan has no questions, continue directly to implemenation.
