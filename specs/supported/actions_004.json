@@ -1,0 +1,11 @@
+{
+  "initial": "green",
+  "states": {
+    "green": {
+      "on": {
+        "TIMER": "yellow"
+      }
+    },
+    "yellow": {}
+  }
+}
