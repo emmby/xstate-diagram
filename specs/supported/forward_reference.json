@@ -1,0 +1,23 @@
+{
+  "id": "forward_reference",
+  "initial": "initialization",
+  "states": {
+    "initialization": {
+      "initial": "calibrating",
+      "states": {
+        "calibrating": {
+          "on": {
+            "MODEL_READY": { "target": "#sortingTarget" }
+          }
+        }
+      }
+    },
+    "sorting": {
+      "id": "sortingTarget",
+      "initial": "idle",
+      "states": {
+        "idle": {}
+      }
+    }
+  }
+}

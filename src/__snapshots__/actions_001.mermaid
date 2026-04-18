@@ -4,8 +4,9 @@ stateDiagram-v2
   action_test_idle : entry / initSystem
   action_test_idle : exit / cleanUp
   action_test_idle : exit / logExit
-  action_test_idle --> action_test_running : START
   state "running" as action_test_running
   action_test_running : entry / startMotor
   action_test_running : entry / renderRunning
+
+  action_test_idle --> action_test_running : START
   action_test_running --> action_test_idle : STOP
