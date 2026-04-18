@@ -1,0 +1,39 @@
+{
+  "type": "parallel",
+  "states": {
+    "foo": {
+      "initial": "a",
+      "states": {
+        "a": {
+          "initial": "b",
+          "states": {
+            "b": {
+              "initial": "c",
+              "states": {
+                "c": {}
+              }
+            }
+          }
+        },
+        "leaf": {}
+      }
+    },
+    "bar": {
+      "initial": "a",
+      "states": {
+        "a": {
+          "initial": "b",
+          "states": {
+            "b": {
+              "initial": "c",
+              "states": {
+                "c": {}
+              }
+            }
+          }
+        },
+        "leaf": {}
+      }
+    }
+  }
+}
