@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> activity_on
+  state "on" as activity_on
+  state "off" as activity_off
+
+  activity_on --> activity_off : TURN_OFF
