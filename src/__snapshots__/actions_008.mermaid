@@ -1,0 +1,10 @@
+
+> xstate-diagram@0.0.1 start
+> ts-node src/cli.ts -f specs/supported/actions_008.json
+
+stateDiagram-v2
+  [*] --> green
+  state "green" as green
+
+  green --> green : RESTART
+

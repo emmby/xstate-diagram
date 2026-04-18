@@ -1,0 +1,15 @@
+
+> xstate-diagram@0.0.1 start
+> ts-node src/cli.ts -f specs/supported/actions_009.json
+
+stateDiagram-v2
+  [*] --> green
+  state "green" as green {
+    [*] --> green_walk
+    state "walk" as green_walk
+    state "wait" as green_wait
+    state "stop" as green_stop
+  }
+
+  green --> green : RESTART
+

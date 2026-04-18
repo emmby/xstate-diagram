@@ -1,0 +1,17 @@
+
+> xstate-diagram@0.0.1 start
+> ts-node src/cli.ts -f specs/supported/actions_011.json
+
+stateDiagram-v2
+  [*] --> a
+  state "a" as a {
+    [*] --> a_a1
+    state "a1" as a_a1
+  }
+  state "b" as b {
+    [*] --> b_b1
+    state "b1" as b_b1
+  }
+
+  a --> b : CHANGE
+
