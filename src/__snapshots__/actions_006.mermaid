@@ -1,0 +1,9 @@
+stateDiagram-v2
+  [*] --> green
+  state "green" as green {
+    [*] --> green_walk
+    state "walk" as green_walk
+    state "wait" as green_wait
+  }
+
+  green_walk --> green_wait : PED_COUNTDOWN

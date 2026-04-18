@@ -1,0 +1,9 @@
+stateDiagram-v2
+  [*] --> green
+  state "green" as green
+  state "yellow" as yellow {
+    [*] --> yellow_speed_up
+    state "speed_up" as yellow_speed_up
+  }
+
+  green --> yellow : TIMER
