@@ -35,10 +35,31 @@ function compileStateChildren(stateNode: AnyStateNode, indent: string): string {
 function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: string): string {
   let result = '';
   const safeId = getSafeId(stateNode);
-  const label = stateKey.replace(/"/g, '\\"');
+  let label = stateKey.replace(/"/g, '\\"');
 
   const childStateKeys = stateNode.states ? Object.keys(stateNode.states) : [];
   const isComposite = childStateKeys.length > 0;
+
+  // Mermaid stateDiagram-v2 strictly forbids descriptions (i.e. 'state : description')
+  // on composite/group nodes. To preserve entry/exit definitions for parent states,
+  // we append them to the node's multi-line label natively instead.
+  if (isComposite) {
+    (['entry', 'exit'] as const).forEach((type) => {
+      const actions = stateNode[type];
+      if (Array.isArray(actions)) {
+        const seenActions = new Set<string>();
+        actions.forEach((action: unknown) => {
+          const actionStr = typeof action === 'string'
+            ? action
+            : (action && typeof action === 'object' && 'type' in action ? String(action.type) : undefined);
+          if (actionStr && !seenActions.has(actionStr)) {
+            seenActions.add(actionStr);
+            label += `\\n${type} / ${actionStr}`;
+          }
+        });
+      }
+    });
+  }
 
   if (isComposite) {
     result += `${indent}state "${label}" as ${safeId} {\n`;
@@ -54,21 +75,23 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
   }
 
   // Map Entry and Exit Actions
-  (['entry', 'exit'] as const).forEach((type) => {
-    const actions = stateNode[type];
-    if (Array.isArray(actions)) {
-      const seenActions = new Set<string>();
-      actions.forEach((action: unknown) => {
-        const actionStr = typeof action === 'string'
-          ? action
-          : (action && typeof action === 'object' && 'type' in action ? String(action.type) : undefined);
-        if (actionStr && !seenActions.has(actionStr)) {
-          seenActions.add(actionStr);
-          result += `${indent}${safeId} : ${type} / ${actionStr}\n`;
-        }
-      });
-    }
-  });
+  if (!isComposite) {
+    (['entry', 'exit'] as const).forEach((type) => {
+      const actions = stateNode[type];
+      if (Array.isArray(actions)) {
+        const seenActions = new Set<string>();
+        actions.forEach((action: unknown) => {
+          const actionStr = typeof action === 'string'
+            ? action
+            : (action && typeof action === 'object' && 'type' in action ? String(action.type) : undefined);
+          if (actionStr && !seenActions.has(actionStr)) {
+            seenActions.add(actionStr);
+            result += `${indent}${safeId} : ${type} / ${actionStr}\n`;
+          }
+        });
+      }
+    });
+  }
 
   // Iterate transitions for this state node
   for (const [eventType, transitions] of stateNode.transitions) {
