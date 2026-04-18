@@ -7,7 +7,8 @@ stateDiagram-v2
     state "baz" as baz {
       [*] --> baz_one
       state "one" as baz_one
-      baz_one --> baz_two : E
       state "two" as baz_two
     }
   }
+
+  baz_one --> baz_two : E

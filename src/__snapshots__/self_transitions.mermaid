@@ -1,4 +1,5 @@
 stateDiagram-v2
   [*] --> ping_active
   state "active" as ping_active
+
   ping_active --> ping_active : BEAT / logSelf

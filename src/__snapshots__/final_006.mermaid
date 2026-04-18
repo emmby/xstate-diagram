@@ -1,6 +1,7 @@
 stateDiagram-v2
   [*] --> start
   state "start" as start
-  start --> end : FINISH
   state "end" as end
+
+  start --> end : FINISH
   end --> [*]

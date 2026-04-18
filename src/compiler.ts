@@ -8,7 +8,7 @@ function getSafeId(node: AnyStateNode): string {
   return idStr.replace(/[^a-zA-Z0-9_]/g, '_');
 }
 
-function compileStateChildren(stateNode: AnyStateNode, indent: string): string {
+function compileStateChildren(stateNode: AnyStateNode, indent: string, transitions: string[]): string {
   let result = '';
   
   // Initial transition for this composite state
@@ -26,13 +26,13 @@ function compileStateChildren(stateNode: AnyStateNode, indent: string): string {
       result += `${indent}  --\n`;
     }
     firstChild = false;
-    result += compileStateNode(childKey, childNode as AnyStateNode, indent + '  ');
+    result += compileStateNode(childKey, childNode as AnyStateNode, indent + '  ', transitions);
   }
 
   return result;
 }
 
-function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: string): string {
+function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: string, transitions: string[]): string {
   let result = '';
   const safeId = getSafeId(stateNode);
   let label = stateKey.replace(/"/g, '\\"');
@@ -63,7 +63,7 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
 
   if (isComposite) {
     result += `${indent}state "${label}" as ${safeId} {\n`;
-    result += compileStateChildren(stateNode, indent);
+    result += compileStateChildren(stateNode, indent, transitions);
     result += `${indent}}\n`;
   } else {
     result += `${indent}state "${label}" as ${safeId}\n`;
@@ -71,7 +71,7 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
 
   // Map Final Types
   if (stateNode.type === 'final') {
-    result += `${indent}${safeId} --> [*]\n`;
+    transitions.push(`  ${safeId} --> [*]`);
   }
 
   // Map Entry and Exit Actions
@@ -94,8 +94,8 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
   }
 
   // Iterate transitions for this state node
-  for (const [eventType, transitions] of stateNode.transitions) {
-    transitions.forEach((t: any) => {
+  for (const [eventType, txs] of stateNode.transitions) {
+    txs.forEach((t: any) => {
       const targets = t.target || [stateNode];
       
       targets.forEach((targetNode: AnyStateNode) => {
@@ -125,7 +125,7 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
           }
         }
 
-        result += `${indent}${safeId} --> ${getSafeId(targetNode)} : ${edgeLabel}\n`;
+        transitions.push(`  ${safeId} --> ${getSafeId(targetNode)} : ${edgeLabel}`);
       });
     });
   }
@@ -142,11 +142,17 @@ export function compile(machine: AnyStateMachine): string {
   const hasRootActions = rootNode.entry.length > 0 || rootNode.exit.length > 0;
   const isParallelRoot = rootNode.type === 'parallel';
 
+  const transitions: string[] = [];
+
   if (hasRootTransitions || hasRootActions || isParallelRoot) {
     const rootLabel = (machine.id || 'machine').replace(/"/g, '\\"');
-    mermaid += compileStateNode(rootLabel, rootNode, '  ');
+    mermaid += compileStateNode(rootLabel, rootNode, '  ', transitions);
   } else {
-    mermaid += compileStateChildren(rootNode, '');
+    mermaid += compileStateChildren(rootNode, '', transitions);
+  }
+
+  if (transitions.length > 0) {
+    mermaid += '\n' + transitions.join('\n') + '\n';
   }
 
   return mermaid;
