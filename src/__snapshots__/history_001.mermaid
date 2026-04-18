@@ -1,0 +1,13 @@
+stateDiagram-v2
+  [*] --> on
+  state "on" as on {
+    [*] --> on_first
+    state "first" as on_first
+    state "second" as on_second
+    state "[H]" as on_hist
+  }
+  state "off" as off
+
+  on_first --> on_second : SWITCH
+  on --> off : POWER
+  off --> on_hist : POWER

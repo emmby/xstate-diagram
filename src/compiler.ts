@@ -37,6 +37,11 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
   const safeId = getSafeId(stateNode);
   let label = stateKey.replace(/"/g, '\\"');
 
+  if (stateNode.type === 'history') {
+    const isDeep = stateNode.history === 'deep';
+    label = isDeep ? '[H*]' : '[H]';
+  }
+
   const childStateKeys = stateNode.states ? Object.keys(stateNode.states) : [];
   const isComposite = childStateKeys.length > 0;
 
