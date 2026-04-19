@@ -1,0 +1,12 @@
+{
+  "id": "menu",
+  "initial": "list",
+  "states": {
+    "list": {
+      "on": {
+        "BTN_UP": { "actions": ["menuScrollUp"] },
+        "BTN_DOWN": { "actions": ["menuScrollDown"] }
+      }
+    }
+  }
+}
