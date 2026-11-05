@@ -1,0 +1,13 @@
+stateDiagram-v2
+  [*] --> a
+  state "a" as a
+  state "b" as b
+  b : entry / [Node: raise({ type: 'BAR' })]
+  state "c" as c
+  state "d" as d
+  state "e" as e
+
+  a --> b : FOO
+  b --> c
+  b --> d : BAR
+  c --> e : BAR

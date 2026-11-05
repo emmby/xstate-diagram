@@ -1,0 +1,10 @@
+stateDiagram-v2
+  [*] --> G
+  state "G" as G
+  state "E" as E
+  state "D" as D
+  state "F" as F
+
+  G --> E : UPDATE_BUTTON_CLICKED
+  E --> D : [[Node: ({ context: { data } }) => !data]]
+  E --> F
