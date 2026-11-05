@@ -8,17 +8,27 @@ function getSafeId(node: AnyStateNode): string {
   return idStr.replace(/[^a-zA-Z0-9_]/g, '_');
 }
 
+function isCompositeNode(node: AnyStateNode): boolean {
+  return Boolean(node.states && Object.keys(node.states).length > 0);
+}
+
 function compileStateChildren(stateNode: AnyStateNode, indent: string, transitions: string[]): string {
   let result = '';
-  
-  // Initial transition for this composite state
+
+  // When an initial transition targets a composite child state (cluster), Mermaid's
+  // Dagre cluster-anchor resolution requires the [*] start node to precede the nested
+  // cluster block so deeply nested clusters with external transitions (e.g. deep_002)
+  // do not fail layout.
   if (stateNode.initial) {
     stateNode.initial.target.forEach((node: AnyStateNode) => {
-      result += `${indent}  [*] --> ${getSafeId(node)}\n`;
+      if (isCompositeNode(node)) {
+        result += `${indent}  [*] --> ${getSafeId(node)}\n`;
+      }
     });
   }
 
-  // Recursively compile child states
+  // Recursively compile child states before atomic initial transitions so Mermaid registers
+  // human-readable state labels/aliases and entry/exit descriptions before seeing '[*] --> <safeId>'.
   const isParallel = stateNode.type === 'parallel';
   let firstChild = true;
   for (const [childKey, childNode] of Object.entries((stateNode as any).states)) {
@@ -27,6 +37,15 @@ function compileStateChildren(stateNode: AnyStateNode, indent: string, transitio
     }
     firstChild = false;
     result += compileStateNode(childKey, childNode as AnyStateNode, indent + '  ', transitions);
+  }
+
+  // Initial transition for atomic child states
+  if (stateNode.initial) {
+    stateNode.initial.target.forEach((node: AnyStateNode) => {
+      if (!isCompositeNode(node)) {
+        result += `${indent}  [*] --> ${getSafeId(node)}\n`;
+      }
+    });
   }
 
   return result;
@@ -54,7 +73,7 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
             : (action && typeof action === 'object' && 'type' in action ? String(action.type) : undefined);
           if (actionStr && !seenActions.has(actionStr)) {
             seenActions.add(actionStr);
-            label += `\\n${type} / ${actionStr}`;
+            label += `<br/>${type} / ${actionStr}`;
           }
         });
       }

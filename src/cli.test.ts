@@ -4,7 +4,7 @@ import * as os from 'os';
 import { createMachine } from 'xstate';
 import { processInput } from './cli';
 import { compile } from './compiler';
-import { assertValidMermaid } from './test-helper';
+import { assertValidMermaid, extractSvgVisibleTexts, renderMermaidSvg } from './test-helper';
 
 describe('Phase 3: Basic Mermaid String Compilation', () => {
   let originalConsoleLog: any;
@@ -91,12 +91,12 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
       expect(compile(machine)).toBe(
         [
           'stateDiagram-v2',
-          '  [*] --> clock_init',
           '  state "init" as clock_init',
           '  state "connect" as clock_connect',
           '  state "rtc" as clock_rtc',
           '  state "fallback" as clock_fallback',
           '  state "wait" as clock_wait',
+          '  [*] --> clock_init',
           '',
           '  clock_init --> clock_connect : [needsDailySync] / logSync, markSync',
           '  clock_init --> clock_rtc : [hasRtc]',
@@ -126,9 +126,9 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
         [
           'stateDiagram-v2',
           '  state "rootMachine" as rootMachine {',
-          '    [*] --> rootMachine_active',
           '    state "active" as rootMachine_active',
           '    state "done" as rootMachine_done',
+          '    [*] --> rootMachine_active',
           '  }',
           '',
           '  rootMachine_done --> [*]',
@@ -136,6 +136,190 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
           ''
         ].join('\n')
       );
+    });
+  });
+
+  describe('Composite state labels, child state ordering, and SVG action rendering', () => {
+    it('emits state declarations before initial transitions, uses <br/> in composite state headers, and renders all labels and entry/exit actions in SVG', () => {
+      const aprilClockMachine = createMachine({
+        id: 'AprilClockFSM',
+        initial: 'InitializeHardware',
+        states: {
+          InitializeHardware: {
+            id: 'InitializeHardware',
+            entry: ['initializeHardware'],
+            always: [
+              { target: '#ConnectToNetwork', guard: 'shouldSyncDaily' },
+              { target: '#SyncToRTC' }
+            ]
+          },
+          ConnectToNetwork: {
+            id: 'ConnectToNetwork',
+            entry: [
+              'connectToNetwork',
+              'markFullScreenRefresh',
+              'renderBootPageIfUnprovisioned'
+            ],
+            initial: 'Polling',
+            after: {
+              300000: [
+                { target: '#ConnectToNetwork', reenter: true }
+              ]
+            },
+            states: {
+              Polling: {
+                after: {
+                  500: [
+                    { target: '#StartNetworkTimeSync', guard: 'isNetworkProvisioned' },
+                    { target: 'Polling', reenter: true }
+                  ]
+                }
+              }
+            }
+          },
+          StartNetworkTimeSync: {
+            id: 'StartNetworkTimeSync',
+            entry: ['startNetworkTimeSync'],
+            initial: 'Polling',
+            after: {
+              60000: [
+                { target: '#FirmwareCheck' }
+              ]
+            },
+            states: {
+              Polling: {
+                after: {
+                  1: [
+                    { target: '#FirmwareCheck', guard: 'hasNtpSync' },
+                    { target: 'Polling', reenter: true }
+                  ]
+                }
+              }
+            }
+          },
+          FirmwareCheck: {
+            id: 'FirmwareCheck',
+            entry: ['checkForFirmwareUpdates'],
+            always: [
+              { target: '#SyncTemperature' }
+            ]
+          },
+          SyncTemperature: {
+            id: 'SyncTemperature',
+            entry: ['syncTemperature'],
+            always: [
+              { target: '#SyncToRTC' }
+            ]
+          },
+          SyncToRTC: {
+            id: 'SyncToRTC',
+            entry: ['syncToRTC'],
+            always: [
+              { target: '#DisplayClock' }
+            ]
+          },
+          DisplayClock: {
+            id: 'DisplayClock',
+            entry: ['updateClockDisplay'],
+            always: [
+              { target: '#Wait' }
+            ]
+          },
+          Wait: {
+            id: 'Wait',
+            entry: ['wait'],
+            after: {
+              100: [
+                { target: '#Sleep', guard: 'canSleep' },
+                { target: '#DisplayClock', guard: 'minuteChanged', actions: ['refreshDisplay'] },
+                { target: '#Wait', reenter: true }
+              ]
+            }
+          },
+          Sleep: {
+            id: 'Sleep',
+            entry: ['sleep']
+          }
+        }
+      });
+
+      const mermaidStr = compile(aprilClockMachine);
+
+      expect(mermaidStr).toBe(
+        [
+          'stateDiagram-v2',
+          '  state "InitializeHardware" as InitializeHardware',
+          '  InitializeHardware : entry / initializeHardware',
+          '  state "ConnectToNetwork<br/>entry / connectToNetwork<br/>entry / markFullScreenRefresh<br/>entry / renderBootPageIfUnprovisioned" as ConnectToNetwork {',
+          '    state "Polling" as AprilClockFSM_ConnectToNetwork_Polling',
+          '    [*] --> AprilClockFSM_ConnectToNetwork_Polling',
+          '  }',
+          '  state "StartNetworkTimeSync<br/>entry / startNetworkTimeSync" as StartNetworkTimeSync {',
+          '    state "Polling" as AprilClockFSM_StartNetworkTimeSync_Polling',
+          '    [*] --> AprilClockFSM_StartNetworkTimeSync_Polling',
+          '  }',
+          '  state "FirmwareCheck" as FirmwareCheck',
+          '  FirmwareCheck : entry / checkForFirmwareUpdates',
+          '  state "SyncTemperature" as SyncTemperature',
+          '  SyncTemperature : entry / syncTemperature',
+          '  state "SyncToRTC" as SyncToRTC',
+          '  SyncToRTC : entry / syncToRTC',
+          '  state "DisplayClock" as DisplayClock',
+          '  DisplayClock : entry / updateClockDisplay',
+          '  state "Wait" as Wait',
+          '  Wait : entry / wait',
+          '  state "Sleep" as Sleep',
+          '  Sleep : entry / sleep',
+          '  [*] --> InitializeHardware',
+          '',
+          '  InitializeHardware --> ConnectToNetwork : [shouldSyncDaily]',
+          '  InitializeHardware --> SyncToRTC',
+          '  AprilClockFSM_ConnectToNetwork_Polling --> StartNetworkTimeSync : after 500 [isNetworkProvisioned]',
+          '  AprilClockFSM_ConnectToNetwork_Polling --> AprilClockFSM_ConnectToNetwork_Polling : after 500',
+          '  ConnectToNetwork --> ConnectToNetwork : after 300000',
+          '  AprilClockFSM_StartNetworkTimeSync_Polling --> FirmwareCheck : after 1 [hasNtpSync]',
+          '  AprilClockFSM_StartNetworkTimeSync_Polling --> AprilClockFSM_StartNetworkTimeSync_Polling : after 1',
+          '  StartNetworkTimeSync --> FirmwareCheck : after 60000',
+          '  FirmwareCheck --> SyncTemperature',
+          '  SyncTemperature --> SyncToRTC',
+          '  SyncToRTC --> DisplayClock',
+          '  DisplayClock --> Wait',
+          '  Wait --> Sleep : after 100 [canSleep]',
+          '  Wait --> DisplayClock : after 100 [minuteChanged] / refreshDisplay',
+          '  Wait --> Wait : after 100',
+          ''
+        ].join('\n')
+      );
+
+      const svgContent = renderMermaidSvg(mermaidStr, 'april_clock_fsm');
+      const visibleTexts = extractSvgVisibleTexts(svgContent);
+      const joinedVisibleText = visibleTexts.join('\n');
+
+      // 1. No literal \n in rendered SVG text elements
+      expect(joinedVisibleText).not.toContain('\\n');
+
+      // 2. Internal prefixed safeIds are not rendered as visible node labels
+      expect(visibleTexts).not.toContain('AprilClockFSM_ConnectToNetwork_Polling');
+      expect(visibleTexts).not.toContain('AprilClockFSM_StartNetworkTimeSync_Polling');
+      expect(visibleTexts.filter((t) => t === 'Polling').length).toBeGreaterThanOrEqual(2);
+
+      // 3. Every entry/exit action on both atomic and composite states is present in rendered SVG text
+      const expectedActions = [
+        'entry / initializeHardware',
+        'entry / connectToNetwork',
+        'entry / markFullScreenRefresh',
+        'entry / renderBootPageIfUnprovisioned',
+        'entry / startNetworkTimeSync',
+        'entry / checkForFirmwareUpdates',
+        'entry / syncTemperature',
+        'entry / syncToRTC',
+        'entry / updateClockDisplay',
+        'entry / wait',
+        'entry / sleep'
+      ];
+      for (const action of expectedActions) {
+        expect(joinedVisibleText).toContain(action);
+      }
     });
   });
 });

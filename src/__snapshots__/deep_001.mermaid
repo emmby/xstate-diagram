@@ -7,8 +7,8 @@ stateDiagram-v2
     state "B" as root_A_B {
       [*] --> root_A_B_C
       state "C" as root_A_B_C {
-        [*] --> root_A_B_C_D
         state "D" as root_A_B_C_D
+        [*] --> root_A_B_C_D
       }
     }
   }

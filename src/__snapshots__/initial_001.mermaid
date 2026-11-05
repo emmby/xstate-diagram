@@ -3,8 +3,8 @@ stateDiagram-v2
   state "a" as a {
     [*] --> a_b
     state "b" as a_b {
-      [*] --> a_b_c
       state "c" as a_b_c
+      [*] --> a_b_c
     }
   }
   state "leaf" as leaf

@@ -1,15 +1,15 @@
 stateDiagram-v2
   [*] --> A
   state "A" as A {
-    [*] --> A_foo
     state "foo" as A_foo
     state "bar" as A_bar
+    [*] --> A_foo
   }
   state "B" as B {
-    [*] --> B_foo
     state "foo" as B_foo
     state "bar" as B_bar
     state "dot" as B_dot
+    [*] --> B_foo
   }
 
   A_foo --> A_bar : NEXT

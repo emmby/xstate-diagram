@@ -1,19 +1,19 @@
 stateDiagram-v2
   state "(machine)" as _machine_ {
     state "A" as A {
-      [*] --> A_A1
       state "A1" as A_A1
       state "A2" as A_A2
       state "A3" as A_A3
       state "A4" as A_A4
+      [*] --> A_A1
     }
     --
     state "B" as B {
-      [*] --> B_B1
       state "B1" as B_B1
       state "B2" as B_B2
       state "B3" as B_B3
       state "B4" as B_B4
+      [*] --> B_B1
     }
   }
 

@@ -1,15 +1,15 @@
 stateDiagram-v2
   state "(machine)" as _machine_ {
-    [*] --> foo
     state "foo" as foo
     state "bar" as bar {
-      [*] --> bar_baz
       state "baz" as bar_baz
       state "qux" as bar_qux {
-        [*] --> _bar_qux_quux
         state "quux" as _bar_qux_quux
+        [*] --> _bar_qux_quux
       }
+      [*] --> bar_baz
     }
+    [*] --> foo
   }
 
   _machine_ --> _bar_qux_quux : ACTION

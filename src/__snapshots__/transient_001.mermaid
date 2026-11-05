@@ -1,10 +1,10 @@
 stateDiagram-v2
   state "greeting" as greeting {
-    [*] --> greeting_pending
     state "pending" as greeting_pending
     state "morning" as greeting_morning
     state "afternoon" as greeting_afternoon
     state "evening" as greeting_evening
+    [*] --> greeting_pending
   }
 
   greeting_pending --> greeting_morning : [[Node: ({ context }) => context.hour < 12]]

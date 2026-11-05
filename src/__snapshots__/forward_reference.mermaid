@@ -1,12 +1,12 @@
 stateDiagram-v2
   [*] --> forward_reference_initialization
   state "initialization" as forward_reference_initialization {
-    [*] --> forward_reference_initialization_calibrating
     state "calibrating" as forward_reference_initialization_calibrating
+    [*] --> forward_reference_initialization_calibrating
   }
   state "sorting" as sortingTarget {
-    [*] --> forward_reference_sorting_idle
     state "idle" as forward_reference_sorting_idle
+    [*] --> forward_reference_sorting_idle
   }
 
   forward_reference_initialization_calibrating --> sortingTarget : MODEL_READY

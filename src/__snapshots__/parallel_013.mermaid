@@ -1,12 +1,12 @@
 stateDiagram-v2
   state "(machine)" as _machine_ {
-    [*] --> A
     state "A" as A
     state "B" as B {
       state "C" as B_C
       --
       state "D" as B_D
     }
+    [*] --> A
   }
 
   A --> B : to-B
