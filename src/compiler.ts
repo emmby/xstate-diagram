@@ -93,44 +93,80 @@ function compileStateNode(stateKey: string, stateNode: AnyStateNode, indent: str
     });
   }
 
+  // Iterate eventless ('always') transitions for this state node
+  if (Array.isArray(stateNode.always)) {
+    stateNode.always.forEach((t: any) => {
+      compileTransition(stateNode, safeId, '', t, transitions);
+    });
+  }
+
   // Iterate transitions for this state node
   for (const [eventType, txs] of stateNode.transitions) {
     txs.forEach((t: any) => {
-      const targets = t.target || [stateNode];
-      
-      targets.forEach((targetNode: AnyStateNode) => {
-        let edgeLabel = eventType;
-
-        // Map string 'after' transition labels naturally
-        if (eventType.startsWith('xstate.after.')) {
-          const delayMatch = eventType.match(/xstate\.after\.([\d.]+)\./);
-          if (delayMatch && delayMatch[1]) {
-            edgeLabel = `after ${delayMatch[1]}`;
-          }
-        }
-
-        // Parse Guard
-        if (t.guard) {
-          const guardName = typeof t.guard === 'string' ? t.guard : (t.guard && typeof t.guard === 'object' && 'type' in t.guard ? String(t.guard.type) : undefined);
-          if (guardName) {
-            edgeLabel += ` [${guardName}]`;
-          }
-        }
-
-        // Parse Actions
-        if (t.actions && t.actions.length > 0) {
-          const actionNames = t.actions.map((a: unknown) => typeof a === 'string' ? a : (a && typeof a === 'object' && 'type' in a ? String(a.type) : undefined)).filter(Boolean);
-          if (actionNames.length > 0) {
-            edgeLabel += ` / ${actionNames.join(', ')}`;
-          }
-        }
-
-        transitions.push(`  ${safeId} --> ${getSafeId(targetNode)}${edgeLabel ? ` : ${edgeLabel}` : ''}`);
-      });
+      compileTransition(stateNode, safeId, eventType, t, transitions);
     });
   }
 
   return result;
+}
+
+function compileTransition(
+  stateNode: AnyStateNode,
+  safeId: string,
+  eventType: string,
+  t: any,
+  transitions: string[]
+): void {
+  const targets = t.target || [stateNode];
+
+  targets.forEach((targetNode: AnyStateNode) => {
+    const labelParts: string[] = [];
+    let eventLabel = eventType;
+
+    // Map string 'after' transition labels naturally
+    if (eventType.startsWith('xstate.after.')) {
+      const delayMatch = eventType.match(/xstate\.after\.([\d.]+)\./);
+      if (delayMatch && delayMatch[1]) {
+        eventLabel = `after ${delayMatch[1]}`;
+      }
+    }
+
+    if (eventLabel) {
+      labelParts.push(eventLabel);
+    }
+
+    // Parse Guard
+    if (t.guard) {
+      const guardName =
+        typeof t.guard === 'string'
+          ? t.guard
+          : t.guard && typeof t.guard === 'object' && 'type' in t.guard
+            ? String(t.guard.type)
+            : undefined;
+      if (guardName) {
+        labelParts.push(`[${guardName}]`);
+      }
+    }
+
+    // Parse Actions
+    if (t.actions && t.actions.length > 0) {
+      const actionNames = t.actions
+        .map((a: unknown) =>
+          typeof a === 'string'
+            ? a
+            : a && typeof a === 'object' && 'type' in a
+              ? String(a.type)
+              : undefined
+        )
+        .filter(Boolean);
+      if (actionNames.length > 0) {
+        labelParts.push(`/ ${actionNames.join(', ')}`);
+      }
+    }
+
+    const edgeLabel = labelParts.join(' ');
+    transitions.push(`  ${safeId} --> ${getSafeId(targetNode)}${edgeLabel ? ` : ${edgeLabel}` : ''}`);
+  });
 }
 
 export function compile(machine: AnyStateMachine): string {
@@ -138,7 +174,9 @@ export function compile(machine: AnyStateMachine): string {
 
   const rootNode = machine.root;
   // Check if root has any transitions, actions or is parallel
-  const hasRootTransitions = Array.from(rootNode.transitions.entries()).some(([_, t]) => t.length > 0);
+  const hasRootTransitions =
+    Array.from(rootNode.transitions.entries()).some(([_, t]) => t.length > 0) ||
+    (Array.isArray(rootNode.always) && rootNode.always.length > 0);
   const hasRootActions = rootNode.entry.length > 0 || rootNode.exit.length > 0;
   const isParallelRoot = rootNode.type === 'parallel';
 

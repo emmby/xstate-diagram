@@ -1,7 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import { createMachine } from 'xstate';
 import { processInput } from './cli';
+import { compile } from './compiler';
 import { assertValidMermaid } from './test-helper';
 
 describe('Phase 3: Basic Mermaid String Compilation', () => {
@@ -56,5 +58,84 @@ describe('Phase 3: Basic Mermaid String Compilation', () => {
     expect(() => {
       processInput('{"id": "bad", '); // broken json
     }).toThrow(/Input is not valid JSON/);
+  });
+
+  describe('Eventless (always) transitions', () => {
+    it('compiles string shorthand, guarded, action-only, and guard+action always transitions without leading space or xstate.* artifacts', () => {
+      const machine = createMachine({
+        id: 'clock',
+        initial: 'init',
+        states: {
+          init: {
+            always: [
+              { target: 'connect', guard: 'needsDailySync', actions: ['logSync', { type: 'markSync' }] },
+              { target: 'rtc', guard: { type: 'hasRtc' } },
+              { target: 'fallback', actions: ['useFallback'] },
+              { target: 'wait' }
+            ]
+          },
+          connect: {
+            always: 'rtc'
+          },
+          rtc: {},
+          fallback: {},
+          wait: {
+            always: {
+              guard: 'stillWaiting',
+              actions: ['tick']
+            }
+          }
+        }
+      });
+
+      expect(compile(machine)).toBe(
+        [
+          'stateDiagram-v2',
+          '  [*] --> clock_init',
+          '  state "init" as clock_init',
+          '  state "connect" as clock_connect',
+          '  state "rtc" as clock_rtc',
+          '  state "fallback" as clock_fallback',
+          '  state "wait" as clock_wait',
+          '',
+          '  clock_init --> clock_connect : [needsDailySync] / logSync, markSync',
+          '  clock_init --> clock_rtc : [hasRtc]',
+          '  clock_init --> clock_fallback : / useFallback',
+          '  clock_init --> clock_wait',
+          '  clock_connect --> clock_rtc',
+          '  clock_wait --> clock_wait : [stillWaiting] / tick',
+          ''
+        ].join('\n')
+      );
+    });
+
+    it('wraps root machine state when root defines always transitions', () => {
+      const machine = createMachine({
+        id: 'rootMachine',
+        initial: 'active',
+        states: {
+          active: {},
+          done: { type: 'final' }
+        },
+        always: [
+          { target: '.done', guard: 'isComplete' }
+        ]
+      });
+
+      expect(compile(machine)).toBe(
+        [
+          'stateDiagram-v2',
+          '  state "rootMachine" as rootMachine {',
+          '    [*] --> rootMachine_active',
+          '    state "active" as rootMachine_active',
+          '    state "done" as rootMachine_done',
+          '  }',
+          '',
+          '  rootMachine_done --> [*]',
+          '  rootMachine --> rootMachine_done : [isComplete]',
+          ''
+        ].join('\n')
+      );
+    });
   });
 });
