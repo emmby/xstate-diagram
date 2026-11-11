@@ -1,9 +1,0 @@
-{
-  "exit": "[Node: rootSpy]",
-  "initial": "a",
-  "states": {
-    "a": {
-      "exit": "[Node: childSpy]"
-    }
-  }
-}

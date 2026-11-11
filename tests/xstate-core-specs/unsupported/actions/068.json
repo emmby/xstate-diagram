@@ -1,9 +1,0 @@
-{
-  "id": "test",
-  "initial": "foo",
-  "states": {
-    "foo": {
-      "entry": "entryAction"
-    }
-  }
-}

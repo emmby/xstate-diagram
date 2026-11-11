@@ -1,4 +1,0 @@
-{
-  "types": "[Node: {} as {\n        delays: 'one second' | 'one minute';\n      }]",
-  "entry": "[Node: raise({ type: 'FOO' }, { delay: 'one minute' })]"
-}

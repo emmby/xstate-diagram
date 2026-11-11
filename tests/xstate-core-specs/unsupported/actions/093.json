@@ -1,5 +1,0 @@
-{
-  "types": "[Node: {} as {\n        context: {\n          child: ActorRefFromLogic<typeof childMachine>;\n          count: number;\n        };\n      }]",
-  "context": "[Node: ({ spawn }) => {\n        return {\n          child: spawn(childMachine, { id: 'child' }),\n          count: 42\n        };\n      }]",
-  "entry": "[Node: sendTo(\n        ({ context }) => context.child,\n        ({ context }) => ({ type: 'EVENT', count: context.count })\n      )]"
-}

@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: () => {\n        assign({});\n        raise({ type: '' });\n        sendTo('', { type: '' });\n        emit({ type: '' });\n      }]"
-}

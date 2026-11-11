@@ -1,3 +1,0 @@
-{
-  "context": "[Node: ({ input }) => ({\n                // this is only meant to showcase why we can't invoke this actor when it's missing in the persisted state\n                // because we don't have access to the right input as it depends on the event that was used to enter state `b`\n                value: input.deep.prop\n              })]"
-}

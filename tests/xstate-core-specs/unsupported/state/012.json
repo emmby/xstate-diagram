@@ -1,8 +1,0 @@
-{
-  "context": {},
-  "on": {
-    "EVENT": {
-      "actions": "[Node: assign((ctx) => {\n              // Side-effect just for testing\n              executed = true;\n              return ctx;\n            })]"
-    }
-  }
-}

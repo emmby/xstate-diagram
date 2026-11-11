@@ -1,7 +1,0 @@
-{
-  "invoke": {
-    "src": "[Node: createMachine({})]",
-    "systemId": "test"
-  },
-  "entry": "myAction"
-}

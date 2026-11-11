@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: assign(() => {\n        throw new Error('error_thrown_when_resolving_initial_entry_action');\n      })]"
-}

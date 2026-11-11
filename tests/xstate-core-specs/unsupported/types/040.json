@@ -1,8 +1,0 @@
-{
-  "types": {
-    "context": "[Node: {} as { count: number }]"
-  },
-  "context": {
-    "count": 0
-  }
-}

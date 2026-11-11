@@ -1,6 +1,0 @@
-{
-  "types": "[Node: {} as {\n        delays: 'one second' | 'one minute';\n      }]",
-  "after": {
-    "one second": {}
-  }
-}

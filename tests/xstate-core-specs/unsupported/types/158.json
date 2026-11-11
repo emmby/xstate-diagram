@@ -1,8 +1,0 @@
-{
-  "types": "[Node: {} as {\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard' };\n      }]",
-  "on": {
-    "EV": {
-      "guard": "[Node: (_, params) => {\n            ((_accept: undefined) => {})(params);\n            // @ts-expect-error\n            ((_accept: 'not any') => {})(params);\n            return true;\n          }]"
-    }
-  }
-}

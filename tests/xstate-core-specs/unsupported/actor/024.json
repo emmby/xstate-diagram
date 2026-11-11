@@ -1,3 +1,0 @@
-{
-  "context": "[Node: ({ spawn }) => ({\n        ref1: spawn(fromCallback(() => cleanup1)),\n        ref2: spawn(fromCallback(() => cleanup2))\n      })]"
-}

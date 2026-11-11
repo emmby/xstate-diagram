@@ -1,8 +1,0 @@
-{
-  "initial": "a",
-  "states": {
-    "a": {
-      "entry": "[Node: () => {}]"
-    }
-  }
-}

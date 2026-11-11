@@ -1,8 +1,0 @@
-{
-  "on": {
-    "FOO": {
-      "guard": "[Node: not(() => false)]",
-      "actions": "[Node: () => {}]"
-    }
-  }
-}

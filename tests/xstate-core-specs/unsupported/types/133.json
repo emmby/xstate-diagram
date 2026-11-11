@@ -1,4 +1,0 @@
-{
-  "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
-  "entry": "[Node: enqueueActions(({ enqueue }) => {\n        enqueue({\n          type: 'greet',\n          params: {\n            name: 'Anders'\n          }\n        });\n      })]"
-}

@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: assign(({ spawn }) => {\n        return {\n          ref: spawn(spawnedMachine, { input: { greeting: 'hello' } })\n        };\n      })]"
-}

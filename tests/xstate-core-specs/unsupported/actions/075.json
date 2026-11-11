@@ -1,8 +1,0 @@
-{
-  "on": {
-    "*": {
-      "guard": "[Node: () => true]",
-      "actions": "[Node: forwardTo(undefined as any)]"
-    }
-  }
-}

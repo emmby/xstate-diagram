@@ -1,7 +1,0 @@
-{
-  "context": "[Node: ({ input }: { input: { value: number } }) => ({\n        count: input.value\n      })]",
-  "initial": "a",
-  "states": {
-    "a": {}
-  }
-}

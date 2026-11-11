@@ -1,9 +1,0 @@
-{
-  "types": {
-    "context": "[Node: {} as {\n          count: number;\n        }]"
-  },
-  "context": {
-    "count": 0
-  },
-  "entry": "[Node: () => {}]"
-}

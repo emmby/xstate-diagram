@@ -1,5 +1,0 @@
-{
-  "invoke": {
-    "src": "[Node: createMachine({\n          entry: log('hello')\n        })]"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "on": {
-    "EV": {
-      "guard": "checkStuff"
-    }
-  }
-}

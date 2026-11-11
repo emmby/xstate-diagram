@@ -1,8 +1,0 @@
-{
-  "types": "[Node: {} as {\n        guards:\n          | {\n              type: 'isGreaterThan';\n              params: {\n                count: number;\n              };\n            }\n          | { type: 'plainGuard'; params?: { foo: string } };\n      }]",
-  "on": {
-    "EV": {
-      "guard": "plainGuard"
-    }
-  }
-}

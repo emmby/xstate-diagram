@@ -1,9 +1,0 @@
-{
-  "types": {
-    "context": "[Node: {} as { numbers: number[] }]",
-    "events": "[Node: {} as { type: 'ADD'; number: number }]"
-  },
-  "context": {
-    "numbers": []
-  }
-}

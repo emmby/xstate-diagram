@@ -1,9 +1,0 @@
-{
-  "types": "[Node: {} as {\n        context: {\n          ref: ActorRefFrom<typeof childMachine>;\n        };\n      }]",
-  "context": "[Node: ({ spawn }) => ({\n        ref: spawn(childMachine, {\n          systemId: 'test'\n        })\n      })]",
-  "on": {
-    "toggle": {
-      "actions": "[Node: stopChild(({ context }) => context.ref)]"
-    }
-  }
-}

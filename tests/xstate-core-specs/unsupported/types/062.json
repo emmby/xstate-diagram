@@ -1,4 +1,0 @@
-{
-  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child;\n        };\n      }]",
-  "entry": "[Node: assign(({ spawn }) => {\n        spawn('child', { id: 'someId' });\n        return {};\n      })]"
-}

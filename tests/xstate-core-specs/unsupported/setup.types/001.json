@@ -1,6 +1,0 @@
-{
-  "types": "[Node: {} as {\n        context: {\n          foo: string;\n        };\n      }]",
-  "context": {
-    "foo": ""
-  }
-}

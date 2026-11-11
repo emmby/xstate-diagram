@@ -1,7 +1,0 @@
-{
-  "on": {
-    "FOO": {
-      "actions": "[Node: (_, params) => {\n              spy(params);\n            }]"
-    }
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "context": {
-    "count": 100
-  },
-  "types": {
-    "events": "[Node: {} as { type: 'FOO' } | { type: 'BAR'; value: string }]"
-  }
-}

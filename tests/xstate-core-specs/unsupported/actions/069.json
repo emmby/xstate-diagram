@@ -1,6 +1,0 @@
-{
-  "entry": {
-    "type": "entryAction",
-    "params": "[Node: () => ({ stuff: 100 })]"
-  }
-}

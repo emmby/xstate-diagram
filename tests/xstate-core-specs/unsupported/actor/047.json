@@ -1,8 +1,0 @@
-{
-  "invoke": {
-    "src": "[Node: fromPromise(async () => 'foo')]",
-    "onDone": {
-      "actions": "[Node: ({ event }) => spy(event.output)]"
-    }
-  }
-}

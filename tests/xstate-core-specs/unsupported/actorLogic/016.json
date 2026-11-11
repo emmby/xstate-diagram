@@ -1,3 +1,0 @@
-{
-  "context": "[Node: ({ spawn }) => {\n        return {\n          childRef: spawn(createMachine({}))\n        };\n      }]"
-}

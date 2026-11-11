@@ -1,7 +1,0 @@
-{
-  "types": "[Node: {} as {\n          context: { child: ActorRefFrom<typeof childMachine> | null };\n        }]",
-  "context": {
-    "child": "[Node: null]"
-  },
-  "entry": "setup"
-}

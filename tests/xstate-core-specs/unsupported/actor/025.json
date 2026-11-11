@@ -1,3 +1,0 @@
-{
-  "context": "[Node: ({ spawn }) => ({\n          ref1: spawn('child1'),\n          ref2: spawn('child2')\n        })]"
-}

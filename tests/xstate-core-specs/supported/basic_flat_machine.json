@@ -1,8 +1,0 @@
-{
-  "id": "basic",
-  "initial": "idle",
-  "states": {
-    "idle": { "on": { "GO": "run" } },
-    "run": {}
-  }
-}

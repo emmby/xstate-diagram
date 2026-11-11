@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: spawnChild(\n          fromPromise(() => Promise.resolve(42)),\n          { id: 'child' }\n        )]"
-}

@@ -1,6 +1,0 @@
-{
-  "types": "[Node: {} as {\n        actions:\n          | { type: 'greet'; params: { name: string } }\n          | { type: 'poke'; params?: { target: string } };\n      }]",
-  "entry": {
-    "type": "poke"
-  }
-}

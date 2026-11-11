@@ -1,4 +1,0 @@
-{
-  "types": "[Node: {} as {\n        actors: {\n          src: 'child';\n          logic: typeof child1;\n          id: 'myChild';\n        };\n      }]",
-  "entry": "[Node: spawnChild(\n        // @ts-expect-error\n        child2,\n        { id: 'myChild' }\n      )]"
-}

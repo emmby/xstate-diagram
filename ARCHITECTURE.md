@@ -33,7 +33,6 @@ xstate-diagram/
 ├── tsconfig.json
 ├── scripts/
 │   ├── benchmark-compactness.ts      # Corpus-wide viewBox area & aspect-ratio benchmark
-│   ├── extract-xstate-core-specs.ts  # XState v5 core test-suite AST spec extractor
 │   └── fetch-reference-corpus.ts     # statelyai/docs Harel reference corpus fetcher
 ├── src/
 │   ├── index.ts              # Public API: renderMachineToSvg(config, options?)

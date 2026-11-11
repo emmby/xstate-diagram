@@ -1,6 +1,0 @@
-{
-  "entry": [
-    "[Node: () => {\n          throw new Error('error_thrown_in_initial_entry_action');\n        }]",
-    "[Node: spy]"
-  ]
-}

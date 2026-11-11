@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: enqueueActions(({ self }) => {\n        expect(self.send).toBeDefined();\n      })]"
-}

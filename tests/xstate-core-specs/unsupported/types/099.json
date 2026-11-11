@@ -1,3 +1,0 @@
-{
-  "types": "[Node: {} as {\n              events: {\n                type: 'OTHER';\n              };\n            }]"
-}

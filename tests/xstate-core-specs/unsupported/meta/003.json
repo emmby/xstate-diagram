@@ -1,8 +1,0 @@
-{
-  "initial": "test",
-  "states": {
-    "test": {
-      "description": "This is a test"
-    }
-  }
-}

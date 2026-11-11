@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: enqueueActions(({ enqueue }) => {\n          enqueue('someAction');\n          enqueue('someAction');\n        })]"
-}

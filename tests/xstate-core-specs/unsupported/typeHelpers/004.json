@@ -1,5 +1,0 @@
-{
-  "types": {
-    "events": "[Node: {} as { type: 'FOO' }]"
-  }
-}

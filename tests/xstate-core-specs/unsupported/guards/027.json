@@ -1,8 +1,0 @@
-{
-  "on": {
-    "EV": {
-      "guard": "[Node: not({\n              type: 'myGuard',\n              // TODO: fix contextual typing here\n              params: ({ event }: any) => ({ secret: event.secret })\n            })]",
-      "actions": "[Node: () => {}]"
-    }
-  }
-}
