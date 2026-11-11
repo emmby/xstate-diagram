@@ -27,11 +27,10 @@ During the initial Mermaid prototype, XState v5 `createMachine(...)` object lite
 
 Following the v0.2.0 ELK/SVG engine cutover on main (with the final Mermaid commit 56c5712 preserved on origin at tag archive/mermaid-v0.0.1):
 
-1. **Close Superseded Mermaid-Era Pull Requests:**
-   - Close open PRs targeting the retired Mermaid compiler (`#22`, `#23`, `#25`) with a note linking to the `v0.2.0` ELK/SVG engine replacement.
-2. **Close Resolved / Superseded Mermaid-Era Issues:**
-   - Close `#13` (`getSafeId` Mermaid identifier collisions) — superseded because `xstate-diagram` no longer emits Mermaid syntax or flattened global aliases, instead preserving exact XState state IDs in hierarchical SVG `<g class="state-group" data-state-id="...">` containers.
-   - Close `#24` (multi-edge transitions between identical states colliding in Mermaid/Dagre) — solved natively by `elkjs` port allocation, multi-edge channel separation (`>= 14px` clearance), and Gate 2 Voronoi label-to-path attribution checks.
-3. **Prune Stale `wt-*` Mermaid Branches & Worktrees:**
-   - Prune local and remote `wt-*` branches/worktrees created during the Mermaid phase (`wt-after-transitions`, `wt-batch-*`, `wt-bead-system`, `wt-deep-states`, `wt-entry-actions`, `wt-final-states`, `wt-history-*`, `wt-issue-16-v1`, `wt-parallel*`, `wt-phase*`, `wt-setup-ci`, `fix_mermaid_labels_actions`).
-4. **Retire Bootstrap Directory:** Archive or remove the local /Users/mike/GitHub/xstate-svg bootstrap repository now that main on xstate-diagram is canonical.
+1. ~~**Close Superseded Mermaid-Era Pull Requests:**~~ *(Completed)*
+   - Closed open PRs targeting the retired Mermaid compiler (`#22`, `#23`, `#25`) with a note linking to the `v0.2.0` ELK/SVG engine replacement.
+2. ~~**Close Resolved / Superseded Mermaid-Era Issues:**~~ *(Completed)*
+   - Closed `#13` (`getSafeId` Mermaid identifier collisions) and `#24` (multi-edge transitions between identical states colliding in Mermaid/Dagre).
+3. ~~**Prune Stale `wt-*` Mermaid Branches & Worktrees:**~~ *(Remote branches pruned on `origin`)*
+   - Pruned all 20 remote `wt-*` branches on `origin` (`wt-after-transitions`, `wt-batch-*`, `wt-bead-system`, `wt-deep-states`, `wt-entry-actions`, `wt-final-states`, `wt-history-*`, `wt-issue-16-v1`, `wt-parallel*`, `wt-phase*`, `wt-setup-ci`). Any remaining local worktrees or local branches (`wt-*`, `fix_mermaid_labels_actions`) on a developer workstation can be pruned with `git worktree prune && git fetch --prune origin`.
+4. **Retire Bootstrap Directory:** Archive or remove the local `/Users/mike/GitHub/xstate-svg` bootstrap repository now that `main` on `xstate-diagram` is canonical.
