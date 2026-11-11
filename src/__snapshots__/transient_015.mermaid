@@ -1,8 +1,0 @@
-stateDiagram-v2
-  state "a" as a
-  state "b" as b
-  state "c" as c
-  [*] --> a
-
-  a --> b : [[Node: ({ event }) => event.type === 'WHATEVER']]
-  b --> c : [[Node: () => true]]

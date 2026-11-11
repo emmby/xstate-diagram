@@ -1,7 +1,0 @@
-stateDiagram-v2
-  state "foo" as foo
-  foo : entry / [Node: raise({ type: 'TIMER' }, { delay: 10 })]
-  state "bar" as bar
-  [*] --> foo
-
-  foo --> bar : TIMER

@@ -1,0 +1,437 @@
+{
+  "sourceRepo": "https://github.com/statelyai/docs",
+  "fetchedAt": "2026-11-10T19:02:23.109Z",
+  "totalMachines": 31,
+  "countsByTier": {
+    "1": 3,
+    "2": 2,
+    "3": 8,
+    "4": 18
+  },
+  "featureReferencePngs": {
+    "guards": "tests/reference-corpus/features/guards.png",
+    "delayed-transitions": "tests/reference-corpus/features/delayed-transitions.png",
+    "state-done-events": "tests/reference-corpus/features/state-done-events.png"
+  },
+  "entries": [
+    {
+      "slug": "harel-activities",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-activities.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-activities.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-activities",
+      "stateCount": 9,
+      "transitionCount": 5
+    },
+    {
+      "slug": "harel-avionics",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-avionics.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-avionics.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-avionics",
+      "stateCount": 9,
+      "transitionCount": 0
+    },
+    {
+      "slug": "harel-beep-test",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-beep-test.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-beep-test.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "harel-beep-test",
+      "stateCount": 6,
+      "transitionCount": 10
+    },
+    {
+      "slug": "harel-broadcast-cycle",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-broadcast-cycle.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-broadcast-cycle.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-broadcast-cycle",
+      "stateCount": 7,
+      "transitionCount": 4
+    },
+    {
+      "slug": "harel-clustered",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-clustered.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-clustered.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "harel-clustered",
+      "stateCount": 4,
+      "transitionCount": 4
+    },
+    {
+      "slug": "harel-conditional",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-conditional.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-conditional.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "harel-conditional",
+      "stateCount": 5,
+      "transitionCount": 4
+    },
+    {
+      "slug": "harel-conflict",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-conflict.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-conflict.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-conflict",
+      "stateCount": 21,
+      "transitionCount": 4
+    },
+    {
+      "slug": "harel-digit",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-digit.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-digit.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "harel-digit",
+      "stateCount": 13,
+      "transitionCount": 23
+    },
+    {
+      "slug": "harel-displays",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-displays.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-displays.png",
+      "tier": 4,
+      "tierReasons": [
+        "history-deep",
+        "history-shallow"
+      ],
+      "machineId": "harel-displays",
+      "stateCount": 21,
+      "transitionCount": 27
+    },
+    {
+      "slug": "harel-flat",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-flat.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-flat.png",
+      "tier": 2,
+      "tierReasons": [
+        "transition-guard"
+      ],
+      "machineId": "harel-flat",
+      "stateCount": 3,
+      "transitionCount": 5
+    },
+    {
+      "slug": "harel-history-deep",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-history-deep.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-history-deep.png",
+      "tier": 4,
+      "tierReasons": [
+        "history-deep"
+      ],
+      "machineId": "harel-history-deep",
+      "stateCount": 10,
+      "transitionCount": 9
+    },
+    {
+      "slug": "harel-history-selective",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-history-selective.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-history-selective.png",
+      "tier": 4,
+      "tierReasons": [
+        "history-shallow"
+      ],
+      "machineId": "harel-history-selective",
+      "stateCount": 11,
+      "transitionCount": 10
+    },
+    {
+      "slug": "harel-history-shallow",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-history-shallow.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-history-shallow.png",
+      "tier": 4,
+      "tierReasons": [
+        "history-shallow"
+      ],
+      "machineId": "harel-history-shallow",
+      "stateCount": 10,
+      "transitionCount": 9
+    },
+    {
+      "slug": "harel-overlap-inactive",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-overlap-inactive.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-overlap-inactive.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-overlap-inactive",
+      "stateCount": 9,
+      "transitionCount": 7
+    },
+    {
+      "slug": "harel-overlap-shared",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-overlap-shared.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-overlap-shared.png",
+      "tier": 1,
+      "tierReasons": [
+        "flat-atomic"
+      ],
+      "machineId": "harel-overlap-shared",
+      "stateCount": 5,
+      "transitionCount": 10
+    },
+    {
+      "slug": "harel-overlap",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-overlap.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-overlap.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state",
+        "multi-target-fork"
+      ],
+      "machineId": "harel-overlap",
+      "stateCount": 12,
+      "transitionCount": 14
+    },
+    {
+      "slug": "harel-parallel-entry",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-parallel-entry.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-parallel-entry.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state",
+        "history-shallow",
+        "multi-target-fork"
+      ],
+      "machineId": "harel-parallel-entry",
+      "stateCount": 13,
+      "transitionCount": 15
+    },
+    {
+      "slug": "harel-parallel",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-parallel.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-parallel.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-parallel",
+      "stateCount": 8,
+      "transitionCount": 6
+    },
+    {
+      "slug": "harel-product",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-product.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-product.png",
+      "tier": 1,
+      "tierReasons": [
+        "flat-atomic"
+      ],
+      "machineId": "harel-product",
+      "stateCount": 6,
+      "transitionCount": 11
+    },
+    {
+      "slug": "harel-selection",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-selection.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-selection.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "harel-selection",
+      "stateCount": 6,
+      "transitionCount": 9
+    },
+    {
+      "slug": "harel-semantics",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-semantics.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-semantics.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-semantics",
+      "stateCount": 10,
+      "transitionCount": 3
+    },
+    {
+      "slug": "harel-simultaneous",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-simultaneous.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-simultaneous.png",
+      "tier": 2,
+      "tierReasons": [
+        "transition-guard",
+        "priority-branch-order"
+      ],
+      "machineId": "harel-simultaneous",
+      "stateCount": 4,
+      "transitionCount": 4
+    },
+    {
+      "slug": "harel-stopwatch",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-stopwatch.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-stopwatch.png",
+      "tier": 4,
+      "tierReasons": [
+        "history-deep",
+        "parallel-state"
+      ],
+      "machineId": "harel-stopwatch",
+      "stateCount": 12,
+      "transitionCount": 10
+    },
+    {
+      "slug": "harel-telephones",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-telephones.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-telephones.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "harel-telephones",
+      "stateCount": 11,
+      "transitionCount": 8
+    },
+    {
+      "slug": "harel-timeout",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-timeout.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-timeout.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "harel-timeout",
+      "stateCount": 5,
+      "transitionCount": 5
+    },
+    {
+      "slug": "harel-unclustering",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-unclustering.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-unclustering.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "harel-unclustering",
+      "stateCount": 4,
+      "transitionCount": 4
+    },
+    {
+      "slug": "harel-updates",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-updates.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-updates.png",
+      "tier": 4,
+      "tierReasons": [
+        "history-shallow"
+      ],
+      "machineId": "harel-updates",
+      "stateCount": 20,
+      "transitionCount": 23
+    },
+    {
+      "slug": "harel-watch",
+      "sourceGroup": "harel-statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/harel-watch.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/harel-watch.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state",
+        "history-shallow",
+        "history-deep"
+      ],
+      "machineId": "harel-watch",
+      "stateCount": 77,
+      "transitionCount": 81
+    },
+    {
+      "slug": "coffee-order",
+      "sourceGroup": "statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/coffee-order.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/coffee-order.png",
+      "tier": 1,
+      "tierReasons": [
+        "flat-atomic"
+      ],
+      "machineId": "coffee",
+      "stateCount": 3,
+      "transitionCount": 3
+    },
+    {
+      "slug": "coffee-nested",
+      "sourceGroup": "statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/coffee-nested.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/coffee-nested.png",
+      "tier": 3,
+      "tierReasons": [
+        "compound-state",
+        "nested-hierarchy"
+      ],
+      "machineId": "coffee",
+      "stateCount": 6,
+      "transitionCount": 5
+    },
+    {
+      "slug": "coffee-donut-parallel",
+      "sourceGroup": "statecharts",
+      "jsonRelPath": "tests/reference-corpus/machines/coffee-donut-parallel.json",
+      "pngRelPath": "tests/reference-corpus/screenshots/coffee-donut-parallel.png",
+      "tier": 4,
+      "tierReasons": [
+        "parallel-state"
+      ],
+      "machineId": "order",
+      "stateCount": 8,
+      "transitionCount": 3
+    }
+  ]
+}

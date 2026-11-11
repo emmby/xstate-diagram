@@ -1,5 +1,0 @@
-stateDiagram-v2
-  state "counting" as counting
-  [*] --> counting
-
-  counting --> counting : [[Node: ({ context }) => context.count < 5]] / [Node: assign({ count: ({ context }) => context.count + 1 })]
