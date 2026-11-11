@@ -1,0 +1,63 @@
+name: 'XState Diagram SVG Renderer'
+description: 'Convert XState v5 state machines (.ts, .js, or .json) into publication-quality SVG statechart diagrams'
+author: 'emmby'
+branding:
+  icon: 'git-Commit'
+  color: 'blue'
+
+inputs:
+  input:
+    description: 'Path to the XState machine file (.ts, .js, .mjs, or .json)'
+    required: true
+  output:
+    description: 'Path where the rendered SVG file will be written'
+    required: true
+  direction:
+    description: 'Layout orientation: auto (default), right, or down'
+    required: false
+    default: 'auto'
+  export:
+    description: 'Named export to render when input is a .ts/.js module'
+    required: false
+    default: ''
+  node-version:
+    description: 'Node.js version to run the renderer with'
+    required: false
+    default: '22'
+
+outputs:
+  svg-path:
+    description: 'Path to the generated SVG diagram'
+    value: ${{ inputs.output }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Install and build xstate-diagram
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: |
+        if [ ! -f dist/cli.js ]; then
+          npm ci --ignore-scripts
+          npm run build
+        fi
+
+    - name: Render XState machine to SVG
+      shell: bash
+      env:
+        INPUT_FILE: ${{ inputs.input }}
+        OUTPUT_FILE: ${{ inputs.output }}
+        DIRECTION: ${{ inputs.direction }}
+        EXPORT_NAME: ${{ inputs.export }}
+      run: |
+        mkdir -p "$(dirname "$OUTPUT_FILE")"
+        ARGS=("$INPUT_FILE" "-o" "$OUTPUT_FILE" "--direction" "$DIRECTION")
+        if [ -n "$EXPORT_NAME" ]; then
+          ARGS+=("--export" "$EXPORT_NAME")
+        fi
+        node "${{ github.action_path }}/dist/cli.js" "${ARGS[@]}"
