@@ -12,11 +12,11 @@ Unlike Mermaid's `stateDiagram-v2` (which relies on Dagre and struggles with com
 
 ## 2. Technology Stack & Repository Layout
 
-- **Runtime & Language:** Node.js (ESM), TypeScript (`strict: true`), packaged as both a browser-free library and a standalone CLI (`npx xstate-diagram machine.json -o diagram.svg`).
+- **Runtime & Language:** Node.js (ESM), TypeScript (`strict: true`), packaged as a browser-free library, a standalone CLI (`npx xstate-diagram machine.ts -o diagram.svg`), a composite GitHub Action (`uses: emmby/xstate-diagram@v0.2.0`), and a zero-install static browser playground (`npm run build:playground`).
 - **Core Runtime Dependencies (Zero Browser / Zero Native Binaries):**
   - `xstate` (v5.x) — state machine normalization & conformance semantics
   - `elkjs` — hierarchical port-aware statechart layout engine
-  - *(Note: Production code in `src/ast/**`, `src/renderer/**`, `src/index.ts`, and `src/cli.ts` MUST NOT import Playwright, DOM globals, or OS-specific font binaries. Text sizing in `src/renderer/measure.ts` uses a deterministic pure-JS ASCII character-width table.)*
+  - *(Note: Production code in `src/ast/**`, `src/renderer/**`, `src/index.ts`, and `src/cli.ts` MUST NOT import Playwright, DOM globals, or OS-specific font binaries. `tsconfig.build.json` excludes `src/verifier/**` from `dist/` so the published npm package remains 100% browser-free. Text sizing in `src/renderer/measure.ts` uses a deterministic pure-JS ASCII character-width table.)*
 - **Verification & Dev Dependencies (`devDependencies` only):**
   - `vitest` — test runner
   - `playwright` — headless Chromium for exact SVG `getBBox()`, `getComputedTextLength()`, `getPointAtLength()`, and PNG rasterization
@@ -24,19 +24,26 @@ Unlike Mermaid's `stateDiagram-v2` (which relies on Dagre and struggles with com
 ### Directory Structure & Ownership Boundaries
 ```text
 xstate-diagram/
-├── README.md                 # Overview, installation, programmatic API & CLI guide
+├── .github/workflows/
+│   ├── ci.yml                # Node 20.x & 22.x 4-Gate verification CI
+│   ├── release.yml           # Tag-driven GitHub Release & npm provenance publisher
+│   └── pages.yml             # GitHub Pages deployment for interactive playground
+├── README.md                 # Overview, installation, programmatic API, CLI & Action guide
 ├── ARCHITECTURE.md           # This specification
 ├── RULES_OF_ENGAGEMENT.md    # Multi-agent rules, gates, and file ownership
 ├── PLAN.md                   # Tiered conformance roadmap & FlowOS tracking
 ├── TECH_DEBT.md              # Follow-up backlog (XState core specs & Mermaid cleanup)
-├── package.json              # Includes "bin": { "xstate-diagram": "./dist/cli.js" }
-├── tsconfig.json
+├── action.yml                # Composite GitHub Action (uses: emmby/xstate-diagram@v0.2.0)
+├── package.json              # Exports map, files whitelist, and "bin": { "xstate-diagram": "./dist/cli.js" }
+├── tsconfig.json             # Workspace TypeScript config (includes src/verifier & tests)
+├── tsconfig.build.json       # Production dist/ build config (excludes src/verifier & tests)
 ├── scripts/
 │   ├── benchmark-compactness.ts      # Corpus-wide viewBox area & aspect-ratio benchmark
+│   ├── build-playground.ts           # Bundles static browser playground into dist/playground/
 │   └── fetch-reference-corpus.ts     # statelyai/docs Harel reference corpus fetcher
 ├── src/
 │   ├── index.ts              # Public API: renderMachineToSvg(config, options?)
-│   ├── cli.ts                # Standalone CLI (JSON file or stdin -> SVG file or stdout)
+│   ├── cli.ts                # Standalone CLI (.ts/.js/.json file or stdin -> SVG file or stdout)
 │   ├── ast/                  # Shared canonical StatechartAST types & XState extractor
 │   │   ├── types.ts          # StatechartAST, StateNodeAST, TransitionAST
 │   │   └── extract-machine.ts# extractFromMachine(machineOrConfig): StatechartAST
@@ -56,6 +63,7 @@ xstate-diagram/
     │   ├── tier2-compartments.ts
     │   ├── tier3-hierarchy.ts
     │   └── tier4-parallel-history.ts
+    ├── harness-selfcheck.test.ts
     ├── tier1.test.ts
     ├── tier2.test.ts
     ├── tier3.test.ts
