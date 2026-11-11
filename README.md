@@ -2,17 +2,13 @@
 
 Convert **XState v5** state machines (raw JSON/TypeScript machine configs or instantiated `StateMachine` objects from `createMachine`) into clean, compact, publication-quality **SVG statechart diagrams**—powered by `elkjs` and verified by a 4-gate closed-loop AST & browser-geometry harness.
 
-> **👉 [Try the Live Interactive Playground (emmby.github.io/xstate-diagram)](https://emmby.github.io/xstate-diagram/)** — Explore built-in statechart presets, edit XState v5 configs live, toggle `AUTO` / `RIGHT` / `DOWN` layouts, and download `.svg` diagrams in your browser with zero install.
+## Try It Now
 
----
-
-## Try It Instantly (Zero Install)
-
-1. **In Your Browser:** Open the **[Interactive Playground](https://emmby.github.io/xstate-diagram/)**, paste or edit an XState v5 machine config, and click **Download `.svg`** or **Copy SVG**.
-2. **From Your Terminal (`npx`):** Render any `.ts`, `.js`, or `.json` XState machine file directly without installing anything into your project:
-   ```bash
-   npx xstate-diagram src/checkoutMachine.ts -o diagram.svg
-   ```
+- **In Your Browser:** **[Open the Live Interactive Playground ↗](https://emmby.github.io/xstate-diagram/)** — Explore built-in statechart presets, edit XState v5 configs live, toggle `AUTO` / `RIGHT` / `DOWN` layouts, and download `.svg` diagrams.
+- **From Your Terminal:** Render any `.ts`, `.js`, or `.json` XState machine file directly via `npx`:
+  ```bash
+  npx xstate-diagram src/checkoutMachine.ts -o diagram.svg
+  ```
 
 ---
 
