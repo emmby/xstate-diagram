@@ -52,3 +52,15 @@
 
 - [x] Push archive tag & PR, verify Ubuntu GitHub Actions CI, merge to main, watch main CI, and sync local checkout (~0.2d) [flowos: 5c2c370d-2634-4ca7-b9d6-98c9bb1aa8fa]
 
+---
+
+## Track: Release Strategy, Packaging & Multi-Channel Distribution
+
+### Phase 1: npm Packaging & CLI Ergonomics
+- [x] Add `tsconfig.build.json`, `"exports"` map, `"files"` whitelist (`2.4 MB` $\to$ `126 kB` tarball), and `prepack` script in `package.json`
+- [x] Upgrade `src/cli.ts` to render `.ts` / `.js` / `.mjs` XState machine modules directly (`--export`, `--version`) in addition to `.json` and `stdin`
+
+### Phase 2: CI/CD Release Automation, Composite GitHub Action & Web Playground
+- [x] Add root `action.yml` composite GitHub Action (`uses: emmby/xstate-diagram@v0.2.0`)
+- [x] Add `.github/workflows/release.yml` for tag-triggered 4-Gate verification, GitHub Releases, and npm publishing with provenance
+- [x] Add `scripts/build-playground.ts` and `.github/workflows/pages.yml` for zero-install interactive browser playground on GitHub Pages

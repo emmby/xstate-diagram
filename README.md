@@ -92,15 +92,21 @@ const verticalSvg = await renderMachineToSvg(checkoutMachine, {
 
 ## CLI Usage
 
-`xstate-diagram` includes a standalone CLI that reads a JSON machine configuration from a file path or `stdin` and writes the SVG to a file or `stdout`:
+`xstate-diagram` includes a standalone CLI that directly renders **TypeScript (`.ts`)**, **JavaScript (`.js` / `.mjs`)**, or **JSON (`.json`)** XState machine files (or JSON from `stdin`) into SVG:
 
 ```bash
+# Render a TypeScript or JavaScript XState machine module (auto-discovers default or named export)
+npx xstate-diagram src/checkoutMachine.ts -o checkout.svg
+
+# Select a specific named export when a file exports multiple machines
+npx xstate-diagram src/machines.ts --export paymentMachine -o payment.svg
+
 # Render a JSON machine config file to an SVG file (adaptive AUTO layout)
 npx xstate-diagram machine.json -o diagram.svg
 
 # Force top-to-bottom or left-to-right layout direction
-npx xstate-diagram machine.json -o diagram-down.svg --direction down
-npx xstate-diagram machine.json -o diagram-right.svg --direction right
+npx xstate-diagram src/checkoutMachine.ts -o diagram-down.svg --direction down
+npx xstate-diagram src/checkoutMachine.ts -o diagram-right.svg --direction right
 
 # Pipe from stdin to stdout
 cat machine.json | npx xstate-diagram --direction auto > diagram.svg
@@ -112,7 +118,43 @@ cat machine.json | npx xstate-diagram --direction auto > diagram.svg
 | :--- | :--- |
 | `-o, --output <file>` | Write SVG output to `<file>` (defaults to `stdout`) |
 | `-d, --direction <dir>` | Layout direction: `auto` (default), `right`, or `down` |
+| `-e, --export <name>` | Named export to render when input is a `.ts`/`.js` module |
+| `-v, --version` | Print the package version |
 | `-h, --help` | Show CLI usage instructions |
+
+---
+
+## GitHub Action (Auto-Generate Diagrams in CI)
+
+Use `emmby/xstate-diagram` directly as a composite GitHub Action in any repository to keep your statechart SVGs automatically up to date:
+
+```yaml
+- name: Render XState diagram
+  uses: emmby/xstate-diagram@v0.2.0
+  with:
+    input: src/machines/checkoutMachine.ts
+    output: docs/diagrams/checkout.svg
+    direction: auto
+```
+
+---
+
+## Interactive Browser Playground
+
+Because `xstate-diagram` uses a 100% browser-free pure-JS runtime, it runs directly in the browser.
+
+- **Hosted Playground:** Automatically deployed to GitHub Pages on every push to `main` via [`.github/workflows/pages.yml`](./.github/workflows/pages.yml).
+- **Local Build:** Run `npm run build:playground` to generate the self-contained static playground in `dist/playground/index.html`.
+
+---
+
+## Release & Publishing Strategy
+
+Releases are automated via [`.github/workflows/release.yml`](./.github/workflows/release.yml):
+
+1. Bump the version in `package.json` and push a matching `v*` tag (e.g., `npm version patch && git push origin main --follow-tags`).
+2. GitHub Actions runs `npm run typecheck`, `npm run build`, and the full 4-Gate test suite (`CI=1 npm test`).
+3. On passing all gates, the workflow packs a slim tarball (`dist/`, `README.md`, `ARCHITECTURE.md`), creates a GitHub Release with auto-generated release notes and attached `.tgz` asset, and publishes to npm with `--provenance` when `NPM_TOKEN` is configured in repository secrets.
 
 ---
 
@@ -126,3 +168,4 @@ Every diagram across our 72-machine conformance & `statelyai/docs` Harel referen
 4. **Gate 4 — Human Sign-Off:** Final inspection of generated galleries and benchmark metrics (`npx tsx scripts/benchmark-compactness.ts`).
 
 See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for full details on the `StatechartAST` schema, SVG DOM semantic contract, and layout pipeline.
+

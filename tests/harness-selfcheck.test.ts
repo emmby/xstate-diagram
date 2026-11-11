@@ -834,4 +834,81 @@ describe('Phase 0 Harness Self-Check (AST Normalization + Adversarial Gate 1/2 N
       expect(svgOut).toContain('data-machine-id="dirOverride"');
     }
   });
+
+  it('Standalone CLI renders .ts and .mjs XState machine modules directly and supports --export and --version', async () => {
+    const tmpDir = path.resolve(process.cwd(), '.tmp');
+    await fs.mkdir(tmpDir, { recursive: true });
+    const cliJs = path.resolve(process.cwd(), 'dist/cli.js');
+
+    // 1. Verify --version matches package.json
+    const pkgRaw = JSON.parse(
+      await fs.readFile(path.resolve(process.cwd(), 'package.json'), 'utf8'),
+    ) as { version: string };
+    const { stdout: verOut } = await execFileAsync(process.execPath, [
+      cliJs,
+      '--version',
+    ]);
+    expect(verOut.trim()).toBe(pkgRaw.version);
+
+    // 2. Single named export in a .ts file (auto-detected)
+    const singleTsPath = path.join(tmpDir, 'single-machine.ts');
+    const singleSvgPath = path.join(tmpDir, 'single-machine.svg');
+    await fs.writeFile(
+      singleTsPath,
+      [
+        "import { createMachine } from 'xstate';",
+        'export const checkoutMachine = createMachine({',
+        "  id: 'tsAutoExport',",
+        "  initial: 'cart',",
+        '  states: {',
+        "    cart: { on: { PAY: 'paid' } },",
+        "    paid: { type: 'final' },",
+        '  },',
+        '});',
+      ].join('\n'),
+      'utf8',
+    );
+    await execFileAsync(process.execPath, [
+      cliJs,
+      singleTsPath,
+      '-o',
+      singleSvgPath,
+    ]);
+    const singleSvg = await fs.readFile(singleSvgPath, 'utf8');
+    expect(singleSvg).toContain('<svg');
+    expect(singleSvg).toContain('data-machine-id="tsAutoExport"');
+
+    // 3. Multiple named exports in a .ts file selected via --export
+    const multiTsPath = path.join(tmpDir, 'multi-machine.ts');
+    const multiSvgPath = path.join(tmpDir, 'multi-machine.svg');
+    await fs.writeFile(
+      multiTsPath,
+      [
+        "import { createMachine } from 'xstate';",
+        'export const firstMachine = createMachine({',
+        "  id: 'firstOne',",
+        "  initial: 'a',",
+        "  states: { a: { on: { NEXT: 'b' } }, b: { type: 'final' } },",
+        '});',
+        'export const secondMachine = createMachine({',
+        "  id: 'secondOne',",
+        "  initial: 'x',",
+        "  states: { x: { on: { DONE: 'y' } }, y: { type: 'final' } },",
+        '});',
+      ].join('\n'),
+      'utf8',
+    );
+    await execFileAsync(process.execPath, [
+      cliJs,
+      multiTsPath,
+      '--export',
+      'secondMachine',
+      '-o',
+      multiSvgPath,
+    ]);
+    const multiSvg = await fs.readFile(multiSvgPath, 'utf8');
+    expect(multiSvg).toContain('<svg');
+    expect(multiSvg).toContain('data-machine-id="secondOne"');
+  });
 });
+

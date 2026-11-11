@@ -10,14 +10,42 @@
     "type": "git",
     "url": "git+https://github.com/emmby/xstate-diagram.git"
   },
+  "homepage": "https://emmby.github.io/xstate-diagram/",
+  "bugs": {
+    "url": "https://github.com/emmby/xstate-diagram/issues"
+  },
+  "keywords": [
+    "xstate",
+    "statechart",
+    "state-machine",
+    "svg",
+    "diagram",
+    "elkjs",
+    "harel",
+    "visualization"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "bin": {
     "xstate-diagram": "./dist/cli.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "ARCHITECTURE.md"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && chmod +x dist/cli.js",
+    "build:playground": "tsx scripts/build-playground.ts",
+    "typecheck": "tsc --noEmit",
+    "prepack": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "gallery:tier1": "tsx src/verifier/gallery.ts 1",
