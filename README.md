@@ -154,7 +154,7 @@ Releases are automated via [`.github/workflows/release.yml`](./.github/workflows
 
 1. Bump the version in `package.json` and push a matching `v*` tag (e.g., `npm version patch && git push origin main --follow-tags`).
 2. GitHub Actions runs `npm run typecheck`, `npm run build`, and the full 4-Gate test suite (`CI=1 npm test`).
-3. On passing all gates, the workflow packs a slim tarball (`dist/`, `README.md`, `ARCHITECTURE.md`), creates a GitHub Release with auto-generated release notes and attached `.tgz` asset, and publishes to npm with `--provenance` when `NPM_TOKEN` is configured in repository secrets.
+3. On passing all gates, the workflow packs a slim tarball (`dist/`, `README.md`, `ARCHITECTURE.md`), creates a GitHub Release with auto-generated release notes and attached `.tgz` asset, and publishes to npm via tokenless OIDC Trusted Publishing (`--provenance`).
 
 ---
 
