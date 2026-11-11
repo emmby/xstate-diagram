@@ -1,37 +1,39 @@
 {
   "name": "xstate-diagram",
-  "version": "0.0.1",
-  "description": "Convert XState definitions to Mermaid diagrams.",
-  "main": "dist/cli.js",
+  "version": "0.2.0",
+  "description": "Convert XState v5 state machines into publication-quality SVG statechart diagrams with closed-loop verification",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmby/xstate-diagram.git"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "xstate-diagram": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/cli.ts",
-    "test": "jest"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "gallery:tier1": "tsx src/verifier/gallery.ts 1",
+    "gallery:tier2": "tsx src/verifier/gallery.ts 2",
+    "gallery:tier3": "tsx src/verifier/gallery.ts 3",
+    "gallery:tier4": "tsx src/verifier/gallery.ts 4"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": ">=20"
-  },
-  "type": "commonjs",
   "dependencies": {
-    "commander": "^14.0.3",
-    "xstate": "^5.30.0"
+    "elkjs": "^0.9.3",
+    "xstate": "^5.19.2"
   },
   "devDependencies": {
-    "@mermaid-js/mermaid-cli": "^11.12.0",
-    "@mermaid-js/parser": "^1.1.0",
-    "@types/jest": "^29.5.0",
-    "@types/node": "^25.6.0",
-    "jest": "^29.7.0",
-    "jsdom": "^29.0.2",
-    "mermaid": "^11.14.0",
-    "ts-jest": "^29.4.9",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.2"
+    "@types/node": "^22.10.2",
+    "playwright": "^1.49.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   }
 }

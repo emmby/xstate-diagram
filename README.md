@@ -1,161 +1,128 @@
 # xstate-diagram
 
-Convert [XState v5](https://stately.ai/docs/xstate) JSON machine definitions into [Mermaid](https://mermaid.js.org/syntax/stateDiagram.html) `stateDiagram-v2` diagrams.
-
-`xstate-diagram` ingests XState v5 JSON configurations (via `--file` or `stdin`), resolves the state machine graph using XState's `createMachine`, and outputs deterministic Mermaid state diagram syntax to `stdout`.
+Convert **XState v5** state machines (raw JSON/TypeScript machine configs or instantiated `StateMachine` objects from `createMachine`) into clean, compact, publication-quality **SVG statechart diagrams**—powered by `elkjs` and verified by a 4-gate closed-loop AST & browser-geometry harness.
 
 ## Features
 
-- **Flat & Hierarchical States**: Compiles nested/composite state hierarchies with scoped initial states (`[*] --> ...`).
-- **Parallel Regions**: Renders orthogonal state regions (`type: "parallel"`) with Mermaid `--` concurrency dividers.
-- **Rich Transition Labels**: Formats transitions as `EVENT [guard] / action1, action2`.
-- **Eventless (`always`) & Delayed (`after`) Transitions**: Supports transient `always` transitions and `after` timeout transitions (`after <ms>`).
-- **Entry & Exit Actions**: Renders `entry / <action>` and `exit / <action>` annotations on both atomic and composite states.
-- **Final States & Custom IDs**: Maps `type: "final"` nodes (`--> [*]`) and resolves cross-hierarchy `#id` targets with sanitized Mermaid aliases.
-- **Unix Pipeline Friendly**: Reads from `--file` or `stdin` and writes directly to `stdout` for easy composition with `@mermaid-js/mermaid-cli` (`mmdc`).
+- **100% Browser-Free Runtime:** Zero headless browser, canvas, or OS font binary dependencies at runtime—only `xstate` (v5) and `elkjs`. Runs anywhere Node.js runs.
+- **Full Harel & XState v5 Statechart Semantics:**
+  - Atomic, compound (hierarchical), parallel (dashed orthogonal regions), final (double-bordered), and shallow/deep history (`H` / `H*`) states
+  - Structured state compartments (`entry / ...`, `exit / ...`, `invoke / ...`, targetless internal transitions, and `#tag` pills)
+  - Guarded transitions with explicit evaluation-priority badges (`[#1]`, `[#2]`), transition actions, eventless (`always`), delayed (`after(...)`), completion (`onDone`), actor `onDone(...)` / `onError(...)`, external self-loops, and simultaneous multi-target forks (`●` fork junction on a shared pre-fork trunk)
+- **Compact Multi-Line Transition Cards:** Multi-clause transition labels automatically wrap into clean, left-aligned stacked cards (`event` -> `[guard]` -> `/ actions`, `<= 280px` pill width) while preserving exact canonical label text in SVG `<tspan class="edge-label-line">` elements.
+- **Adaptive `AUTO` Orientation (`RIGHT` vs. `DOWN`):** Automatically evaluates horizontal, vertical, per-subtree (`SEPARATE_CHILDREN`), parallel-region grid, and chain-wrapped (`MULTI_EDGE`) layouts to produce balanced, compact diagrams (`max(W/H, H/W) <= 3.5`).
+- **Deterministic Cross-Platform Typography:** Uses metrically compatible sans-serif (`Arial, Helvetica, "Liberation Sans", sans-serif`) and monospace (`Menlo, Consolas, "DejaVu Sans Mono", monospace`) stacks measured via an exact ASCII width table.
 
-## Requirements
+---
 
-- **Node.js**: `>=20`
-
-## Installation & Setup
+## Installation
 
 ```bash
-git clone https://github.com/emmby/xstate-diagram.git
-cd xstate-diagram
+npm install xstate-diagram xstate
+```
+
+To build and verify from source in this repository:
+
+```bash
 npm install
 npm run build
+CI=1 npm test
 ```
 
-## Usage
+---
 
-### CLI
-
-Pass an XState JSON file using `-f` / `--file`:
-
-```bash
-npx xstate-diagram --file specs/supported/advanced_transitions.json
-# or during development:
-npm start -- --file specs/supported/advanced_transitions.json
-```
-
-Or pipe JSON directly via `stdin`:
-
-```bash
-cat specs/supported/basic_flat_machine.json | npx xstate-diagram
-```
-
-#### Exporting to SVG / PNG with Mermaid CLI
-
-Because `xstate-diagram` writes pure Mermaid syntax to `stdout`, you can pipe its output directly to `@mermaid-js/mermaid-cli` (`mmdc`):
-
-```bash
-npx xstate-diagram -f specs/supported/parallel_002.json | npx mmdc -i - -o diagram.svg
-```
-
-### Programmatic API
-
-You can also use the [`compile`](src/compiler.ts) function directly in TypeScript/JavaScript with an XState v5 machine instance:
+## Programmatic API
 
 ```ts
 import { createMachine } from 'xstate';
-import { compile } from './src/compiler';
+import { renderMachineToSvg } from 'xstate-diagram';
+import { writeFile } from 'node:fs/promises';
 
-const machine = createMachine({
-  id: 'advanced',
-  initial: 'idle',
+const checkoutMachine = createMachine({
+  id: 'checkout',
+  initial: 'cart',
   states: {
-    idle: {
+    cart: {
+      entry: ['loadSavedCart'],
       on: {
-        GO: {
-          target: 'run',
-          guard: 'isReady',
-          actions: ['logStart', { type: 'metrics' }]
-        }
-      }
+        ADD_ITEM: {
+          actions: ['assignItem', 'recalculateSubtotal'],
+        },
+        CHECKOUT: {
+          guard: 'hasItems',
+          target: 'payment',
+          actions: ['lockCart'],
+        },
+      },
     },
-    run: {}
-  }
+    payment: {
+      invoke: {
+        id: 'chargeCard',
+        src: 'stripePaymentActor',
+        onDone: { target: 'confirmed', actions: ['sendReceipt'] },
+        onError: { target: 'cart', actions: ['notifyPaymentError'] },
+      },
+    },
+    confirmed: {
+      type: 'final',
+    },
+  },
 });
 
-console.log(compile(machine));
+// Render with adaptive AUTO orientation (default)
+const svg = await renderMachineToSvg(checkoutMachine);
+await writeFile('checkout.svg', svg, 'utf8');
+
+// Or explicitly force 'RIGHT' (left-to-right) or 'DOWN' (top-to-bottom)
+const verticalSvg = await renderMachineToSvg(checkoutMachine, {
+  direction: 'DOWN',
+});
 ```
 
-## Example
+### Exported Functions & Types
 
-**Input (`advanced_transitions.json`):**
+- `renderMachineToSvg(machineOrConfig: unknown, options?: RenderOptions): Promise<string>` — Accepts either an XState v5 `StateMachine` instance or a raw JSON/object machine configuration and resolves to a standalone `<svg>` document string.
+- `extractFromMachine(machineOrConfig: unknown): StatechartAST` — Normalizes an XState v5 machine or config into the canonical `StatechartAST`.
+- `renderAstToSvg(ast: StatechartAST, options?: RenderOptions): Promise<string>` — Renders a pre-extracted `StatechartAST` to SVG.
+- `RenderOptions`:
+  - `direction?: 'AUTO' | 'RIGHT' | 'DOWN'` — Layout orientation (`'AUTO'` by default).
+  - `theme?: ThemeTokens` — Optional visual theme overrides (`DEFAULT_THEME` exported).
 
-```json
-{
-  "id": "advanced",
-  "initial": "idle",
-  "states": {
-    "idle": {
-      "on": {
-        "GO": {
-          "target": "run",
-          "guard": "isReady",
-          "actions": ["logStart", { "type": "metrics" }]
-        }
-      }
-    },
-    "run": {}
-  }
-}
-```
+---
 
-**Output (`stateDiagram-v2`):**
+## CLI Usage
 
-```mermaid
-stateDiagram-v2
-  [*] --> advanced_idle
-  state "idle" as advanced_idle
-  state "run" as advanced_run
-
-  advanced_idle --> advanced_run : GO [isReady] / logStart, metrics
-```
-
-## Testing & Validation
-
-The test suite validates every supported XState specification in `specs/supported/` against golden snapshots in `src/__snapshots__/` and runs syntax verification through `mmdc` (`@mermaid-js/mermaid-cli`).
+`xstate-diagram` includes a standalone CLI that reads a JSON machine configuration from a file path or `stdin` and writes the SVG to a file or `stdout`:
 
 ```bash
-# Run the full Jest test suite
-npm test
+# Render a JSON machine config file to an SVG file (adaptive AUTO layout)
+npx xstate-diagram machine.json -o diagram.svg
 
-# Update golden .mermaid snapshots when adding new specs
-UPDATE_SNAPSHOTS=1 npm test
+# Force top-to-bottom or left-to-right layout direction
+npx xstate-diagram machine.json -o diagram-down.svg --direction down
+npx xstate-diagram machine.json -o diagram-right.svg --direction right
+
+# Pipe from stdin to stdout
+cat machine.json | npx xstate-diagram --direction auto > diagram.svg
 ```
 
-### Semantic PR Validation
+### CLI Options
 
-When promoting a new spec from `specs/unsupported/` to `specs/supported/`, validate both `mmdc` rendering and semantic parity (via the `gemini` CLI and `prompts/semantic_validation.md`):
+| Flag | Description |
+| :--- | :--- |
+| `-o, --output <file>` | Write SVG output to `<file>` (defaults to `stdout`) |
+| `-d, --direction <dir>` | Layout direction: `auto` (default), `right`, or `down` |
+| `-h, --help` | Show CLI usage instructions |
 
-```bash
-./scripts/validate_pr.sh specs/supported/<spec_name>.json src/__snapshots__/<spec_name>.mermaid
-```
+---
 
-## Project Structure
+## Closed-Loop 4-Gate Verification Architecture
 
-```text
-├── src/
-│   ├── cli.ts            # CLI entrypoint (--file and stdin handling)
-│   ├── compiler.ts       # XState v5 StateMachine -> Mermaid stateDiagram-v2 compiler
-│   ├── cli.test.ts       # Jest test suite & dynamic spec runner
-│   ├── test-helper.ts    # Golden snapshot matcher + mmdc syntax verifier
-│   └── __snapshots__/    # Golden .mermaid outputs for all supported specs
-├── specs/
-│   ├── 001_overview.md   # Architecture & phased requirements spec
-│   ├── 002_recipe.md     # Agent workflow for scaling XState feature coverage
-│   ├── supported/        # Passing XState v5 JSON machine definitions
-│   └── unsupported/      # Backlog of extracted XState v5 test cases
-├── prompts/
-│   └── semantic_validation.md # Prompt template for LLM semantic parity verification
-└── scripts/
-    ├── extract.ts        # AST extractor for pulling XState v5 test cases into JSON
-    └── validate_pr.sh    # Automated mmdc + Gemini semantic validation script
-```
+Every diagram across our 72-machine conformance & `statelyai/docs` Harel reference corpus (spanning Tiers 1–4, up to the 77-state, 81-transition Harel Citizen Quartz Multi-Alarm Watch) is validated through four independent gates:
 
-## License
+1. **Gate 1 — Lossless Semantic Round-Trip (`src/verifier/extract-svg.ts`):** Parses the rendered `<svg>` DOM and real Chromium geometry (`getBBox()`, `getPointAtLength()`) to independently reconstruct `StatechartAST` and verify `deepEqual(extractFromSvg(svg), extractFromMachine(input))`—catching missing nodes/edges, wrong endpoints, unrendered compartments, and hierarchical containment violations.
+2. **Gate 2 — Automated Geometric & Compactness Linter (`src/verifier/geometry-lint.ts`):** Evaluates rendered bounding boxes and sampled SVG path geometry in Playwright Chromium to enforce zero node/label overlaps, strict parent containment (`>= 8px` inset), zero interior obstacle piercing, outward/inward terminal tangents (`dot >= 0.50`), `>= 14px` multi-edge & label clearance, Voronoi nearest-neighbor label attribution (`> 8px` margin), multi-line card wrapping (`<= 280px`), and balanced canvas aspect ratios (`<= 3.5:1`).
+3. **Gate 3 — Multimodal Visual & Semantic Critique:** Inspects rasterized contact-sheet galleries (`npm run gallery:tier1` .. `npm run gallery:tier4`) alongside ground-truth `statelyai/docs` reference screenshots for visual clarity, balance, and typographic polish.
+4. **Gate 4 — Human Sign-Off:** Final inspection of generated galleries and benchmark metrics (`npx tsx scripts/benchmark-compactness.ts`).
 
-ISC
+See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for full details on the `StatechartAST` schema, SVG DOM semantic contract, and layout pipeline.

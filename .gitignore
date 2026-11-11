@@ -1,5 +1,7 @@
 node_modules/
 dist/
+.tmp/
 .worktrees/
-coverage/
-.env
+*.tsbuildinfo
+.DS_Store
+.flowos

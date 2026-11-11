@@ -1,78 +1,96 @@
 #!/usr/bin/env node
-import { Command } from 'commander';
-import * as fs from 'fs';
-import { createMachine } from 'xstate';
-import { compile } from './compiler';
+import { readFile, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { renderMachineToSvg } from './index.js';
 
-const program = new Command();
+interface CliArgs {
+  inputPath: string | null;
+  outputPath: string | null;
+  direction: 'AUTO' | 'RIGHT' | 'DOWN';
+  help: boolean;
+}
 
-program
-  .name('xstate-diagram')
-  .description('Convert XState V5 machine definitions into Mermaid state diagrams')
-  .version('0.0.1')
-  .option('-f, --file <path>', 'Path to the XState JSON configuration file')
-  .action((options) => {
-    // Determine if we are reading from file or stdin
-    if (options.file) {
-      try {
-        const fileContent = fs.readFileSync(options.file, 'utf8');
-        processInput(fileContent);
-      } catch (err) {
-        console.error(`Error:`, err instanceof Error ? err.message : String(err));
-        process.exit(1);
-      }
-    } else {
-      // Read from stdin
-      let inputData = '';
-      
-      // If stdin is not a TTY, we might have data piped in
-      if (!process.stdin.isTTY) {
-        process.stdin.setEncoding('utf8');
-        
-        process.stdin.on('data', (chunk) => {
-          inputData += chunk;
-        });
+function parseArgs(argv: string[]): CliArgs {
+  let inputPath: string | null = null;
+  let outputPath: string | null = null;
+  let direction: 'AUTO' | 'RIGHT' | 'DOWN' = 'AUTO';
+  let help = false;
 
-        process.stdin.on('end', () => {
-          if (!inputData.trim()) {
-            console.error('Error: No data provided via stdin. Please use --file or pipe data.');
-            program.help({ error: true });
-          }
-          try {
-            processInput(inputData);
-          } catch (err) {
-            console.error(`Error:`, err instanceof Error ? err.message : String(err));
-            process.exit(1);
-          }
-        });
-        
-        process.stdin.on('error', (err) => {
-          console.error('Error reading from stdin:', err);
-          process.exit(1);
-        });
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (arg === '-h' || arg === '--help') {
+      help = true;
+    } else if (arg === '-o' || arg === '--output') {
+      outputPath = argv[++i] ?? null;
+    } else if (arg === '-d' || arg === '--direction') {
+      const val = (argv[++i] ?? 'AUTO').toUpperCase();
+      if (val === 'AUTO' || val === 'RIGHT' || val === 'DOWN') {
+        direction = val;
       } else {
-        console.error('Error: No input provided. Please use --file or pipe data via stdin.');
-        program.help({ error: true });
+        throw new Error(
+          `Invalid --direction "${val}". Expected AUTO, RIGHT, or DOWN.`,
+        );
       }
+    } else if (!arg.startsWith('-') && !inputPath) {
+      inputPath = arg;
+    } else {
+      throw new Error(`Unknown or unexpected argument: "${arg}"`);
     }
-  });
-
-export function processInput(input: string) {
-  let parsedJson;
-  try {
-    parsedJson = JSON.parse(input);
-  } catch (err) {
-    throw new Error(`Input is not valid JSON: ${err instanceof Error ? err.message : String(err)}`);
   }
 
-  try {
-    const machine = createMachine(parsedJson);
-    console.log(compile(machine));
-  } catch (err) {
-    throw new Error(`Invalid XState configuration: ${err instanceof Error ? err.message : String(err)}`);
+  return { inputPath, outputPath, direction, help };
+}
+
+async function readStdin(): Promise<string> {
+  const chunks: Buffer[] = [];
+  for await (const chunk of process.stdin) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk)));
+  }
+  return Buffer.concat(chunks).toString('utf8');
+}
+
+function printUsage(): void {
+  const msg = [
+    'Usage: xstate-diagram [input.json] [-o output.svg] [--direction auto|right|down]',
+    '',
+    'Options:',
+    '  -o, --output <file>       Write SVG output to file (defaults to stdout)',
+    '  -d, --direction <dir>     Layout direction: auto (default), right, or down',
+    '  -h, --help                Show this help message',
+  ].join('\n');
+  process.stdout.write(`${msg}\n`);
+}
+
+async function main(): Promise<void> {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printUsage();
+    return;
+  }
+
+  let rawJson: string;
+  if (args.inputPath) {
+    rawJson = await readFile(resolve(args.inputPath), 'utf8');
+  } else if (!process.stdin.isTTY) {
+    rawJson = await readStdin();
+  } else {
+    printUsage();
+    process.exitCode = 1;
+    return;
+  }
+
+  const config = JSON.parse(rawJson) as unknown;
+  const svg = await renderMachineToSvg(config, { direction: args.direction });
+
+  if (args.outputPath) {
+    await writeFile(resolve(args.outputPath), svg, 'utf8');
+  } else {
+    process.stdout.write(svg);
   }
 }
 
-if (require.main === module) {
-  program.parse(process.argv);
-}
+main().catch((err: unknown) => {
+  const message = err instanceof Error ? err.message : String(err);
+  process.stderr.write(`xstate-diagram error: ${message}\n`);
+  process.exitCode = 1;
+});
