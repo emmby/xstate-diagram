@@ -179,3 +179,15 @@ Every diagram across our 72-machine conformance & `statelyai/docs` Harel referen
 
 See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for full details on the `StatechartAST` schema, SVG DOM semantic contract, and layout pipeline.
 
+
+---
+
+## Related Project: Run Your Statecharts Anywhere with [Lavi](https://github.com/emmby/lavi)
+
+If you use `xstate-diagram`, you might also be interested in **[Lavi](https://github.com/emmby/lavi)**—a portable, low-memory **XState v5** statechart and actor runtime written in Rust.
+
+The exact same XState v5 JSON or `createMachine(...)` definitions you visualize with `xstate-diagram` run identically on:
+- **Embedded Microcontrollers (`lavi-c-cpp`)**: C & C++11 on ESP32 and ARM Cortex-M via PlatformIO & Arduino IDE with a bounded `O(1)` CPU call stack
+- **Native & Systems (`lavi`)**: Embedded-friendly Rust
+- **Web, Node.js, React & React Native (`lavi-fsm`)**: 1-line drop-in replacement for `xstate` and `@xstate/react` backed by WebAssembly (`wasm2js` on Hermes/JSC)
+- **Backend, Mobile & Desktop**: Python (`lavi-py`), Java/Kotlin/Android (`lavi-jvm`), Swift/iOS/macOS (`lavi-swift`), Dart/Flutter (`lavi-dart`), and C#/.NET (`lavi-csharp`)
