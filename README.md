@@ -2,9 +2,23 @@
 
 Convert **XState v5** state machines (raw JSON/TypeScript machine configs or instantiated `StateMachine` objects from `createMachine`) into clean, compact, publication-quality **SVG statechart diagrams**—powered by `elkjs` and verified by a 4-gate closed-loop AST & browser-geometry harness.
 
+> **👉 [Try the Live Interactive Playground (emmby.github.io/xstate-diagram)](https://emmby.github.io/xstate-diagram/)** — Explore built-in statechart presets, edit XState v5 configs live, toggle `AUTO` / `RIGHT` / `DOWN` layouts, and download `.svg` diagrams in your browser with zero install.
+
+---
+
+## Try It Instantly (Zero Install)
+
+1. **In Your Browser:** Open the **[Interactive Playground](https://emmby.github.io/xstate-diagram/)**, paste or edit an XState v5 machine config, and click **Download `.svg`** or **Copy SVG**.
+2. **From Your Terminal (`npx`):** Render any `.ts`, `.js`, or `.json` XState machine file directly without installing anything into your project:
+   ```bash
+   npx xstate-diagram src/checkoutMachine.ts -o diagram.svg
+   ```
+
+---
+
 ## Features
 
-- **100% Browser-Free Runtime:** Zero headless browser, canvas, or OS font binary dependencies at runtime—only `xstate` (v5) and `elkjs`. Runs anywhere Node.js runs.
+- **100% Browser-Free Runtime:** Zero headless browser, canvas, or OS font binary dependencies at runtime—only `xstate` (v5) and `elkjs`. Runs anywhere Node.js or a browser runs.
 - **Full Harel & XState v5 Statechart Semantics:**
   - Atomic, compound (hierarchical), parallel (dashed orthogonal regions), final (double-bordered), and shallow/deep history (`H` / `H*`) states
   - Structured state compartments (`entry / ...`, `exit / ...`, `invoke / ...`, targetless internal transitions, and `#tag` pills)
@@ -143,7 +157,7 @@ Use `emmby/xstate-diagram` directly as a composite GitHub Action in any reposito
 
 Because `xstate-diagram` uses a 100% browser-free pure-JS runtime, it runs directly in the browser.
 
-- **Hosted Playground:** Automatically deployed to GitHub Pages on every push to `main` via [`.github/workflows/pages.yml`](./.github/workflows/pages.yml).
+- **Hosted Playground ([emmby.github.io/xstate-diagram](https://emmby.github.io/xstate-diagram/)):** Automatically deployed to GitHub Pages on every push to `main` via [`.github/workflows/pages.yml`](./.github/workflows/pages.yml).
 - **Local Build:** Run `npm run build:playground` to generate the self-contained static playground in `dist/playground/index.html`.
 
 ---
