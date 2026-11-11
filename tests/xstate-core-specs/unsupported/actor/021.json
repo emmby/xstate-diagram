@@ -1,8 +1,0 @@
-{
-  "initial": "hello",
-  "states": {
-    "hello": {
-      "entry": "[Node: sendParent({ type: 'ping' })]"
-    }
-  }
-}

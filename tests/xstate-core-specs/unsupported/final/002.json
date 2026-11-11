@@ -1,4 +1,0 @@
-{
-  "type": "final",
-  "output": "[Node: ({ event }) => {\n        spy(event);\n      }]"
-}

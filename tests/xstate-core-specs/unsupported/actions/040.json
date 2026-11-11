@@ -1,9 +1,0 @@
-{
-  "id": "child",
-  "initial": "idle",
-  "states": {
-    "idle": {
-      "exit": "[Node: sendParent({ type: 'EXIT' })]"
-    }
-  }
-}

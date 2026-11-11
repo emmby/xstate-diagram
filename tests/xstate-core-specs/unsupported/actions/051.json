@@ -1,5 +1,0 @@
-{
-  "id": "parent",
-  "context": {},
-  "exit": "[Node: assign({\n          actorRef: ({ spawn }) => spawn(grandchild)\n        })]"
-}

@@ -1,8 +1,0 @@
-{
-  "id": "child",
-  "invoke": {
-    "id": "myChild",
-    "src": "[Node: grandchild]"
-  },
-  "exit": "[Node: sendTo('myChild', { type: 'STOPPED' })]"
-}

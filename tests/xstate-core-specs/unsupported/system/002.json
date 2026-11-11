@@ -1,4 +1,0 @@
-{
-  "id": "childmachine",
-  "entry": "[Node: ({ system }) => {\n                  const receiver = (system as MySystem)?.get('receiver');\n\n                  if (receiver) {\n                    receiver.send({ type: 'HELLO' });\n                  }\n                }]"
-}

@@ -1,6 +1,0 @@
-{
-  "invoke": {
-    "id": "child",
-    "src": "[Node: createMachine({\n          initial: 'a',\n          states: {\n            a: {\n              after: {\n                10_000: 'b'\n              }\n            },\n            b: {}\n          }\n        })]"
-  }
-}

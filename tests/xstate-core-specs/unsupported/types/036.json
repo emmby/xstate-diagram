@@ -1,6 +1,0 @@
-{
-  "types": "[Node: {} as {\n        events:\n          | { type: 'mouse.click.up'; direction: 'up' }\n          | { type: 'mouse.click.down'; direction: 'down' }\n          | { type: 'mouse.move' }\n          | { type: 'mouse' }\n          | { type: 'keypress' };\n      }]",
-  "on": {
-    "keypress.*": {}
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "entry": "[Node: emit({ type: 'nonsense' })]",
-  "exit": "[Node: emit({ type: 'greet', message: 1234 })]",
-  "on": {
-    "someEvent": {
-      "actions": "[Node: emit({ type: 'greet', message: 'hello' })]"
-    }
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "types": "[Node: {} as {\n        events: { type: 'TOGGLE_ITALIC' } | { type: 'TOGGLE_BOLD' };\n      }]",
-  "type": "parallel",
-  "states": {
-    "underline": "[Node: underlineState]"
-  }
-}

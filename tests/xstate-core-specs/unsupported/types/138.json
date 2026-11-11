@@ -1,5 +1,0 @@
-{
-  "types": {
-    "actions": "[Node: {} as { type: 'foo' } | { type: 'bar' }]"
-  }
-}

@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: spawnChild('child', {\n          input: ({ self }: any) => spy(self)\n        })]"
-}

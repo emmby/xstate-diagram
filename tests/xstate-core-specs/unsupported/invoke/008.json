@@ -1,9 +1,0 @@
-{
-  "id": "child",
-  "initial": "sending",
-  "states": {
-    "sending": {
-      "entry": "[Node: sendParent({ type: 'SUCCESS', data: 42 })]"
-    }
-  }
-}

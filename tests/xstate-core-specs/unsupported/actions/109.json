@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: raise(\n        // @ts-ignore\n        'a string'\n      )]"
-}

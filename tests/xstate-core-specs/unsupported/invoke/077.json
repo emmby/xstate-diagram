@@ -1,9 +1,0 @@
-{
-  "id": "machine",
-  "initial": "a",
-  "states": {
-    "a": {
-      "invoke": "[Node: invokeConfig]"
-    }
-  }
-}

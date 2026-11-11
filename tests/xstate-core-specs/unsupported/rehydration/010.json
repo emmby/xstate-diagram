@@ -1,3 +1,0 @@
-{
-  "context": "[Node: ({ spawn }) => {\n          spawn('foo', {\n            systemId: 'mySystemId'\n          });\n          return {};\n        }]"
-}

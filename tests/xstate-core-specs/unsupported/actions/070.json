@@ -1,9 +1,0 @@
-{
-  "context": {
-    "secret": 42
-  },
-  "entry": {
-    "type": "entryAction",
-    "params": "[Node: ({ context }) => ({ secret: context.secret })]"
-  }
-}

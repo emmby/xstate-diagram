@@ -1,8 +1,0 @@
-{
-  "types": "[Node: {} as {\n        events: {\n          type: 'PING';\n          origin: ActorRef<Snapshot<unknown>, { type: 'PONG' }>;\n        };\n      }]",
-  "on": {
-    "PING": {
-      "actions": "[Node: sendTo(({ event }) => event.origin, { type: 'PONG' })]"
-    }
-  }
-}

@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: () => {\n      throw new Error('error');\n    }]"
-}

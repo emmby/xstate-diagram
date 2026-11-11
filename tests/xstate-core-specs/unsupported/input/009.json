@@ -1,3 +1,0 @@
-{
-  "context": "[Node: ({ input }: { input: number }) => {\n        spy(input);\n        return {};\n      }]"
-}

@@ -1,5 +1,0 @@
-{
-  "invoke": {
-    "src": "[Node: fromCallback(\n          // @ts-ignore\n          () => {\n            return new Promise(() => {});\n          }\n        )]"
-  }
-}

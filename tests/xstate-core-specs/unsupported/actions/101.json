@@ -1,7 +1,0 @@
-{
-  "on": {
-    "PING": {
-      "actions": "[Node: spy1]"
-    }
-  }
-}

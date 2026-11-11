@@ -4,22 +4,10 @@ This document tracks known follow-up items following the replacement of the lega
 
 ---
 
-## 1. XState v5 Core Test-Suite Spec Conformance (`tests/xstate-core-specs/`)
+## 1. ~~XState v5 Core Test-Suite Spec Conformance (`tests/xstate-core-specs/`)~~ *(Retired & Removed)*
 
-During the initial Mermaid prototype, XState v5 `createMachine(...)` object literals were extracted from `statelyai/xstate` (`packages/core/test/*.test.ts`) and preserved in this repository under `tests/xstate-core-specs/` via `git mv`:
-
-- **`tests/xstate-core-specs/supported/`** — Curated JSON machine specifications previously validated during the initial conformance pass (39 committed specs on `origin/main`, up to 44 including in-flight scratch specs).
-- **`tests/xstate-core-specs/unsupported/`** — 938 extracted JSON machine configurations across **54 categories** (`actions`, `activities`, `actor`, `actorLogic`, `after`, `assert`, `assign`, `clock`, `deep`, `definition`, `deterministic`, `emit`, `errors`, `event`, `eventDescriptors`, `final`, `getNextSnapshot`, `guards`, `history`, `id`, `initial`, `input`, `inspect`, `internalTransitions`, `interpreter`, `invalid`, `invoke`, `json`, `logger`, `machine`, `match`, `meta`, `microstep`, `multiple`, `order`, `parallel`, `predictableExec`, `rehydration`, `resolve`, `select`, `setup.types`, `spawn`, `spawn.types`, `spawnChild`, `state`, `stateIn`, `system`, `tags`, `toPromise`, `transient`, `transition`, `typeHelpers`, `types`, `waitFor`).
-- **`scripts/extract-xstate-core-specs.ts`** — ESM TypeScript AST extractor ported from the legacy `scripts/extract.ts`, defaulting output to `tests/xstate-core-specs/extracted`.
-
-### Required Follow-Up Work
-
-1. **Normalize `[Node: ...]` TypeScript AST Placeholders:**
-   - Because `scripts/extract-xstate-core-specs.ts` serializes non-literal TypeScript AST nodes (inline arrow functions, `assign(...)`, `raise(...)`, `sendTo(...)`, shorthand properties, method declarations, computed delay/guard expressions) as string placeholders of the form `"[Node: ...]"`, `extractFromMachine` / `createMachine` must pre-normalize or stub `[Node: ...]` placeholders (e.g., mapping action/guard/actor/delay AST strings into valid named descriptors or no-op stubs) before instantiating `createMachine(config)`.
-2. **Exclude Intentionally Malformed Error-Test Configs (`invalid/` & negative tests):**
-   - `tests/xstate-core-specs/unsupported/invalid/` (and scattered negative assertions in `errors/`, `id/`, `history/`, etc.) intentionally pass malformed statechart configurations designed to assert that XState v5 throws at `createMachine(...)` time (e.g., nonexistent initial state targets, invalid sibling IDs, illegal child states on `atomic`/`final` nodes). These must be separated into an explicit negative-test manifest rather than treated as renderable diagrams.
-3. **Wire a Dedicated Conformance Vitest Suite:**
-   - Add a dedicated test suite (e.g., `tests/xstate-core-specs.test.ts`) running Gate 1 (semantic + geometric round-trip isomorphism) and Gate 2 (Playwright geometric & compactness linter) across the normalized `supported/` and `unsupported/` specs, fixing any remaining extractor or renderer edge cases uncovered by XState's internal unit tests.
+- Retired and removed `tests/xstate-core-specs/` (977 raw TypeScript AST scraper JSON dumps from the `v0.0.1` Mermaid prototype) and `scripts/extract-xstate-core-specs.ts` (historical files remain preserved at tag `archive/mermaid-v0.0.1`).
+- Conformance and visual/geometric verification are covered directly by the Tier 1–4 closed-loop suites (`tests/tier1.test.ts`–`tests/tier4.test.ts` + `tests/fixtures/`) and the Stately reference corpus (`tests/reference-corpus/`).
 
 ---
 

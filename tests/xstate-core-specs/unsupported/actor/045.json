@@ -1,8 +1,0 @@
-{
-  "context": "[Node: ({ spawn, self }) => {\n        return {\n          childRef: spawn(child, { input: { parent: self } })\n        };\n      }]",
-  "on": {
-    "GREET": {
-      "actions": "[Node: spy]"
-    }
-  }
-}

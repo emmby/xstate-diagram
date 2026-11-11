@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: (_, params) => {\n          spy(params);\n        }]"
-}

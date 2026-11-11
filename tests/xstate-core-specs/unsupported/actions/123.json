@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: ({ self }) => {\n        expect(self.send).toBeDefined();\n      }]"
-}

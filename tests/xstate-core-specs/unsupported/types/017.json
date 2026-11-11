@@ -1,4 +1,0 @@
-{
-  "types": "[Node: {} as {\n        output: number;\n      }]",
-  "output": "[Node: () => 42]"
-}

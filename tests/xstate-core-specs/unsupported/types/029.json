@@ -1,6 +1,0 @@
-{
-  "types": "[Node: {} as {\n        context: {\n          count: number;\n        };\n        events: {\n          type: 'TOGGLE';\n        };\n      }]",
-  "context": {
-    "count": 0
-  }
-}

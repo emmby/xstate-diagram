@@ -1,9 +1,0 @@
-{
-  "types": "[Node: {} as {\n            actors: { src: 'childMachine'; logic: typeof childMachine };\n          }]",
-  "invoke": {
-    "src": "childMachine",
-    "onSnapshot": {
-      "actions": "[Node: ({ event }) => {\n                if (event.snapshot.value === 'b') {\n                  resolve();\n                }\n              }]"
-    }
-  }
-}

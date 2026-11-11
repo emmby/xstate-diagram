@@ -1,9 +1,0 @@
-{
-  "on": {
-    "EV": {
-      "guard": {
-        "type": "checkStuff"
-      }
-    }
-  }
-}

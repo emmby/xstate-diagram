@@ -1,9 +1,0 @@
-{
-  "context": {
-    "executedAssigns": "[Node: [] as string[]]"
-  },
-  "exit": [
-    "referencedAction",
-    "[Node: assign({\n              executedAssigns: ({ context }) => [\n                ...context.executedAssigns,\n                'inline'\n              ]\n            })]"
-  ]
-}

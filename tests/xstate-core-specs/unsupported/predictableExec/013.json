@@ -1,7 +1,0 @@
-{
-  "on": {
-    "PING": {
-      "actions": "[Node: sendParent({ type: 'PONG' })]"
-    }
-  }
-}

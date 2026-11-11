@@ -1,8 +1,0 @@
-{
-  "initial": "green",
-  "states": {
-    "green": {
-      "tags": "go"
-    }
-  }
-}

@@ -1,4 +1,0 @@
-{
-  "id": "grandchild",
-  "entry": "[Node: () => {\n          throw new Error('This should not be called.');\n        }]"
-}

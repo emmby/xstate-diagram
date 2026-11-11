@@ -1,4 +1,0 @@
-{
-  "types": "[Node: {} as {\n        actions: { type: 'greet'; params: { name: string } } | { type: 'poke' };\n      }]",
-  "entry": "[Node: (_, params) => {\n        ((_accept: undefined) => {})(params);\n        // @ts-expect-error\n        ((_accept: 'not any') => {})(params);\n      }]"
-}

@@ -1,7 +1,0 @@
-{
-  "on": {
-    "EV": {
-      "actions": "[Node: function myFn() {\n                called = true;\n              }]"
-    }
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "type": "parallel",
-  "states": {
-    "first": "[Node: createSingleState()]",
-    "second": "[Node: createSingleState()]"
-  }
-}

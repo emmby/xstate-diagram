@@ -1,3 +1,0 @@
-{
-  "entry": "[Node: sendTo(({ system }) => system.get('myRoot'), {\n        type: 'EV'\n      })]"
-}
