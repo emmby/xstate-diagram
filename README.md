@@ -191,3 +191,12 @@ The exact same XState v5 JSON or `createMachine(...)` definitions you visualize 
 - **Native & Systems (`lavi`)**: Embedded-friendly Rust
 - **Web, Node.js, React & React Native (`lavi-fsm`)**: 1-line drop-in replacement for `xstate` and `@xstate/react` backed by WebAssembly (`wasm2js` on Hermes/JSC)
 - **Backend, Mobile & Desktop**: Python (`lavi-py`), Java/Kotlin/Android (`lavi-jvm`), Swift/iOS/macOS (`lavi-swift`), Dart/Flutter (`lavi-dart`), and C#/.NET (`lavi-csharp`)
+
+---
+
+## Found a Diagram That Doesn't Render as Expected?
+
+If you have a machine that doesn't render or lay out the way you expect, **please [open a bug report on GitHub](https://github.com/emmby/xstate-diagram/issues/new) with your JSON machine definition**!
+
+Real-world statecharts are the best way to improve our layout and routing heuristics—every reported JSON machine config can be added directly to our 4-gate conformance test suite so it stays clean and regression-free.
+
