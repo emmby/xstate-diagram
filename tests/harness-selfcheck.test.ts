@@ -4,7 +4,7 @@ import * as path from 'node:path';
 import { promisify } from 'node:util';
 import { chromium, type Browser, type Page } from 'playwright';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { assign, createMachine } from 'xstate';
+import { assign, createActor, createMachine } from 'xstate';
 import { extractFromMachine } from '../src/ast/extract-machine.js';
 import { renderMachineToSvg } from '../src/index.js';
 import { inspectGate1 } from '../src/verifier/extract-svg.js';
@@ -909,6 +909,166 @@ describe('Phase 0 Harness Self-Check (AST Normalization + Adversarial Gate 1/2 N
     const multiSvg = await fs.readFile(multiSvgPath, 'utf8');
     expect(multiSvg).toContain('<svg');
     expect(multiSvg).toContain('data-machine-id="secondOne"');
+  });
+
+  it('Rendered SVG includes interactive classes, data-*-path attributes, and embedded CSS styles for live state machine highlighting', async () => {
+    const machine = createMachine({
+      id: 'simSession',
+      initial: 'signedOut',
+      states: {
+        signedOut: {
+          on: {
+            LOGIN: { target: 'authenticating', actions: ['logAttempt'] },
+          },
+        },
+        authenticating: {
+          initial: 'verifying',
+          on: {
+            CANCEL: 'signedOut',
+          },
+          states: {
+            verifying: {
+              entry: ['startVerify'],
+              on: {
+                PING: { actions: ['recordPing'] },
+                SUCCESS: 'approved',
+              },
+            },
+            approved: {
+              type: 'final',
+            },
+          },
+          onDone: 'active',
+        },
+        active: {
+          type: 'parallel',
+          states: {
+            feed: {
+              initial: 'idle',
+              states: {
+                idle: { on: { REFRESH: 'idle' } },
+              },
+            },
+            chat: {
+              initial: 'online',
+              states: {
+                online: {},
+              },
+            },
+          },
+        },
+      },
+    });
+
+    const ast = extractFromMachine(machine);
+    const svg = await renderMachineToSvg(machine);
+
+    expect(svg).toContain('class="xstate-diagram"');
+    expect(svg).toContain('data-root-initial="simSession.signedOut"');
+    expect(svg).toContain('<style class="xstate-diagram-styles">');
+
+    await page.setContent(`<html><body>${svg}</body></html>`, {
+      waitUntil: 'load',
+    });
+
+    // Step 1: Start XState actor and sync initial state ("signedOut") to SVG DOM
+    const actor = createActor(machine);
+    actor.start();
+    const snap1 = actor.getSnapshot();
+    expect(snap1.matches('signedOut')).toBe(true);
+
+    // Advance actor to compound state ("authenticating.verifying")
+    actor.send({ type: 'LOGIN' });
+    const snap2 = actor.getSnapshot();
+    expect(snap2.matches('authenticating')).toBe(true);
+    expect(snap2.matches('authenticating.verifying')).toBe(true);
+
+    const domCheck = await page.evaluate(() => {
+      const authNode = document.querySelector(
+        'g.state-node[data-state-path="authenticating"]',
+      );
+      const verifyingNode = document.querySelector(
+        'g.state-node[data-state-path="authenticating.verifying"]',
+      );
+      const signedOutNode = document.querySelector(
+        'g.state-node[data-state-path="signedOut"]',
+      );
+      const feedRegionNode = document.querySelector(
+        'g.state-node[data-state-path="active.feed"]',
+      );
+      const internalRow = verifyingNode?.querySelector('.internal-transition');
+
+      // Toggle active classes on compound parent + atomic leaf, and enabled on outgoing transitions
+      authNode?.classList.add('is-active');
+      verifyingNode?.classList.add('is-active');
+      signedOutNode?.classList.add('is-disabled');
+      internalRow?.classList.add('is-enabled');
+
+      const successEdge = document.querySelector(
+        'g.transition-edge[data-edge-source-path="authenticating.verifying"][data-edge-event="SUCCESS"]',
+      );
+      const cancelEdge = document.querySelector(
+        'g.transition-edge[data-edge-source-path="authenticating"][data-edge-event="CANCEL"]',
+      );
+      const loginEdge = document.querySelector(
+        'g.transition-edge[data-edge-source-path="signedOut"][data-edge-event="LOGIN"]',
+      );
+      successEdge?.classList.add('is-enabled');
+      cancelEdge?.setAttribute('data-enabled', 'true');
+      loginEdge?.classList.add('is-triggered');
+
+      const verifyingBox = verifyingNode?.querySelector('.state-box') as Element;
+      const authHeader = authNode?.querySelector('.state-header-bg') as Element;
+      const successPath = successEdge?.querySelector('.edge-path') as Element;
+      const cancelPath = cancelEdge?.querySelector('.edge-path') as Element;
+      const loginPath = loginEdge?.querySelector('.edge-path') as Element;
+
+      return {
+        hasCompoundClass: authNode?.classList.contains('state-node--compound') ?? false,
+        hasAtomicClass: verifyingNode?.classList.contains('state-node--atomic') ?? false,
+        hasRegionClass: feedRegionNode?.classList.contains('state-node--region') ?? false,
+        verifyingParentPath: verifyingNode?.getAttribute('data-parent-path') ?? null,
+        feedParentPath: feedRegionNode?.getAttribute('data-parent-path') ?? null,
+        authParentPath: authNode?.getAttribute('data-parent-path') ?? null,
+        verifyingStroke: window.getComputedStyle(verifyingBox).stroke,
+        verifyingFill: window.getComputedStyle(verifyingBox).fill,
+        authHeaderFill: window.getComputedStyle(authHeader).fill,
+        disabledOpacity: window.getComputedStyle(signedOutNode as Element).opacity,
+        successStroke: window.getComputedStyle(successPath).stroke,
+        successCursor: window.getComputedStyle(successEdge as Element).cursor,
+        successMarker: window.getComputedStyle(successPath).markerEnd,
+        cancelStroke: window.getComputedStyle(cancelPath).stroke,
+        loginStroke: window.getComputedStyle(loginPath).stroke,
+      };
+    });
+
+    expect(domCheck.hasCompoundClass).toBe(true);
+    expect(domCheck.hasAtomicClass).toBe(true);
+    expect(domCheck.hasRegionClass).toBe(true);
+    expect(domCheck.verifyingParentPath).toBe('authenticating');
+    expect(domCheck.feedParentPath).toBe('active');
+    expect(domCheck.authParentPath).toBe('');
+    // Active stroke #0284C7 === rgb(2, 132, 199), active fill #F0F9FF === rgb(240, 249, 255)
+    expect(domCheck.verifyingStroke).toBe('rgb(2, 132, 199)');
+    expect(domCheck.verifyingFill).toBe('rgb(240, 249, 255)');
+    // Active compound header #BAE6FD === rgb(186, 230, 253)
+    expect(domCheck.authHeaderFill).toBe('rgb(186, 230, 253)');
+    expect(domCheck.disabledOpacity).toBe('0.45');
+    // Enabled transition #0284C7 === rgb(2, 132, 199) with pointer cursor & active marker
+    expect(domCheck.successStroke).toBe('rgb(2, 132, 199)');
+    expect(domCheck.successCursor).toBe('pointer');
+    expect(domCheck.successMarker).toContain('arrow-transition-active');
+    expect(domCheck.cancelStroke).toBe('rgb(2, 132, 199)');
+    // Triggered transition #059669 === rgb(5, 150, 105)
+    expect(domCheck.loginStroke).toBe('rgb(5, 150, 105)');
+
+    // Ensure Gate 1 and Gate 2 still pass even when runtime interactive classes are active!
+    const g1 = await inspectGate1(page, 'svg');
+    expect(g1.violations).toEqual([]);
+    expect(g1.ast).toEqual(ast);
+
+    const g2 = await lintSvgGeometry(page, 'svg', ast);
+    expect(g2.passed).toBe(true);
   });
 });
 

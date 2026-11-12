@@ -167,23 +167,25 @@ export interface StatechartAST {
 
 ## 4. SVG DOM & Semantic Attribute Contract
 
-Every generated SVG must be a standalone, valid `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 W H" width="W" height="H">` document containing:
+Every generated SVG must be a standalone, valid `<svg xmlns="http://www.w3.org/2000/svg" class="xstate-diagram" viewBox="0 0 W H" width="W" height="H" data-machine-id="<machineId>" data-root-initial="<rootInitialTargetId or ''>">` document containing:
 
-1. **State Nodes (`<g class="state-node">`):**
+1. **State Nodes (`<g class="state-node state-node--<type> [state-node--region]">`):**
    - Required attributes:
-     - `data-state-id="<id>"`
+     - `data-state-id="<id>"` (full dot-delimited state node ID, e.g. `checkout.cart` or `mediaPlayer.active.playback.playing`)
+     - `data-state-path="<relativePath>"` (state path relative to `machineId`, e.g. `cart` or `active.playback.playing`, matching XState `snapshot.matches(path)`)
      - `data-state-key="<key>"`
      - `data-state-type="atomic|compound|parallel|final|history"`
      - `data-parent-id="<parentId or ''>"`
+     - `data-parent-path="<parentRelativePath or ''>"`
      - `data-initial-target="<initialTargetId or ''>"`
      - `data-history-kind="<shallow|deep|''>"`
    - Must contain a primary bounding shape `<rect class="state-box" ... />` (or `<circle class="state-box" />` for `history` pseudostates) that defines the state's visual perimeter.
    - Must contain `<text class="state-title">` displaying the state's `key` (or `H` / `H*` for history states, or bullseye for top-level final states if unnamed, though XState final states have a `key` which must be shown).
    - **Compartments (`<g class="state-compartment" data-compartment="entry|exit|invoke|internal|tags">`):**
-     - Each entry action in `<text data-entry-action="<name>">entry / <name></text>`
-     - Each exit action in `<text data-exit-action="<name>">exit / <name></text>`
-     - Each invocation in `<text data-invoke-src="<src>" data-invoke-id="<id or ''>">invoke / <src></text>`
-     - Each internal targetless transition in `<text data-internal-event="<eventType>" data-internal-order="<order>" data-internal-guard="<guard or ''>" data-internal-actions="<comma-joined>">...</text>`
+     - Each entry action in `<text class="compartment-row compartment-entry" data-entry-action="<name>">entry / <name></text>`
+     - Each exit action in `<text class="compartment-row compartment-exit" data-exit-action="<name>">exit / <name></text>`
+     - Each invocation in `<text class="compartment-row compartment-invoke" data-invoke-src="<src>" data-invoke-id="<id or ''>">invoke / <src></text>`
+     - Each internal targetless transition in `<text class="compartment-row internal-transition" data-internal-event="<eventType>" data-internal-order="<order>" data-internal-guard="<guard or ''>" data-internal-actions="<comma-joined>">...</text>`
      - Each tag in `<g class="state-tag" data-tag="<tag>"><text>#<tag></text></g>`
 
 2. **Initial Pseudostate Indicators (`<g class="initial-indicator">`):**
@@ -192,16 +194,18 @@ Every generated SVG must be a standalone, valid `<svg xmlns="http://www.w3.org/2
      - `data-target-id="<initialTargetId>"`
    - Contains a filled `<circle class="initial-dot" />` and a `<path class="initial-edge" marker-end="url(#arrow-initial)" />` terminating on the border of `initialTargetId`.
 
-3. **Transition Edges (`<g class="transition-edge">`):**
+3. **Transition Edges (`<g class="transition-edge [transition-edge--eventless|delayed|done|error|self|fork]">`):**
    - Required attributes:
      - `data-edge-id="<id>"`
      - `data-edge-source="<sourceId>"`
+     - `data-edge-source-path="<sourceRelativePath>"`
      - `data-edge-targets="<comma-separated targetIds>"`
+     - `data-edge-target-paths="<comma-separated targetRelativePaths>"`
      - `data-edge-event="<eventType>"`
      - `data-edge-order="<order>"`
      - `data-edge-guard="<guard or ''>"`
      - `data-edge-actions="<comma-separated actions>"`
-   - Contains `<path class="edge-path" marker-end="url(#arrow-transition)" d="..." />` (or multiple branch paths for hyperedge forks from a `<circle class="fork-junction" />` shared pre-fork trunk).
+   - Contains `<path class="edge-path" data-edge-target="<targetId>" data-edge-target-path="<targetRelativePath>" marker-end="url(#arrow-transition)" d="..." />` (or multiple branch paths for hyperedge forks from a `<circle class="fork-junction" />` shared pre-fork trunk).
    - Contains `<g class="edge-label">` with `<rect class="edge-label-bg" />` and `<text class="edge-label-text">`:
      - Short single-clause labels (`!guard && actions.length === 0`, up to `24` chars if space-separated) render on a single line.
      - Multi-clause labels (combining an event with `[guard]` and/or `/ action1, action2`) or long space-separated phrases render as a compact **multi-line stacked card** (`<= 280px` pill width) using `<tspan class="edge-label-line" x="..." dy="...">` children inside `<text class="edge-label-text">`:
@@ -209,6 +213,15 @@ Every generated SVG must be a standalone, valid `<svg xmlns="http://www.w3.org/2
        2. **Guard line(s):** `[<guard>]` (monospace, wrapped at internal spaces if `> 32` chars while keeping `[` and `]` intact)
        3. **Action line(s):** `/ action1, action2` (monospace, wrapped cleanly at top-level commas targeting `<= 28` chars per line, plus internal space-wrapping if a single action phrase exceeds `32` chars)
      - Every non-final `<tspan class="edge-label-line">` ends with a single trailing space `' '` (with zero whitespace between `<tspan>` tags) so `.edge-label-text.textContent` reconstructs the exact canonical single-line transition label string for Gate 1 (`extractFromSvg`).
+
+4. **Interactive Runtime CSS Classes, Data Attributes & Embedded Stylesheet (`<style class="xstate-diagram-styles">`):**
+   - Every SVG includes an embedded stylesheet in `<defs>` along with `<marker id="arrow-transition-active">`, `<marker id="arrow-transition-hover">`, and `<marker id="arrow-transition-triggered">` so external JS/CSS can drive live statechart simulations by toggling classes or `data-*` attributes:
+     - **Active States (`g.state-node`):** `.is-active`, `.active`, or `data-active="true"` highlights both atomic/final/history leaf states (fill `--xsd-active-fill`, border `--xsd-active-stroke`, title `--xsd-active-title`, subtle drop-shadow `--xsd-active-glow`) and active compound/parallel parent containers (header band `--xsd-active-header-bg` and border `--xsd-active-stroke` while keeping container body high-contrast for child states).
+     - **Enabled / Available Outgoing Transitions (`g.transition-edge` & `.internal-transition`):** `.is-enabled`, `.is-available`, `.is-active`, `.enabled`, `data-enabled="true"`, or `data-active="true"` sets `cursor: pointer`, highlights `.edge-path` (`--xsd-enabled-stroke`, `marker-end: url(#arrow-transition-active)`), `.fork-junction`, and `.edge-label-bg` / `.edge-label-text`, and provides `:hover` emphasis (`--xsd-hover-stroke`, `url(#arrow-transition-hover)`, `--xsd-hover-label-bg`).
+     - **Clickable Transitions (`g.transition-edge` & `.internal-transition`):** `.is-clickable`, `.clickable`, or `data-clickable="true"` enables pointer cursor and `:hover` highlighting.
+     - **Triggered / Taken Transitions (`g.transition-edge`):** `.is-triggered`, `.is-taken`, or `data-triggered="true"` highlights the transition edge and pill in emerald (`--xsd-triggered-stroke`, `url(#arrow-transition-triggered)`).
+     - **Disabled / Inactive Elements:** `.is-disabled`, `.is-inactive`, or `data-disabled="true"` dims opacity to `--xsd-disabled-opacity` (`0.45`).
+     - **Customizable CSS Variables on `.xstate-diagram`:** `--xsd-active-stroke`, `--xsd-active-fill`, `--xsd-active-header-bg`, `--xsd-active-title`, `--xsd-active-divider`, `--xsd-active-glow`, `--xsd-enabled-stroke`, `--xsd-enabled-label-bg`, `--xsd-enabled-label-stroke`, `--xsd-enabled-label-text`, `--xsd-enabled-label-meta`, `--xsd-hover-stroke`, `--xsd-hover-label-bg`, `--xsd-hover-label-stroke`, `--xsd-hover-label-text`, `--xsd-triggered-stroke`, `--xsd-triggered-label-bg`, `--xsd-triggered-label-stroke`, `--xsd-triggered-label-text`, and `--xsd-disabled-opacity`.
 
 ---
 

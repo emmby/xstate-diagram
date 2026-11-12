@@ -158,6 +158,12 @@ Because `xstate-diagram` uses a 100% browser-free pure-JS runtime, it runs direc
 
 ---
 
+## Styling & Interactive Diagrams
+
+Generated SVGs include semantic `data-*` attributes (`data-state-path`, `data-parent-path`, `data-edge-event`, `data-edge-source-path`, etc.) and built-in CSS classes (`.is-active`, `.is-enabled`, `.is-clickable`, `.is-triggered`, `.is-disabled`) so you can highlight active states, make transitions clickable, or customize colors with `--xsd-*` CSS variables. See [Section 4 of `ARCHITECTURE.md`](./ARCHITECTURE.md#4-svg-dom--semantic-attribute-contract) for the full DOM and CSS reference.
+
+---
+
 ## Release & Publishing Strategy
 
 Releases are automated via [`.github/workflows/release.yml`](./.github/workflows/release.yml):

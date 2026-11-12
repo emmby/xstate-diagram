@@ -77,6 +77,13 @@ export function buildRoundedOrthogonalPath(
   return parts.join(' ');
 }
 
+function toRelativeStatePath(stateId: string, machineId: string): string {
+  if (!stateId) return '';
+  if (stateId === machineId) return '';
+  const prefix = `${machineId}.`;
+  return stateId.startsWith(prefix) ? stateId.slice(prefix.length) : stateId;
+}
+
 function renderStateNode(
   node: PositionedNode,
   fullAst: StatechartAST,
@@ -86,12 +93,25 @@ function renderStateNode(
   const { ast, x, y, width, height, depth, headerHeight, compartmentLines } =
     node;
 
+  const isParallelRegion = Boolean(
+    ast.parentId && fullAst.nodes[ast.parentId]?.type === 'parallel',
+  );
+  const stateClasses = [
+    'state-node',
+    `state-node--${ast.type}`,
+    ...(isParallelRegion ? ['state-node--region'] : []),
+  ].join(' ');
+  const statePath = toRelativeStatePath(ast.id, fullAst.machineId);
+  const parentPath = toRelativeStatePath(ast.parentId ?? '', fullAst.machineId);
+
   const commonAttrs = [
-    `class="state-node"`,
+    `class="${escapeXml(stateClasses)}"`,
     `data-state-id="${escapeXml(ast.id)}"`,
+    `data-state-path="${escapeXml(statePath)}"`,
     `data-state-key="${escapeXml(ast.key)}"`,
     `data-state-type="${escapeXml(ast.type)}"`,
     `data-parent-id="${escapeXml(ast.parentId ?? '')}"`,
+    `data-parent-path="${escapeXml(parentPath)}"`,
     `data-initial-target="${escapeXml(ast.initialTargetId ?? '')}"`,
     `data-history-kind="${escapeXml(ast.historyKind ?? '')}"`,
   ].join(' ');
@@ -129,9 +149,6 @@ function renderStateNode(
   const isCompound = ast.type === 'compound';
   const isParallel = ast.type === 'parallel';
   const isFinal = ast.type === 'final';
-  const isParallelRegion = Boolean(
-    ast.parentId && fullAst.nodes[ast.parentId]?.type === 'parallel',
-  );
   const hasCompartments = compartmentLines.length > 0;
   const showDividedHeader = isCompound || isParallel || hasCompartments;
 
@@ -256,15 +273,15 @@ function renderStateNode(
   ): string => {
     if (kind === 'entry' && rowText.startsWith('entry / ')) {
       const rest = rowText.slice('entry'.length);
-      return `<tspan font-weight="700" fill="${theme.colors.textPrimary}">entry</tspan>${escapeXml(rest)}`;
+      return `<tspan class="compartment-keyword" font-weight="700" fill="${theme.colors.textPrimary}">entry</tspan>${escapeXml(rest)}`;
     }
     if (kind === 'exit' && rowText.startsWith('exit / ')) {
       const rest = rowText.slice('exit'.length);
-      return `<tspan font-weight="700" fill="${theme.colors.textPrimary}">exit</tspan>${escapeXml(rest)}`;
+      return `<tspan class="compartment-keyword" font-weight="700" fill="${theme.colors.textPrimary}">exit</tspan>${escapeXml(rest)}`;
     }
     if (kind === 'invoke' && rowText.startsWith('invoke / ')) {
       const rest = rowText.slice('invoke'.length);
-      return `<tspan font-weight="700" fill="${theme.colors.textPrimary}">invoke</tspan>${escapeXml(rest)}`;
+      return `<tspan class="compartment-keyword" font-weight="700" fill="${theme.colors.textPrimary}">invoke</tspan>${escapeXml(rest)}`;
     }
     if (kind === 'internal') {
       const ev = attrs['data-internal-event'] ?? '';
@@ -274,9 +291,9 @@ function renderStateNode(
       if (ev && afterPfx.startsWith(ev)) {
         const rest = afterPfx.slice(ev.length);
         const pfxSpan = pfx
-          ? `<tspan font-weight="700" fill="${theme.colors.edgeStroke}">${escapeXml(pfx)}</tspan>`
+          ? `<tspan class="internal-priority" font-weight="700" fill="${theme.colors.edgeStroke}">${escapeXml(pfx)}</tspan>`
           : '';
-        return `${pfxSpan}<tspan font-weight="700" fill="${theme.colors.textPrimary}">${escapeXml(ev)}</tspan>${escapeXml(rest)}`;
+        return `${pfxSpan}<tspan class="internal-event" font-weight="700" fill="${theme.colors.textPrimary}">${escapeXml(ev)}</tspan>${escapeXml(rest)}`;
       }
     }
     return escapeXml(rowText);
@@ -319,6 +336,10 @@ function renderStateNode(
       cursorY += laidOut.totalHeight;
     } else {
       cursorY += theme.spacing.compartmentPaddingY;
+      const rowClass =
+        group.kind === 'internal'
+          ? 'compartment-row internal-transition'
+          : `compartment-row compartment-${group.kind}`;
       for (const row of group.rows) {
         const attrStr = Object.entries(row.attrs)
           .map(([k, v]) => `${k}="${escapeXml(v)}"`)
@@ -330,7 +351,7 @@ function renderStateNode(
           row.attrs,
         );
         lines.push(
-          `        <text ${attrStr} x="${fmt(x + leftPad)}" y="${fmt(rowCenterY)}" text-anchor="start" dominant-baseline="central" font-family="${escapeXml(theme.fonts.mono)}" font-size="${theme.fontSizes.compartment}" fill="${theme.colors.textSecondary}">${innerXml}</text>`,
+          `        <text class="${rowClass}" ${attrStr} x="${fmt(x + leftPad)}" y="${fmt(rowCenterY)}" text-anchor="start" dominant-baseline="central" font-family="${escapeXml(theme.fonts.mono)}" font-size="${theme.fontSizes.compartment}" fill="${theme.colors.textSecondary}">${innerXml}</text>`,
         );
         cursorY += theme.spacing.compartmentLineHeight;
       }
@@ -364,16 +385,52 @@ function renderInitialIndicator(
   ].join('\n');
 }
 
+function classifyEdgeModifiers(
+  eventType: string,
+  sourceId: string,
+  targetIds: string[],
+): string[] {
+  const mods: string[] = [];
+  if (eventType === 'always') {
+    mods.push('transition-edge--eventless');
+  } else if (eventType.startsWith('after(')) {
+    mods.push('transition-edge--delayed');
+  } else if (eventType === 'onDone' || eventType.startsWith('onDone(')) {
+    mods.push('transition-edge--done');
+  } else if (eventType.startsWith('onError(')) {
+    mods.push('transition-edge--error');
+  }
+  if (targetIds.length === 1 && targetIds[0] === sourceId) {
+    mods.push('transition-edge--self');
+  }
+  if (targetIds.length > 1) {
+    mods.push('transition-edge--fork');
+  }
+  return mods;
+}
+
 function renderTransitionEdge(
   edge: PositionedEdge,
+  fullAst: StatechartAST,
   theme: ThemeTokens,
 ): string {
   const { ast, branches, label } = edge;
+  const edgeClasses = [
+    'transition-edge',
+    ...classifyEdgeModifiers(ast.eventType, ast.sourceId, ast.targetIds),
+  ].join(' ');
+  const sourcePath = toRelativeStatePath(ast.sourceId, fullAst.machineId);
+  const targetPaths = ast.targetIds.map((tid) =>
+    toRelativeStatePath(tid, fullAst.machineId),
+  );
+
   const attrs = [
-    `class="transition-edge"`,
+    `class="${escapeXml(edgeClasses)}"`,
     `data-edge-id="${escapeXml(ast.id)}"`,
     `data-edge-source="${escapeXml(ast.sourceId)}"`,
+    `data-edge-source-path="${escapeXml(sourcePath)}"`,
     `data-edge-targets="${escapeXml(ast.targetIds.join(','))}"`,
+    `data-edge-target-paths="${escapeXml(targetPaths.join(','))}"`,
     `data-edge-event="${escapeXml(ast.eventType)}"`,
     `data-edge-order="${ast.order}"`,
     `data-edge-guard="${escapeXml(ast.guard ?? '')}"`,
@@ -385,9 +442,10 @@ function renderTransitionEdge(
   for (let bIdx = 0; bIdx < branches.length; bIdx++) {
     const pts = branches[bIdx];
     const tid = ast.targetIds[bIdx] ?? ast.sourceId;
+    const tPath = toRelativeStatePath(tid, fullAst.machineId);
     const d = buildRoundedOrthogonalPath(pts, theme.radii.edgeCorner);
     lines.push(
-      `      <path class="edge-path" data-edge-target="${escapeXml(tid)}" d="${d}" fill="none" stroke="${theme.colors.edgeStroke}" stroke-width="${theme.strokes.edge}" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-transition)" />`,
+      `      <path class="edge-path" data-edge-target="${escapeXml(tid)}" data-edge-target-path="${escapeXml(tPath)}" d="${d}" fill="none" stroke="${theme.colors.edgeStroke}" stroke-width="${theme.strokes.edge}" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-transition)" />`,
     );
   }
 
@@ -450,24 +508,24 @@ function renderTransitionEdge(
         ) {
           const seg = line.segments[0];
           const content = `${seg.text}${isNonFinal ? ' ' : ''}`;
-          return `<tspan class="edge-label-line" x="${fmt(xLeft)}" dy="${dy}" font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(seg.fontSize)}" font-weight="400" fill="${theme.colors.textSecondary}">${escapeXml(content)}</tspan>`;
+          return `<tspan class="edge-label-line edge-label-meta" x="${fmt(xLeft)}" dy="${dy}" font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(seg.fontSize)}" font-weight="400" fill="${theme.colors.textSecondary}">${escapeXml(content)}</tspan>`;
         }
         if (line.segments.length === 1 && line.segments[0].tone === 'event') {
           const seg = line.segments[0];
           const content = `${seg.text}${isNonFinal ? ' ' : ''}`;
-          return `<tspan class="edge-label-line" x="${fmt(xLeft)}" dy="${dy}">${escapeXml(content)}</tspan>`;
+          return `<tspan class="edge-label-line edge-label-event" x="${fmt(xLeft)}" dy="${dy}">${escapeXml(content)}</tspan>`;
         }
         const innerSegs = line.segments
           .map((seg, sIdx) => {
             const addSpace = isNonFinal && sIdx === line.segments.length - 1;
             const content = `${seg.text}${addSpace ? ' ' : ''}`;
             if (seg.tone === 'prefix') {
-              return `<tspan font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(seg.fontSize)}" font-weight="700" fill="${theme.colors.edgeStroke}">${escapeXml(content)}</tspan>`;
+              return `<tspan class="edge-label-prefix" font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(seg.fontSize)}" font-weight="700" fill="${theme.colors.edgeStroke}">${escapeXml(content)}</tspan>`;
             }
             if (seg.tone === 'secondary') {
-              return `<tspan font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(seg.fontSize)}" font-weight="400" fill="${theme.colors.textSecondary}">${escapeXml(content)}</tspan>`;
+              return `<tspan class="edge-label-meta" font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(seg.fontSize)}" font-weight="400" fill="${theme.colors.textSecondary}">${escapeXml(content)}</tspan>`;
             }
-            return `<tspan font-family="${escapeXml(theme.fonts.sans)}" font-weight="600" fill="${theme.colors.edgeLabelText}">${escapeXml(content)}</tspan>`;
+            return `<tspan class="edge-label-event" font-family="${escapeXml(theme.fonts.sans)}" font-weight="600" fill="${theme.colors.edgeLabelText}">${escapeXml(content)}</tspan>`;
           })
           .join('');
         return `<tspan class="edge-label-line" x="${fmt(xLeft)}" dy="${dy}">${innerSegs}</tspan>`;
@@ -483,12 +541,12 @@ function renderTransitionEdge(
     } else {
       const pfxSpan =
         label.priorityPrefix.length > 0
-          ? `<tspan font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(theme.fontSizes.edgeLabel - 1)}" font-weight="700" fill="${theme.colors.edgeStroke}">${escapeXml(label.priorityPrefix)}</tspan>`
+          ? `<tspan class="edge-label-prefix" font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(theme.fontSizes.edgeLabel - 1)}" font-weight="700" fill="${theme.colors.edgeStroke}">${escapeXml(label.priorityPrefix)}</tspan>`
           : '';
-      const evSpan = `<tspan font-family="${escapeXml(theme.fonts.sans)}" font-weight="600" fill="${theme.colors.edgeLabelText}">${escapeXml(ast.eventType)}</tspan>`;
+      const evSpan = `<tspan class="edge-label-event" font-family="${escapeXml(theme.fonts.sans)}" font-weight="600" fill="${theme.colors.edgeLabelText}">${escapeXml(ast.eventType)}</tspan>`;
       const sfxSpan =
         label.suffix.length > 0
-          ? `<tspan font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(theme.fontSizes.edgeLabel - 0.5)}" font-weight="400" fill="${theme.colors.textSecondary}">${escapeXml(label.suffix)}</tspan>`
+          ? `<tspan class="edge-label-meta" font-family="${escapeXml(theme.fonts.mono)}" font-size="${fmt(theme.fontSizes.edgeLabel - 0.5)}" font-weight="400" fill="${theme.colors.textSecondary}">${escapeXml(label.suffix)}</tspan>`
           : '';
       textInner = `${pfxSpan}${evSpan}${sfxSpan}`;
     }
@@ -504,6 +562,169 @@ function renderTransitionEdge(
 
   lines.push(`    </g>`);
   return lines.join('\n');
+}
+
+function buildInteractiveStyleSheet(): string {
+  return [
+    `    <style class="xstate-diagram-styles">`,
+    `      .xstate-diagram {`,
+    `        --xsd-active-stroke: #0284C7;`,
+    `        --xsd-active-fill: #F0F9FF;`,
+    `        --xsd-active-header-bg: #BAE6FD;`,
+    `        --xsd-active-title: #0369A1;`,
+    `        --xsd-active-divider: #7DD3FC;`,
+    `        --xsd-active-glow: rgba(2, 132, 199, 0.22);`,
+    `        --xsd-enabled-stroke: #0284C7;`,
+    `        --xsd-enabled-label-bg: #F0F9FF;`,
+    `        --xsd-enabled-label-stroke: #38BDF8;`,
+    `        --xsd-enabled-label-text: #0369A1;`,
+    `        --xsd-enabled-label-meta: #0369A1;`,
+    `        --xsd-hover-stroke: #0369A1;`,
+    `        --xsd-hover-label-bg: #E0F2FE;`,
+    `        --xsd-hover-label-stroke: #0284C7;`,
+    `        --xsd-hover-label-text: #0C4A6E;`,
+    `        --xsd-triggered-stroke: #059669;`,
+    `        --xsd-triggered-label-bg: #ECFDF5;`,
+    `        --xsd-triggered-label-stroke: #34D399;`,
+    `        --xsd-triggered-label-text: #065F46;`,
+    `        --xsd-disabled-opacity: 0.45;`,
+    `        --xsd-transition-duration: 0ms;`,
+    `      }`,
+    `      .state-node > .state-box,`,
+    `      .state-node > .state-header-bg,`,
+    `      .state-node > .state-divider,`,
+    `      .state-node > .state-title,`,
+    `      .transition-edge > .edge-path,`,
+    `      .transition-edge > .fork-junction,`,
+    `      .transition-edge > .edge-label > .edge-label-bg,`,
+    `      .transition-edge > .edge-label > .edge-label-text {`,
+    `        transition: fill var(--xsd-transition-duration) ease, stroke var(--xsd-transition-duration) ease;`,
+    `      }`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-box {`,
+    `        stroke: var(--xsd-active-stroke);`,
+    `        stroke-width: 2.5px;`,
+    `      }`,
+    `      .state-node:is(.state-node--atomic, .state-node--final, .state-node--history):is(.is-active, .active, [data-active="true"]) > .state-box {`,
+    `        fill: var(--xsd-active-fill);`,
+    `        filter: drop-shadow(0 0 6px var(--xsd-active-glow));`,
+    `      }`,
+    `      .state-node:is(.state-node--compound, .state-node--parallel):is(.is-active, .active, [data-active="true"]) > .state-box {`,
+    `        stroke-width: 2.25px;`,
+    `      }`,
+    `      .state-node:is(.state-node--compound, .state-node--parallel):is(.is-active, .active, [data-active="true"]) > .state-header-bg {`,
+    `        fill: var(--xsd-active-header-bg);`,
+    `        fill-opacity: 0.9;`,
+    `      }`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-title {`,
+    `        fill: var(--xsd-active-title);`,
+    `      }`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-divider,`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .compartment-divider,`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .compartment-bottom-divider {`,
+    `        stroke: var(--xsd-active-divider);`,
+    `      }`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-final-inner,`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-final-badge-outer,`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-parallel-badge rect,`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-parallel-badge line {`,
+    `        stroke: var(--xsd-active-stroke);`,
+    `      }`,
+    `      .state-node:is(.is-active, .active, [data-active="true"]) > .state-final-badge-inner {`,
+    `        fill: var(--xsd-active-stroke);`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) {`,
+    `        cursor: pointer;`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) > .edge-path {`,
+    `        stroke: var(--xsd-enabled-stroke);`,
+    `        stroke-width: 2.5px;`,
+    `        marker-end: url(#arrow-transition-active);`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) > .fork-junction {`,
+    `        fill: var(--xsd-enabled-stroke);`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) > .edge-label > .edge-label-bg {`,
+    `        fill: var(--xsd-enabled-label-bg);`,
+    `        fill-opacity: 1;`,
+    `        stroke: var(--xsd-enabled-label-stroke);`,
+    `        stroke-width: 1.5px;`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) > .edge-label .edge-label-text,`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) > .edge-label .edge-label-event,`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) > .edge-label .edge-label-prefix {`,
+    `        fill: var(--xsd-enabled-label-text);`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, [data-enabled="true"], [data-active="true"]) > .edge-label .edge-label-meta {`,
+    `        fill: var(--xsd-enabled-label-meta);`,
+    `      }`,
+    `      .transition-edge:is(.is-clickable, .clickable, [data-clickable="true"]) {`,
+    `        cursor: pointer;`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]):hover > .edge-path {`,
+    `        stroke: var(--xsd-hover-stroke);`,
+    `        stroke-width: 3px;`,
+    `        marker-end: url(#arrow-transition-hover);`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]):hover > .fork-junction {`,
+    `        fill: var(--xsd-hover-stroke);`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]):hover > .edge-label > .edge-label-bg {`,
+    `        fill: var(--xsd-hover-label-bg);`,
+    `        fill-opacity: 1;`,
+    `        stroke: var(--xsd-hover-label-stroke);`,
+    `        stroke-width: 1.75px;`,
+    `        filter: drop-shadow(0 1px 3px var(--xsd-active-glow));`,
+    `      }`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]):hover > .edge-label .edge-label-text,`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]):hover > .edge-label .edge-label-event,`,
+    `      .transition-edge:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]):hover > .edge-label .edge-label-prefix {`,
+    `        fill: var(--xsd-hover-label-text);`,
+    `      }`,
+    `      .transition-edge:is(.is-triggered, .is-taken, [data-triggered="true"]) > .edge-path {`,
+    `        stroke: var(--xsd-triggered-stroke);`,
+    `        stroke-width: 2.75px;`,
+    `        marker-end: url(#arrow-transition-triggered);`,
+    `      }`,
+    `      .transition-edge:is(.is-triggered, .is-taken, [data-triggered="true"]) > .fork-junction {`,
+    `        fill: var(--xsd-triggered-stroke);`,
+    `      }`,
+    `      .transition-edge:is(.is-triggered, .is-taken, [data-triggered="true"]) > .edge-label > .edge-label-bg {`,
+    `        fill: var(--xsd-triggered-label-bg);`,
+    `        fill-opacity: 1;`,
+    `        stroke: var(--xsd-triggered-label-stroke);`,
+    `        stroke-width: 1.75px;`,
+    `      }`,
+    `      .transition-edge:is(.is-triggered, .is-taken, [data-triggered="true"]) > .edge-label .edge-label-text,`,
+    `      .transition-edge:is(.is-triggered, .is-taken, [data-triggered="true"]) > .edge-label .edge-label-event,`,
+    `      .transition-edge:is(.is-triggered, .is-taken, [data-triggered="true"]) > .edge-label .edge-label-prefix {`,
+    `        fill: var(--xsd-triggered-label-text);`,
+    `      }`,
+    `      .internal-transition:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]) {`,
+    `        cursor: pointer;`,
+    `        fill: var(--xsd-enabled-label-text);`,
+    `      }`,
+    `      .internal-transition:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]) .internal-event,`,
+    `      .internal-transition:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]) .internal-priority {`,
+    `        fill: var(--xsd-enabled-label-text);`,
+    `      }`,
+    `      .internal-transition:is(.is-enabled, .is-available, .is-active, .enabled, .is-clickable, .clickable, [data-enabled="true"], [data-active="true"], [data-clickable="true"]):hover {`,
+    `        fill: var(--xsd-hover-label-text);`,
+    `        text-decoration: underline;`,
+    `      }`,
+    `      .state-node:is(.is-disabled, .is-inactive, [data-disabled="true"]),`,
+    `      .transition-edge:is(.is-disabled, .is-inactive, [data-disabled="true"]),`,
+    `      .internal-transition:is(.is-disabled, .is-inactive, [data-disabled="true"]) {`,
+    `        opacity: var(--xsd-disabled-opacity);`,
+    `      }`,
+    `      .initial-indicator:is(.is-active, .active, [data-active="true"]) > .initial-dot {`,
+    `        fill: var(--xsd-active-stroke);`,
+    `      }`,
+    `      .initial-indicator:is(.is-active, .active, [data-active="true"]) > .initial-edge {`,
+    `        stroke: var(--xsd-active-stroke);`,
+    `        marker-end: url(#arrow-transition-active);`,
+    `      }`,
+    `    </style>`,
+  ].join('\n');
 }
 
 /**
@@ -528,7 +749,7 @@ export function renderDiagramToSvg(
   const initialBlocks = initialIndicators.map((ind) =>
     renderInitialIndicator(ind, theme),
   );
-  const edgeBlocks = edges.map((e) => renderTransitionEdge(e, theme));
+  const edgeBlocks = edges.map((e) => renderTransitionEdge(e, ast, theme));
 
   const mw = theme.markers.arrowWidth;
   const mh = theme.markers.arrowHeight;
@@ -538,10 +759,20 @@ export function renderDiagramToSvg(
   const attrHeight = Math.round(height * cssScale);
 
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${attrWidth}" height="${attrHeight}" data-machine-id="${escapeXml(ast.machineId)}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" class="xstate-diagram" viewBox="0 0 ${width} ${height}" width="${attrWidth}" height="${attrHeight}" data-machine-id="${escapeXml(ast.machineId)}" data-root-initial="${escapeXml(ast.rootInitialTargetId ?? '')}">`,
     `  <defs>`,
+    buildInteractiveStyleSheet(),
     `    <marker id="arrow-transition" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="${mw}" markerHeight="${mh}" markerUnits="userSpaceOnUse" orient="auto">`,
     `      <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 1.8 4 Z" fill="${theme.colors.edgeStroke}" />`,
+    `    </marker>`,
+    `    <marker id="arrow-transition-active" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="${mw}" markerHeight="${mh}" markerUnits="userSpaceOnUse" orient="auto">`,
+    `      <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 1.8 4 Z" fill="#0284C7" />`,
+    `    </marker>`,
+    `    <marker id="arrow-transition-hover" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="${mw}" markerHeight="${mh}" markerUnits="userSpaceOnUse" orient="auto">`,
+    `      <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 1.8 4 Z" fill="#0369A1" />`,
+    `    </marker>`,
+    `    <marker id="arrow-transition-triggered" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="${mw}" markerHeight="${mh}" markerUnits="userSpaceOnUse" orient="auto">`,
+    `      <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 1.8 4 Z" fill="#059669" />`,
     `    </marker>`,
     `    <marker id="arrow-initial" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="${mw}" markerHeight="${mh}" markerUnits="userSpaceOnUse" orient="auto">`,
     `      <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 1.8 4 Z" fill="${theme.colors.initialStroke}" />`,
