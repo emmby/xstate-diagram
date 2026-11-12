@@ -411,7 +411,7 @@ function buildHtml(): string {
   <header>
     <div class="brand">
       <h1>xstate-diagram</h1>
-      <span class="badge">v0.2.0 • Pure-JS ELK + XState v5</span>
+      <span class="badge">v0.2.1 • Pure-JS ELK + XState v5</span>
       <div class="cli-pill" title="Run directly from terminal with npx">
         <span>$ npx xstate-diagram machine.ts -o diagram.svg</span>
       </div>

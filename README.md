@@ -140,7 +140,7 @@ Use `emmby/xstate-diagram` directly as a composite GitHub Action in any reposito
 
 ```yaml
 - name: Render XState diagram
-  uses: emmby/xstate-diagram@v0.2.0
+  uses: emmby/xstate-diagram@v0.2.1
   with:
     input: src/machines/checkoutMachine.ts
     output: docs/diagrams/checkout.svg

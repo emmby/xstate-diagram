@@ -1,6 +1,6 @@
 {
   "name": "xstate-diagram",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Convert XState v5 state machines into publication-quality SVG statechart diagrams with closed-loop verification",
   "license": "ISC",
   "engines": {
